@@ -1,12 +1,9 @@
-import UserPage from "Pages/UserPage";
-import "./App.module.css";
+
+import './App.module.css';
+import Container from 'Components/Container/Container';
 
 function App() {
-  return (
-    <div className="App">
-      <UserPage/>
-    </div>
-  );
+  return <Container></Container>;
 }
 
 export default App;
