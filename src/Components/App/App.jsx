@@ -1,5 +1,6 @@
-import UserPage from 'Pages/UserPage/UserPage';
+// import UserPage from 'Pages/UserPage/UserPage';
 import './App.module.css';
+import RegisterPage from 'Pages/RegisterPage/RegisterPage';
 // import Navigation from 'Components/Navigation/Navigation';
 // import Section from 'Components/Section/Section';
 // import AddPetPage from 'Pages/AddPetPage/AddPetPage';
@@ -8,12 +9,13 @@ import './App.module.css';
 // import NewsPage from 'Pages/NewsPage/NewsPage';
 // import NoticesPage from 'Pages/NoticesPage/NoticesPage';
 // import OurFriendsPage from 'Pages/OurFriendsPage/OurFriendsPage';
-// import RegisterPage from 'Pages/RegisterPage/RegisterPage';
+
 
 function App() {
   return (
     <>
-      <UserPage />
+      {/* <UserPage /> */}
+      <RegisterPage />
     </>
   );
 }

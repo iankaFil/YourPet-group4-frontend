@@ -36,7 +36,6 @@ const AuthForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Email:
         <input
           type="email"
           value={email}
@@ -45,7 +44,6 @@ const AuthForm = ({ onSubmit }) => {
         {emailError && <div className="error">{emailError}</div>}
       </label>
       <label>
-        Пароль:
         <input
           type="password"
           value={password}
@@ -53,7 +51,7 @@ const AuthForm = ({ onSubmit }) => {
         />
         {passwordError && <div className="error">{passwordError}</div>}
       </label>
-      <button type="submit">Войти</button>
+      <button type="submit">Login</button>
     </form>
   );
 };
