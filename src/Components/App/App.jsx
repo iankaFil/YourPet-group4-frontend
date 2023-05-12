@@ -1,5 +1,4 @@
 import './App.module.css';
-import Container from 'Components/Container/Container';
 import Navigation from 'Components/Navigation/Navigation';
 // import Section from 'Components/Section/Section';
 // import AddPetPage from 'Pages/AddPetPage/AddPetPage';
@@ -13,9 +12,9 @@ import Navigation from 'Components/Navigation/Navigation';
 
 function App() {
   return (
-    <Container>
+    <>
       <Navigation />
-    </Container>
+    </>
   );
 }
 
