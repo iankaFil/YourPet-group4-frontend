@@ -1,0 +1,90 @@
+.modal {
+  position: absolute;
+  width: 608px;
+  height: 354px;
+  left: 80px;
+  top: 148px;
+
+  background: #ffffff;
+
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+}
+
+.titelCongrats {
+  width: 226px;
+  height: 49px;
+  left: 271px;
+  top: 208px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 49px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  color: #111111;
+}
+
+.textCongrats {
+  width: 350px;
+  height: 33px;
+  left: 209px;
+  top: 309px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  color: #111111;
+}
+
+.btn {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 12px;
+
+  /* position: absolute; */
+  width: 248px;
+  height: 40px;
+  left: 261px;
+  top: 402px;
+
+  background: #54adff;
+  border-radius: 40px;
+}
+
+.btnText {
+  width: 103px;
+  height: 22px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #fef9f9;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

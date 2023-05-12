@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import styles from './AuthForm.modul.css'
+
+
 const AuthForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +37,7 @@ const AuthForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label>
         <input
           type="email"
@@ -51,9 +54,18 @@ const AuthForm = ({ onSubmit }) => {
         />
         {passwordError && <div className="error">{passwordError}</div>}
       </label>
-      <button type="submit">Login</button>
+       <label>
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        {passwordError && <div className="error">{passwordError}</div>}
+      </label>
+      <button className={styles.btn} type="submit">Registration</button>
     </form>
   );
 };
 
 export default AuthForm;
+
