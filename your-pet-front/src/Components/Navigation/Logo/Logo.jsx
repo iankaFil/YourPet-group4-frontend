@@ -4,7 +4,7 @@ import OurLogo from '../../../logo.svg';
 function Logo() {
   return (
     <Link to="/main">
-      <img src={OurLogo} alt="YourPet logo" />
+      <img src={OurLogo} alt="YourPetLogo" />
     </Link>
   );
 }
