@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from 'Components/AuthForm/AuthForm';
-import ModalCongrats from './ModalCongrats';
+import ModalCongrats from './../../Components/ModalCongrats/ModalCongrats';
 import Header from 'Components/Header/Header';
 import Section from 'Components/Section/Section';
 import Container from 'Components/Container/Container';
 
 const RegisterPage = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [notification, setNotification] = useState('');
 

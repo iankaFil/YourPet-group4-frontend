@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from 'Components/AuthForm/AuthForm';
 
 const LoginPage = () => {
-  const history = useHistory();
+  const history = useNavigate();
 
   // Состояние для данных формы
   const [formData, setFormData] = useState({
