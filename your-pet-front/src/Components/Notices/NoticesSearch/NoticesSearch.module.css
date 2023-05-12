@@ -1,0 +1,17 @@
+.input {
+  color: #888888;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  width: 608px;
+  height: 44px;
+  padding-left: 20px;
+
+  background: #ffffff;
+
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
+  border: transparent;
+}
