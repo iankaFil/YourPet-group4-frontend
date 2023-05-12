@@ -1,4 +1,4 @@
-.section {
+/* .section {
     margin: 0 auto;
 
     @media screen and (max-width:759px) {
@@ -12,4 +12,12 @@
     @media screen and (min-width: 1280px) {
         width: 1280px;
     }
+} */
+
+.section {
+    padding-top: 40px;
+
+    @media screen and (min-width: 768px) {
+            padding-top: 80px;
+        }
 }

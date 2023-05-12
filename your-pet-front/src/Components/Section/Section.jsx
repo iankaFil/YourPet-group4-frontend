@@ -1,8 +1,8 @@
 import { PropTypes } from 'prop-types';
 import css from './Section.module.css';
 
-const Section = ({ children }) => {
-  return <div className={css.Section}>{children}</div>;
+const Section = ({ children, className  }) => {
+  return <div className={`${css.section} ${className}`}>{children}</div>;
 };
 
 Section.propTypes = {
