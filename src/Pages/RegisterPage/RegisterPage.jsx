@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import AuthForm from './AuthForm';
+import AuthForm from 'Components/AuthForm/AuthForm';
 import ModalCongrats from './ModalCongrats';
 import Header from 'Components/Header/Header';
 import Section from 'Components/Section/Section';
