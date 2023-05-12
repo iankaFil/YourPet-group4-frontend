@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/YourPet-group4-frontend/static/css/main.0da05715.css",
+    "main.js": "/YourPet-group4-frontend/static/js/main.8622d336.js",
+    "index.html": "/YourPet-group4-frontend/index.html",
+    "main.0da05715.css.map": "/YourPet-group4-frontend/static/css/main.0da05715.css.map",
+    "main.8622d336.js.map": "/YourPet-group4-frontend/static/js/main.8622d336.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0da05715.css",
+    "static/js/main.8622d336.js"
+  ]
+}
