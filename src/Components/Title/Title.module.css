@@ -6,15 +6,15 @@
     color: #111111;
     margin: 0 auto;
 
-    @media screen and (max-width:759px) {
+    @media screen and (max-width: 759px) {
         min-width: 320px;
     }
 
-    @media screen and (min-width: 760px) and (max-width:1279px) {
-        font-size: 48px;
+    @media screen and (min-width: 760px) and (max-width: 1279px) {
+        width: 760px;
     }
 
     @media screen and (min-width: 1280px) {
-        font-size: 48px;
+        width: 1280px;
     }
 }
