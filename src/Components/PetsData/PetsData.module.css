@@ -33,4 +33,9 @@
     line-height: 1.38;
     letter-spacing: 0.04em;
     cursor: pointer;
+    /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+}
+
+.button:hover{
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
 }
