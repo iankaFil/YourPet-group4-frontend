@@ -1,0 +1,94 @@
+.petItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 16px 20px 40px 20px;
+    background-color: #ffffff;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    border-radius: 20px;
+    color: #000000;
+
+    @media screen and (min-width: 768px) {
+        border-radius: 40px;
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+.photoWrap {
+     
+    width: 240px;
+    height: 240px;
+    background-color: #CCE4FB;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    
+    @media screen and (min-width: 768px) {
+        width: 128px;
+        height: 128px;
+    }
+}
+
+.default {
+    width: 240px;
+    height: 240px;
+    @media screen and (min-width: 768px) {
+            width: 128px;
+            height: 128px;
+        }
+}
+
+.infoWrap {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.36;
+        letter-spacing: 0.04em;
+        color: #000000;
+}
+
+.trashWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.infoText:not(:last-child){
+    margin-bottom: 12px;
+}
+
+.delete_btn{
+    display: flex;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delete_btn:hover {
+    background-color: #54ADFF;
+}
+
+.trashIcon {
+    position: relative;
+    stroke: #54ADFF;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    border-radius: 50%;
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trashIcon:hover {
+    border-radius: 50%;
+    stroke: #FDF7F2;
+}
