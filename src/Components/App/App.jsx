@@ -1,21 +1,23 @@
+import css from './App.module.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { current } from '@reduxjs/toolkit';
+import UserRoutes from 'Components/UserRoutes';
 import UserPage from 'Pages/UserPage/UserPage';
-import './App.module.css';
-// import RegisterPage from 'Pages/RegisterPage/RegisterPage';
-// import Navigation from 'Components/Navigation/Navigation';
-// import Section from 'Components/Section/Section';
-// import AddPetPage from 'Pages/AddPetPage/AddPetPage';
-// import HomePage from 'Pages/HomePage/HomePage';
-// import LoginPage from 'Pages/LoginPage/LoginPage';
-// import NewsPage from 'Pages/NewsPage/NewsPage';
-// import NoticesPage from 'Pages/NoticesPage/NoticesPage';
-// import OurFriendsPage from 'Pages/OurFriendsPage/OurFriendsPage';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
   return (
-    <>
+    <div className={css.wrap}>
+      <UserRoutes />
       <UserPage />
-    </>
+    </div>
   );
-}
+};
 
 export default App;

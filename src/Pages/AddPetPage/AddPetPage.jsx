@@ -40,12 +40,12 @@ export const App = () => {
       </ul>
       <ul className={css.LinkAddPEt}>
         <li className={css.LinkAddPEtItem}>
-          <a className={css.LinkAddPEtLitkCancel} href="#">
+          <a className={css.LinkAddPEtLitkCancel} href="*">
             Cancel
           </a>
         </li>
         <li className={css.LinkAddPEtItem}>
-          <a className={css.LinkAddPEtLitk} href="#">
+          <a className={css.LinkAddPEtLitk} href="*">
             Next
           </a>
         </li>
@@ -53,4 +53,3 @@ export const App = () => {
     </div>
   );
 };
-
