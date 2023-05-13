@@ -1,0 +1,21 @@
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 28px;
+  gap: 10px;
+
+  position: absolute;
+  left: 20.18%;
+  right: 20.18%;
+  top: 46.69%;
+  bottom: 49.29%;
+
+  background: #54adff;
+  border-radius: 40px;
+}
+
+.form {
+  /* display: flex; */
+}

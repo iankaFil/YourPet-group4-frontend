@@ -1,29 +1,9 @@
 .section {
-    height: 100vh;
-    background: #FEF9F9;
     @media screen and (min-width: 768px) {
-            padding-top: 60px;
-        }
-    @media screen and (min-width: 1280px) {
-        padding-top: 62px;
-    }
-}
-
-.container {
-    @media screen and (min-width: 320px) {
-            max-width: 320px;
-        }
-
-    @media screen and (min-width: 480px) {
-        max-width: 480px;
-    }
-
-    @media screen and (min-width: 768px) {
-        max-width: 768px;
+        padding-top: 60px;
     }
 
     @media screen and (min-width: 1280px) {
-        max-width: 1280px;
-        gap: 32px;
+        padding-top: 62px;
     }
 }
