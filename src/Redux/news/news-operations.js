@@ -16,3 +16,15 @@ export const fetchNews = createAsyncThunk(
     }
   }
 );
+
+export const fetchSearchNews = createAsyncThunk(
+  'news/search',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await instance.get(`/news/search?q=${credentials}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
