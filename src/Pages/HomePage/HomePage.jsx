@@ -5,7 +5,9 @@ import Container from 'Components/Container/';
 const HomePage = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>
+        HomePage
+      </Container>
     </Section>
   );
 };
