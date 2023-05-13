@@ -5,7 +5,9 @@ import Container from 'Components/Container/';
 const NewsPage = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>
+        NewsPage
+      </Container>
     </Section>
   );
 };

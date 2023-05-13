@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './AddPetPage.module.css';
 
-export const App = () => {
+const AddPetPage = () => {
   return (
     <div className={css.AddPetContainer}>
       <h2 className={css.AddPet}>Add pet</h2>
@@ -53,3 +53,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default AddPetPage;
