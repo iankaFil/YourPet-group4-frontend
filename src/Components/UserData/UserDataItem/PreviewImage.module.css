@@ -1,0 +1,13 @@
+.preview {
+    margin-bottom: 14px;
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.preview__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+}
