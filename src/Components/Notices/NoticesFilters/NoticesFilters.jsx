@@ -7,28 +7,27 @@ const NoticesCategoriesNav = () => {
     <div className={css.navigationContainer}>
       <ul className={css.linksContainer}>
         <li className={css.link} activeClassName="active">
-          <a href="#"></a>sell
+          sell
         </li>
         <li className={css.link} activeClassName="active">
-          <a href="#"></a>
           lost/found
         </li>
         <li className={css.link} activeClassName="active">
-          <a href="#"></a>in good hands
+          in good hands
         </li>
         <li className={css.link} activeClassName="active">
-            <a href="#"></a>favorite ads
-          </li>
-          <li className={css.link} activeClassName="active">
-            <a href="#"></a>my ads
-          </li>
+          favorite ads
+        </li>
+        <li className={css.link} activeClassName="active">
+          my ads
+        </li>
       </ul>
       <ul className={css.addButtonContainer}>
         <li className={css.link} activeClassName="active">
-          <a href="#"></a> Filter
+          Filter
         </li>
         <li className={css.addButton} activeClassName="active">
-          <a href="#"></a> Add Pet
+          Add Pet
         </li>
       </ul>
     </div>
