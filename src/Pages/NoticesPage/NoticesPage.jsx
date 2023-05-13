@@ -1,12 +1,14 @@
 import React from 'react';
-import Section from 'Components/Section';
-import Container from 'Components/Container/';
+import css from 'Pages/NoticesPage/NoticesPage.module.css';
+
+import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
 
 const NoticesPage = () => {
   return (
-    <Section>
-      <Container></Container>
-    </Section>
+    <div className={css.page_wrap}>
+      <h1 className={css.page_title}>Find your favorite pet</h1>
+      <NoticesSearch />
+    </div>
   );
 };
 

@@ -1,0 +1,15 @@
+.page_wrap {
+    display: grid;
+    justify-items: center;
+    padding-top: 148px;
+}
+
+.page_title {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.38;
+    color: #111111;
+    margin-bottom: 40px;
+}

@@ -1,6 +1,6 @@
-// import UserPage from 'Pages/UserPage/UserPage';
+import UserPage from 'Pages/UserPage/UserPage';
 import './App.module.css';
-import RegisterPage from 'Pages/RegisterPage/RegisterPage';
+// import RegisterPage from 'Pages/RegisterPage/RegisterPage';
 // import Navigation from 'Components/Navigation/Navigation';
 // import Section from 'Components/Section/Section';
 // import AddPetPage from 'Pages/AddPetPage/AddPetPage';
@@ -10,12 +10,10 @@ import RegisterPage from 'Pages/RegisterPage/RegisterPage';
 // import NoticesPage from 'Pages/NoticesPage/NoticesPage';
 // import OurFriendsPage from 'Pages/OurFriendsPage/OurFriendsPage';
 
-
 function App() {
   return (
     <>
-      {/* <UserPage /> */}
-      <RegisterPage />
+      <UserPage />
     </>
   );
 }
