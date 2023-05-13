@@ -1,0 +1,52 @@
+.navigationContainer {
+  margin-top: 43px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: auto;
+  /* max-width: 1600px; */
+}
+
+.linksContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 35px;
+  border-radius: 40px;
+  background: #cce4fb;
+  color: #000;
+  text-decoration: none;
+  padding: 0 16px;
+  margin: 0 8px;
+}
+
+.link.active {
+  background-color: #54adff;
+  color: #fff;
+}
+
+.addButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+}
+.addButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 35px;
+  border-radius: 40px;
+  background: #54adff;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 16px;
+}
