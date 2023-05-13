@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import OurLogo from '../logo.svg';
+import OurLogo from '../SvgIcons/logo.svg';
 import css from './Logo.module.css';
 
 function Logo() {

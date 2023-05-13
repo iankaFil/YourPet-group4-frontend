@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserLogo from '../../user-icon.svg';
+import UserLogo from '../../SvgIcons/user-icon.svg';
 import css from './UserNav.module.css';
 
 const name = 'Anna';

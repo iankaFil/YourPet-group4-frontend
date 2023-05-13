@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import css from './AuthNav.module.css';
-import { ReactComponent as Paw } from '../../paw.svg';
+import { ReactComponent as Paw } from '../../SvgIcons/paw.svg';
 
 const isMobile = true;
 

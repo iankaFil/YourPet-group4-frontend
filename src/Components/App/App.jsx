@@ -5,7 +5,7 @@ import UserRoutes from 'Components/UserRoutes';
 function App() {
   return (
     <>
-     <UserRoutes/>
+      <UserRoutes />
     </>
   );
 }

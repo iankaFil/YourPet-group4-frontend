@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import BurgerSvg from '../../menu-hamburger.svg';
+import BurgerSvg from '../../SvgIcons/menu-hamburger.svg';
 import css from './Burger.module.css';
 import Modal from 'Components/Modal/Modal';
 
