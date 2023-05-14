@@ -14,26 +14,26 @@ import { NotFound } from './NotFound/NotFound'
 
 const UserRoutes = () => {
   return (
-      <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/news' element={<NewsPage />} />
-          <Route path='/notices/:categoryName' element={<NoticesPage />} >
-            <Route path="sell" element={<NoticesPage />} />
-            <Route path="lost-found" element={<NoticesPage />} />
-            <Route path="for-free" element={<NoticesPage />} />
-          </Route>
-          <Route path="/friends" element={<OurFriendsPage />} />
-          <Route element={<PublicRoute />}>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
-            <Route path="/user" element={<UserPage />} />
-            <Route path="/add-pet" element={<AddPetPage />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/news' element={<NewsPage />} />
+      <Route path='/notices/:categoryName' element={<NoticesPage />} >
+        <Route path="sell" element={<NoticesPage />} />
+        <Route path="lost-found" element={<NoticesPage />} />
+        <Route path="for-free" element={<NoticesPage />} />
+      </Route>
+      <Route path="/friends" element={<OurFriendsPage />} />
+      <Route element={<PublicRoute />}>
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/add-pet" element={<AddPetPage />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
 
-export default UserRoutes
+export default UserRoutes;
