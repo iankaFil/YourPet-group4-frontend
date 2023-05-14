@@ -1,13 +1,13 @@
 import React from 'react';
-// import { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import { fetchNews } from 'Redux/news/news-operations';
-// import {
-//   selectIsLoading,
-//   selectError,
-//   selectNews,
-// } from 'Redux/news/news-selectors';
+import { fetchNews } from 'Redux/news/news-operations';
+import {
+  selectIsLoading,
+  selectError,
+  selectNews,
+} from 'Redux/news/news-selectors';
 // import css from 'Pages/NewsPage/NewsPage.module.css';
 
 import Section from 'Components/Section';
@@ -17,21 +17,22 @@ import NewsSearch from 'Components/News/NewsSearch/NewsSearch';
 import NewsList from 'Components/News/NewsList/NewsList';
 
 const NewsPage = () => {
-  // const dispatch = useDispatch();
-  // const newsItems = useSelector(selectNews);
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  const newsItems = useSelector(selectNews);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
-  // useEffect(() => {
-  //   dispatch(fetchNews());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
 
   return (
     <Section>
       <Container>
         <Title>News</Title>
         <NewsSearch />
-        <NewsList />
+        {isLoading && !error && <p>ТУТ ДОЛЖЕН БЫТЬ ЛОАДЕР</p>}
+        {newsItems.length > 0 && <NewsList news={newsItems} />}
       </Container>
     </Section>
   );

@@ -3,12 +3,12 @@
 const NewsItems = ({ id, title, text, date, imgUrl, url }) => {
   return (
     <li key={id}>
-      <image src={imgUrl} alt={title} loading="lazy"></image>
+      <img src={imgUrl} alt={title} loading="lazy"></img>
       <h2>{title}</h2>
       <p>{text}</p>
       <p>{text}</p>
       <p>{date}</p>
-      <a href={url} _blank>
+      <a href={url} _blank="true">
         Read more
       </a>
     </li>
