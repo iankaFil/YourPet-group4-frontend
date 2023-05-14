@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNews } from './news-operations';
+import { fetchNews, fetchSearchNews } from './news-operations';
 
 const initialState = {
   items: [],
@@ -31,6 +31,13 @@ const newsSlice = createSlice({
         handleFulfilled(state, action)
       )
       .addCase(fetchNews.rejected, (state, action) =>
+        handleRejected(state, action)
+      )
+      .addCase(fetchSearchNews.pending, state => handlePending(state))
+      .addCase(fetchSearchNews.fulfilled, (state, action) =>
+        handleFulfilled(state, action)
+      )
+      .addCase(fetchSearchNews.rejected, (state, action) =>
         handleRejected(state, action)
       );
   },
