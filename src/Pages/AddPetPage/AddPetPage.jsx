@@ -10,7 +10,7 @@ function AddPetPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-  const [setPetName] = useState('');
+  // const [setPetName] = useState('');
   const [setBirthDate] = useState('');
   const [setBreed] = useState('');
   // const [errors, setErrors] = useState({});
@@ -32,7 +32,7 @@ function AddPetPage() {
     } else {
       alert('Please select a breed');
     }
-    setPetName(petName);
+    // setPetName(petName);
     setBirthDate(birthdate);
     setBreed(breed);
   };

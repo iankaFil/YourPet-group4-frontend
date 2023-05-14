@@ -7,29 +7,29 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
   const [petName, setPetName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [breed, setBreed] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({});
 
-  const handleNextValdation = () => {
-    const validationErrors = {};
+  // const handleNextValdation = () => {
+  //   const validationErrors = {};
 
-    if (!petName) {
-      validationErrors.name = 'Enter a name';
-    }
+  //   if (!petName) {
+  //     validationErrors.name = 'Enter a name';
+  //   }
 
-    if (!birthDate) {
-      validationErrors.birthdate = 'Enter a date of birth';
-    }
+  //   if (!birthDate) {
+  //     validationErrors.birthdate = 'Enter a date of birth';
+  //   }
 
-    if (!breed) {
-      validationErrors.breed = 'Enter a breed';
-    }
+  //   if (!breed) {
+  //     validationErrors.breed = 'Enter a breed';
+  //   }
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    handleNext({ petName, birthDate, breed });
-  };
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     return;
+  //   }
+  //   handleNext({ petName, birthDate, breed });
+  // };
 
   return (
     <div className={css.FormWrapper}>
@@ -92,7 +92,7 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
           </button>
         </li>
         <li>
-          <button className={css.ButtonNext} onClick={handleNextValdation}>
+          <button className={css.ButtonNext}>
             <div className={css.ButtonEl}>
               <span>Next </span>
               <img src={next} alt="Next" />
