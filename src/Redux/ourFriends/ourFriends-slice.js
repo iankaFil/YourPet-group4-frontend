@@ -1,38 +1,52 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchOurFriends } from './ourFriends-operations';
 
+export const fetchOurFriendsAsync = createAsyncThunk(
+    'ourFriends/fetchOurFriends',
+    async () => {
+        const response = await fetchOurFriends();
+        return response.data;
+    }
+);
 const initialState = {
     friends: [],
     isLoading: false,
     error: null,
 };
 
-const handlePending = state => {
-    state.isLoading = true;
-    state.error = null;
-};
-const handleFulfilled = (state, action) => {
-    state.isLoading = false;
-    state.items = action.payload;
-};
-const handleRejected = (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
-};
+// const handlePending = state => {
+//     state.isLoading = true;
+//     state.error = null;
+// };
+// const handleFulfilled = (state, action) => {
+//     state.isLoading = false;
+//     state.items = action.payload;
+// };
+// const handleRejected = (state, action) => {
+//     state.isLoading = false;
+//     state.error = action.payload;
+// };
 
 const friendsSlice = createSlice({
-    name: 'friends',
+    name: 'ourFriends',
     initialState,
+    reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(fetchOurFriends.pending, state => handlePending(state))
-            .addCase(fetchOurFriends.fulfilled, (state, action) =>
-                handleFulfilled(state, action)
-            )
-            .addCase(fetchOurFriends.rejected, (state, action) =>
-                handleRejected(state, action)
-            );
-    },
+            .addCase(fetchOurFriendsAsync.pending, state => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(fetchOurFriendsAsync.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.items = action.payload;
+            })
+
+            .addCase(fetchOurFriendsAsync.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error.message;
+            });
+    }
 });
 
 export const friendsReducer = friendsSlice.reducer;

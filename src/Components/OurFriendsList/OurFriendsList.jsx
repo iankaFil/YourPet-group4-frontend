@@ -1,3 +1,4 @@
+import React from 'react';
 import OurFriendsItem from './OurFriendsItem/OurFriendsItem';
 import css from './OurFriendsList.module.css';
 
@@ -8,15 +9,14 @@ const OurFriendsList = ({ friendList }) => {
 
   return (
     <ul className={css.wrapper}>
-      <OurFriendsItem />
-      {friendList.map(({ id, title, address, imgUrl, phone, email }) => (
+      {friendList.map(({ id, title, address, imageUrl, phone, email }) => (
         <OurFriendsItem
           key={id}
           id={id}
           title={title}
           address={address}
           phone={phone}
-          imgUrl={imgUrl}
+          imgUrl={imageUrl}
           email={email}
           loading="lazy"
         />

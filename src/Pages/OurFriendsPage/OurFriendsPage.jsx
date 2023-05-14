@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Section from 'Components/Section';
 import Container from 'Components/Container/';
 import Title from 'Components/Title/Title';
 import OurFriendsList from '../../Components/OurFriendsList/OurFriendsList';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'Components/Loader/Loader';
 import { fetchOurFriends } from 'Redux/ourFriends/ourFriends-operations';
@@ -12,11 +11,10 @@ import {
   selectError,
   selectFriends,
 } from 'Redux/ourFriends/ourFriends-selectors';
-// import css from 'Pages/NewsPage/NewsPage.module.css';
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
-  const ourFriendsItems = useSelector(selectFriends);
+  const ourFriendsList = useSelector(selectFriends);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -24,15 +22,15 @@ const OurFriendsPage = () => {
     dispatch(fetchOurFriends());
   }, [dispatch]);
 
+  if (isLoading && !error) {
+    return <Loader />;
+  }
+
   return (
     <Section>
       <Container>
         <Title>Our Friends</Title>
-        <OurFriendsList />
-        {isLoading && !error && <Loader/>}
-        {ourFriendsItems.length > 0 && (
-          <OurFriendsList news={ourFriendsItems} />
-        )}
+        <OurFriendsList friendList={ourFriendsList} />
       </Container>
     </Section>
   );
