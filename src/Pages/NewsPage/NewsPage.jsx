@@ -15,6 +15,7 @@ import Container from 'Components/Container/';
 import Title from 'Components/Title/Title';
 import NewsSearch from 'Components/News/NewsSearch/NewsSearch';
 import NewsList from 'Components/News/NewsList/NewsList';
+import Loader from 'Components/Loader/Loader';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const NewsPage = () => {
       <Container>
         <Title>News</Title>
         <NewsSearch />
-        {isLoading && !error && <p>ТУТ ДОЛЖЕН БЫТЬ ЛОАДЕР</p>}
+        {isLoading && !error && <Loader />}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
       </Container>
     </Section>
