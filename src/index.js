@@ -3,15 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './Components/App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 // import reportWebVitals from './reportWebVitals';
+
+import { store } from 'Redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <BrowserRouter>  */}
-    <BrowserRouter basename="/YourPet-group4-frontend">
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter basename="/YourPet-group4-frontend">
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
