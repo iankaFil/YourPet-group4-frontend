@@ -14,7 +14,7 @@ import { PreviewImage } from './UserDataItem';
 
 import { logout } from 'Redux/auth/auth-operations';
 
-import styles from './UserData.module.css';
+import css from './UserData.module.css';
  
 const UserData = ({photo, name, birthday, email, phone, city}) => {
  
@@ -26,8 +26,8 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
   };
 
   return (
-    <div className={styles.user}>
-      <h2 className={styles.user__title}>My information:</h2>
+    <div className={css.user}>
+      <h2 className={css.user__title}>My information:</h2>
       <Formik
         initialValues={{
           file: photo || null,
@@ -41,9 +41,9 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
         onSubmit={values => console.log(values)}
       >
         {({ values, setFieldValue }) => (
-          <Form className={styles.form}>
-            <div className={styles.previewWrap}>
-              <div className={styles.preview}>
+          <Form className={css.form}>
+            <div className={css.previewWrap}>
+              <div className={css.preview}>
               <input
               ref={fileRef}
               type="file"
@@ -71,7 +71,7 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
               onClick={() => {
                 fileRef.current.click()
               }}
-              className={styles.button}
+              className={css.button}
             >
               <CameraIcon id="svg" />
               Edit photo
@@ -81,21 +81,21 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
               onClick={() => {
                 fileRef.current.click()
               }}
-              className={styles.button}
+              className={css.button}
             >
               <ConfirmIcon id="svg" />
               Confirm
             </button>
             </div>
-            <div className={styles.inputContainer}>
-              <div className={styles.inputWrap}>
+            <div className={css.inputContainer}>
+              <div className={css.inputWrap}>
               <UserDataItem type="text" name="name" label="Name" />
               <UserDataItem type="email" name="email" label="Email" />
               <UserDataItem type="text" name="birthday" label="Birthday" />
               <UserDataItem type="text" name="phone" label="Phone" />
               <UserDataItem type="text" name="city" label="City" />
             </div>
-              <Link className={styles.link} onClick={onLogout}>
+              <Link className={css.link} onClick={onLogout}>
                 <LogoutIcon id='svg'/>
                   Log Out
               </Link>
