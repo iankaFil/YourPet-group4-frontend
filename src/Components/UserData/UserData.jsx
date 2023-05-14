@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-// import { Link} from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
+import { Link} from 'react-router-dom';
 
 import { Formik, Form, ErrorMessage } from 'formik';
 import { userDataValidationSchema } from 'Shared/validation';
@@ -12,29 +12,30 @@ import ConfirmIcon from 'Components/SvgIcons/ConfirmIcon';
 import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 import { PreviewImage } from './UserDataItem';
 
+import { logout } from 'Redux/auth/auth-operations';
+
 import styles from './UserData.module.css';
-
-
-
-const UserData = () => {
+ 
+const UserData = ({photo, name, birthday, email, phone, city}) => {
+ 
   const fileRef = useRef(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const onLogout = () => {
-  //   dispatch(logout()); 
-  // };
-  
+  const onLogout = () => {
+    dispatch(logout()); 
+  };
+
   return (
     <div className={styles.user}>
       <h2 className={styles.user__title}>My information:</h2>
       <Formik
         initialValues={{
-          file: null,
-          name: '',
-          email: '',
-          birthday: '',
-          phone: '',
-          city: '',
+          file: photo || null,
+          name:name || '',
+          email: email || '',
+          birthday: birthday || '',
+          phone: phone || '',
+          city:city || '',
         }}
         validationSchema={userDataValidationSchema}
         onSubmit={values => console.log(values)}
@@ -86,7 +87,6 @@ const UserData = () => {
               Confirm
             </button>
             </div>
-
             <div className={styles.inputContainer}>
               <div className={styles.inputWrap}>
               <UserDataItem type="text" name="name" label="Name" />
@@ -95,13 +95,10 @@ const UserData = () => {
               <UserDataItem type="text" name="phone" label="Phone" />
               <UserDataItem type="text" name="city" label="City" />
             </div>
-            {/* <Link className={styles.link} onClick={onLogout}>
-                  Log out
-              </Link> */}
-              <a href='/' className={styles.link}>
+              <Link className={styles.link} onClick={onLogout}>
                 <LogoutIcon id='svg'/>
-                Log Out
-              </a>
+                  Log Out
+              </Link>
             </div>
             {/* <button type="submit">Submit</button> */}
           </Form>

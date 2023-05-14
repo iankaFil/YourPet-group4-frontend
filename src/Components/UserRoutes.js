@@ -17,14 +17,18 @@ const UserRoutes = () => {
       <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/news' element={<NewsPage />} />
-          <Route path='/find-pet' element={<NoticesPage />} />
-          <Route path="/our-friends" element={<OurFriendsPage />} />
+          <Route path='/notices/:categoryName' element={<NoticesPage />} >
+            <Route path="sell" element={<NoticesPage />} />
+            <Route path="lost-found" element={<NoticesPage />} />
+            <Route path="for-free" element={<NoticesPage />} />
+          </Route>
+          <Route path="/friends" element={<OurFriendsPage />} />
           <Route element={<PublicRoute />}>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<UserPage />} />
+            <Route path="/user" element={<UserPage />} />
             <Route path="/add-pet" element={<AddPetPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />

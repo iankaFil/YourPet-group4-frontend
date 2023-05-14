@@ -35,6 +35,17 @@ export const getCurrent = async token => {
   }
 };
 
+export const updateUser = async (token, data) => {
+  try {
+    setToken(token);
+    const { data: result } = await instance.patch('/users', data);
+    return result;
+  } catch (error) {
+    setToken();
+    throw error;
+  }
+};
+
 export const logout = async () => {
   const { data } = await instance.post('/users/logout');
   setToken();
