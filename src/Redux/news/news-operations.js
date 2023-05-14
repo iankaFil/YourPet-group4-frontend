@@ -7,9 +7,13 @@ export const instance = axios.create({
 
 export const fetchNews = createAsyncThunk(
   'news/all',
-  async (credentials, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await instance.get('/news', credentials);
+      const response = await instance.get('/news', {
+        params: {
+          page: page,
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
