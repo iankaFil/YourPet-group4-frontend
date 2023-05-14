@@ -43,8 +43,8 @@
 .authButton {
   display: inline-block;
   padding: 10px 20px;
-  width: 125px;
-  height: 21px;
+  width: 165px;
+  height: 40px;
   margin-left: 10px;
   background-color: #ffc107;
   color: #fff;
@@ -59,4 +59,12 @@
 
 .authButton:last-child {
   background-color: white;
+  width: 142px;
+  height: 38px;
+}
+
+@media screen and (min-width: 1023) {
+  .authButton:last-child {
+    height: 40px;
+  }
 }

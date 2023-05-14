@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import css from './AuthNav.module.css';
 import { ReactComponent as Paw } from '../../SvgIcons/paw.svg';
 
-const isMobile = true;
+const isAuth = true;
 
 function AuthNav() {
   return (
     <>
-      {!isMobile ? null : (
+      {!isAuth ? null : (
         <div className={css.auth}>
           <Link to="/login" className={css.authButton}>
             <span className={css.auth_text}>Log IN</span>

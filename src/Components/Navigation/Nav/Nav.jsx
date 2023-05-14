@@ -15,7 +15,7 @@ function Nav() {
       <li className={css.nav_item}>
         <NavLink
           className={({ isActive }) => (isActive ? css.active : '')}
-          to="/notices"
+          to="/notices/sell"
         >
           Notices
         </NavLink>
