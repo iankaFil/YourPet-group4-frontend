@@ -42,8 +42,7 @@
     right: 12px;
 }
 
-.error {
-    font-weight: 400;
+.error { 
     font-size: 10px;
     line-height: 1.33;
     color: #F43F5E;;
