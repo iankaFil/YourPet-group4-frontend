@@ -5,7 +5,9 @@ import Container from 'Components/Container/';
 const OurFriendsPage = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>
+        OurFriendsPage
+      </Container>
     </Section>
   );
 };
