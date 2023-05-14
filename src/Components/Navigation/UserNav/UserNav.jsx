@@ -12,7 +12,7 @@ function UserNav() {
       <ul>
         <li>
           <Link to="/user">
-            <img className={css.icon} src={UserLogo} alt="User logo" />
+            <img className={css.icon} src={UserLogo} alt="UserLogo" />
             {!isMobile ? null : <span className={css.name}>{name}</span>}
           </Link>
         </li>
