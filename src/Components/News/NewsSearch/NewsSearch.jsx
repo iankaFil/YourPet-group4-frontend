@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { BsSearch } from 'react-icons/bs';
-// import { RxCross1 } from 'react-icons/rx';
+import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/News/NewsSearch/NewsSearch.module.css';
 
@@ -23,40 +23,33 @@ const NewsSearch = () => {
     setSearch(event.currentTarget.value.toLowerCase().trim());
   };
 
-  // const resetInput = event => {
-  //   setSearch('');
-  // };
+  const handleClearClick = event => {
+    setSearch('');
+  };
 
   return (
     <form className={css.form} onSubmit={handleFormSubmit}>
-      <input
-        type="text"
-        placeholder="Search"
-        className={css.input}
-        onChange={handelInputChange}
-        value={search}
-        autoComplete="off"
-        autoFocus
-      />
+      <div className={css.formContainer}>
+        <input
+          type="text"
+          placeholder="Search"
+          className={css.input}
+          onChange={handelInputChange}
+          value={search}
+          autoComplete="off"
+          autoFocus
+        />
 
-      {search && (
-        <div>
-          <button className={css.btnSearch} type="submit">
-            <BsSearch />
-          </button>
-          {/* <button className={css.btnClose} onClick={resetInput}>
+        <button className={css.btnSearch} type="submit">
+          <BsSearch />
+        </button>
+
+        {search.length > 0 && (
+          <button className={css.btnClear} onClick={handleClearClick}>
             <RxCross1 />
-          </button> */}
-        </div>
-      )}
-
-      {!search && (
-        <div>
-          <button className={css.btnSearch} type="submit">
-            <BsSearch />
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </form>
   );
 };
