@@ -6,10 +6,10 @@ export const instance = axios.create({
 });
 
 export const fetchOurFriends = createAsyncThunk(
-    'friends/all',
+    'friends',
     async (credentials, thunkAPI) => {
         try {
-            const response = await instance.get('/friends', credentials);
+            const response = await instance.get('/sponsors', credentials);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

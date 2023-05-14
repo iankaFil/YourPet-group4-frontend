@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchOurFriends } from './ourFriends-operations';
 
 const initialState = {
-    items: [],
+    friends: [],
     isLoading: false,
     error: null,
 };
