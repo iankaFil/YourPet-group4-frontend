@@ -5,11 +5,12 @@ export const authValidationSchema = Yup.object().shape({
     .email('Invalid email address')
     .required('Required'),
   password: Yup.string().nullable().required('Required'),
-  confirmPassword: Yup.string().when('password', {
-    is: (val) => val && !!val.length,
-    then: Yup.string().oneOf(
-      [Yup.ref('password')],
-      'Passwords must match'
-    ),
-  }).required('Required')
+  confirmPassword: Yup.string()
+  .nullable()
+  .when('password', (password, schema) => {
+    return password
+      ? schema.required('Confirm Password is required')
+            .oneOf([Yup.ref('password')], 'Passwords must match')
+      : schema.notRequired();
+  })
 });

@@ -26,11 +26,7 @@ const UserPage = () => {
 
   const { avatarURL, name, birthday, email, phone, city } = user;
 
-  useEffect(() => {
-    console.log(isLoading);
-    console.log(error);
-    console.log(user);
-
+  useEffect(() => { 
     dispatch(current());
   }, [dispatch, error, isLoading, user]);
 
