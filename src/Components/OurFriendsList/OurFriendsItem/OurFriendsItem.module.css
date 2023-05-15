@@ -1,4 +1,50 @@
 .item {
     width: calc(100% / 3 - 32px);
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    border-radius: 40px;
+    padding: 15px;
+}
+
+
+.itemWrap {
     display: flex;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    align-items: center;
+    text-align: center;
+    color: #54ADFF;
+    margin: 16px 0;
+}
+
+.subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: #111111;
+}
+
+.value {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: #111111;
+    text-decoration: none;
+}
+
+.imgWrap {
+    margin-right: 20px;
+    width: 146px;
+    height: 104px;
+}
+
+.subtitle:not(:first-child) {
+    margin-top: 12px;
 }

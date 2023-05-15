@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const TimePicker = () => {
+const TimePicker = ({ timeOptions, menuZIndex }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [time, setTime] = useState('10:00 AM - 5:00 PM');
+  const [time, setTime] = useState(timeOptions[0]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -13,18 +13,11 @@ const TimePicker = () => {
     setTime(newTime);
   };
 
-  const timeOptions = [
-    '9:00 AM - 4:00 PM',
-    '10:00 AM - 5:00 PM',
-    '11:00 AM - 6:00 PM',
-    '12:00 PM - 7:00 PM',
-  ];
-
   return (
     <div>
       <div onClick={handleToggle}>{time}</div>
       {isOpen && (
-        <ul>
+        <ul style={{ zIndex: menuZIndex }}>
           {timeOptions.map(option => (
             <li key={option} onClick={() => handleSelect(option)}>
               {option}
