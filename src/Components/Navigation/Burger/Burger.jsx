@@ -2,26 +2,27 @@ import React from 'react';
 import { useState } from 'react';
 import BurgerSvg from '../../SvgIcons/menu-hamburger.svg';
 import css from './Burger.module.css';
-import Modal from 'Components/Modal/Modal';
+import BackdropMenu from '../Backdrop/Backdrop';
 
 function BurgerMenu() {
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function handleOpenModal() {
-    setShowModal(true);
-  }
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
 
-  function handleCloseModal() {
-    setShowModal(false);
-  }
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
-      <button className={css.burger} onClick={handleOpenModal}>
+      <button className={css.burger} onClick={handleOpen}>
         <img src={BurgerSvg} alt="Menu" />
       </button>
-      {showModal && (
-        <Modal onClose={handleCloseModal}>Тут може бути ваша реклама</Modal>
-      )}
+      {isOpen ? (
+        <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
+      ) : null}
     </>
   );
 }
