@@ -1,0 +1,76 @@
+.background {
+    background-image: url('../../../src/Shared/images/background/mobile-bg.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .background {
+        background-image: url('../../../src/Shared/images/background/mobile-bg@2x.png');
+
+    }
+}
+
+@media screen and (min-width:480px) {
+    .background {
+        background-image: url('../../../src/Shared/images/background/tablet-bg.png');
+
+
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        .background {
+            background-image: url('../../../src/Shared/images/background/tablet-bg@2x.png');
+
+
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .background {
+        background-image: url('../../../src/Shared/images/background/desktop-bg.png');
+
+
+
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        .background {
+            background-image: url('../../../src/Shared/images/background/desktop-bg@2x.png');
+
+
+
+        }
+    }
+}
+
+.title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 68px;
+    line-height: 130%;
+    color: #111111;
+    width: 500px;
+    margin-top: 188px;
+    position: relative;
+    z-index: 10;
+}
+
+.title::after {
+    content: url('../../Shared/images/PetsHomePage/Pets-desktop.png');
+    display: block;
+    position: absolute;
+    width: 30%;
+    bottom: -235px;
+    right: 0;
+
+}
