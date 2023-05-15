@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {useDispatch} from 'react-redux';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Formik, Form, ErrorMessage } from 'formik';
 import { userDataValidationSchema } from 'Shared/validation';
@@ -16,14 +16,20 @@ import { logout } from 'Redux/auth/auth-operations';
 
 import css from './UserData.module.css';
  
-const UserData = ({photo, name, birthday, email, phone, city}) => {
- 
+const UserData = ({ photo, name, birthday, email, phone, city }) => {
+  const [loggedOut, setLoggedOut] = useState(false);
+  const navigate = useNavigate();
   const fileRef = useRef(null);
   const dispatch = useDispatch();
 
   const onLogout = () => {
-    dispatch(logout()); 
+    dispatch(logout());
+    setLoggedOut(true);
   };
+
+  if (loggedOut) {
+    navigate('/login');
+  }
 
   return (
     <div className={css.user}>
@@ -52,8 +58,9 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
                 setFieldValue('file', event.target.files[0]);
               }}
             />
-            <ErrorMessage name="file" />
-
+            <div className={css.errorWrap}>
+               <ErrorMessage name="file" className={css.error}/>
+            </div>
             {values.file ? (
               <PreviewImage file={values.file} />
             ) : (
@@ -62,10 +69,13 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
                 alt="Default"
                 width="182px"
                 height="182px"
+                onClick={() => {
+                  fileRef.current.click()
+                }}
               />
             )}
             </div>
-
+            {!values.file ? 
             <button
               type="button"
               onClick={() => {
@@ -75,7 +85,7 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
             >
               <CameraIcon id="svg" />
               Edit photo
-            </button>
+            </button> :
             <button
               type="button"
               onClick={() => {
@@ -85,7 +95,7 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
             >
               <ConfirmIcon id="svg" />
               Confirm
-            </button>
+            </button>}
             </div>
             <div className={css.inputContainer}>
               <div className={css.inputWrap}>
@@ -100,7 +110,7 @@ const UserData = ({photo, name, birthday, email, phone, city}) => {
                   Log Out
               </Link>
             </div>
-            {/* <button type="submit">Submit</button> */}
+            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>

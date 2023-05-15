@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Section from 'Components/Section';
 import Container from 'Components/Container';
@@ -8,31 +9,43 @@ import PetsData from 'Components/PetsData';
 import Modal from './../../Components/Modal/Modal';
 
 import { current } from './../../Redux/auth/auth-operations';
-import {
-  checkError,
-  getUser,
-  selectIsLoading,
-} from 'Redux/auth/auth-selectors';
+import {getUser} from 'Redux/auth/auth-selectors';
 
 import styles from './UserPage.module.css';
 
 const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const [previousPathname, setPreviousPathname] = useState('');
+  const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(checkError);
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(checkError);
 
   const { avatarURL, name, birthday, email, phone, city } = user;
+ 
 
+ 
   useEffect(() => { 
+    setPreviousPathname(location.pathname);
     dispatch(current());
-  }, [dispatch, error, isLoading, user]);
+      
+  }, [dispatch, location]);
 
-  function handleOpenModal() {
-    setShowModal(true);
-  }
+  console.log(previousPathname)
+  
+  // useEffect(() => {
+  //   if (location.pathname === '/register') {
+      
+  //     setShowModal(true);
+  //   } else {
+  //     setShowModal(false);
+  //   }
+  // }, [location]);
+
+  // function handleOpenModal() {
+  //   setShowModal(true);
+  // }
 
   function handleCloseModal() {
     setShowModal(false);
@@ -41,7 +54,7 @@ const UserPage = () => {
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
-        <button onClick={handleOpenModal}>Open modal</button>
+        {/* <button onClick={handleOpenModal}>Open modal</button> */}
         {showModal && (
           <Modal onClose={handleCloseModal}>
             <h2>Congrats!</h2>

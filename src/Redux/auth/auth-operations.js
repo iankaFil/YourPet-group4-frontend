@@ -3,23 +3,24 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../Shared/api/auth-api";
 
 export const signup = createAsyncThunk(
-    "auth/signup",
-    async(data, {rejectWithValue}) => {
-        try {
-            const {data: result} = await api.signup(data);
-            return result;
-        }
-        catch({response}) {
-            return rejectWithValue(response);
-        }
+  'auth/signup',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.signup(data);
+      console.log(' ОТВЕТ от функции createAsyncThunk', result);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
-)
+  }
+);
 
 export const login = createAsyncThunk(
     "auth/login",
     async(data, {rejectWithValue}) => {
         try {
-            const {data: result} = await api.login(data);
+          const result = await api.login(data);
+          console.log(' ОТВЕТ от функции createAsyncThunk', result);
             return result;
         }
         catch({response}) {
@@ -34,6 +35,7 @@ export const current = createAsyncThunk(
     try {
       const { auth } = getState();
       const data = await api.getCurrent(auth.token);
+      console.log(' ОТВЕТ CURRENT от функции createAsyncThunk', data);
 
       return data;
     } catch ({ response }) {
@@ -56,6 +58,7 @@ export const updateUser = createAsyncThunk(
     try {
       const { auth } = getState();
       const updatedUser = await api.updateUser(auth.token, data);
+      console.log(' ОТВЕТ от функции createAsyncThunk', data);
 
       return updatedUser;
     } catch ({ response }) {
@@ -77,6 +80,7 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await api.logout();
+      console.log(' ОТВЕТ LOGOUT от функции createAsyncThunk', data);
       return data;
     } catch ({ response }) {
       return rejectWithValue(response);
