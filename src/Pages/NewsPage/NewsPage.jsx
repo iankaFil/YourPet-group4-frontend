@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -9,6 +9,7 @@ import {
   selectIsLoading,
   selectError,
   selectNews,
+  selectTotalPages,
 } from 'Redux/news/news-selectors';
 
 import css from 'Pages/NewsPage/NewsPage.module.css';
@@ -25,32 +26,34 @@ const NewsPage = () => {
   const newsItems = useSelector(selectNews);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const totalPages = useSelector(selectTotalPages);
+
+  // const [fieldValue, setFieldValue] = useState('');
+
+  // const handleFieldChange = value => {
+  //   setFieldValue(value);
+  // };
 
   useEffect(() => {
     dispatch(fetchNews());
   }, [dispatch]);
 
-  const [currentPage, setCurrentPage] = useState(0);
-  // const [perPage, setPerPage] = useState(6);
-
-  const handlePageClick = ({ page }) => {
-    setCurrentPage(page);
-    dispatch(fetchNews(page));
+  const handlePageClick = ({ selected }) => {
+    dispatch(fetchNews(selected + 1));
   };
 
   return (
     <Section>
       <Container>
         <Title>News</Title>
+        {/* <NewsSearch onFieldChange={handleFieldChange} /> */}
         <NewsSearch />
         {isLoading && !error && <Loader />}
-        {newsItems.length > 0 && (
-          <NewsList news={newsItems} page={currentPage} />
-        )}
+        {newsItems.length > 0 && <NewsList news={newsItems} />}
 
         <div className={css.wrapper}>
           <ReactPaginate
-            pageCount={5}
+            pageCount={Math.ceil(totalPages) || 0}
             marginPagesDisplayed={2}
             pageRangeDisplayed={2}
             onPageChange={handlePageClick}
