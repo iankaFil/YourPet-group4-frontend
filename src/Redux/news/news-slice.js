@@ -3,6 +3,7 @@ import { fetchNews, fetchSearchNews } from './news-operations';
 
 const initialState = {
   items: [],
+  totalPages: null,
   isLoading: false,
   error: null,
 };
@@ -13,7 +14,8 @@ const handlePending = state => {
 };
 const handleFulfilled = (state, action) => {
   state.isLoading = false;
-  state.items = action.payload;
+  state.items = action.payload.news;
+  state.totalPages = action.payload.totalPages;
   state.isLoggedIn = true;
 };
 const handleRejected = (state, action) => {

@@ -15,7 +15,7 @@ const NewsSearch = () => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    console.log(search);
+    // onFieldChange(search)
     dispatch(fetchSearchNews(search));
   };
 
