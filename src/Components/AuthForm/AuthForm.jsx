@@ -4,11 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import Button from 'Components/Button/Button';
 
-import { authValidationSchema } from './../../Shared/validation/authValidation';
+import { registrationValidationSchema, loginValidationSchema } from './../../Shared/validation/authValidation';
 
 import css from './AuthForm.module.css'
 
-const AuthForm = ({isRegister}) => {
+const AuthForm = ({ isRegister, onSubmit }) => {
+  const validationSchema = isRegister ? registrationValidationSchema : loginValidationSchema;
+
   return (
     <Formik
       initialValues={{
@@ -16,13 +18,8 @@ const AuthForm = ({isRegister}) => {
         password: '',
         confirmPassword: '',
       }}
-      validationSchema={authValidationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form className={`${css.form} ${isRegister ? css.register : css.login}`}>
