@@ -9,10 +9,10 @@ const OurFriendsList = ({ friendList }) => {
 
   return (
     <ul className={css.wrapper}>
-      {friendList.map(({ id, title, address, imageUrl, phone, email }) => (
+      {friendList.map(({ _id, title, address, imageUrl, phone, email }) => (
         <OurFriendsItem
-          key={id}
-          id={id}
+          key={_id}
+          id={_id}
           title={title}
           address={address}
           phone={phone}
