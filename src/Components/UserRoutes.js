@@ -21,8 +21,6 @@ const UserRoutes = () => {
         <Route path="sell" element={<NoticesPage />} />
         <Route path="lost-found" element={<NoticesPage />} />
         <Route path="for-free" element={<NoticesPage />} />
-        <Route path="favorite" element={<NoticesPage />} />
-        <Route path="own" element={<NoticesPage />} />
       </Route>
       <Route path="/friends" element={<OurFriendsPage />} />
       <Route element={<PublicRoute />}>
@@ -32,9 +30,14 @@ const UserRoutes = () => {
       <Route element={<PrivateRoute />}>
         <Route path="/user" element={<UserPage />} />
         <Route path="/add-pet" element={<AddPetPage />} />
+        <Route path="/notices/:categoryName" element={<NoticesPage />}>
+          <Route path="favorite" element={<NoticesPage />} />
+          <Route path="own" element={<NoticesPage />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
+
   );
 };
 
