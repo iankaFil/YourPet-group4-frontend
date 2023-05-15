@@ -4,7 +4,6 @@
   justify-content: space-between;
   align-items: flex-start;
   width: auto;
-  /* max-width: 1600px; */
 }
 
 .linksContainer {
@@ -14,7 +13,7 @@
   gap: 6px;
 }
 
-.link {
+.link a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +27,7 @@
   margin: 0 8px;
 }
 
-.activeClass {
+.link .active {
   background-color: #54adff;
   color: #fff;
 }
