@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Backdrop.module.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import AuthNav from '../AuthNav/AuthNav';
 import Nav from '../Nav/Nav';
 import Logo from 'Components/Logo/Logo';
