@@ -13,7 +13,7 @@ const handlePending = state => {
 };
 const handleFulfilled = (state, action) => {
   state.isLoading = false;
-  state.items = action.payload.data.result;
+  state.items = action.payload;
   state.isLoggedIn = true;
 };
 const handleRejected = (state, action) => {
