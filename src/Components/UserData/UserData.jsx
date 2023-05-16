@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Formik, Form, ErrorMessage } from 'formik';
@@ -11,30 +11,40 @@ import CameraIcon from 'Components/SvgIcons/CameraIcon';
 import ConfirmIcon from 'Components/SvgIcons/ConfirmIcon';
 import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 import { PreviewImage } from './UserDataItem';
+import ModalApproveAction from 'Components/Modal/ModalApproveAction';
 
 import { logout } from 'Redux/auth/auth-operations';
+import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 import css from './UserData.module.css';
- 
+
 const UserData = ({ photo, name, birthday, email, phone, city }) => {
-  const [loggedOut, setLoggedOut] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
+  const isLogin = useSelector(isUserLogin);
   const navigate = useNavigate();
   const fileRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loggedOut) {
+    if (!isLogin) {
       navigate('/login');
     }
-  }, [loggedOut, navigate]);
+  }, [isLogin, navigate]);
 
   const onLogout = () => {
-    dispatch(logout());
-    setLoggedOut(true);
+    setShowModal(true);
   };
- 
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  }
+
+  const handleLogout = () => {
+    dispatch(logout()); 
+  }
+
   return (
-    <div className={css.user}>
+    <>
       <h2 className={css.user__title}>My information:</h2>
       <Formik
         initialValues={{
@@ -108,7 +118,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
               <UserDataItem type="text" name="city" label="City" />
             </div>
               <Link className={css.link} onClick={onLogout}>
-                <LogoutIcon id='svg'/>
+                <LogoutIcon id='svg' className={css.logoutIcon}/>
                   Log Out
               </Link>
             </div>
@@ -116,8 +126,12 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
           </Form>
         )}
       </Formik>
-      
-    </div>
+      {showModal && (
+        <ModalApproveAction onClose={handleCloseModal} handleApproveClick={handleLogout}>
+          <h2 className={css.modalTitle}>Already leaving?</h2>
+        </ModalApproveAction>
+        )}
+    </>
   );
 };
 

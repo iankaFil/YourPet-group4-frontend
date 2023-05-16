@@ -1,0 +1,130 @@
+.modal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 92px;
+    background-color: rgba(81, 81, 81, 0.6);
+
+    @media screen and (min-width: 768px) {
+        padding-top: 148px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        padding-top: 112px;
+    }
+}
+
+.modalContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    border-radius: 20px;
+    align-items: center; 
+    width: 280px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 68px 16px 60px 16px;
+
+    @media screen and (min-width: 768px) {
+        width: 608px;
+        border-radius: 40px;
+        padding: 60px 0;
+    }
+}
+
+.buttonWrap {
+    display: flex;
+    gap: 17px;
+}
+
+.modalBtn { 
+    display: flex;
+    align-items: center;
+    width: 107px;
+    padding: 8px 0;
+    gap: 8px;
+    border-radius: 40px;    
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+    @media screen and (min-width: 768px) {
+        width: 129px;
+        padding: 9px 35px;
+    }
+}
+
+.modalBtn:hover {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+}
+
+.cancelBtn{
+    color: #54ADFF;
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: 54ADFF;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cancelBtn:hover {
+    color:#FEF9F9
+}
+
+.approveBtn{
+color: #FEF9F9;
+    background-color: #54ADFF;
+
+}
+
+.logoutIcon {
+    stroke: #FEF9F9;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.closeBtn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    align-self: end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.closeBtn:hover {
+    background-color: #54ADFF;
+}
+
+.crossSmallIcon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    stroke: #54ADFF;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    border-radius: 50%;
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.crossSmallIcon:hover {
+    stroke: #FDF7F2;
+}
