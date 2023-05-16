@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/YourPet-group4-frontend/static/css/main.9b9c3f9c.css",
+    "main.css": "/YourPet-group4-frontend/static/css/main.fe99d240.css",
     "main.js": "/YourPet-group4-frontend/static/js/main.a220f8bf.js",
     "static/media/Pets-desktop.png": "/YourPet-group4-frontend/static/media/Pets-desktop.154cc43aa2be7c02736b.png",
     "static/media/notFound-desktop@2x.png": "/YourPet-group4-frontend/static/media/notFound-desktop@2x.979ed45eae2668dc25c0.png",
@@ -20,11 +20,11 @@
     "static/media/cancel.svg": "/YourPet-group4-frontend/static/media/cancel.534417619b11ebf45fa7de4075c78260.svg",
     "static/media/PetAdd.svg": "/YourPet-group4-frontend/static/media/PetAdd.d9ea6c3616a2d9dd9d7149c983e87a69.svg",
     "static/media/menu-hamburger.svg": "/YourPet-group4-frontend/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
-    "main.9b9c3f9c.css.map": "/YourPet-group4-frontend/static/css/main.9b9c3f9c.css.map",
+    "main.fe99d240.css.map": "/YourPet-group4-frontend/static/css/main.fe99d240.css.map",
     "main.a220f8bf.js.map": "/YourPet-group4-frontend/static/js/main.a220f8bf.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b9c3f9c.css",
+    "static/css/main.fe99d240.css",
     "static/js/main.a220f8bf.js"
   ]
 }
