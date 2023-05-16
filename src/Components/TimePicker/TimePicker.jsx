@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import css from './timepicker.module.css';
 
 const TimePicker = ({ timeOptions, menuZIndex }) => {
-  console.log('ЭТО ТО ЧТО ПРИХОДИТ ', timeOptions);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
