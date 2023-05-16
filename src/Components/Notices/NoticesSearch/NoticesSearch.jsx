@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/Notices/NoticesSearch/NoticesSearch.module.css';
 
-import { fetchSearchNews } from 'Redux/news/news-operations';
+// import { fetchSearchNews } from 'Redux/news/news-operations';
 
 const NoticesSearch = () => {
   const [search, setSearch] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    dispatch(fetchSearchNews(search));
+    // dispatch(fetchSearchNews(search));
   };
 
   const handelInputChange = event => {
