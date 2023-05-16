@@ -5,13 +5,6 @@
   padding: 0px;
 }
 
-@media screen and (min-width: 1280px) {
-  .nav {
-    margin-right: auto;
-    margin-left: 159px;
-  }
-}
-
 .nav a {
   text-decoration: none;
   color: black;
@@ -39,4 +32,11 @@ a.active {
 
 .nav_item:not(:last-child) {
   margin-right: 20px;
+}
+
+@media screen and (min-width: 1280px) {
+  .nav {
+    margin-right: auto;
+    margin-left: 159px;
+  }
 }

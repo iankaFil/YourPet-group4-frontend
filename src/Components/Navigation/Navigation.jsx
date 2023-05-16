@@ -4,8 +4,8 @@ import UserNav from './UserNav/UserNav';
 import AuthNav from './AuthNav/AuthNav';
 import BurgerMenu from './Burger/Burger';
 import css from './Navigation.module.css';
-
-const isLogIn = true;
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function isMobileDevice() {
   return (
@@ -15,14 +15,33 @@ function isMobileDevice() {
   );
 }
 
+function isTabletDevice() {
+  return window.innerWidth > 767;
+}
+
 function Navigation() {
-  const isMobile = isMobileDevice();
+  const [isMobile, setIsMobile] = useState(isMobileDevice());
+  const [isTablet, setTabletDevice] = useState(isTabletDevice());
+  const isLogIn = useSelector(state => state.auth.token);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(isMobileDevice());
+      setTabletDevice(isTabletDevice());
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
       {isMobile ? null : <Nav />}
       <div className={css.btn_group}>
-        {isLogIn ? <UserNav /> : <AuthNav />}
+        {isLogIn ? <UserNav /> : null}
+        {isTablet && !isLogIn ? <AuthNav /> : null}
         {isMobile ? <BurgerMenu /> : null}
       </div>
     </>

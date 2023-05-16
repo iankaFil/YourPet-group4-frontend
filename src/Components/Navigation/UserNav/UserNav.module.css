@@ -27,7 +27,8 @@
   margin-right: 12px;
 }
 
-.name {
+.name,
+.backdrop_name {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -36,6 +37,16 @@
   align-items: center;
   letter-spacing: 0.04em;
   color: #ffc107;
+}
+
+.backdrop_name {
+  display: none;
+}
+
+@media screen and (min-width: 767px) {
+  .nav {
+    margin-right: 22px;
+  }
 }
 
 @media screen and (min-width: 767px) {
