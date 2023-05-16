@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNoticesByTitle } from './notices-operations';
+import {
+  fetchNoticesByTitle,
+  // fetchNoticesById
+} from './notices-operations';
 
 const initialState = {
   items: [],
@@ -34,6 +37,16 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByTitle.rejected, (state, action) =>
         handleRejected(state, action)
       );
+
+    // .addCase(fetchNoticesById.pending, state => handlePending(state))
+    // .addCase(fetchNoticesById.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.items = action.payload.notice;
+    //   state.totalPages = action.payload.totalPages;
+    // })
+    // .addCase(fetchNoticesById.rejected, (state, action) =>
+    //   handleRejected(state, action)
+    // );
   },
 });
 

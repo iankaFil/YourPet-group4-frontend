@@ -29,21 +29,32 @@ const NoticesPage = () => {
   const error = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
 
-  const category = 'sell';
-
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = value => {
     setSearchQuery(value);
   };
 
+  const getCategoryFromURL = () => {
+    const path = window.location.pathname;
+    const category = path.split('/').pop();
+    if (category === 'for-free') {
+      return 'in-good-hand';
+    }
+    return category;
+  };
+
+  //первий рендер
   useEffect(() => {
-    dispatch(fetchNoticesByTitle(category));
+    const category = getCategoryFromURL();
+    dispatch(fetchNoticesByTitle({ category }));
   }, [dispatch]);
 
+  //при клике
   const handlePageClick = ({ selected }) => {
     const page = selected + 1;
-    dispatch(fetchNoticesByTitle({ searchQuery, page }));
+    const category = getCategoryFromURL();
+    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
   };
 
   return (
