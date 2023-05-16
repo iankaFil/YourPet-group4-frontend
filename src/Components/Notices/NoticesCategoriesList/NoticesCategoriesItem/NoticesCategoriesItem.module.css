@@ -1,8 +1,11 @@
 .card_list {
+  width: 100%;
   margin-top: 42px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 32px;
+  column-gap: 32px;
+  row-gap: 24px;
 }
 
 .card_item {
@@ -24,7 +27,7 @@
 .image {
   width: 100%;
   height: 288px;
-  margin-bottom: 20px;
+  object-fit: cover;
 }
 
 .title {
@@ -36,7 +39,8 @@
 
   color: #111111;
 
-  margin-bottom: 20px;
+  margin: 20px;
+  padding-right: 20px;
 }
 
 .btn {
@@ -49,6 +53,7 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+  margin-left: 20px;
 
   color: #54adff;
 
@@ -64,4 +69,25 @@
   border-radius: 40px;
 
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .card_wrap {
+    width: 320px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card_wrap {
+    width: 540px;
+    margin-bottom: 42px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card_list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
