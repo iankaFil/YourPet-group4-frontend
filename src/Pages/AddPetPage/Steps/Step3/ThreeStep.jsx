@@ -3,8 +3,8 @@ import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import PetAdd from '../../../../Components/SvgIcons/PetAdd.svg';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
+// import { useNavigate } from 'react-router-dom';
+// import * as yup from 'yup';
 
 // const validationSchema = yup.object().shape({
 //   photo: yup.string().required('Please upload a photo'),
@@ -14,8 +14,8 @@ import * as yup from 'yup';
 const ThreeStep = ({ handleNext, handlePreviousStep }) => {
   const [photo, setPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
+  const [errors] = useState({});
+  // const navigate = useNavigate();
 
   //   const handleDone = () => {
   //     // validationSchema
@@ -58,7 +58,7 @@ const ThreeStep = ({ handleNext, handlePreviousStep }) => {
               <img
                 className={css.previewPhoto}
                 src={URL.createObjectURL(photo)}
-                alt="Selected photo"
+                alt="Selected img"
               />
             )}
             <img className={css.iconAdd} src={PetAdd} alt="add" />

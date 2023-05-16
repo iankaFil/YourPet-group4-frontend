@@ -11,9 +11,9 @@ function AddPetPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-  const [petName, setPetName] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [breed, setBreed] = useState('');
+  const [setPetName] = useState('');
+  const [setBirthDate] = useState('');
+  const [setBreed] = useState('');
   // const [errors, setErrors] = useState({});
 
   // const [petPhoto, setPetPhoto] = useState(null);

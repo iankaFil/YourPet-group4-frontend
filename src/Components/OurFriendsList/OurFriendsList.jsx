@@ -3,9 +3,6 @@ import OurFriendsItem from './OurFriendsItem/OurFriendsItem';
 import css from './OurFriendsList.module.css';
 
 const OurFriendsList = ({ friendList }) => {
-  if (!friendList) {
-    return null;
-  }
 
   return (
     <ul className={css.wrapper}>
