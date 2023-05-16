@@ -1,14 +1,18 @@
 import React from 'react';
-import PetsList from './PetsList';
+import { useNavigate } from 'react-router-dom';
 
+import PetsList from './PetsList';
 import { PlusSmallIcon } from 'Components/SvgIcons';
+
 import css from './PetsData.module.css';
 
-const handleAddPet = () => {
-  console.log('Add pet');
-};
-
 const PetsData = () => {
+  const navigate = useNavigate();
+
+  const handleAddPet = () => {
+    navigate('/add-pet')
+  };
+  
   return (
     <div className={css.petData}>
       <div className={css.buttonWrap}>

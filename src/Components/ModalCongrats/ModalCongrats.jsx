@@ -13,7 +13,7 @@ const ModalCongrats = ({ onClose, className = 'Modal content goes here' }) => {
   };
 
   useEffect(() => {
-    function handleKeyDown(event) {
+    const handleKeyDown = (event) => {
       if (event.keyCode === 27) {
         onClose();
       }
