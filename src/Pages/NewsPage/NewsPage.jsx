@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactPaginate from 'react-paginate';
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+// import ReactPaginate from 'react-paginate';
+// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 import { fetchNews } from 'Redux/news/news-operations';
 import {
@@ -59,7 +59,7 @@ const NewsPage = () => {
         {isLoading && !error && <Loader />}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
 
-        {newsItems.length > 0 && (
+        {/* {newsItems.length > 0 && (
           <div className={css.wrapper}>
             <ReactPaginate
               pageCount={Math.ceil(totalPages) || 0}
@@ -77,7 +77,7 @@ const NewsPage = () => {
               forcePage={activePage}
             />
           </div>
-        )}
+        )} */}
       </Container>
     </Section>
   );

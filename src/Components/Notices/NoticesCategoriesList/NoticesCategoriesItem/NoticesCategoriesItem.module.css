@@ -1,13 +1,3 @@
-/* .card_list {
-  width: 100%;
-  margin-top: 42px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  column-gap: 32px;
-  row-gap: 24px;
-} */
-
 .card_item {
   width: 288px;
   height: 456px;
@@ -15,6 +5,64 @@
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
+
+  @media screen and (min-width: 768px) {
+    .card_item {
+      width: 320px;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .card_item {
+      width: 540px;
+      margin-bottom: 42px;
+    }
+  }
+}
+
+.btn_list {
+  display: flex;
+}
+
+.img_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+
+  width: 80px;
+  height: 28px;
+
+  background: #cce4fb;
+  border-radius: 16px;
+  border: transparent;
+
+  cursor: pointer;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #111111;
+}
+
+.favorite_btn {
+  width: 40px;
+  height: 40px;
+
+  background: #cce4fb;
+  border: transparent;
+  border-radius: 50%;
+
+  cursor: pointer;
 }
 
 .card_wrap {
@@ -28,6 +76,7 @@
   width: 100%;
   height: 288px;
   object-fit: cover;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -41,8 +90,7 @@
 
   color: #111111;
 
-  margin: 20px;
-  padding-right: 20px;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -55,8 +103,8 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  margin-left: 20px;
 
+  background-color: #ffffff;
   color: #54adff;
 
   display: flex;
@@ -72,24 +120,3 @@
 
   cursor: pointer;
 }
-
-@media screen and (min-width: 768px) {
-  .card_wrap {
-    width: 320px;
-    margin-bottom: 40px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .card_wrap {
-    width: 540px;
-    margin-bottom: 42px;
-  }
-}
-
-/* @media screen and (min-width: 768px) {
-  .card_list {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-} */

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { BsSearch } from 'react-icons/bs';
-import { RxCross1 } from 'react-icons/rx';
+// import { BsSearch } from 'react-icons/bs';
+// import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/News/NewsSearch/NewsSearch.module.css';
 
@@ -35,12 +35,12 @@ const NewsSearch = ({ handleSearchChange }) => {
         />
 
         <button className={css.btnSearch} type="submit">
-          <BsSearch />
+          {/* <BsSearch /> */}
         </button>
 
         {search.length > 0 && (
           <button className={css.btnClear} onClick={handleClearClick}>
-            <RxCross1 />
+            {/* <RxCross1 /> */}
           </button>
         )}
       </div>
