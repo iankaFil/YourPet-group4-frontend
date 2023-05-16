@@ -1,74 +1,55 @@
-// import { useEffect, UseState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { BsSearch } from 'react-icons/bs';
+import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/Notices/NoticesSearch/NoticesSearch.module.css';
 
-// import { SaerchFormButton, ClearFormButton } from './InputButtons';
-import { SaerchFormButton } from './InputButtons';
+import { fetchSearchNews } from 'Redux/news/news-operations';
 
 const NoticesSearch = () => {
-  // const [query, setQuery] = useState('');
-  // const dispatch = useDispatch();
+  const [search, setSearch] = useState('');
 
-  // const onSubmit = event => {
-  //   event.preventDefault();
+  const dispatch = useDispatch();
 
-  //   const newQuery = event.target.elements.search.value.trim();
-  //   if (!newQuery) {
-  //     return;
-  //   }
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    dispatch(fetchSearchNews(search));
+  };
 
-  // const requestData = { query: newQuery, category: categoryName };
+  const handelInputChange = event => {
+    setSearch(event.currentTarget.value.toLowerCase().trim());
+  };
 
-  // let data = [];
-
-  // if (categoryName === 'favorite') {
-  //   dispatch(getNoticesByQweryFavorite(requestData))
-  //     .then(result => {
-  //       data = result;
-  //       onSearch(newQuery);
-  //       setQuery('');
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // } else if (categoryName === 'owner') {
-  //   dispatch(getNoticesByQweryOwner(requestData))
-  //     .then(result => {
-  //       data = result;
-  //       onSearch(newQuery);
-  //       setQuery('');
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // } else {
-  //   dispatch(getNoticesByQwery(requestData))
-  //     .then(result => {
-  //       data = result;
-  //       onSearch(newQuery);
-  //       setQuery('');
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
-  // };
-
-  // const handleClearQuery = () => {
-  //   setQuery('');
-  // };
+  const handleClearClick = event => {
+    setSearch('');
+  };
 
   return (
-    <div className={css.form_wrap}>
-      <form className={css.seacrh_form}>
-        <input type="text" placeholder="Search" className={css.input} />
+    <form className={css.form} onSubmit={handleFormSubmit}>
+      <div className={css.formContainer}>
+        <input
+          type="text"
+          placeholder="Search"
+          className={css.input}
+          onChange={handelInputChange}
+          value={search}
+          autoComplete="off"
+          autoFocus
+        />
 
-        {/* <ClearFormButton id="svg" /> */}
-        <SaerchFormButton id="svg" />
-      </form>
-    </div>
+        <button className={css.btnSearch} type="submit">
+          <BsSearch />
+        </button>
+
+        {search.length > 0 && (
+          <button className={css.btnClear} onClick={handleClearClick}>
+            <RxCross1 />
+          </button>
+        )}
+      </div>
+    </form>
   );
 };
 
