@@ -8,7 +8,7 @@ import css from 'Components/Notices/NoticesSearch/NoticesSearch.module.css';
 
 // import { fetchSearchNews } from 'Redux/news/news-operations';
 
-const NoticesSearch = () => {
+const NoticesSearch = ({ handleSearchChange }) => {
   const [search, setSearch] = useState('');
 
   // const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const NoticesSearch = () => {
   const handleFormSubmit = event => {
     event.preventDefault();
     // dispatch(fetchSearchNews(search));
+    handleSearchChange(search);
   };
 
   const handelInputChange = event => {

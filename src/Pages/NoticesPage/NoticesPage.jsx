@@ -1,6 +1,6 @@
 import React from 'react';
 import css from 'Pages/NoticesPage/NoticesPage.module.css';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -13,38 +13,48 @@ import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCatego
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
 
-import { fetchNews } from 'Redux/news/news-operations';
+import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
+
 import {
   selectIsLoading,
   selectError,
-  selectNews,
+  selectNotices,
   selectTotalPages,
-} from 'Redux/news/news-selectors';
+} from 'Redux/notices/notices-selectors';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
-  const CategoryItem = useSelector(selectNews);
+  const categoryItem = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
 
+  const category = 'sell';
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = value => {
+    setSearchQuery(value);
+  };
+
   useEffect(() => {
-    dispatch(fetchNews());
+    dispatch(fetchNoticesByTitle(category));
   }, [dispatch]);
 
   const handlePageClick = ({ selected }) => {
-    dispatch(fetchNews(selected + 1));
+    const page = selected + 1;
+    dispatch(fetchNoticesByTitle({ searchQuery, page }));
   };
 
   return (
     <Section>
       <Container>
         <Title>Find your favorite pet</Title>
-        <NoticesSearch />
+        <NoticesSearch handleSearchChange={handleSearchChange} />
         <NoticesCategoriesNav />
 
         {isLoading && !error && <Loader />}
-        {CategoryItem.length > 0 && <CategoryList card={CategoryItem} />}
+        {categoryItem.length > 0 && <CategoryList card={categoryItem} />}
         <div className={css.wrapper}>
           <ReactPaginate
             pageCount={Math.ceil(totalPages) || 0}

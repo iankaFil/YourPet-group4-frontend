@@ -22,10 +22,10 @@ import css from './NoticesCategoriesItem.module.css';
 //   );
 // };
 
-const CategoryItem = ({ id, title, imgUrl }) => {
+const CategoryItem = ({ _id, title, imgUrl }) => {
   return (
     // <ul className={css.card_list}>
-    <li key={id} className={css.card_item}>
+    <li key={_id} className={css.card_item}>
       <div className="card_wrap">
         <img src={imgUrl} alt={title} className={css.image} />
         <h2 className={css.title}>{title}</h2>
