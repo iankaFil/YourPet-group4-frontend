@@ -6,7 +6,8 @@ const NewsItems = ({ id, title, text, date, imgUrl, url }) => {
 
   return (
     <li key={id} className={css.item}>
-      <div className={css.itemLine}></div>
+
+      
       <img
         alt={title}
         loading="lazy"
@@ -16,6 +17,7 @@ const NewsItems = ({ id, title, text, date, imgUrl, url }) => {
           'https://ik.imagekit.io/tc8jxffbcvf/default-movie-portrait_EmJUj9Tda5wa.jpg?tr=fo-auto,di-'
         }
       ></img>
+
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
         <p className={css.text}>{text}</p>
