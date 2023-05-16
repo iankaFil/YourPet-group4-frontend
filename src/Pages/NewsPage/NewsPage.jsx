@@ -45,6 +45,7 @@ const NewsPage = () => {
   }, [dispatch, searchQuery]);
 
   const handlePageClick = ({ selected }) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const page = selected + 1;
     setActivePage(selected);
     dispatch(fetchNews({ searchQuery, page }));
