@@ -1,16 +1,20 @@
-.wrap {
+.card_list {
   margin-top: 42px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
-.card_wrap {
-  position: absolute;
+.card_item {
   width: 288px;
   height: 456px;
   background: #ffffff;
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
+}
 
+.card_wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;

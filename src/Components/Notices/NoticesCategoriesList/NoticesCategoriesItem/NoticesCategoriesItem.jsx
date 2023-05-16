@@ -2,38 +2,32 @@ import css from './NoticesCategoriesItem.module.css';
 
 const CategoryItem = () => {
   return (
-    <div className={css.wrap}>
-      <ul className={css.list}>
-        <li className={css.list_item}>
-          <div className={css.card_wrap}>
-            <img src="./default2.jpg" alt="default" className={css.image} />
-            <h2 className={css.title}>Сute cat looking for a home</h2>
-            <button className={css.btn}>Learn more</button>
-          </div>
-        </li>
-        <li className={css.list_item}>
-          <div className={css.card_wrap}>
-            <img src="./default2.jpg" alt="default" className={css.image} />
-            <h2 className={css.title}>Сute cat looking for a home</h2>
-            <button className={css.btn}>Learn more</button>
-          </div>
-        </li>
-        <li className={css.list_item}>
-          <div className={css.card_wrap}>
-            <img src="./default2.jpg" alt="default" className={css.image} />
-            <h2 className={css.title}>Сute cat looking for a home</h2>
-            <button className={css.btn}>Learn more</button>
-          </div>
-        </li>
-        <li className={css.list_item}>
-          <div className={css.card_wrap}>
-            <img src="./default2.jpg" alt="default" className={css.image} />
-            <h2 className={css.title}>Сute cat looking for a home</h2>
-            <button className={css.btn}>Learn more</button>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ul className={css.card_list}>
+      <li className={css.card_item}>
+        <div className="card_wrap">
+          <img alt="default" className={css.image} />
+          <h2 className={css.title}>Сute cat looking for a home</h2>
+          <button className={css.btn}>Learn more</button>
+        </div>
+      </li>
+      <li className={css.card_item}>
+        <div className="card_wrap">
+          <img alt="default" className={css.image} />
+          <h2 className={css.title}>Сute cat looking for a home </h2>
+          <button className={css.btn}>Learn more</button>
+        </div>
+      </li>
+      <li className={css.card_item}>
+        <img alt="default" className={css.image} />
+        <h2 className={css.title}>Сute cat looking for a home</h2>
+        <button className={css.btn}>Learn more</button>
+      </li>
+      <li className={css.card_item}>
+        <img alt="default" className={css.image} />
+        <h2 className={css.title}>Сute cat looking for a home</h2>
+        <button className={css.btn}>Learn more</button>
+      </li>
+    </ul>
   );
 };
 
