@@ -21,7 +21,7 @@ const LoginPage = () => {
     try {
         await dispatch(login(data));
         // const result = await dispatch(login(data));
-        navigate('/user'); 
+        navigate('/user', {state:{from: '/login'}})
         // setToken(result.token) 
       } catch (error) { 
         console.log(error.message); 

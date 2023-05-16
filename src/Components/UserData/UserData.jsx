@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -22,15 +22,17 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
   const fileRef = useRef(null);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (loggedOut) {
+      navigate('/login');
+    }
+  }, [loggedOut, navigate]);
+
   const onLogout = () => {
     dispatch(logout());
     setLoggedOut(true);
   };
-
-  if (loggedOut) {
-    navigate('/login');
-  }
-
+ 
   return (
     <div className={css.user}>
       <h2 className={css.user__title}>My information:</h2>
@@ -59,7 +61,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
               }}
             />
             <div className={css.errorWrap}>
-               <ErrorMessage name="file" className={css.error}/>
+                <ErrorMessage name="file" className={css.error}/>
             </div>
             {values.file ? (
               <PreviewImage file={values.file} />
@@ -110,7 +112,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
                   Log Out
               </Link>
             </div>
-            <button type="submit">Submit</button>
+            {/* <button type="submit">Submit</button> */}
           </Form>
         )}
       </Formik>

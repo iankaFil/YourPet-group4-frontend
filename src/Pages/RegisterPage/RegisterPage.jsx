@@ -20,7 +20,7 @@ const RegisterPage = () => {
     try { 
       await dispatch(signup(data));
       // const result = await dispatch(signup(data)); 
-      navigate('/user'); 
+      navigate('/user', {state:{from: '/register'}}); 
       // setToken(result.token)      
     } catch (error) { 
       console.log(error,'Something went wrong'); 
