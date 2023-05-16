@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import AuthForm from 'Components/AuthForm/AuthForm';
@@ -10,19 +10,18 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LoginPage = () => {
-  // const [token, setToken] = useState('');
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
  
   const dispatch = useDispatch();
 
   const handleLogin = async ({email, password}, { setSubmitting }) => {
       const data = {email, password} 
- 
     try {
-        await dispatch(login(data));
-        // const result = await dispatch(login(data));
-        navigate('/user'); 
-        // setToken(result.token) 
+        // await dispatch(login(data));
+        const result = await dispatch(login(data));
+        navigate('/user', {state:{from: '/login'}})
+        setToken(result.token) 
       } catch (error) { 
         console.log(error.message); 
       }  
