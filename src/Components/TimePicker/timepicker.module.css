@@ -1,0 +1,10 @@
+.currentDay {
+  font-weight: bold;
+  color: blueviolet;
+}
+
+.time {
+  color: #54adff;
+  font-weight: 500;
+  font-size: 16px;
+}

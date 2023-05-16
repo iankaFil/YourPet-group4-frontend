@@ -3,7 +3,6 @@ import OurFriendsItem from './OurFriendsItem/OurFriendsItem';
 import css from './OurFriendsList.module.css';
 
 const OurFriendsList = ({ friendList }) => {
-
   return (
     <ul className={css.wrapper}>
       {friendList.map(
@@ -16,19 +15,20 @@ const OurFriendsList = ({ friendList }) => {
             phone={phone}
             imgUrl={imageUrl}
             email={email}
-            openingTime={
-              (workDays &&
-                workDays.length > 0 &&
-                workDays.find(day => day.isOpen)?.from) ||
-              '10:00'
-            }
-            closingTime={
-              (workDays &&
-                workDays.length > 0 &&
-                workDays.find(day => day.isOpen)?.to) ||
-              '17:00'
-            }
-            // loading="lazy"
+            working={workDays}
+            // openingTime={
+            //   (workDays &&
+            //     workDays.length > 0 &&
+            //     workDays.find(day => day.isOpen)?.from) ||
+            //   '10:00'
+            // }
+            // closingTime={
+            //   (workDays &&
+            //     workDays.length > 0 &&
+            //     workDays.find(day => day.isOpen)?.to) ||
+            //   '17:00'
+            // }
+            // // loading="lazy"
           />
         )
       )}
