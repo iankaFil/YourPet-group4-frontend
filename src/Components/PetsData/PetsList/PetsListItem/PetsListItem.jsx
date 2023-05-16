@@ -31,4 +31,4 @@ const PetsListItem = ({ photo, name, date, breed, comments = '' }) => {
     )
 }
 
-export default PetsListItem
+export default PetsListItem;

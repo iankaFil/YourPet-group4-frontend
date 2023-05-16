@@ -1,16 +1,32 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import css from './Nav.module.css';
 
 function Nav() {
   return (
-    <ul>
-      <li>
-        <Link to="/news">News</Link>
+    <ul className={css.nav}>
+      <li className={css.nav_item}>
+        <NavLink
+          className={({ isActive }) => (isActive ? css.active : '')}
+          to="/news"
+        >
+          News
+        </NavLink>
       </li>
-      <li>
-        <Link to="/notices">Notices</Link>
+      <li className={css.nav_item}>
+        <NavLink
+          className={({ isActive }) => (isActive ? css.active : '')}
+          to="/notices/sell"
+        >
+          Notices
+        </NavLink>
       </li>
-      <li>
-        <Link to="/friends">Our Friends</Link>
+      <li className={css.nav_item}>
+        <NavLink
+          className={({ isActive }) => (isActive ? css.active : '')}
+          to="/friends"
+        >
+          Our Friends
+        </NavLink>
       </li>
     </ul>
   );

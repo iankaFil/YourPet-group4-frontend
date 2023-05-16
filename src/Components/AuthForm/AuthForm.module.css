@@ -1,0 +1,133 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto; 
+  padding: 40px 12px;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
+
+  @media screen and (min-width: 480px) {
+      max-width: 480px;
+      border-radius: 40px;
+    }
+
+  @media screen and (min-width: 768px) {
+    max-width: 608px;
+    padding: 60px 75px;
+  }
+
+}
+.register{
+  gap: 16px;
+  @media screen and (min-width: 768px) {
+    gap: 52px;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 28px;
+  }
+}
+
+.login{
+  gap: 56px;
+  @media screen and (min-width: 768px) {
+    gap: 36px;
+  }
+}
+
+.inputContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.38;
+  color: #111111;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.38;
+  }
+} 
+
+.inputWrap {
+  position: relative;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  outline: 1px solid #54ADFF;
+  border: none;
+  border-radius: 40px;
+  padding: 12px 42px 12px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #888888;
+}
+
+.errorWrap {
+  display: flex;
+  width: 100%;
+  padding-left: 16px;
+  align-items: center; 
+  height: 24px; 
+  font-size: 12px;
+  line-height: 1.33;
+  color: #F43F5E;
+}
+
+.btnContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+.button {
+  width: 100%;
+  gap: 8px;
+  padding: 11px 0;
+  margin-bottom: 24px;
+  color: #FFFFFF;
+  background-color: #54ADFF;
+  border-radius: 40px;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+}
+.button:hover {
+  background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+}
+
+.text{ 
+    font-size: 12px;
+    line-height: 1.33;
+    letter-spacing: 0.04em;
+    color: #888888;
+}
+
+.link { 
+    font-size: 12px;
+    line-height: 1.33;
+    letter-spacing: 0.04em; 
+    text-decoration: underline;  
+    color: #54ADFF;
+}

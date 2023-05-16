@@ -1,0 +1,27 @@
+.list {
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+
+  @media screen and (min-width: 480px) {
+    display: grid;
+    justify-items: center;
+    align-items: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(auto-fillt, minmax(336px, 1fr));
+    column-gap: 32px;
+    row-gap: 24px;
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
+    column-gap: 31px;
+    margin-top: 60px;
+  }
+}

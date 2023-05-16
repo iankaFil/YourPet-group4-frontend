@@ -1,57 +1,89 @@
-import React from 'react';
 import css from './AddPetPage.module.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CurrentSteps from './Steps/CurrentSteps';
+import FirstSteps from './Steps/Step1/FirstSteps';
+import SecondStep from './Steps/Step2/SecondStep';
 
-const AddPetPage = () => {
+function AddPetPage() {
+  const [step, setStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [activeButton, setActiveButton] = useState(null);
+  // const [setPetName] = useState('');
+  const [setBirthDate] = useState('');
+  const [setBreed] = useState('');
+  // const [errors, setErrors] = useState({});
+
+  // const [petPhoto, setPetPhoto] = useState(null);
+  // const [comments, setComments] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleOptionChange = (option, number) => {
+    setSelectedOption(option);
+    setActiveButton(number);
+  };
+
+  const handleNext = ({ petName, birthdate, breed }) => {
+    if (selectedOption && currentStep < 3) {
+      setStep(step + 1);
+      setCurrentStep(currentStep + 1);
+    } else {
+      alert('Please select a breed');
+    }
+    // setPetName(petName);
+    setBirthDate(birthdate);
+    setBreed(breed);
+  };
+
+  const handlePreviousStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+    setStep(step - 1);
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    // Логіка для перевірки та відправки форми на бекенд
+    // Переадресація користувача на UserPage або NoticesPage в залежності від категорії
+  };
+
   return (
-    <div className={css.AddPetContainer}>
-      <h2 className={css.AddPet}>Add pet</h2>
-      <ul className={css.StepList}>
-        <li className={css.StepItemActive}>
-          Choose option <div className={css.StepActive}></div>
-        </li>
-        <li className={css.StepItem}>
-          Personal details <div className={css.StepNonActive}></div>
-        </li>
-        <li className={css.StepItem}>
-          More info <div className={css.StepNonActive}></div>
-        </li>
-      </ul>
-      <ul className={css.ChooseOptionList}>
-        <li className={css.ChooseOptionPetItem}>
-          <button className={css.PetButton} type="button">
-            your pet
-          </button>
-        </li>
-        <li className={css.ChooseOptionPetItem}>
-          <button className={css.PetButton} type="button">
-            sell
-          </button>
-        </li>
-        <li className={css.ChooseOptionPetItem}>
-          <button className={css.PetButton} type="button">
-            lost/found
-          </button>
-        </li>
-        <li className={css.ChooseOptionPetItem}>
-          <button className={css.PetButton} type="button">
-            in good hands
-          </button>
-        </li>
-      </ul>
-      <ul className={css.LinkAddPEt}>
-        <li className={css.LinkAddPEtItem}>
-          <a className={css.LinkAddPEtLitkCancel} href="*">
-            Cancel
-          </a>
-        </li>
-        <li className={css.LinkAddPEtItem}>
-          <a className={css.LinkAddPEtLitk} href="*">
-            Next
-          </a>
-        </li>
-      </ul>
+    <div className={css.WrapperAddPet}>
+      {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
+      {step === 2 && <h2 className={css.AddPet}>Personal Details</h2>}
+      {step === 3 && <h2 className={css.AddPet}>More info</h2>}
+      <CurrentSteps currentStep={currentStep} />
+      {step === 1 && (
+        <FirstSteps
+          handleNext={handleNext}
+          handleCancel={handleCancel}
+          handleOptionChange={handleOptionChange}
+          activeButton={activeButton}
+        />
+      )}
+      {step === 2 && (
+        <SecondStep
+          handleNext={handleNext}
+          handlePreviousStep={handlePreviousStep}
+        />
+      )}
+      {step === 3 && (
+        <div>
+          {/*  поле вибору фотографії та коментарів */}
+
+          <button onClick={handlePreviousStep}>Back</button>
+          <button onClick={handleSubmit}>Done</button>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default AddPetPage;

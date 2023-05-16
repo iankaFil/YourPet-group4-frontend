@@ -1,111 +1,151 @@
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-.AddPetContainer {
-    width: 458px;
-    height: 542px;
-    position: absolute;
-    bottom: 118px;
-    left: 35%;
-    background-color: #ffffff;
-    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-    border-radius: 40px;
-    /* padding: 20px 32px; */
-    padding-right: 32px;
+.WrapperAddPet {
+  width: 458px;
+  height: 542px;
+  position: absolute;
+  bottom: 118px;
+  left: 35%;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+  padding: 20px 32px;
+  padding-right: 32px;
 }
 
 .AddPet {
-    margin-left: 40px;
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 38px;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 38px;
 }
 
 .StepList {
-    display: flex;
-    gap: 22px;
+  margin-top: 24px;
+  display: flex;
+  gap: 22px;
 }
 
 .StepItemActive {
-    color: #54adff;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 26px;
+  color: #54adff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .StepActive {
-    margin-top: 12px;
-    width: 120px;
-    height: 8px;
-    background-color: #54adff;
-    border-radius: 8px;
+  margin-top: 12px;
+  width: 120px;
+  height: 8px;
+  background-color: #54adff;
+  border-radius: 8px;
+}
+.StepItemDone {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #00c3ad;
+}
+.StepItemDone::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 12px;
+  background-color: #00c3ad;
+  border-radius: 8px;
 }
 
+.StepItemCurrent {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #54adff;
+}
+.StepItemCurrent::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 12px;
+  background-color: #54adff;
+  border-radius: 8px;
+}
 .StepItem {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 26px;
-    color: #888888;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #888888;
 }
-
-.StepNonActive {
-    margin-top: 12px;
-    width: 120px;
-    height: 8px;
-    background-color: #cce4fb;
-    border-radius: 8px;
+.StepItem::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 12px;
+  background-color: #cce4fb;
+  border-radius: 8px;
 }
 
 .ChooseOptionList {
-    margin-top: 40px;
-    display: flex;
-    gap: 12px;
-    flex-direction: column;
+  margin-top: 40px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
 }
 
 .PetButton {
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    background-color: #cce4fb;
-    border-radius: 40px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 19px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  background-color: #cce4fb;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #54adff;
 }
 
-.PetButton:focus {
-    background-color: #54adff;
-    color: #fef9f9;
+.PetButtonActive {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  background-color: #54adff;
+  color: #fef9f9;
 }
 
 .LinkAddPEt {
-    margin-top: 146px;
-    display: flex;
-    justify-content: space-around;
-    gap: 24px;
+  margin-top: 146px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 24px;
 }
 
 .LinkAddPEtLitkCancel {
-    border-radius: 40px;
-
-    color: #54adff;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
+  border-radius: 40px;
+  color: #54adff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
 }
 
-.LinkAddPEtLitk {
-    background-color: #54adff;
-    border-radius: 40px;
-    padding: 8px 86px;
-    color: #fef9f9;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
+.ButtonNext {
+  background-color: #54adff;
+  border-radius: 40px;
+  padding: 8px 86px;
+  color: #fef9f9;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  border: none;
+  cursor: pointer;
+}
+.ButtonEl {
+  display: flex;
+  gap: 11.43px;
 }

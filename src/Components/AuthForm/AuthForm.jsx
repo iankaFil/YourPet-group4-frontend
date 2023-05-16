@@ -1,71 +1,66 @@
-import React, { useState } from "react";
+import React from 'react'
+import { Link } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-import styles from './AuthForm.modul.css'
+import Button from 'Components/Button/Button';
 
+import { registrationValidationSchema, loginValidationSchema } from './../../Shared/validation/authValidation';
 
-const AuthForm = ({ onSubmit }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+import css from './AuthForm.module.css'
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Валидация введенных данных
-    let emailIsValid = true;
-    let passwordIsValid = true;
-
-    if (!email.includes("@")) {
-      setEmailError("Введите действительный email");
-      emailIsValid = false;
-    } else {
-      setEmailError("");
-    }
-
-    if (password.trim().length < 6) {
-      setPasswordError("Пароль должен быть не менее 6 символов");
-      passwordIsValid = false;
-    } else {
-      setPasswordError("");
-    }
-
-    // Если все данные валидны, отправляем их на сервер
-    if (emailIsValid && passwordIsValid) {
-      onSubmit({ email, password });
-    }
-  };
+const AuthForm = ({ isRegister, onSubmit }) => {
+  const validationSchema = isRegister ? registrationValidationSchema : loginValidationSchema;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <label>
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        {emailError && <div className="error">{emailError}</div>}
-      </label>
-      <label>
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        {passwordError && <div className="error">{passwordError}</div>}
-      </label>
-       <label>
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        {passwordError && <div className="error">{passwordError}</div>}
-      </label>
-      <button className={styles.btn} type="submit">Registration</button>
-    </form>
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        confirmPassword: '',
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ isSubmitting }) => (
+        <Form className={`${css.form} ${isRegister ? css.register : css.login}`}>
+          <div className={css.inputContainer}>
+            {isRegister ? <h2 className={css.title}>Registration</h2> : <h2 className={css.title}>Login</h2>}
+            <div className={css.inputWrap}>
+            <label htmlFor="email" hidden>Email</label>
+              <Field id="email" type="email" name="email" placeholder="Email" className={css.input}/>
+          </div>
+          <div className={css.errorWrap}>
+            <ErrorMessage name="email" component="div" className={css.error}/>
+          </div>
+          <div className={css.inputWrap}>
+            <label htmlFor="password" hidden>Password</label>
+              <Field id="password" type="password" name="password" placeholder="Password" className={css.input}/>
+            <div className={css.errorWrap}>
+              <ErrorMessage name="password" component="div" className={css.error}/>
+            </div>            
+          </div>
+          {isRegister && (
+            <div className={css.inputWrap}>
+              <label htmlFor="confirmPassword" hidden>Confirm password</label>
+                <Field id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" className={css.input}/>
+              <div className={css.errorWrap}>
+                <ErrorMessage name="confirmPassword" component="div" className={css.error}/>
+              </div>              
+            </div>
+          )}
+          </div>
+          <div className={css.btnContainer}>
+            <Button type="submit" disabled={isSubmitting} className={css.button}>
+                {isRegister ? 'Registration' : 'Login'}
+            </Button>
+            {isRegister 
+              ? <p className={css.text}>Already have an account? <Link to="/login" className={css.link}>Login</Link></p>
+              : <p className={css.text}>Don't have an account? <Link to="/register" className={css.link}>Register</Link></p>}
+          </div>
+          </Form>
+      )}
+    </Formik>
   );
-};
+}
 
-export default AuthForm;
-
+export default AuthForm
