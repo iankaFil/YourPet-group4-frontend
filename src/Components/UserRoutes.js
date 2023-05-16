@@ -40,7 +40,6 @@ const UserRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
-
   );
 };
 

@@ -1,22 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/News/NewsSearch/NewsSearch.module.css';
 
-import { fetchSearchNews } from 'Redux/news/news-operations';
-
-const NewsSearch = () => {
+const NewsSearch = ({ handleSearchChange }) => {
   const [search, setSearch] = useState('');
-
-  const dispatch = useDispatch();
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    // onFieldChange(search)
-    dispatch(fetchSearchNews(search));
+    handleSearchChange(search);
   };
 
   const handelInputChange = event => {
