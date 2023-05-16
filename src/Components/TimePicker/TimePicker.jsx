@@ -24,12 +24,12 @@ const TimePicker = ({ timeOptions, menuZIndex }) => {
   };
 
   return (
-    <div>
+    <div className={css.timePicker}>
       <div className={css.time} onClick={handleToggle}>
         {currentDayWorkHours()}
       </div>
       {isOpen && (
-        <ul style={{ zIndex: menuZIndex }}>
+        <ul className={css.menu} style={{ zIndex: menuZIndex }}>
           {timeOptions &&
             timeOptions.length > 0 &&
             timeOptions.map((option, index) => (
@@ -37,8 +37,10 @@ const TimePicker = ({ timeOptions, menuZIndex }) => {
                 className={index === dayOfWeek - 1 ? css.currentDay : ''}
                 key={index}
               >
-                {weekDays[index]}{' '}
-                {option.isOpen ? `${option.from} - ${option.to}` : 'CLOSED'}
+                <div className={css.dayOfWeek}>{weekDays[index]} </div>
+                <div className={css.workTime}>
+                  {option.isOpen ? `${option.from} - ${option.to}` : 'CLOSED'}
+                </div>
               </li>
             ))}
         </ul>

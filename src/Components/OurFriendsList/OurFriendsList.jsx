@@ -16,19 +16,6 @@ const OurFriendsList = ({ friendList }) => {
             imgUrl={imageUrl}
             email={email}
             working={workDays}
-            // openingTime={
-            //   (workDays &&
-            //     workDays.length > 0 &&
-            //     workDays.find(day => day.isOpen)?.from) ||
-            //   '10:00'
-            // }
-            // closingTime={
-            //   (workDays &&
-            //     workDays.length > 0 &&
-            //     workDays.find(day => day.isOpen)?.to) ||
-            //   '17:00'
-            // }
-            // // loading="lazy"
           />
         )
       )}

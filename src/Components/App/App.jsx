@@ -1,5 +1,4 @@
 import './App.module.css';
-import Header from 'Components/Header/Header';
 import UserRoutes from 'Components/UserRoutes';
 import { useEffect } from 'react';
 

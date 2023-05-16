@@ -1,5 +1,12 @@
 .item {
-    width: calc(100% / 3 - 32px);
+    @media screen and (min-width:768px) {
+        width: calc(100% / 2 - 32px);
+    }
+
+    @media screen and (min-width:1280px) {
+        width: calc(100% / 3 - 32px);
+    }
+
     flex-direction: column;
     background: #FFFFFF;
     box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
@@ -23,32 +30,85 @@
 }
 
 .subtitle {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
     align-items: center;
     color: #111111;
+
+    @media screen and (min-width:768px) {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+    }
+
+    @media screen and (min-width:1280px) {
+        /* font-weight: 600; */
+        font-size: 16px;
+        line-height: 22px;
+    }
 }
 
 .value {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 16px;
     align-items: center;
     color: #111111;
     text-decoration: none;
+
+    @media screen and (min-width:768px) {
+        font-size: 14px;
+        line-height: 19px;
+    }
+
+    @media screen and (min-width:1280px) {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+
 }
 
 .imgWrap {
+    @media screen and (min-width:768px) {
+        width: 124px;
+        height: 88px;
+    }
+
+    @media screen and (min-width:1280px) {
+        margin-right: 20px;
+    }
+
     margin-right: 20px;
 
 }
 
 .img {
-    width: 146px;
-    height: 104px;
+    width: 100px;
+    height: 68px;
+
+    @media screen and (min-width:768px) {
+        width: 124px;
+        height: 88px;
+    }
+
+    @media screen and (min-width:1280px) {
+        width: 146px;
+        height: 104px;
+    }
+
+
 }
 
 .subtitle:not(:first-child) {
     margin-top: 12px;
+
+    @media screen and (min-width:768px) and (max-width:1279px) {
+        margin-top: 16px;
+    }
+
+    /* @media screen and (min-width:1280px) {
+        margin-top: 12px;
+    } */
 }
