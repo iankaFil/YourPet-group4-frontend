@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import CurrentSteps from './Steps/CurrentSteps';
 import FirstSteps from './Steps/Step1/FirstSteps';
 import SecondStep from './Steps/Step2/SecondStep';
+import ThreeStep from './Steps/Step3/ThreeStep';
 
 function AddPetPage() {
   const [step, setStep] = useState(1);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-  // const [setPetName] = useState('');
-  const [setBirthDate] = useState('');
-  const [setBreed] = useState('');
+  const [petName, setPetName] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [breed, setBreed] = useState('');
   // const [errors, setErrors] = useState({});
 
   // const [petPhoto, setPetPhoto] = useState(null);
@@ -32,7 +33,7 @@ function AddPetPage() {
     } else {
       alert('Please select a breed');
     }
-    // setPetName(petName);
+    setPetName(petName);
     setBirthDate(birthdate);
     setBreed(breed);
   };
@@ -75,12 +76,10 @@ function AddPetPage() {
         />
       )}
       {step === 3 && (
-        <div>
-          {/*  поле вибору фотографії та коментарів */}
-
-          <button onClick={handlePreviousStep}>Back</button>
-          <button onClick={handleSubmit}>Done</button>
-        </div>
+        <ThreeStep
+          handleNext={handleSubmit}
+          handlePreviousStep={handlePreviousStep}
+        />
       )}
     </div>
   );
