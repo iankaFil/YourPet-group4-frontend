@@ -4,11 +4,8 @@ import { CrossSmallIcon } from './../SvgIcons/CrossSmallIcon';
 import { PawIcon } from 'Components/SvgIcons';
 
 import css from './ModalCongrats.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const ModalCongrats = ({ onClose, className = 'Modal content goes here' }) => {
-  const navigate = useNavigate();
-
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -29,10 +26,6 @@ const ModalCongrats = ({ onClose, className = 'Modal content goes here' }) => {
     };
   }, [onClose]);
 
-  const handleBtnClick = () => {
-    navigate('/user')
-  }
-
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
@@ -41,7 +34,7 @@ const ModalCongrats = ({ onClose, className = 'Modal content goes here' }) => {
         </button>
         <h2 className={css.title}>Congrats!</h2>
         <p className={css.text}>Your registration is success</p>
-        <Button className={css.modalBtn} onClick={handleBtnClick}>
+        <Button className={css.modalBtn} onClick={onClose}>
           Go to profile
           <PawIcon id='svg'className={css.pawIcon}/>
         </Button>
