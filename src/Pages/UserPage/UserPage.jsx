@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import Section from 'Components/Section';
@@ -8,43 +8,35 @@ import UserData from 'Components/UserData';
 import PetsData from 'Components/PetsData';
 import ModalCongrats from './../../Components/ModalCongrats/ModalCongrats';
 
-import { current } from './../../Redux/auth/auth-operations';
-import {getUser} from 'Redux/auth/auth-selectors';
+import { getUser } from 'Redux/auth/auth-selectors';
 
 import styles from './UserPage.module.css';
 
 const UserPage = () => {
-  const [showModal, setShowModal] = useState(false);  
+  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
-  const dispatch = useDispatch();
   const user = useSelector(getUser);
 
   const { avatarURL, name, birthday, email, phone, city } = user;
 
-  useEffect(() => { 
-    dispatch(current());  
-  }, [dispatch]);
-
-  useEffect(() => { 
+  useEffect(() => {
     const storedFrom = sessionStorage.getItem('from');
 
-    if (!storedFrom && location.state?.from === '/register') {
+    if (!storedFrom && location.state?.from === '/login') {
       setShowModal(true);
       sessionStorage.setItem('from', location.pathname);
-    }  
+    }
   }, [location.pathname, location.state?.from]);
 
   function handleCloseModal() {
     setShowModal(false);
-  } 
+  }
 
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
         {showModal && (
-          <ModalCongrats
-            onClose={handleCloseModal}>
-          </ModalCongrats>
+          <ModalCongrats onClose={handleCloseModal}></ModalCongrats>
         )}
         <UserData
           photo={avatarURL}

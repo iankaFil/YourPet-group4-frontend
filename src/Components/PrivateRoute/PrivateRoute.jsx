@@ -1,23 +1,21 @@
-import {
-    // Navigate,
-    Outlet
-} from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-// import { isLogin, getToken } from 'redux/auth/auth-selector';
+import { getToken, isUserLogin } from 'Redux/auth/auth-selectors';
 
-// import LoadingIndicator from 'shared/components/LoadingIndicator';
+// import Loader from 'Components/Loader/Loader';
 
 const PrivateRoute = () => {
-//   const isUserLogin = useSelector(isLogin);
-//   const isToken = useSelector(getToken);
+  const isLogin = useSelector(isUserLogin);
+  const isToken = useSelector(getToken);
 
-//   if (!isUserLogin && isToken) {
-//     return <LoadingIndicator width="70" height="70" />;
-//   }
-//   if (isUserLogin) {
-//     return <Navigate to="/contacts" />;
-//   }
+  if (!isLogin && isToken) {
+    <p>...Loading</p>;
+    // return <Loader />;
+  }
+  if (!isLogin && !isToken) {
+    return <Navigate to="/login" />;
+  }
   return <Outlet />;
 };
 
