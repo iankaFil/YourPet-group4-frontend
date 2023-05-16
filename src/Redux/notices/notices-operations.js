@@ -7,9 +7,26 @@ export const instance = axios.create({
 
 export const fetchNoticesByTitle = createAsyncThunk(
   'notices/search',
-  async (category, thunkAPI) => {
+  async ({ category, searchQuery, page }, thunkAPI) => {
     try {
-      const response = await instance.get(`/notices/search/${category}`);
+      const response = await instance.get(`/notices/search/${category}`, {
+        params: {
+          q: searchQuery,
+          page,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchNoticesById = createAsyncThunk(
+  'notices/search',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await instance.get(`/notices/search/${noticeId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
