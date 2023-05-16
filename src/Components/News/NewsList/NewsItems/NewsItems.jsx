@@ -6,7 +6,7 @@ const NewsItems = ({ id, title, text, date, imgUrl, url }) => {
 
   return (
     <li key={id} className={css.item}>
-      <div className={css.itemLine}></div>
+      {/* <div className={css.itemLine}></div> */}
       <img src={imgUrl} alt={title} loading="lazy" className={css.image}></img>
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>

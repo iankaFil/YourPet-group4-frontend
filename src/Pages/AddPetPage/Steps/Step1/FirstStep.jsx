@@ -3,7 +3,7 @@ import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import css from '../../AddPetPage.module.css';
 
-const OneSteps = ({
+const FirstStep = ({
   handleNext,
   handleCancel,
   handleOptionChange,
@@ -75,4 +75,4 @@ const OneSteps = ({
   );
 };
 
-export default OneSteps;
+export default FirstStep;
