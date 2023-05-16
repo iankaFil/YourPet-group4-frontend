@@ -45,6 +45,7 @@ const NewsPage = () => {
   }, [dispatch, searchQuery]);
 
   const handlePageClick = ({ selected }) => {
+    console.log('CLICK');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const page = selected + 1;
     setActivePage(selected);
@@ -62,18 +63,15 @@ const NewsPage = () => {
         {newsItems.length > 0 && (
           <div className={css.wrapper}>
             <ReactPaginate
-              pageCount={Math.ceil(totalPages) || 0}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={2}
-              onPageChange={handlePageClick}
               previousLabel={<BsArrowLeft />}
               nextLabel={<BsArrowRight />}
-              breakLabel={'...'}
+              pageCount={Math.ceil(totalPages) || 0}
+              onPageChange={handlePageClick}
               containerClassName={css.pagination}
-              previousClassName={css['pagination-button']}
-              nextClassName={css['pagination-button']}
-              pageClassName={css['pagination-button']}
-              activeClassName={css['pagination-active']}
+              activeClassName={css.paginationActive}
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={2}
+              breakLabel={'...'}
               forcePage={activePage}
             />
           </div>
