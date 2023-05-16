@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -8,30 +7,29 @@ import Container from 'Components/Container/Container';
 import { login } from 'Redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
 
-
 const LoginPage = () => {
-  const [token, setToken] = useState('');
+  const [setToken] = useState('');
   const navigate = useNavigate();
- 
+
   const dispatch = useDispatch();
 
-  const handleLogin = async ({email, password}, { setSubmitting }) => {
-      const data = {email, password} 
+  const handleLogin = async ({ email, password }, { setSubmitting }) => {
+    const data = { email, password };
     try {
-        // await dispatch(login(data));
-        const result = await dispatch(login(data));
-        navigate('/user', {state:{from: '/login'}})
-        setToken(result.token) 
-      } catch (error) { 
-        console.log(error.message); 
-      }  
-      setSubmitting(false); 
+      // await dispatch(login(data));
+      const result = await dispatch(login(data));
+      navigate('/user', { state: { from: '/login' } });
+      setToken(result.token);
+    } catch (error) {
+      console.log(error.message);
     }
- 
+    setSubmitting(false);
+  };
+
   return (
     <Section>
       <Container>
-        <AuthForm onSubmit={handleLogin}/> 
+        <AuthForm onSubmit={handleLogin} />
       </Container>
     </Section>
   );
