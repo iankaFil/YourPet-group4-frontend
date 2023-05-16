@@ -22,7 +22,7 @@ const UserPage = () => {
   useEffect(() => {
     const storedFrom = sessionStorage.getItem('from');
 
-    if (!storedFrom && location.state?.from === '/login') {
+    if (!storedFrom && location.state?.from === '/register') {
       setShowModal(true);
       sessionStorage.setItem('from', location.pathname);
     }
