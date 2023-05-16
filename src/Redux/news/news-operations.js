@@ -9,8 +9,6 @@ export const fetchNews = createAsyncThunk(
   'news/all',
   async ({ searchQuery, page }, thunkAPI) => {
     try {
-      console.log(searchQuery);
-      console.log(page);
       const response = await instance.get('/news', {
         params: {
           q: searchQuery,
