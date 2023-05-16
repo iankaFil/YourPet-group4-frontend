@@ -8,33 +8,10 @@ const CategoryList = ({ card }) => {
 
   return (
     <ul className={css.card_list}>
-      {sortedCard.map(({ id, title, imgUrl }) => (
-        <CategoryItem key={id} id={id} title={title} imgUrl={imgUrl} />
+      {sortedCard.map(({ _id, title, url }) => (
+        <CategoryItem key={_id} id={_id} title={title} imgUrl={url} />
       ))}
     </ul>
   );
 };
 export default CategoryList;
-
-// const NewsList = ({ news }) => {
-//   const sortedNews = [...news].sort(
-//     (a, b) => new Date(b.date) - new Date(a.date)
-//   );
-
-//   return (
-//     <ul className={css.list}>
-//       {sortedNews.map(({ id, title, text, date, imgUrl, url }) => (
-//         <NewsItems
-//           key={id}
-//           id={id}
-//           title={title}
-//           text={text}
-//           date={date}
-//           imgUrl={imgUrl}
-//           url={url}
-//           loading="lazy"
-//         />
-//       ))}
-//     </ul>
-//   );
-// };
