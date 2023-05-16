@@ -1,18 +1,17 @@
 import Header from 'Components/Header/Header';
-// import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-
-// import Loader from 'Components/Loader/Loader';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const SharedLayout = () => {
+    const navigate = useNavigate()
+      useEffect(() => {
+    navigate('/main');
+      }, [navigate]);
+    
     return (
         <>
-            <Header />
-            <main>
-            {/* <Suspense fallback={<Loader/>}> */}
-                <Outlet />
-            {/* </Suspense> */}
-            </main>
+        <Header />
+        <Outlet />
         </>
     );
 };
