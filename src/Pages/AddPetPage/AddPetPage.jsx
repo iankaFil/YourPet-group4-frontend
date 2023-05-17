@@ -101,7 +101,6 @@ function AddPetPage() {
 
     for (const key in sendDataForm) {
       formDataSend.append(key, sendDataForm[key]);
-      console.log(formData);
     }
     if (sendDataForm.category === 'your-pet') {
       savePet('/pets/', '', formDataSend);
