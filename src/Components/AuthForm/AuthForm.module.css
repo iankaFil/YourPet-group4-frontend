@@ -78,6 +78,15 @@
   color: #888888;
 }
 
+.successInput {
+outline: 1px solid #00C3AD;
+}
+
+.errorInput {
+  outline: 1px solid #F43F5E;
+}
+
+
 .errorWrap {
   display: flex;
   width: 100%;
@@ -87,6 +96,20 @@
   font-size: 12px;
   line-height: 1.33;
   color: #F43F5E;
+  @media screen and (min-width: 768px) {
+      height: 32px;
+    }
+}
+
+.successMessage{
+  display: flex;
+  width: 100%;
+  padding-left: 16px;
+  align-items: center;
+  height: 24px;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #00C3AD;
 }
 
 .btnContainer{
@@ -130,4 +153,10 @@
     letter-spacing: 0.04em; 
     text-decoration: underline;  
     color: #54ADFF;
+}
+
+.eyeIcon{
+  position: absolute;
+  right: 13px;
+  top: 12px;
 }
