@@ -4,19 +4,20 @@ import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import { validationSchema } from 'Shared/validation/addPetValidation';
 
-const SecondStep = ({ handleNext, handlePreviousStep }) => {
-  const [petName, setPetName] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [breed, setBreed] = useState('');
+const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
+  const [name, setName] = useState(formData.name || '');
+  const [birthday, setBirthday] = useState(formData.birthday || '');
+  const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
     validationSchema
-      .validate({ petName, birthDate, breed }, { abortEarly: false })
+      .validate({ name, birthday, breed }, { abortEarly: false })
       .then(() => {
-        handleNext({ petName, birthDate, breed });
+        handleNext({ name, birthday, breed });
       })
       .catch(err => {
+        console.log(err);
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -34,9 +35,9 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
           className={css.Input}
           type="text"
           id="name"
-          value={petName}
-          onChange={e => setPetName(e.target.value)}
-          placeholder="Type name pet"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder="Type pet name "
         />
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
@@ -48,8 +49,8 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
           className={css.Input}
           type="text"
           id="birthdate"
-          value={birthDate}
-          onChange={e => setBirthDate(e.target.value)}
+          value={birthday}
+          onChange={e => setBirthday(e.target.value)}
           required
           placeholder="Type date of birth"
         />
@@ -76,7 +77,7 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
         <li>
           <button
             className={css.LinkAddPEtLitkCancel}
-            onClick={handlePreviousStep}
+            onClick={() => handlePreviousStep(formData)}
           >
             <div className={css.ButtonEl}>
               <img src={cancel} alt="Next" />

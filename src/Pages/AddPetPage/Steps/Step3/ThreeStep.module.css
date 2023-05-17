@@ -53,6 +53,11 @@
   font-size: 16px;
   line-height: 150%;
   color: #54adff;
+  /* УБРАТЬ МОЖНО НАЧАЛО*/
+  border: 1px solid #54adff;
+  border-radius: 8px;
+  /* УБРАТЬ МОЖНО КОНЕЦ =)*/
+  /* А ТЫ О ЧЕМ ПОДУМАЛА? */
 }
 .WrapperLabelInput {
   display: flex;
