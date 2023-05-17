@@ -11,7 +11,7 @@ import CameraIcon from 'Components/SvgIcons/CameraIcon';
 import ConfirmIcon from 'Components/SvgIcons/ConfirmIcon';
 import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 import { PreviewImage } from './UserDataItem';
-import ModalApproveAction from 'Components/Modal/ModalApproveAction';
+import ModalApproveAction from 'Components/ModalApproveAction/ModalApproveAction';
 
 import { logout } from 'Redux/auth/auth-operations';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
