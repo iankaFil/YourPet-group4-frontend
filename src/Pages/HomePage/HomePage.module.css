@@ -92,7 +92,7 @@
   .wrapp::after {
     content: url('../../Shared/images/PetsHomePage/Pets-desktop.png');
     transform: scale(1);
-    margin-top: auto;
+    margin-top: 100px;
     position: absolute;
     z-index: -1;
     transform: translate(-50%, -50%);
