@@ -1,6 +1,7 @@
 import React from 'react';
 import ThreeStep from './ThreeStep';
 import ThreeStepSell from './ThreeStepSell';
+import ThreeStepFound from './ThreeStepFound';
 
 const StepsRenderThree = ({
   handleNext,
@@ -17,8 +18,16 @@ const StepsRenderThree = ({
       ) : (
         ''
       )}
-      {selectedOption === 'sell' || selectedOption === 'lost/found' ? (
+      {selectedOption === 'sell' ? (
         <ThreeStepSell
+          handleNext={handleNext}
+          handlePreviousStep={handlePreviousStep}
+        />
+      ) : (
+        ''
+      )}
+      {selectedOption === 'lost/found' ? (
+        <ThreeStepFound
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
         />
