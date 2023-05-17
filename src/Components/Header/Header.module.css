@@ -7,7 +7,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  margin-top: 24px;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: #fdf7f2;
 }

@@ -9,7 +9,7 @@ function Logo({ handleLinkClick }) {
     }
   };
   return (
-    <Link to="/" onClick={handleClick}>
+    <Link to="/main" onClick={handleClick}>
       <img className={css.logo} src={OurLogo} alt="YourPetLogo" />
     </Link>
   );
