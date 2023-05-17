@@ -6,11 +6,14 @@ import { FemaleIcon } from 'Components/SvgIcons/FemaleIcon';
 import { AddToFavorite } from 'Components/SvgIcons/AddToFavorite';
 
 const CategoryItem = ({ _id, title, imgUrl }) => {
+  const baseURL = 'https://your-pets-rest-api.onrender.com/';
+  // const baseURL = 'http://localhost:3001/';
+
   return (
     // <ul className={css.card_list}>
     <li key={_id} className={css.card_item}>
       <div className={css.card_wrap}>
-        <img src={imgUrl} alt={title} className={css.image} />
+        <img src={`${baseURL}${imgUrl}`} alt={title} className={css.image} />
 
         <button className={css.favorite_btn}>
           <AddToFavorite id="svg" />
