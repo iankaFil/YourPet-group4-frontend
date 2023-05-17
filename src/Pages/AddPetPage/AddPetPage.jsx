@@ -1,5 +1,5 @@
 import css from './AddPetPage.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CurrentSteps from './Steps/CurrentSteps';
 // import FirstStep from './Steps/Step1/FirstStep';
@@ -9,24 +9,17 @@ import FirstSteps from './Steps/Step1/FirstSteps';
 import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
 
+import instance from '../../Shared/api/auth-api';
+
 function AddPetPage() {
   const [step, setStep] = useState(1);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-  // const [petName, setPetName] = useState('');
-  // const [birthDate, setBirthDate] = useState('');
-  // const [breed, setBreed] = useState('');
-  const [setPetName] = useState('');
-  const [setPetTitle] = useState('');
-  const [setBirthDate] = useState('');
-  const [setBreed] = useState('');
-  // const [errors, setErrors] = useState({});
 
-  // const [petPhoto, setPetPhoto] = useState(null);
-  // const [comments, setComments] = useState('');
+  const [formData, setFormData] = useState({});
 
-  // const [formData, setFormData] = useState({
+  // {
   //   title: '',
   //   category: '',
   //   name: '',
@@ -36,47 +29,94 @@ function AddPetPage() {
   //   price: '',
   //   sex: '',
   //   comments: '',
-  // });
+  // }
+
+  useEffect(() => {
+    console.log('new state FORM DATA:', formData);
+  }, [formData]);
 
   const navigate = useNavigate();
 
   const handleOptionChange = (option, number) => {
+    console.log(option);
+    setFormData(prevData => ({ ...prevData, category: option }));
     setSelectedOption(option);
     setActiveButton(number);
   };
 
-  const handleNext = ({ petName, birthdate, breed, petTitle }) => {
+  // const handleNextStep = stepData => {
+  //   setFormData(prevData => ({ ...prevData, ...stepData }));
+  // };
+
+  // const handlePreviousStep = stepData => {
+  //   setFormData(prevData => ({ ...prevData, ...stepData }));
+  // };
+
+  const handleNext = stepData => {
+    console.log(' YF:FN NEXT ');
     if (selectedOption && currentStep < 3) {
       setStep(step + 1);
       setCurrentStep(currentStep + 1);
     } else {
       alert('Please select a breed');
     }
-    // setPetName(petName);
-    // setBirthDate(birthdate);
-    // setBreed(breed);
-    setPetName(petName);
-    setBirthDate(birthdate);
-    setBreed(breed);
-    setPetTitle(petTitle);
+
+    setFormData(prevData => {
+      return { ...prevData, ...stepData };
+    });
   };
 
-  const handlePreviousStep = () => {
+  const handlePreviousStep = stepData => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
     setStep(step - 1);
+    setFormData(prevData => {
+      console.log('++++++++++++++', prevData, stepData);
+      return { ...prevData, ...stepData };
+    });
   };
 
   const handleCancel = () => {
     navigate(-1);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // Логіка для перевірки та відправки форми на бекенд
-    // Переадресація користувача на UserPage або NoticesPage в залежності від категорії
+  const savePet = async (endpoint, category, data) => {
+    try {
+      const response = await instance.post(`${endpoint}${category}`, data);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   };
+
+  // const savePetToServer = () => {}; //savePetToServer(formData)
+
+  const handleSubmit = stepData => {
+    const sendDataForm = { ...formData, ...stepData };
+
+    console.log('handleSubmit   OOOOOOOOOOOOO', sendDataForm);
+    // notice-image
+    const formDataSend = new FormData();
+
+    for (const key in sendDataForm) {
+      formDataSend.append(key, sendDataForm[key]);
+      console.log(formData);
+    }
+    if (sendDataForm.category === 'your-pet') {
+      savePet('/pets/', '', formDataSend);
+    } else {
+      savePet('/notices/user-notices/', sendDataForm.category, formDataSend);
+    }
+
+    // /notices/user-notices/
+
+    setFormData(prevData => ({ ...prevData, ...stepData }));
+  };
+
+  // event.preventDefault();
+  // Логіка для перевірки та відправки форми на бекенд
+  // Переадресація користувача на UserPage або NoticesPage в залежності від категорії
 
   // const generateStepNameForm = () => {
   //   switch (step) {
@@ -104,6 +144,7 @@ function AddPetPage() {
           selectedOption={selectedOption}
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
+          formData={formData}
         />
       )}
       {step === 3 && (
@@ -111,6 +152,7 @@ function AddPetPage() {
           selectedOption={selectedOption}
           handleNext={handleSubmit}
           handlePreviousStep={handlePreviousStep}
+          formData={formData}
         />
       )}
     </div>
