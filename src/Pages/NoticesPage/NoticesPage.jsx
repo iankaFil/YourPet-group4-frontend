@@ -1,9 +1,9 @@
 import React from 'react';
-// import css from 'Pages/NoticesPage/NoticesPage.module.css';
+import css from 'Pages/NoticesPage/NoticesPage.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import ReactPaginate from 'react-paginate';
-// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import ReactPaginate from 'react-paginate';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import Section from 'Components/Section';
 import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
@@ -19,7 +19,7 @@ import {
   selectIsLoading,
   selectError,
   selectNotices,
-  // selectTotalPages,
+  selectTotalPages,
 } from 'Redux/notices/notices-selectors';
 
 const NoticesPage = () => {
@@ -27,9 +27,9 @@ const NoticesPage = () => {
   const categoryItem = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  // const totalPages = useSelector(selectTotalPages);
+  const totalPages = useSelector(selectTotalPages);
 
-  const [setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = value => {
     setSearchQuery(value);
@@ -51,11 +51,11 @@ const NoticesPage = () => {
   }, [dispatch]);
 
   //при клике
-  // const handlePageClick = ({ selected }) => {
-  //   const page = selected + 1;
-  //   const category = getCategoryFromURL();
-  //   dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
-  // };
+  const handlePageClick = ({ selected }) => {
+    const page = selected + 1;
+    const category = getCategoryFromURL();
+    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
+  };
 
   return (
     <Section>
@@ -66,7 +66,7 @@ const NoticesPage = () => {
 
         {isLoading && !error && <Loader />}
         {categoryItem.length > 0 && <CategoryList card={categoryItem} />}
-        {/* <div className={css.wrapper}>
+        <div className={css.wrapper}>
           <ReactPaginate
             pageCount={Math.ceil(totalPages) || 0}
             marginPagesDisplayed={2}
@@ -81,7 +81,7 @@ const NoticesPage = () => {
             pageClassName={css['pagination-button']}
             activeClassName={css['pagination-active']}
           />
-        </div> */}
+        </div>
       </Container>
     </Section>
   );

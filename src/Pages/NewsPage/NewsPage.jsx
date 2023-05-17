@@ -1,18 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import ReactPaginate from 'react-paginate';
-// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import ReactPaginate from 'react-paginate';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 import { fetchNews } from 'Redux/news/news-operations';
 import {
   selectIsLoading,
   selectError,
   selectNews,
-  // selectTotalPages,
+  selectTotalPages,
 } from 'Redux/news/news-selectors';
 
-// import css from 'Pages/NewsPage/NewsPage.module.css';
+import css from 'Pages/NewsPage/NewsPage.module.css';
 
 import Section from 'Components/Section';
 import Container from 'Components/Container/';
@@ -26,10 +26,10 @@ const NewsPage = () => {
   const newsItems = useSelector(selectNews);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  // const totalPages = useSelector(selectTotalPages);
+  const totalPages = useSelector(selectTotalPages);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [setActivePage] = useState(0);
+  const [activePage, setActivePage] = useState(0);
 
   const handleSearchChange = value => {
     setSearchQuery(value);
@@ -44,13 +44,13 @@ const NewsPage = () => {
     dispatch(fetchNews({ searchQuery }));
   }, [dispatch, searchQuery]);
 
-  // const handlePageClick = ({ selected }) => {
-  //   console.log('CLICK');
-  //   window.scrollTo({ top: 0, behavior: 'smooth' });
-  //   const page = selected + 1;
-  //   setActivePage(selected);
-  //   dispatch(fetchNews({ searchQuery, page }));
-  // };
+  const handlePageClick = ({ selected }) => {
+    console.log('CLICK');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const page = selected + 1;
+    setActivePage(selected);
+    dispatch(fetchNews({ searchQuery, page }));
+  };
 
   return (
     <Section>
@@ -60,7 +60,7 @@ const NewsPage = () => {
         {isLoading && !error && <Loader />}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
 
-        {/* {newsItems.length > 0 && (
+        {newsItems.length > 0 && (
           <div className={css.wrapper}>
             <ReactPaginate
               previousLabel={<BsArrowLeft />}
@@ -75,7 +75,7 @@ const NewsPage = () => {
               forcePage={activePage}
             />
           </div>
-        )} */}
+        )}
       </Container>
     </Section>
   );
