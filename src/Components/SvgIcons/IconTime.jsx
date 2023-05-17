@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 
-export const ClearFormIcon = ({ id, className }) => {
+export const IconTime = ({ id, className }) => {
   switch (id) {
     case 'svg':
       return (
         <svg
           className={className}
-          width="17"
-          height="17"
-          viewBox="0 0 17 17"
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M15 1L1 15M1.00004 1L15 15"
+            d="M10.5 5V10L13.5 13M19.5 10C19.5 14.9706 15.4706 19 10.5 19C5.52944 19 1.5 14.9706 1.5 10C1.5 5.02944 5.52944 1 10.5 1C15.4706 1 19.5 5.02944 19.5 10Z"
             stroke="#54ADFF"
             strokeWidth="1.5"
             strokeLinecap="round"
@@ -26,6 +26,6 @@ export const ClearFormIcon = ({ id, className }) => {
   }
 };
 
-ClearFormIcon.propTypes = {
+IconTime.propTypes = {
   id: PropTypes.string.isRequired,
 };

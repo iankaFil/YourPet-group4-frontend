@@ -44,7 +44,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
   }
 
   return (
-    <>
+    <div className={css.user}>
       <h2 className={css.user__title}>My information:</h2>
       <Formik
         initialValues={{
@@ -131,7 +131,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
           <h2 className={css.modalTitle}>Already leaving?</h2>
         </ModalApproveAction>
         )}
-    </>
+    </div>
   );
 };
 

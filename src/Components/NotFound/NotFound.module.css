@@ -45,7 +45,8 @@
 }
 
 .text {
-
+  margin-top: 80px;
+  margin-bottom: 50px;
   width: 280px;
   height: 66px;
   left: 415px;
@@ -55,18 +56,18 @@
   line-height: 33px;
   text-align: center;
   line-height: 1.3;
-  margin-bottom: 101px;
   color: #111111;
 
   @media screen and (min-width:768px) {
     width: 450px;
     height: 42px;
     left: 415px;
-    top: 128px;
     font-weight: 600;
     font-size: 32px;
-    line-height: 1.3;
+    margin-bottom: 80px;
+    margin-top: 20px;
   }
+
 }
 
 
@@ -117,7 +118,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 71px;
+  /* margin-top: 71px; */
 
 }
 
@@ -139,7 +140,7 @@
 }
 
 .button {
-  width: 70%;
+  width: 248px;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.38;
@@ -153,9 +154,9 @@
   margin: 18px 36px 100px;
   transition: background-color 0.9s ease;
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     width: 248px;
-  }
+  } */
 }
 
 .button:hover {

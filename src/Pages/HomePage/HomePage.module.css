@@ -6,17 +6,11 @@
   width: 100%;
   position: fixed;
   top: 0;
-}
-
-.background::after {
-  content: url('../../Shared/images/PetsHomePage/Pets-desktop.png');
-  display: block;
-  position: absolute;
-  width: 30%;
-  bottom: -235px;
-  z-index: -1;
-  top: 0px;
-  right: 563px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -25,6 +19,22 @@
     background-image: url('../../../src/Shared/images/background/mobile-bg@2x.png');
   }
 }
+
+.title {
+
+  font-weight: 800;
+
+  color: #111111;
+  width: 280px;
+  margin-top: 60px;
+
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.38;
+}
+
+
+
 
 @media screen and (min-width: 480px) {
   .background {
@@ -50,14 +60,67 @@
       background-image: url('../../../src/Shared/images/background/desktop-bg@2x.png');
     }
   }
+
+
+
+  .title {
+    font-weight: 800;
+    font-size: 68px;
+    line-height: 130%;
+    color: #111111;
+    width: 588px;
+    margin-top: 80px;
+  }
 }
 
-.title {
-  font-style: normal;
-  font-weight: 800;
-  font-size: 68px;
-  line-height: 130%;
-  color: #111111;
-  width: 500px;
-  margin-top: 188px;
+@media screen and (max-width:767px) {
+  .wrapp::after {
+    content: url('../../Shared/images/PetsHomePage/Pets-mobile.png');
+    background-size: cover;
+    margin-top: 60px;
+    position: absolute;
+    transform: scale(1.2);
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width:1279px) {
+  .wrapp::after {
+    content: url('../../Shared/images/PetsHomePage/Pets-desktop.png');
+    transform: scale(1);
+    margin-top: 100px;
+    position: absolute;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapp::after {
+    content: url('../../Shared/images/PetsHomePage/Pets-desktop.png');
+    display: block;
+    position: absolute;
+    width: 30%;
+    bottom: -235px;
+    z-index: -1;
+    top: 0px;
+    right: 563px;
+    background-size: cover;
+    transform: scale(1);
+    z-index: -1;
+
+  }
+
+  .title {
+    line-height: 130%;
+    width: 500px;
+    margin-top: 188px;
+  }
 }

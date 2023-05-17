@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import css from 'Components/Notices/NoticesFilters/NoticesFilters.module.css';
 
-function NoticesCategoriesNav() {
-  const [activeNavLink, setActiveNavLink] = useState('');
+import { isUserLogin } from 'Redux/auth/auth-selectors';
 
-  const handleNavLinkClick = navLink => {
-    setActiveNavLink(navLink);
+const NoticesCategoriesNav = ({ handleCategory }) => {
+  const isLoginUser = useSelector(isUserLogin);
+
+  const handleNavLinkClick = event => {
+    if (event.target.tagName === 'A') {
+      handleCategory(event.target.text);
+    }
   };
 
   return (
     <div className={css.navigationContainer}>
-      <ul className={css.linksContainer}>
+      <ul className={css.linksContainer} onClick={handleNavLinkClick}>
         <li className={css.link}>
           <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
             to="/notices/sell"
-            onClick={() => handleNavLinkClick('sell')}
           >
             sell
           </NavLink>
@@ -25,7 +30,6 @@ function NoticesCategoriesNav() {
           <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
             to="/notices/lost-found"
-            onClick={() => handleNavLinkClick('lost-found')}
           >
             lost/found
           </NavLink>
@@ -34,29 +38,30 @@ function NoticesCategoriesNav() {
           <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
             to="/notices/for-free"
-            onClick={() => handleNavLinkClick('in-good-hand')}
           >
             in good hands
           </NavLink>
         </li>
-        <li className={css.link}>
-          <NavLink
-            className={({ isActive }) => (isActive ? css.active : '')}
-            to="/notices/favorite"
-            onClick={() => handleNavLinkClick('favorite')}
-          >
-            favorite ads
-          </NavLink>
-        </li>
-        <li className={css.link}>
-          <NavLink
-            className={({ isActive }) => (isActive ? css.active : '')}
-            to="/notices/own"
-            onClick={() => handleNavLinkClick('own')}
-          >
-            my ads
-          </NavLink>
-        </li>
+        {isLoginUser && (
+          <li className={css.link}>
+            <NavLink
+              className={({ isActive }) => (isActive ? css.active : '')}
+              to="/notices/favorite"
+            >
+              favorite ads
+            </NavLink>
+          </li>
+        )}
+        {isLoginUser && (
+          <li className={css.link}>
+            <NavLink
+              className={({ isActive }) => (isActive ? css.active : '')}
+              to="/notices/own"
+            >
+              my ads
+            </NavLink>
+          </li>
+        )}
       </ul>
 
       <ul className={css.addButtonContainer}>
@@ -79,6 +84,6 @@ function NoticesCategoriesNav() {
       </ul>
     </div>
   );
-}
+};
 
 export default NoticesCategoriesNav;

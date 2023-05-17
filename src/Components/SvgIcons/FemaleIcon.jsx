@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 
-export const ClearFormIcon = ({ id, className }) => {
+export const FemaleIcon = ({ id, className }) => {
   switch (id) {
     case 'svg':
       return (
         <svg
           className={className}
-          width="17"
-          height="17"
-          viewBox="0 0 17 17"
+          width="12"
+          height="20"
+          viewBox="0 0 12 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M15 1L1 15M1.00004 1L15 15"
+            d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 11L6 19M3 16L9 16"
             stroke="#54ADFF"
             strokeWidth="1.5"
             strokeLinecap="round"
@@ -26,6 +26,6 @@ export const ClearFormIcon = ({ id, className }) => {
   }
 };
 
-ClearFormIcon.propTypes = {
+FemaleIcon.propTypes = {
   id: PropTypes.string.isRequired,
 };

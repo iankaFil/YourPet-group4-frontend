@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import css from './SecondStep.module.css';
 import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
-import { validationSchema } from 'Shared/validation/addPetValidation';
+import { validationSchemaSell } from 'Shared/validation/addPetValidation';
 
-const SecondStep = ({ handleNext, handlePreviousStep }) => {
+const SecondStepSell = ({ handleNext, handlePreviousStep }) => {
   const [petName, setPetName] = useState('');
+  const [petTitle, setPetTitle] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [breed, setBreed] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
-    validationSchema
-      .validate({ petName, birthDate, breed }, { abortEarly: false })
+    validationSchemaSell
+      .validate({ petName, birthDate, breed, petTitle }, { abortEarly: false })
       .then(() => {
-        handleNext({ petName, birthDate, breed });
+        handleNext({ petName, birthDate, breed, petTitle });
       })
       .catch(err => {
         const validationErrors = {};
@@ -26,6 +27,20 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
   };
   return (
     <div className={css.FormWrapper}>
+      <div className={css.WrapperLabelInput}>
+        <label className={css.LabelStep} htmlFor="name">
+          Title of add
+        </label>
+        <input
+          className={css.Input}
+          type="text"
+          id="name"
+          value={petTitle}
+          onChange={e => setPetTitle(e.target.value)}
+          placeholder="Type name pet"
+        />
+        {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+      </div>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="name">
           Name pet
@@ -97,4 +112,4 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
   );
 };
 
-export default SecondStep;
+export default SecondStepSell;
