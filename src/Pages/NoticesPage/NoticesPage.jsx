@@ -1,5 +1,5 @@
 import React from 'react';
-import css from 'Pages/NoticesPage/NoticesPage.module.css';
+// import css from 'Pages/NoticesPage/NoticesPage.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import ReactPaginate from 'react-paginate';
@@ -19,7 +19,7 @@ import {
   selectIsLoading,
   selectError,
   selectNotices,
-  selectTotalPages,
+  // selectTotalPages,
 } from 'Redux/notices/notices-selectors';
 
 const NoticesPage = () => {
@@ -27,9 +27,9 @@ const NoticesPage = () => {
   const categoryItem = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const totalPages = useSelector(selectTotalPages);
+  // const totalPages = useSelector(selectTotalPages);
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [setSearchQuery] = useState('');
 
   const handleSearchChange = value => {
     setSearchQuery(value);
@@ -51,11 +51,11 @@ const NoticesPage = () => {
   }, [dispatch]);
 
   //при клике
-  const handlePageClick = ({ selected }) => {
-    const page = selected + 1;
-    const category = getCategoryFromURL();
-    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
-  };
+  // const handlePageClick = ({ selected }) => {
+  //   const page = selected + 1;
+  //   const category = getCategoryFromURL();
+  //   dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
+  // };
 
   return (
     <Section>
