@@ -8,40 +8,38 @@
 .pagination {
   display: flex;
   justify-content: center;
-  align-items: center;
+  list-style: none;
+  cursor: pointer;
   gap: 7px;
-
   padding: 12px 8px;
-
   background: #fef9f9;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 45px;
 }
 
-.pagination-button {
+.pagination a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  background-color: transparent;
   border-radius: 100%;
   color: #cce4fb;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
   border: 1px solid #cce4fb;
-  cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pagination-button:focus,
-.pagination-button:hover {
+.pagination a:hover,
+.pagination a:focus {
   background-color: #54adff;
   border-color: #54adff;
   color: #fef9f9;
 }
 
-.pagination-active {
+.paginationActive a {
   background-color: #54adff;
   border-color: #54adff;
   color: #fef9f9;
