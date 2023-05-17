@@ -94,6 +94,9 @@ function AddPetPage() {
 
   const handleSubmit = stepData => {
     const sendDataForm = { ...formData, ...stepData };
+    const { category } = sendDataForm;
+
+    delete sendDataForm.category;
 
     console.log('handleSubmit   OOOOOOOOOOOOO', sendDataForm);
     // notice-image
@@ -102,10 +105,10 @@ function AddPetPage() {
     for (const key in sendDataForm) {
       formDataSend.append(key, sendDataForm[key]);
     }
-    if (sendDataForm.category === 'your-pet') {
+    if (category === 'your-pet') {
       savePet('/pets/', '', formDataSend);
     } else {
-      savePet('/notices/user-notices/', sendDataForm.category, formDataSend);
+      savePet('/notices/user-notices/', category, formDataSend);
     }
 
     // /notices/user-notices/
