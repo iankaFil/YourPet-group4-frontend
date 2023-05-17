@@ -6,7 +6,7 @@ import male from '../../../../Components/SvgIcons/male.svg';
 import React, { useState } from 'react';
 import css from './ThreeStep.module.css';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
@@ -22,11 +22,11 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
   const [errors, setErrors] = useState({});
 
   const [activeButton, setActiveButton] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleDone = () => {
     validationSchema
-      .validate({ photo, comments }, { abortEarly: false })
+      .validate({ photo, comments, place, sex }, { abortEarly: false })
       .then(() => {
         // Отправка запроса на бекенд для створення картки або оголошення
         // Успішне створення картки, переадресація користувача
@@ -34,7 +34,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
         // Якщо отримано помилку від бекенду
         // Виведення повідомлення про помилку у вигляді нотіфікації
 
-        handleNext(formData);
+        handleNext({ photo, comments, place, sex });
       })
       .catch(err => {
         const validationErrors = {};
