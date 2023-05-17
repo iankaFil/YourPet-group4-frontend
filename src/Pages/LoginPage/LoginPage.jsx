@@ -1,38 +1,39 @@
-
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AuthForm from 'Components/AuthForm/AuthForm';
 import Section from 'Components/Section/Section';
 import Container from 'Components/Container/Container';
 import { login } from 'Redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
-
+import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 const LoginPage = () => {
-  // const [token, setToken] = useState('');
+  const isLogin = useSelector(isUserLogin);
   const navigate = useNavigate();
- 
+
   const dispatch = useDispatch();
 
-  const handleLogin = async ({email, password}, { setSubmitting }) => {
-      const data = {email, password} 
- 
+  const handleLogin = async ({ email, password }, { setSubmitting }) => {
+    const data = { email, password };
     try {
-        await dispatch(login(data));
-        // const result = await dispatch(login(data));
-        navigate('/user'); 
-        // setToken(result.token) 
-      } catch (error) { 
-        console.log(error.message); 
-      }  
-      setSubmitting(false); 
+      await dispatch(login(data));
+    } catch (error) {
+      console.log(error.message);
     }
- 
+    setSubmitting(false);
+  };
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate('/user', { state: { from: '/login' } });
+    }
+  }, [isLogin, navigate]);
+
   return (
     <Section>
       <Container>
-        <AuthForm onSubmit={handleLogin}/> 
+        <AuthForm onSubmit={handleLogin} />
       </Container>
     </Section>
   );

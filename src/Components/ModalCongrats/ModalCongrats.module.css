@@ -1,90 +1,122 @@
 .modal {
-  position: absolute;
-  width: 608px;
-  height: 354px;
-  left: 80px;
-  top: 148px;
-
-  background: #ffffff;
-
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 92px;
+  background-color: rgba(81, 81, 81, 0.6);
+    @media screen and (min-width: 768px) {
+      padding-top: 148px;
+    }
+    @media screen and (min-width: 1280px) {
+      padding-top: 112px;
+    }
 }
 
-.titelCongrats {
-  width: 226px;
-  height: 49px;
-  left: 271px;
-  top: 208px;
+.modalContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    border-radius: 20px;
+    text-align: center;
+    align-items: center;
+    width: 280px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 68px 16px 60px 16px;
 
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 49px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.04em;
-
-  color: #111111;
+    @media screen and (min-width: 768px) {
+      width: 608px;
+      border-radius: 40px;
+      padding: 60px 0;
+    }
 }
 
-.textCongrats {
-  width: 350px;
-  height: 33px;
-  left: 209px;
-  top: 309px;
-
-  font-family: 'Manrope';
-  font-style: normal;
+ .title {
   font-weight: 500;
   font-size: 24px;
-  line-height: 33px;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
+  line-height: 1.38;
   letter-spacing: 0.04em;
-
   color: #111111;
+  margin-bottom: 24px;
+    
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.36;
+    margin-bottom: 52px;
+  }
+ 
+ }
+
+.text{
+  font-weight: 500;
+    font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+    color: #111111;
+    margin-bottom: 40px;
+
+      @media screen and (min-width: 768px) {
+        font-size: 24px;
+        line-height: 1.38;
+        margin-bottom: 60px;
+      } 
 }
 
-.btn {
-  display: flex;
-  /* flex-direction: row; */
-  justify-content: center;
-  align-items: center;
-  padding: 8px 28px;
-  gap: 12px;
-
-  /* position: absolute; */
-  width: 248px;
-  height: 40px;
-  left: 261px;
-  top: 402px;
-
-  background: #54adff;
-  border-radius: 40px;
+.closeBtn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    align-self: end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btnText {
-  width: 103px;
-  height: 22px;
+.closeBtn:hover {
+    background-color: #54ADFF;
+}
 
-  font-family: 'Manrope';
-  font-style: normal;
+.crossSmallIcon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    stroke: #54ADFF;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    border-radius: 50%;
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.crossSmallIcon:hover {
+    stroke: #FDF7F2;
+}
+
+.modalBtn {
+  width: 100%; 
   font-weight: 700;
   font-size: 16px;
-  line-height: 22px;
-
-  display: flex;
-  align-items: center;
+  line-height: 1.38;
   letter-spacing: 0.04em;
+  color: #FEF9F9;
+  background-color: #54ADFF;;
+  padding: 8px 0;
+  gap: 12px;
 
-  color: #fef9f9;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  @media screen and (min-width: 768px) {
+    width: 248px;
+  }
+}
+.modalBtn:hover{
+  background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
 }

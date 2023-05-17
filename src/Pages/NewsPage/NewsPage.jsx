@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -28,45 +28,56 @@ const NewsPage = () => {
   const error = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
 
-  // const [fieldValue, setFieldValue] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activePage, setActivePage] = useState(0);
 
-  // const handleFieldChange = value => {
-  //   setFieldValue(value);
-  // };
+  const handleSearchChange = value => {
+    setSearchQuery(value);
+    setActivePage(0);
+  };
 
   useEffect(() => {
     dispatch(fetchNews());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchNews({ searchQuery }));
+  }, [dispatch, searchQuery]);
+
   const handlePageClick = ({ selected }) => {
-    dispatch(fetchNews(selected + 1));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const page = selected + 1;
+    setActivePage(selected);
+    dispatch(fetchNews({ searchQuery, page }));
   };
 
   return (
     <Section>
       <Container>
         <Title>News</Title>
-        {/* <NewsSearch onFieldChange={handleFieldChange} /> */}
-        <NewsSearch />
+        <NewsSearch handleSearchChange={handleSearchChange} />
         {isLoading && !error && <Loader />}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
 
-        <div className={css.wrapper}>
-          <ReactPaginate
-            pageCount={Math.ceil(totalPages) || 0}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={2}
-            onPageChange={handlePageClick}
-            previousLabel={<BsArrowLeft />}
-            nextLabel={<BsArrowRight />}
-            breakLabel={'...'}
-            containerClassName={css.pagination}
-            previousClassName={css['pagination-button']}
-            nextClassName={css['pagination-button']}
-            pageClassName={css['pagination-button']}
-            activeClassName={css['pagination-active']}
-          />
-        </div>
+        {newsItems.length > 0 && (
+          <div className={css.wrapper}>
+            <ReactPaginate
+              pageCount={Math.ceil(totalPages) || 0}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={2}
+              onPageChange={handlePageClick}
+              previousLabel={<BsArrowLeft />}
+              nextLabel={<BsArrowRight />}
+              breakLabel={'...'}
+              containerClassName={css.pagination}
+              previousClassName={css['pagination-button']}
+              nextClassName={css['pagination-button']}
+              pageClassName={css['pagination-button']}
+              activeClassName={css['pagination-active']}
+              forcePage={activePage}
+            />
+          </div>
+        )}
       </Container>
     </Section>
   );

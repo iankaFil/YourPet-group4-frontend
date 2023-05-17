@@ -52,18 +52,15 @@ export const authSlice = createSlice({
             })
             .addCase(current.pending, state => {
               handlePending(state);
-              console.log('pending=>', state.token)
             })
             .addCase(current.fulfilled, (state, { payload }) => {
               const user = payload;
               state.isLoading = false;
               state.user = user;
               state.isLogin = true;
-              console.log('fulfilled=>', state.token)
             })
             .addCase(current.rejected, (state, { payload }) => {
               handleRejected(state, payload);
-              console.log('rejected=>', state.token)
             })
             .addCase(updateUser.pending, state => {
               handlePending(state);

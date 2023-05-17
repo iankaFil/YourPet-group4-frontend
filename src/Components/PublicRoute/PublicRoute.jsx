@@ -1,23 +1,32 @@
-import {
-    // Navigate,
-    Outlet
-} from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-// import { isLogin, getToken } from 'redux/auth/auth-selector';
+import { getToken, isUserLogin } from 'Redux/auth/auth-selectors';
+import { useEffect } from 'react';
 
-// import LoadingIndicator from 'shared/components/LoadingIndicator';
+// import Loader from 'Components/Loader/Loader';
 
 const PublicRoute = () => {
-//   const isUserLogin = useSelector(isLogin);
-//   const isToken = useSelector(getToken);
+  const isLogin = useSelector(isUserLogin);
+  const isToken = useSelector(getToken);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-//   if (!isUserLogin && isToken) {
-//     return <LoadingIndicator width="70" height="70" />;
-//   }
-//   if (isUserLogin) {
-//     return <Navigate to="/contacts" />;
-//   }
+  useEffect(() => {
+    if (isLogin) {
+      if (location.pathname === '/login') {
+        navigate('/user', { state: { from: '/login' } });
+      } else {
+        navigate('/user');
+      }
+    }
+  }, [isLogin, location.pathname, navigate]);
+
+  if (!isLogin && isToken) {
+    return <p>...Loading</p>;
+    // <Loader/>   
+  }
+
   return <Outlet />;
 };
 

@@ -2,21 +2,34 @@ import css from './AddPetPage.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CurrentSteps from './Steps/CurrentSteps';
-import FirstSteps from './Steps/Step1/FirstSteps';
+import FirstStep from './Steps/Step1/FirstStep';
 import SecondStep from './Steps/Step2/SecondStep';
+import ThreeStep from './Steps/Step3/ThreeStep';
 
 function AddPetPage() {
   const [step, setStep] = useState(1);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-  // const [setPetName] = useState('');
-  const [setBirthDate] = useState('');
-  const [setBreed] = useState('');
+  // const [petName, setPetName] = useState('');
+  // const [birthDate, setBirthDate] = useState('');
+  // const [breed, setBreed] = useState('');
   // const [errors, setErrors] = useState({});
 
   // const [petPhoto, setPetPhoto] = useState(null);
   // const [comments, setComments] = useState('');
+
+  // const [formData, setFormData] = useState({
+  //   title: '',
+  //   category: '',
+  //   name: '',
+  //   birthday: '',
+  //   breed: '',
+  //   place: '',
+  //   price: '',
+  //   sex: '',
+  //   comments: '',
+  // });
 
   const navigate = useNavigate();
 
@@ -33,8 +46,8 @@ function AddPetPage() {
       alert('Please select a breed');
     }
     // setPetName(petName);
-    setBirthDate(birthdate);
-    setBreed(breed);
+    // setBirthDate(birthdate);
+    // setBreed(breed);
   };
 
   const handlePreviousStep = () => {
@@ -54,6 +67,13 @@ function AddPetPage() {
     // Переадресація користувача на UserPage або NoticesPage в залежності від категорії
   };
 
+  // const generateStepNameForm = () => {
+  //   switch (step) {
+  //     case 1:
+  //       return;
+  //   }
+  // };
+
   return (
     <div className={css.WrapperAddPet}>
       {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
@@ -61,7 +81,7 @@ function AddPetPage() {
       {step === 3 && <h2 className={css.AddPet}>More info</h2>}
       <CurrentSteps currentStep={currentStep} />
       {step === 1 && (
-        <FirstSteps
+        <FirstStep
           handleNext={handleNext}
           handleCancel={handleCancel}
           handleOptionChange={handleOptionChange}
@@ -75,12 +95,10 @@ function AddPetPage() {
         />
       )}
       {step === 3 && (
-        <div>
-          {/*  поле вибору фотографії та коментарів */}
-
-          <button onClick={handlePreviousStep}>Back</button>
-          <button onClick={handleSubmit}>Done</button>
-        </div>
+        <ThreeStep
+          handleNext={handleSubmit}
+          handlePreviousStep={handlePreviousStep}
+        />
       )}
     </div>
   );

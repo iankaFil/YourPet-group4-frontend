@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import css from './SecondStep.module.css';
 import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
+import { validationSchema } from 'Shared/validation/addPetValidation';
 
 const SecondStep = ({ handleNext, handlePreviousStep }) => {
   const [petName, setPetName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [breed, setBreed] = useState('');
-  const [errors] = useState({});
+  const [errors, setErrors] = useState({});
 
   // const handleNextValdation = () => {
   //   const validationErrors = {};
@@ -30,7 +31,20 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
   //   }
   //   handleNext({ petName, birthDate, breed });
   // };
-
+  const handleNextValidation = () => {
+    validationSchema
+      .validate({ petName, birthDate, breed }, { abortEarly: false })
+      .then(() => {
+        handleNext({ petName, birthDate, breed });
+      })
+      .catch(err => {
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      });
+  };
   return (
     <div className={css.FormWrapper}>
       <div className={css.WrapperLabelInput}>
@@ -92,7 +106,7 @@ const SecondStep = ({ handleNext, handlePreviousStep }) => {
           </button>
         </li>
         <li>
-          <button className={css.ButtonNext}>
+          <button className={css.ButtonNext} onClick={handleNextValidation}>
             <div className={css.ButtonEl}>
               <span>Next </span>
               <img src={next} alt="Next" />
