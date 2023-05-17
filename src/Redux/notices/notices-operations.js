@@ -22,6 +22,18 @@ export const fetchNoticesByTitle = createAsyncThunk(
   }
 );
 
+export const fetchNoticesByCategory = createAsyncThunk(
+  'notices/category',
+  async (category, thunkAPI) => {
+    try {
+      const response = await instance.get(`/notices/category/${category}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchNoticesById = createAsyncThunk(
   'notices/search',
   async (noticeId, thunkAPI) => {
