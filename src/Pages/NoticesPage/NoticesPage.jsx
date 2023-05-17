@@ -2,8 +2,8 @@ import React from 'react';
 import css from 'Pages/NoticesPage/NoticesPage.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactPaginate from 'react-paginate';
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+// import ReactPaginate from 'react-paginate';
+// import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import Section from 'Components/Section';
 import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
@@ -66,7 +66,7 @@ const NoticesPage = () => {
 
         {isLoading && !error && <Loader />}
         {categoryItem.length > 0 && <CategoryList card={categoryItem} />}
-        <div className={css.wrapper}>
+        {/* <div className={css.wrapper}>
           <ReactPaginate
             pageCount={Math.ceil(totalPages) || 0}
             marginPagesDisplayed={2}
@@ -81,7 +81,7 @@ const NoticesPage = () => {
             pageClassName={css['pagination-button']}
             activeClassName={css['pagination-active']}
           />
-        </div>
+        </div> */}
       </Container>
     </Section>
   );
