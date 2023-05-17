@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import css from 'Components/Notices/NoticesFilters/NoticesFilters.module.css';
 
 function NoticesCategoriesNav() {
-  const [activeNavLink, setActiveNavLink] = useState('');
+  const [setActiveNavLink] = useState('');
 
   const handleNavLinkClick = navLink => {
     setActiveNavLink(navLink);
