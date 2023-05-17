@@ -1,8 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import css from 'Components/Notices/NoticesFilters/NoticesFilters.module.css';
 
-function NoticesCategoriesNav({ handleCategory }) {
+import { isUserLogin } from 'Redux/auth/auth-selectors';
+
+const NoticesCategoriesNav = ({ handleCategory }) => {
+  const isLoginUser = useSelector(isUserLogin);
+
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
       handleCategory(event.target.text);
@@ -36,22 +42,26 @@ function NoticesCategoriesNav({ handleCategory }) {
             in good hands
           </NavLink>
         </li>
-        <li className={css.link}>
-          <NavLink
-            className={({ isActive }) => (isActive ? css.active : '')}
-            to="/notices/favorite"
-          >
-            favorite ads
-          </NavLink>
-        </li>
-        <li className={css.link}>
-          <NavLink
-            className={({ isActive }) => (isActive ? css.active : '')}
-            to="/notices/own"
-          >
-            my ads
-          </NavLink>
-        </li>
+        {isLoginUser && (
+          <li className={css.link}>
+            <NavLink
+              className={({ isActive }) => (isActive ? css.active : '')}
+              to="/notices/favorite"
+            >
+              favorite ads
+            </NavLink>
+          </li>
+        )}
+        {isLoginUser && (
+          <li className={css.link}>
+            <NavLink
+              className={({ isActive }) => (isActive ? css.active : '')}
+              to="/notices/own"
+            >
+              my ads
+            </NavLink>
+          </li>
+        )}
       </ul>
 
       <ul className={css.addButtonContainer}>
@@ -74,6 +84,6 @@ function NoticesCategoriesNav({ handleCategory }) {
       </ul>
     </div>
   );
-}
+};
 
 export default NoticesCategoriesNav;
