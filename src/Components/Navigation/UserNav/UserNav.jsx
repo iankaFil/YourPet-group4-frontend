@@ -20,7 +20,12 @@ function UserNav({ handleLinkClick }) {
 
   const user = useSelector(getUser);
   const { email } = user;
-  const splitResult = email.split('@')[0];
+  function splitResult() {
+    if (email) {
+      return email.split('@')[0];
+    }
+  }
+
   console.log(user);
 
   useEffect(() => {
