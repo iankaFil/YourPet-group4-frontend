@@ -13,6 +13,7 @@
 
 .menu {
   position: fixed;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   width: 100%;
@@ -30,6 +31,18 @@
   width: 25px;
   height: 25px;
   opacity: 0.3;
+}
+
+.backdrop_user nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.backdrop_user span:last-of-type {
+  display: flex;
 }
 
 .backdrop_auth div {
