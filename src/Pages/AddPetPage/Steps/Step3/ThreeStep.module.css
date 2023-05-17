@@ -1,8 +1,114 @@
+.wrapperForm {
+  display: flex;
+  gap: 96px;
+  margin-top: 16px;
+}
+.wrapperPotoSell {
+}
+.SexText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #111111;
+}
+.sexOption {
+  display: flex;
+  gap: 23px;
+  margin-top: 8px;
+}
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wrapperFormSellInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.sexElement {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 92px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #888888;
+}
+.sexElementActive {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 92px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #54adff;
+}
+.WrapperLabelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+.LabelStep {
+  color: #111111;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.Input {
+  border-radius: 20px;
+  box-shadow: none;
+  outline: none;
+  font-size: 16px;
+  padding: 15px;
+  border: 2px solid #54adff;
+  max-width: 395px;
+}
+.Input:focus {
+  border-color: #54adff;
+}
+
+.ErrorText {
+  position: absolute;
+  bottom: -25%;
+  right: 67%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f43f5e;
+}
+.ErrorTextLow {
+  position: absolute;
+  bottom: -25%;
+  right: 76%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f43f5e;
+}
 .wrapperPoto {
   display: flex;
   gap: 33px;
   margin-top: 16px;
   align-items: center;
+}
+.wrapperAddPhoto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  gap: 12px;
 }
 .labelAddText {
   font-weight: 500;
@@ -30,8 +136,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 24px;
-  margin-bottom: 27px;
+
+  margin-bottom: 60px;
 }
 .textareaText {
   font-weight: 500;
@@ -54,9 +160,10 @@
 .LinkAddPEt {
   margin-top: 23.5px;
   display: flex;
-  justify-content: space-around;
+
+  justify-content: center;
   align-items: center;
-  gap: 38px;
+  gap: 48px;
 }
 
 .LinkAddPEtLitkCancel {
