@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchNoticesByTitle,
+  fetchNoticesByCategory,
   // fetchNoticesById
 } from './notices-operations';
 
@@ -28,15 +29,33 @@ const handleRejected = (state, action) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    resetCategoryItem(state) {
+      state.items = [];
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(fetchNoticesByTitle.pending, state => handlePending(state))
-      .addCase(fetchNoticesByTitle.fulfilled, (state, action) =>
-        handleFulfilled(state, action)
-      )
-      .addCase(fetchNoticesByTitle.rejected, (state, action) =>
-        handleRejected(state, action)
-      );
+      .addCase(fetchNoticesByTitle.pending, state => {
+        state.items = [];
+        handlePending(state);
+      })
+      .addCase(fetchNoticesByTitle.fulfilled, (state, action) => {
+        handleFulfilled(state, action);
+      })
+      .addCase(fetchNoticesByTitle.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(fetchNoticesByCategory.pending, state => {
+        state.items = [];
+        handlePending(state);
+      })
+      .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
+        handleFulfilled(state, action);
+      })
+      .addCase(fetchNoticesByCategory.rejected, (state, action) => {
+        handleRejected(state, action);
+      });
 
     // .addCase(fetchNoticesById.pending, state => handlePending(state))
     // .addCase(fetchNoticesById.fulfilled, (state, action) => {

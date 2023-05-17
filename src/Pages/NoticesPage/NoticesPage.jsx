@@ -13,7 +13,10 @@ import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCatego
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
 
-import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
+import {
+  fetchNoticesByTitle,
+  fetchNoticesByCategory,
+} from 'Redux/notices/notices-operations';
 
 import {
   selectIsLoading,
@@ -30,31 +33,53 @@ const NoticesPage = () => {
   const totalPages = useSelector(selectTotalPages);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSearchChange = value => {
     setSearchQuery(value);
   };
 
+  const handleCategory = value => {
+    switch (value) {
+      case 'lost/found':
+        setCategory('lost-found');
+        break;
+
+      case 'in good hands':
+        setCategory('in-good-hands');
+        break;
+
+      default:
+        setCategory(value);
+        break;
+    }
+  };
+
   const getCategoryFromURL = () => {
     const path = window.location.pathname;
-    const category = path.split('/').pop();
-    if (category === 'for-free') {
+    const categoryURL = path.split('/').pop();
+    if (categoryURL === 'for-free') {
       return 'in-good-hand';
     }
-    return category;
+    return categoryURL;
   };
 
   //первий рендер
   useEffect(() => {
-    const category = getCategoryFromURL();
-    dispatch(fetchNoticesByTitle({ category }));
+    const categoryURL = getCategoryFromURL();
+    dispatch(fetchNoticesByCategory(categoryURL));
   }, [dispatch]);
 
-  //при клике
+  // при изменении категории через фильтр
+  useEffect(() => {
+    dispatch(fetchNoticesByTitle({ category, searchQuery }));
+  }, [category, searchQuery, dispatch]);
+
+  //при клике на пагинацию
   const handlePageClick = ({ selected }) => {
     const page = selected + 1;
-    const category = getCategoryFromURL();
-    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
+    const categoryURL = getCategoryFromURL();
+    dispatch(fetchNoticesByTitle({ category: categoryURL, searchQuery, page }));
   };
 
   return (
@@ -62,26 +87,30 @@ const NoticesPage = () => {
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch handleSearchChange={handleSearchChange} />
-        <NoticesCategoriesNav />
+        <NoticesCategoriesNav handleCategory={handleCategory} />
 
         {isLoading && !error && <Loader />}
-        {categoryItem.length > 0 && <CategoryList card={categoryItem} />}
-        <div className={css.wrapper}>
-          <ReactPaginate
-            pageCount={Math.ceil(totalPages) || 0}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={2}
-            onPageChange={handlePageClick}
-            previousLabel={<BsArrowLeft />}
-            nextLabel={<BsArrowRight />}
-            breakLabel={'...'}
-            containerClassName={css.pagination}
-            previousClassName={css['pagination-button']}
-            nextClassName={css['pagination-button']}
-            pageClassName={css['pagination-button']}
-            activeClassName={css['pagination-active']}
-          />
-        </div>
+        {categoryItem && categoryItem.length > 0 && (
+          <CategoryList card={categoryItem} />
+        )}
+        {categoryItem && categoryItem.length > 0 && (
+          <div className={css.wrapper}>
+            <ReactPaginate
+              pageCount={Math.ceil(totalPages) || 0}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={2}
+              onPageChange={handlePageClick}
+              previousLabel={<BsArrowLeft />}
+              nextLabel={<BsArrowRight />}
+              breakLabel={'...'}
+              containerClassName={css.pagination}
+              previousClassName={css['pagination-button']}
+              nextClassName={css['pagination-button']}
+              pageClassName={css['pagination-button']}
+              activeClassName={css['pagination-active']}
+            />
+          </div>
+        )}
       </Container>
     </Section>
   );
