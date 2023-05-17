@@ -8,7 +8,6 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 const NoticesCategoriesNav = ({ handleCategory }) => {
   const isLoginUser = useSelector(isUserLogin);
-  console.log(isLoginUser);
 
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
