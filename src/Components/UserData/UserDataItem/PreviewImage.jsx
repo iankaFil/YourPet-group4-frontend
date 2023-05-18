@@ -1,25 +1,21 @@
-import React, { useState } from 'react'
-
-import defaultUserImg from '../../../Shared/images/defaultUserImg.png'
-
-import styles from './PreviewImage.module.css'
-
-export const PreviewImage = ({ file }) => {
-  const [preview, setPreview] = useState(null);
+import React from 'react'  
   
-  if (file instanceof File) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setPreview(reader.result);
-      };
-  }
-
-  return <div className={styles.preview} >
-    <img
-      src={preview ? preview : defaultUserImg}
-      alt='preview'
-      className={styles.preview__img}
-      />
-  </div>
-}
+import defaultUserImg from '../../../Shared/images/defaultUserImg.png'  
+  
+import styles from './PreviewImage.module.css'  
+import { useSelector } from 'react-redux'; 
+import { getUser } from 'Redux/auth/auth-selectors'; 
+  
+export const PreviewImage = ({ file }) => {   
+  const { avatarURL } = useSelector(getUser) 
+ 
+  return (  
+    <div className={styles.preview}>  
+      <img  
+        src={avatarURL? avatarURL : defaultUserImg}  
+        alt="preview"  
+        className={styles.preview__img}  
+      />  
+    </div>  
+  );  
+};

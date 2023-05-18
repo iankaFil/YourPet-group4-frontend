@@ -20,6 +20,7 @@ const LoginPage = () => {
     const data = { email, password };
     try {
       await dispatch(login(data));
+      await console.log(dispatch(login(data)))
     } catch (error) {
       console.log(error.message);
     }
