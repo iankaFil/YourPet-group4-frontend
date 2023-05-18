@@ -9,6 +9,10 @@ const FirstStep = ({
   handleOptionChange,
   activeButton,
 }) => {
+  const handleSelectCategory = () => {
+    handleNext({});
+  };
+
   return (
     <div>
       <ul className={css.ChooseOptionList}>
@@ -17,7 +21,7 @@ const FirstStep = ({
             className={`${css.PetButton} ${
               activeButton === 1 ? css.PetButtonActive : ''
             }`}
-            onClick={() => handleOptionChange('your pet', 1)}
+            onClick={() => handleOptionChange('your-pet', 1)}
           >
             your pet
           </button>
@@ -37,7 +41,7 @@ const FirstStep = ({
             className={`${css.PetButton} ${
               activeButton === 3 ? css.PetButtonActive : ''
             }`}
-            onClick={() => handleOptionChange('lost/found', 3)}
+            onClick={() => handleOptionChange('lost-found', 3)}
           >
             lost/found
           </button>
@@ -47,7 +51,7 @@ const FirstStep = ({
             className={`${css.PetButton} ${
               activeButton === 4 ? css.PetButtonActive : ''
             }`}
-            onClick={() => handleOptionChange('in good hands', 4)}
+            onClick={() => handleOptionChange('in-good-hands', 4)}
           >
             in good hands
           </button>
@@ -63,7 +67,7 @@ const FirstStep = ({
           </button>
         </li>
         <li>
-          <button className={css.ButtonNext} onClick={handleNext}>
+          <button className={css.ButtonNext} onClick={handleSelectCategory}>
             <div className={css.ButtonEl}>
               <span>Next</span>
               <img src={next} alt="Next" />

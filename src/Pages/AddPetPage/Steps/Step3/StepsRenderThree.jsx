@@ -7,13 +7,15 @@ const StepsRenderThree = ({
   handleNext,
   handlePreviousStep,
   selectedOption,
+  formData,
 }) => {
   return (
     <>
-      {selectedOption === 'your pet' || selectedOption === 'in good hands' ? (
+      {selectedOption === 'your-pet' || selectedOption === 'in-good-hands' ? (
         <ThreeStep
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
+          formData={formData}
         />
       ) : (
         ''
@@ -22,14 +24,16 @@ const StepsRenderThree = ({
         <ThreeStepSell
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
+          formData={formData}
         />
       ) : (
         ''
       )}
-      {selectedOption === 'lost/found' ? (
+      {selectedOption === 'lost-found' ? (
         <ThreeStepFound
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
+          formData={formData}
         />
       ) : (
         ''

@@ -4,18 +4,18 @@ import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import { validationSchemaSell } from 'Shared/validation/addPetValidation';
 
-const SecondStepSell = ({ handleNext, handlePreviousStep }) => {
-  const [petName, setPetName] = useState('');
-  const [petTitle, setPetTitle] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [breed, setBreed] = useState('');
+const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
+  const [name, setName] = useState(formData.name || '');
+  const [title, setTitle] = useState(formData.title || '');
+  const [birthday, setBirthday] = useState(formData.birthday || '');
+  const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
     validationSchemaSell
-      .validate({ petName, birthDate, breed, petTitle }, { abortEarly: false })
+      .validate({ name, birthday, breed, title }, { abortEarly: false })
       .then(() => {
-        handleNext({ petName, birthDate, breed, petTitle });
+        handleNext({ name, birthday, breed, title });
       })
       .catch(err => {
         const validationErrors = {};
@@ -35,9 +35,9 @@ const SecondStepSell = ({ handleNext, handlePreviousStep }) => {
           className={css.Input}
           type="text"
           id="name"
-          value={petTitle}
-          onChange={e => setPetTitle(e.target.value)}
-          placeholder="Type name pet"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          placeholder="Type pet name"
         />
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
@@ -49,28 +49,26 @@ const SecondStepSell = ({ handleNext, handlePreviousStep }) => {
           className={css.Input}
           type="text"
           id="name"
-          value={petName}
-          onChange={e => setPetName(e.target.value)}
-          placeholder="Type name pet"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder="Type pet name"
         />
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="birthdate">
+        <label className={css.LabelStep} htmlFor="birthday">
           Date of birth
         </label>
         <input
           className={css.Input}
           type="text"
-          id="birthdate"
-          value={birthDate}
-          onChange={e => setBirthDate(e.target.value)}
+          id="birthday"
+          value={birthday}
+          onChange={e => setBirthday(e.target.value)}
           required
           placeholder="Type date of birth"
         />
-        {errors.birthdate && (
-          <p className={css.ErrorText}>{errors.birthdate}</p>
-        )}
+        {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="breed">
@@ -91,7 +89,7 @@ const SecondStepSell = ({ handleNext, handlePreviousStep }) => {
         <li>
           <button
             className={css.LinkAddPEtLitkCancel}
-            onClick={handlePreviousStep}
+            onClick={() => handlePreviousStep(formData)}
           >
             <div className={css.ButtonEl}>
               <img src={cancel} alt="Next" />

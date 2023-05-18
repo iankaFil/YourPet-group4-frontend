@@ -7,43 +7,43 @@ import React, { useState } from 'react';
 import css from './ThreeStep.module.css';
 
 // import { useNavigate } from 'react-router-dom';
-// import * as yup from 'yup';
+import * as yup from 'yup';
 
-// const validationSchema = yup.object().shape({
-//   photo: yup.string().required('Please upload a photo'),
-//   comments: yup.string().required('Please enter comments'),
-// });
+const validationSchema = yup.object().shape({
+  photo: yup.string().required('Please upload a photo'),
+  comments: yup.string().required('Please enter comments'),
+});
 
-const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
-  const [photo, setPhoto] = useState('');
-  const [comments, setComments] = useState('');
-  const [location, setLocation] = useState('');
-  //   const [price, setPrice] = useState('');
-  const [setSex] = useState('');
-  const [errors] = useState({});
+const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
+  const [photo, setPhoto] = useState(formData.url || '');
+  const [comments, setComments] = useState(formData.comments || '');
+  const [place, setPlace] = useState(formData.place || '');
+  const [sex, setSex] = useState(formData.sex || '');
+  const [errors, setErrors] = useState({});
+
   const [activeButton, setActiveButton] = useState(null);
   // const navigate = useNavigate();
 
-  //   const handleDone = () => {
-  //     // validationSchema
-  //     //   .validate({ photo, comments }, { abortEarly: false })
-  //     //   .then(() => {
-  //     //     // Отправка запроса на бекенд для створення картки або оголошення
+  const handleDone = () => {
+    validationSchema
+      .validate({ photo, comments, place, sex }, { abortEarly: false })
+      .then(() => {
+        // Отправка запроса на бекенд для створення картки або оголошення
+        // Успішне створення картки, переадресація користувача
+        // navigate('/UserPage'); // або '/NoticesPage' залежно від категорії
+        // Якщо отримано помилку від бекенду
+        // Виведення повідомлення про помилку у вигляді нотіфікації
 
-  //     //     // Успішне створення картки, переадресація користувача
-  //     //     navigate('/UserPage'); // або '/NoticesPage' залежно від категорії
-
-  //     //     // Якщо отримано помилку від бекенду
-  //     //     // Виведення повідомлення про помилку у вигляді нотіфікації
-  //     //   })
-  //     //   .catch(err => {
-  //     //     const validationErrors = {};
-  //     //     err.inner.forEach(error => {
-  //     //       validationErrors[error.path] = error.message;
-  //     //     });
-  //     //     setErrors(validationErrors);
-  //     //   });
-  //   };
+        handleNext({ photo, comments, place, sex });
+      })
+      .catch(err => {
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      });
+  };
 
   const handleOptionChange = (option, number) => {
     setSex(option);
@@ -116,10 +116,10 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
             <input
               className={css.Input}
               type="text"
-              id="name"
-              value={location}
-              onChange={e => setLocation(e.target.value)}
-              placeholder="Type of location"
+              id="place"
+              value={place}
+              onChange={e => setPlace(e.target.value)}
+              placeholder="Type location"
             />
             {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
           </div>
@@ -133,7 +133,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
               id="name"
               value={price}
               onChange={e => setPrice(e.target.value)}
-              placeholder="Type of price"
+              placeholder="Type price"
             />
             {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
           </div> */}
@@ -145,7 +145,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
               className={css.textareaAdd}
               id="comments"
               value={comments}
-              placeholder="Type breed"
+              placeholder="Type comment"
               onChange={e => setComments(e.target.value)}
             />
             {errors.comments && <p>{errors.comments}</p>}
@@ -156,7 +156,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
         <li>
           <button
             className={css.LinkAddPEtLitkCancel}
-            onClick={handlePreviousStep}
+            onClick={() => handlePreviousStep(formData)}
           >
             <div className={css.ButtonEl}>
               <img src={cancel} alt="Next" />
@@ -165,7 +165,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep }) => {
           </button>
         </li>
         <li>
-          <button className={css.ButtonNext} onClick={handleNext}>
+          <button className={css.ButtonNext} onClick={handleDone}>
             <div className={css.ButtonEl}>
               <span>Done </span>
               <img src={next} alt="Next" />

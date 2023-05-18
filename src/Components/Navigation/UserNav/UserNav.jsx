@@ -20,7 +20,11 @@ function UserNav({ handleLinkClick }) {
 
   const user = useSelector(getUser);
   const { email } = user;
-  console.log(user);
+  function splitResult() {
+    if (email) {
+      return email.split('@')[0];
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,10 +51,12 @@ function UserNav({ handleLinkClick }) {
           <Link to="/user" onClick={handleClick}>
             <img className={css.icon} src={UserLogo} alt="UserLogo" />
             {isMobile ? null : (
-              <span className={css.name}>{isLogIn ? email : 'User'}</span>
+              <span className={css.name}>
+                {isLogIn ? splitResult() : 'User'}
+              </span>
             )}
             <span className={css.backdrop_name}>
-              {isLogIn ? email : 'User'}
+              {isLogIn ? splitResult : 'User'}
             </span>
           </Link>
         </li>
