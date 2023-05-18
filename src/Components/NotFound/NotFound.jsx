@@ -1,6 +1,6 @@
 import css from './NotFound.module.css';
 import { useNavigate } from 'react-router-dom';
-// import myImage from '../../Shared/images/NotFoundImg/notFound-desktop@2x.png';
+import Background from 'Components/Background/Background';
 import Button from 'Components/Button/Button';
 import { PawIcon } from '../SvgIcons/PawIcon';
 import Section from 'Components/Section/Section';
@@ -12,7 +12,8 @@ export const NotFound = () => {
     navigate('/main');
   };
   return (
-    <Section className={css.background}>
+    <Section className={css.section}>
+      <Background />
       <main style={{ textAlign: 'center' }}>
         <div className={css.div}>
           <p className={css.text}>Ooops! This page not found :(</p>

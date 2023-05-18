@@ -7,12 +7,17 @@
   height: 183px;
 }
 
-/* @media (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi) {
-    .imgWrap {
-      background-image: url('../../../src/Shared/images/background/mobile-bg@2x.png');
-    }
-  } */
+.section {
+  position: fixed;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+}
 
 @media screen and (min-width: 768px) {
   .imgWrap {
@@ -71,7 +76,7 @@
 }
 
 
-.background {
+/* .background {
   background-image: url('../../../src/Shared/images/background/mobile-bg.png');
   background-repeat: repeat;
   background-position: center;
@@ -112,7 +117,7 @@
       background-image: url('../../../src/Shared/images/background/desktop-bg@2x.png');
     }
   }
-}
+} */
 
 .div {
   display: flex;
