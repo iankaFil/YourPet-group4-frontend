@@ -7,6 +7,7 @@ import Background from 'Components/Background/Background';
 import FirstSteps from './Steps/Step1/FirstSteps';
 import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
+import ModalWindow from 'Components/ModalWindow';
 
 import instance from '../../Shared/api/auth-api';
 
@@ -16,19 +17,9 @@ function AddPetPage() {
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
 
-  const [formData, setFormData] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
-  // {
-  //   title: '',
-  //   category: '',
-  //   name: '',
-  //   birthday: '',
-  //   breed: '',
-  //   place: '',
-  //   price: '',
-  //   sex: '',
-  //   comments: '',
-  // }
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
     console.log('new state FORM DATA:', formData);
@@ -42,14 +33,6 @@ function AddPetPage() {
     setSelectedOption(option);
     setActiveButton(number);
   };
-
-  // const handleNextStep = stepData => {
-  //   setFormData(prevData => ({ ...prevData, ...stepData }));
-  // };
-
-  // const handlePreviousStep = stepData => {
-  //   setFormData(prevData => ({ ...prevData, ...stepData }));
-  // };
 
   const handleNext = stepData => {
     console.log(' YF:FN NEXT ');
@@ -71,7 +54,6 @@ function AddPetPage() {
     }
     setStep(step - 1);
     setFormData(prevData => {
-      console.log('++++++++++++++', prevData, stepData);
       return { ...prevData, ...stepData };
     });
   };
@@ -80,16 +62,25 @@ function AddPetPage() {
     navigate(-1);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    navigate('/user');
+  };
+
   const savePet = async (endpoint, category, data) => {
     try {
       const response = await instance.post(`${endpoint}${category}`, data);
+      console.log(response);
+
+      if (response.status === 201) {
+        setShowModal(true);
+      }
+
       return response.data;
     } catch (error) {
       return error.message;
     }
   };
-
-  // const savePetToServer = () => {}; //savePetToServer(formData)
 
   const handleSubmit = stepData => {
     const sendDataForm = { ...formData, ...stepData };
@@ -110,21 +101,8 @@ function AddPetPage() {
       savePet('/notices/user-notices/', category, formDataSend);
     }
 
-    // /notices/user-notices/
-
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };
-
-  // event.preventDefault();
-  // Логіка для перевірки та відправки форми на бекенд
-  // Переадресація користувача на UserPage або NoticesPage в залежності від категорії
-
-  // const generateStepNameForm = () => {
-  //   switch (step) {
-  //     case 1:
-  //       return;
-  //   }
-  // };
 
   return (
     <Section>
@@ -159,6 +137,15 @@ function AddPetPage() {
           />
         )}
       </div>
+      {showModal && (
+        <ModalWindow
+          buttonText="Хорошо"
+          onClose={handleCloseModal}
+          title="Ваш питомец успешно создан"
+        >
+          Поздравляю, Ваш питомец был успешно добавлен на наш сайт
+        </ModalWindow>
+      )}
     </Section>
   );
 }
