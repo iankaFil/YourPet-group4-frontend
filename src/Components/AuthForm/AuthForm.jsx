@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
@@ -6,10 +6,23 @@ import Button from 'Components/Button/Button';
 
 import { registrationValidationSchema, loginValidationSchema } from './../../Shared/validation/authValidation';
 
+import { EyeClosedIcon } from 'Components/SvgIcons';
+import { EyeOpenIcon } from 'Components/SvgIcons';
+
 import css from './AuthForm.module.css'
 
 const AuthForm = ({ isRegister, onSubmit }) => {
   const validationSchema = isRegister ? registrationValidationSchema : loginValidationSchema;
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passworConfirmdVisible, setPasswordConfirmVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const togglePasswordConfirmVisibility = () => {
+    setPasswordConfirmVisible(!passworConfirmdVisible);
+  };
 
   return (
     <Formik
@@ -21,28 +34,56 @@ const AuthForm = ({ isRegister, onSubmit }) => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className={`${css.form} ${isRegister ? css.register : css.login}`}>
           <div className={css.inputContainer}>
             {isRegister ? <h2 className={css.title}>Registration</h2> : <h2 className={css.title}>Login</h2>}
             <div className={css.inputWrap}>
             <label htmlFor="email" hidden>Email</label>
-              <Field id="email" type="email" name="email" placeholder="Email" className={css.input}/>
+              <Field
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                className={`${css.input} ${touched.email && errors.email && css.errorInput}`}
+              />
           </div>
           <div className={css.errorWrap}>
             <ErrorMessage name="email" component="div" className={css.error}/>
           </div>
           <div className={css.inputWrap}>
             <label htmlFor="password" hidden>Password</label>
-              <Field id="password" type="password" name="password" placeholder="Password" className={css.input}/>
-            <div className={css.errorWrap}>
+              <Field
+                id="password"
+                type={passwordVisible ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                className={`${css.input} ${touched.password && !errors.password && css.successInput} ${touched.password && errors.password && css.errorInput}`}
+              />
+                {passwordVisible ?
+                <EyeOpenIcon id='svg' onClick={ togglePasswordVisibility} className={css.eyeIcon}/> :
+                <EyeClosedIcon id='svg' onClick={togglePasswordVisibility} className={css.eyeIcon} />}
+              {touched.password && !errors.password ? (
+                  <div className={css.successMessage}>Password is secure</div>
+              ) : (
+                  <div className={css.errorWrap}>
               <ErrorMessage name="password" component="div" className={css.error}/>
-            </div>            
+                  </div>
+                )}   
           </div>
           {isRegister && (
             <div className={css.inputWrap}>
               <label htmlFor="confirmPassword" hidden>Confirm password</label>
-                <Field id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" className={css.input}/>
+                <Field
+                  id="confirmPassword"
+                  type={passworConfirmdVisible ? 'text' : 'password'}
+                  name="confirmPassword"
+                  placeholder="Confirm password"
+                  className={`${css.input} ${touched.confirmPassword && !errors.confirmPassword && css.successInput} ${touched.confirmPassword && errors.confirmPassword && css.errorInput}`}
+                />
+                {passworConfirmdVisible ?
+                <EyeOpenIcon id='svg' onClick={ togglePasswordConfirmVisibility} className={css.eyeIcon}/> :
+                <EyeClosedIcon id='svg' onClick={ togglePasswordConfirmVisibility} className={css.eyeIcon}/>}
               <div className={css.errorWrap}>
                 <ErrorMessage name="confirmPassword" component="div" className={css.error}/>
               </div>              

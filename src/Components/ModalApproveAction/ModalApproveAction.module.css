@@ -73,8 +73,7 @@
 .cancelBtn{
     color: #54ADFF;
     background-color: #FFFFFF;
-    border: 2px solid;
-    border-color: 54ADFF;
+    border: 2px solid #54ADFF;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .cancelBtn:hover {

@@ -8,6 +8,8 @@ import Container from 'Components/Container/Container';
 
 import { signup } from 'Redux/auth/auth-operations';
 
+import css from './RegisterPage.module.css'
+
 const RegisterPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <Section>
+    <Section className={css.section}>
       <Container>
         <AuthForm isRegister onSubmit={handleSubmit} />
       </Container>

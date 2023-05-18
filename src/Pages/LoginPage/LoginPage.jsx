@@ -8,6 +8,8 @@ import { login } from 'Redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
+import css from './LoginPage.module.css'
+
 const LoginPage = () => {
   const isLogin = useSelector(isUserLogin);
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const LoginPage = () => {
   }, [isLogin, navigate]);
 
   return (
-    <Section>
+    <Section className={css.section}>
       <Container>
         <AuthForm onSubmit={handleLogin} />
       </Container>
