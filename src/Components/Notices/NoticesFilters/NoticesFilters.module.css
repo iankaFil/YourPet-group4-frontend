@@ -21,13 +21,15 @@
   height: 35px;
   border-radius: 40px;
   background: #cce4fb;
-  color: #000;
+  color: #54adff;
   text-decoration: none;
   padding: 0 16px;
   margin: 0 8px;
 }
 
-.link .active {
+.link .active,
+.filterLink .active,
+.addButtonLink .active {
   background-color: #54adff;
   color: #fff;
 }
@@ -37,17 +39,47 @@
   justify-content: flex-end;
   align-items: center;
   margin-left: auto;
+  gap: 12px;
 }
 
-.addButton {
+.addButtonLink a,
+.filterLink a {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: fit-content;
-  height: 35px;
+  justify-content: center;
+  background: #fff;
+  color: #54adff;
+  flex-direction: row;
   border-radius: 40px;
-  background: #54adff;
-  color: #fff;
+  min-height: 35px;
+  min-width: 129px;
+  border: 2px solid #54adff;
   text-decoration: none;
-  padding: 0 16px;
 }
+
+.text {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #54adff;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.addButtonLink svg,
+.filterLink svg {
+  order: 2;
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  stroke: currentColor;
+}
+
+/* svg:hover {
+  stroke: currentColor;
+}
+svg:active {
+  stroke: currentColor;
+} */
