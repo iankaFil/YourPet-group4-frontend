@@ -6,10 +6,13 @@ import styles from './PreviewImage.module.css'
 
 export const PreviewImage = ({ file }) => {
   const [preview, setPreview] = useState(null);
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => {
-    setPreview(reader.result)
+  
+  if (file instanceof File) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setPreview(reader.result);
+      };
   }
 
   return <div className={styles.preview} >
