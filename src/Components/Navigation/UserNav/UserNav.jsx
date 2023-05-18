@@ -26,8 +26,6 @@ function UserNav({ handleLinkClick }) {
     }
   }
 
-  console.log(user);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(isMobileDevice());
@@ -53,7 +51,9 @@ function UserNav({ handleLinkClick }) {
           <Link to="/user" onClick={handleClick}>
             <img className={css.icon} src={UserLogo} alt="UserLogo" />
             {isMobile ? null : (
-              <span className={css.name}>{isLogIn ? splitResult : 'User'}</span>
+              <span className={css.name}>
+                {isLogIn ? splitResult() : 'User'}
+              </span>
             )}
             <span className={css.backdrop_name}>
               {isLogIn ? splitResult : 'User'}
