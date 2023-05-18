@@ -16,7 +16,9 @@ const UserDataItem = ({ label, fieldName, ...props }) => {
         <div className={css.wrap}>
           <input {...field} {...props} className={css.input} />
           {meta.touched && !meta.error ? (
-          <ConfirmIcon id="svg" className={css.confirmIcon} />
+            <button type="submit" className={css.submitBtn}>
+              <ConfirmIcon id="svg" className={css.confirmIcon} />
+            </button>
         ) : (
           <EditIcon id="svg" className={css.edit} />
         )}

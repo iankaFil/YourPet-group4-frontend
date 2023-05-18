@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import Section from 'Components/Section';
@@ -11,11 +11,14 @@ import ModalCongrats from './../../Components/ModalCongrats/ModalCongrats';
 import { getUser } from 'Redux/auth/auth-selectors';
 
 import styles from './UserPage.module.css';
+import { updateUser } from 'Redux/auth/auth-operations';
 
 const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   const user = useSelector(getUser);
+
+  const dispatch = useDispatch();
 
   const { avatarURL, name, birthday, email, phone, city } = user;
 
@@ -28,6 +31,16 @@ const UserPage = () => {
     }
   }, [location.pathname, location.state?.from]);
 
+   const handleSubmit = async (fieldName, fieldValue, { setSubmitting }) => {
+  const data = { [fieldName]: fieldValue };
+  try {
+    await dispatch(updateUser(data));
+    console.log("DATA==>", data);
+  } catch (error) {
+    console.log('Error updating user data:', error);
+  }
+  setSubmitting(false);
+};
   function handleCloseModal() {
     setShowModal(false);
   }
@@ -45,6 +58,7 @@ const UserPage = () => {
           email={email}
           phone={phone}
           city={city}
+          onSubmit= {handleSubmit}
         />
         <PetsData />
       </Container>
