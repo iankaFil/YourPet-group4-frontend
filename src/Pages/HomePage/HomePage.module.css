@@ -1,4 +1,16 @@
-.background {
+.section {
+  position: fixed;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* .background {
   background-image: url('../../../src/Shared/images/background/mobile-bg.png');
   background-repeat: repeat;
   background-position: center;
@@ -18,7 +30,7 @@
   .background {
     background-image: url('../../../src/Shared/images/background/mobile-bg@2x.png');
   }
-}
+} */
 
 .title {
 
@@ -36,7 +48,7 @@
 
 
 
-@media screen and (min-width: 480px) {
+/* @media screen and (min-width: 480px) {
   .background {
     background-image: url('../../../src/Shared/images/background/tablet-bg.png');
   }
@@ -47,10 +59,10 @@
       background-image: url('../../../src/Shared/images/background/tablet-bg@2x.png');
     }
   }
-}
+} */
 
 @media screen and (min-width: 768px) {
-  .background {
+  /* .background {
     background-image: url('../../../src/Shared/images/background/desktop-bg.png');
   }
 
@@ -59,7 +71,7 @@
     .background {
       background-image: url('../../../src/Shared/images/background/desktop-bg@2x.png');
     }
-  }
+  } */
 
 
 

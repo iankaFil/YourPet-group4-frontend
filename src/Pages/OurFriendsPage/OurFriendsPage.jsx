@@ -23,16 +23,7 @@ const OurFriendsPage = () => {
   }, [dispatch]);
 
   if (isLoading && !error) {
-    return (
-      <Loader
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh', // Adjust this value as needed
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   return (

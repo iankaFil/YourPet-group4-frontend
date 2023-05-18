@@ -62,8 +62,11 @@
         font-size: 16px;
         line-height: 22px;
     }
+}
 
-
+.value:hover,
+.value:focus {
+    color: #54ADFF;
 }
 
 .imgWrap {

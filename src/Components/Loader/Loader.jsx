@@ -10,8 +10,11 @@ const Loader = () => {
         color="#54ADFF"
         ariaLabel="circles-loading"
         wrapperStyle={{
-          margin: '0 auto',
+          position: 'absolute',
           display: 'block',
+          top: '50%',
+          left: '50%',
+          translate: '(-50%,-50%)',
         }}
         wrapperClass=""
         visible={true}

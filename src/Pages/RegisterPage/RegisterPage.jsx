@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import Background from 'Components/Background/Background';
 import AuthForm from 'Components/AuthForm/AuthForm';
 import Section from 'Components/Section/Section';
 import Container from 'Components/Container/Container';
 
 import { signup } from 'Redux/auth/auth-operations';
 
-import css from './RegisterPage.module.css'
+import css from './RegisterPage.module.css';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const RegisterPage = () => {
 
   return (
     <Section className={css.section}>
+      <Background />
       <Container>
         <AuthForm isRegister onSubmit={handleSubmit} />
       </Container>

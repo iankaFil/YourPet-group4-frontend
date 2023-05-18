@@ -51,13 +51,15 @@ const NewsPage = () => {
     setActivePage(selected);
     dispatch(fetchNews({ searchQuery, page }));
   };
-
+  if (isLoading && !error) {
+    return <Loader />;
+  }
   return (
     <Section>
       <Container>
         <Title>News</Title>
         <NewsSearch handleSearchChange={handleSearchChange} />
-        {isLoading && !error && <Loader />}
+        {/* {isLoading && !error && <Loader />} */}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
 
         {newsItems.length > 0 && (

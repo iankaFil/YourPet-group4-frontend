@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Background from 'Components/Background/Background';
 import AuthForm from 'Components/AuthForm/AuthForm';
 import Section from 'Components/Section/Section';
 import Container from 'Components/Container/Container';
@@ -8,7 +8,7 @@ import { login } from 'Redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
-import css from './LoginPage.module.css'
+import css from './LoginPage.module.css';
 
 const LoginPage = () => {
   const isLogin = useSelector(isUserLogin);
@@ -34,6 +34,7 @@ const LoginPage = () => {
 
   return (
     <Section className={css.section}>
+      <Background />
       <Container>
         <AuthForm onSubmit={handleLogin} />
       </Container>

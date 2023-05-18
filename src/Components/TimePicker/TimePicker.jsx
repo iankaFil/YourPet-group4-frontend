@@ -16,12 +16,18 @@ const TimePicker = ({ timeOptions, menuZIndex }) => {
 
   const currentDayWorkHours = () => {
     if (timeOptions && timeOptions.length > 0) {
-      if (timeOptions[dayOfWeek].isOpen) {
+      if (timeOptions[dayOfWeek]?.isOpen) {
         return `${timeOptions[dayOfWeek].from} - ${timeOptions[dayOfWeek].to}`;
+      } else {
+        return 'CLOSED';
       }
     }
     return 'CLOSED';
   };
+
+  if (!timeOptions || timeOptions.length === 0) {
+    return <div className={css.closed}>CLOSED</div>;
+  }
 
   return (
     <div className={css.timePicker}>
@@ -30,19 +36,17 @@ const TimePicker = ({ timeOptions, menuZIndex }) => {
       </div>
       {isOpen && (
         <ul className={css.menu} style={{ zIndex: menuZIndex }}>
-          {timeOptions &&
-            timeOptions.length > 0 &&
-            timeOptions.map((option, index) => (
-              <li
-                className={index === dayOfWeek - 1 ? css.currentDay : ''}
-                key={index}
-              >
-                <div className={css.dayOfWeek}>{weekDays[index]} </div>
-                <div className={css.workTime}>
-                  {option.isOpen ? `${option.from} - ${option.to}` : 'CLOSED'}
-                </div>
-              </li>
-            ))}
+          {timeOptions.map((option, index) => (
+            <li
+              className={index === dayOfWeek - 1 ? css.currentDay : ''}
+              key={index}
+            >
+              <div className={css.dayOfWeek}>{weekDays[index]} </div>
+              <div className={css.workTime}>
+                {option.isOpen ? `${option.from} - ${option.to}` : 'CLOSED'}
+              </div>
+            </li>
+          ))}
         </ul>
       )}
     </div>

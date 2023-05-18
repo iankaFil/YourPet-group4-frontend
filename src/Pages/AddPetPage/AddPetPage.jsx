@@ -2,9 +2,8 @@ import css from './AddPetPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CurrentSteps from './Steps/CurrentSteps';
-// import FirstStep from './Steps/Step1/FirstStep';
-// import SecondStep from './Steps/Step2/SecondStep';
-// import ThreeStep from './Steps/Step3/ThreeStep';
+import Section from 'Components/Section/Section';
+import Background from 'Components/Background/Background';
 import FirstSteps from './Steps/Step1/FirstSteps';
 import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
@@ -128,36 +127,39 @@ function AddPetPage() {
   // };
 
   return (
-    <div className={css.WrapperAddPet}>
-      {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
-      {step === 2 && <h2 className={css.AddPet}>Personal Details</h2>}
-      {step === 3 && <h2 className={css.AddPet}>More info</h2>}
-      <CurrentSteps currentStep={currentStep} />
-      {step === 1 && (
-        <FirstSteps
-          handleNext={handleNext}
-          handleCancel={handleCancel}
-          handleOptionChange={handleOptionChange}
-          activeButton={activeButton}
-        />
-      )}
-      {step === 2 && (
-        <StepsRenderSecond
-          selectedOption={selectedOption}
-          handleNext={handleNext}
-          handlePreviousStep={handlePreviousStep}
-          formData={formData}
-        />
-      )}
-      {step === 3 && (
-        <StepsRenderThree
-          selectedOption={selectedOption}
-          handleNext={handleSubmit}
-          handlePreviousStep={handlePreviousStep}
-          formData={formData}
-        />
-      )}
-    </div>
+    <Section>
+      <Background />
+      <div className={css.WrapperAddPet}>
+        {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
+        {step === 2 && <h2 className={css.AddPet}>Personal Details</h2>}
+        {step === 3 && <h2 className={css.AddPet}>More info</h2>}
+        <CurrentSteps currentStep={currentStep} />
+        {step === 1 && (
+          <FirstSteps
+            handleNext={handleNext}
+            handleCancel={handleCancel}
+            handleOptionChange={handleOptionChange}
+            activeButton={activeButton}
+          />
+        )}
+        {step === 2 && (
+          <StepsRenderSecond
+            selectedOption={selectedOption}
+            handleNext={handleNext}
+            handlePreviousStep={handlePreviousStep}
+            formData={formData}
+          />
+        )}
+        {step === 3 && (
+          <StepsRenderThree
+            selectedOption={selectedOption}
+            handleNext={handleSubmit}
+            handlePreviousStep={handlePreviousStep}
+            formData={formData}
+          />
+        )}
+      </div>
+    </Section>
   );
 }
 

@@ -30,9 +30,19 @@ const OurFriendsItem = ({
             menuZIndex={100}
           />
           <p className={css.subtitle}>Address:</p>
-          <p className={css.value}>{address}</p>
+          <a
+            className={css.value}
+            href={`https://maps.google.com/?q=${address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {address}
+          </a>
+
           <p className={css.subtitle}>Phone:</p>
-          <p className={css.value}>{phone}</p>
+          <a className={css.value} href={`tel:${phone}`}>
+            {phone}
+          </a>
           <p className={css.subtitle}>Email:</p>
           <a className={css.value} href={`mailto:${email}`}>
             {email}
