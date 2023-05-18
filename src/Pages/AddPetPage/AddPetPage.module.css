@@ -1,5 +1,4 @@
 .WrapperAddPet {
-  /* width: 458px; */
   width: max-content;
   min-height: 542px;
   margin: 50px auto;
@@ -7,9 +6,16 @@
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   padding: 20px 32px;
-  padding-right: 32px;
 }
-
+.WrapperAddPetThree {
+  width: max-content;
+  min-height: 542px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+  padding: 20px 75px;
+}
 .AddPet {
   font-weight: 500;
   font-size: 28px;
@@ -21,7 +27,11 @@
   display: flex;
   gap: 22px;
 }
-
+.StepInfoMidl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .StepItemActive {
   color: #54adff;
   font-weight: 500;
