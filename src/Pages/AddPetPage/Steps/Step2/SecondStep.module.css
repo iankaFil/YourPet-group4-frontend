@@ -81,3 +81,50 @@
   display: flex;
   gap: 11.43px;
 }
+
+.SexText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #111111;
+}
+
+.sexOption {
+  display: flex;
+  gap: 23px;
+  margin-top: 8px;
+}
+
+.sexElement {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 92px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #888888;
+}
+
+.sexElementActive {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 92px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #54adff;
+  /* УБРАТЬ МОЖНО НАЧАЛО*/
+  border: 1px solid #54adff;
+  border-radius: 8px;
+  /* УБРАТЬ МОЖНО КОНЕЦ*/
+}

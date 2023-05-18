@@ -34,7 +34,7 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
         <input
           className={css.Input}
           type="text"
-          id="name"
+          id="title"
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="Type pet name"
