@@ -159,4 +159,13 @@ outline: 1px solid #00C3AD;
   position: absolute;
   right: 13px;
   top: 12px;
+  cursor: pointer;
+}
+
+.crossIcon{
+  position: absolute;
+  right: 13px;
+  top: 12px;
+  stroke: #F43F5E;
+  cursor: pointer;
 }
