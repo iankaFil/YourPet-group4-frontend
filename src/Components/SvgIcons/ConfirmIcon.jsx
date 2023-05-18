@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const ConfirmIcon = ({ id, className }) => {
+export const ConfirmIcon = ({ id, className }) => {
   switch (id) {
     case 'svg':
       return (
@@ -14,7 +14,10 @@ const ConfirmIcon = ({ id, className }) => {
             fill='none'
         >
             <title>confirm</title>
-            <path d="M17 1L6 12L1 7" stroke="#54ADFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M17 1L6 12L1 7" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"/>
 
         </svg>
       );
@@ -22,10 +25,7 @@ const ConfirmIcon = ({ id, className }) => {
       return <svg></svg>;
   }
 };
- 
-
-export default ConfirmIcon;
-
+  
 ConfirmIcon.propTypes = {
   id: PropTypes.string.isRequired,
 };

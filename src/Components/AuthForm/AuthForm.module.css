@@ -66,6 +66,7 @@
   width: 100%;
 }
 
+
 .input {
   width: 100%;
   outline: 1px solid #54ADFF;
@@ -110,6 +111,9 @@ outline: 1px solid #00C3AD;
   font-size: 12px;
   line-height: 1.33;
   color: #00C3AD;
+    @media screen and (min-width: 768px) {
+      height: 32px;
+    }
 }
 
 .btnContainer{
@@ -168,4 +172,11 @@ outline: 1px solid #00C3AD;
   top: 12px;
   stroke: #F43F5E;
   cursor: pointer;
+}
+
+.confirmIcon {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  stroke: #00C3AD;
 }

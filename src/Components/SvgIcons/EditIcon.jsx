@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const EditIcon = ({ id, className }) => {
+export const EditIcon = ({ id, className }) => {
   switch (id) {
     case 'svg':
       return (
@@ -21,9 +21,6 @@ const EditIcon = ({ id, className }) => {
       return <svg></svg>;
   }
 };
- 
-
-export default EditIcon;
 
 EditIcon.propTypes = {
   id: PropTypes.string.isRequired,

@@ -56,3 +56,11 @@
     justify-content: center;
 }
 
+.confirmIcon {
+    position: absolute;
+    right: 12px;
+    top: 7px;
+    stroke: #00C3AD;
+    width: 16px;
+    height: 11px;
+  }
