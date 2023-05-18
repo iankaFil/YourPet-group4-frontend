@@ -56,7 +56,7 @@ function UserNav({ handleLinkClick }) {
               </span>
             )}
             <span className={css.backdrop_name}>
-              {isLogIn ? splitResult : 'User'}
+              {isLogIn ? splitResult() : 'User'}
             </span>
           </Link>
         </li>

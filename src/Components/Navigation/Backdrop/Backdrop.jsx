@@ -5,6 +5,7 @@ import AuthNav from '../AuthNav/AuthNav';
 import Nav from '../Nav/Nav';
 import Logo from 'Components/Logo/Logo';
 import UserNav from '../UserNav/UserNav';
+import { CrossSmallIcon } from 'Components/SvgIcons';
 
 function isTabletDevice() {
   return window.innerWidth > 767;
@@ -35,7 +36,7 @@ const BackdropMenu = ({ isOpen, handleClose }) => {
         <div className={css.backdrop}>
           <div className={css.menu}>
             <button className={css.btn} onClick={handleClose}>
-              x
+              <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
             </button>
             <Logo handleLinkClick={handleLinkClick} />
 
