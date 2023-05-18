@@ -8,6 +8,8 @@ import { registrationValidationSchema, loginValidationSchema } from './../../Sha
 
 import { EyeClosedIcon } from 'Components/SvgIcons';
 import { EyeOpenIcon } from 'Components/SvgIcons';
+import { CrossSmallIcon } from 'Components/SvgIcons';
+
 
 import css from './AuthForm.module.css'
 
@@ -24,6 +26,10 @@ const AuthForm = ({ isRegister, onSubmit }) => {
     setPasswordConfirmVisible(!passworConfirmdVisible);
   };
 
+  const clearInput = (fieldName, setFieldValue) => {
+  setFieldValue(fieldName, '');
+};
+
   return (
     <Formik
       initialValues={{
@@ -34,7 +40,7 @@ const AuthForm = ({ isRegister, onSubmit }) => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting, errors, touched }) => (
+      {({ isSubmitting, errors, touched, setFieldValue }) => (
         <Form className={`${css.form} ${isRegister ? css.register : css.login}`}>
           <div className={css.inputContainer}>
             {isRegister ? <h2 className={css.title}>Registration</h2> : <h2 className={css.title}>Login</h2>}
@@ -47,6 +53,7 @@ const AuthForm = ({ isRegister, onSubmit }) => {
                 placeholder="Email"
                 className={`${css.input} ${touched.email && errors.email && css.errorInput}`}
               />
+              {errors.email && <CrossSmallIcon id='svg'className={css.crossIcon} onClick={() => clearInput('email', setFieldValue)}/>}
           </div>
           <div className={css.errorWrap}>
             <ErrorMessage name="email" component="div" className={css.error}/>
@@ -62,7 +69,7 @@ const AuthForm = ({ isRegister, onSubmit }) => {
               />
                 {passwordVisible ?
                 <EyeOpenIcon id='svg' onClick={ togglePasswordVisibility} className={css.eyeIcon}/> :
-                <EyeClosedIcon id='svg' onClick={togglePasswordVisibility} className={css.eyeIcon} />}
+                <EyeClosedIcon id='svg' onClick={togglePasswordVisibility} className={css.eyeIcon} />} 
               {touched.password && !errors.password ? (
                   <div className={css.successMessage}>Password is secure</div>
               ) : (
