@@ -7,6 +7,7 @@ import Container from 'Components/Container';
 import UserData from 'Components/UserData';
 import PetsData from 'Components/PetsData';
 import ModalCongrats from './../../Components/ModalCongrats/ModalCongrats';
+import Loader from 'Components/Loader/Loader';
 
 import { getUser } from 'Redux/auth/auth-selectors';
 
@@ -14,6 +15,7 @@ import styles from './UserPage.module.css';
 
 const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const user = useSelector(getUser);
 
@@ -26,6 +28,13 @@ const UserPage = () => {
       setShowModal(true);
       sessionStorage.setItem('from', location.pathname);
     }
+
+    // Процесс загрузки завершается через 2 секунды
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
   }, [location.pathname, location.state?.from]);
 
   function handleCloseModal() {
@@ -35,18 +44,24 @@ const UserPage = () => {
   return (
     <Section className={styles.section}>
       <Container className={styles.container}>
-        {showModal && (
-          <ModalCongrats onClose={handleCloseModal}></ModalCongrats>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {showModal && (
+              <ModalCongrats onClose={handleCloseModal}></ModalCongrats>
+            )}
+            <UserData
+              photo={avatarURL}
+              name={name}
+              birthday={birthday}
+              email={email}
+              phone={phone}
+              city={city}
+            />
+            <PetsData />
+          </>
         )}
-        <UserData
-          photo={avatarURL}
-          name={name}
-          birthday={birthday}
-          email={email}
-          phone={phone}
-          city={city}
-        />
-        <PetsData />
       </Container>
     </Section>
   );

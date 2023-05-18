@@ -39,6 +39,8 @@ const NoticesPage = () => {
     setSearchQuery(value);
   };
 
+  
+
   const handleCategory = value => {
     switch (value) {
       case 'lost/found':
