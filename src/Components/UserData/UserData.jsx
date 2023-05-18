@@ -8,7 +8,7 @@ import { userDataValidationSchema } from 'Shared/validation';
 import UserDataItem from './UserDataItem/UserDataItem';
 import defaultUserImg from '../../Shared/images/defaultUserImg.png';
 import CameraIcon from 'Components/SvgIcons/CameraIcon';
-import ConfirmIcon from 'Components/SvgIcons/ConfirmIcon';
+import {ConfirmIcon} from 'Components/SvgIcons/ConfirmIcon';
 import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 import { PreviewImage } from './UserDataItem';
 import ModalApproveAction from 'Components/ModalApproveAction/ModalApproveAction';
@@ -105,7 +105,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
               }}
               className={css.button}
             >
-              <ConfirmIcon id="svg" />
+              <ConfirmIcon id="svg" className={css.confirmIcon}/>
               Confirm
             </button>}
             </div>

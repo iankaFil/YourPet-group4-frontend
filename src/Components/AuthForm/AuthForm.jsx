@@ -9,7 +9,7 @@ import { registrationValidationSchema, loginValidationSchema } from './../../Sha
 import { EyeClosedIcon } from 'Components/SvgIcons';
 import { EyeOpenIcon } from 'Components/SvgIcons';
 import { CrossSmallIcon } from 'Components/SvgIcons';
-
+import {ConfirmIcon} from 'Components/SvgIcons/ConfirmIcon';
 
 import css from './AuthForm.module.css'
 
@@ -17,7 +17,7 @@ const AuthForm = ({ isRegister, onSubmit }) => {
   const validationSchema = isRegister ? registrationValidationSchema : loginValidationSchema;
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passworConfirmdVisible, setPasswordConfirmVisible] = useState(false);
-
+ 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -29,6 +29,10 @@ const AuthForm = ({ isRegister, onSubmit }) => {
   const clearInput = (fieldName, setFieldValue) => {
   setFieldValue(fieldName, '');
 };
+
+const hasFieldError = (errors, fieldName) => errors[fieldName];
+const isFieldValid = (errors, fieldName) => !errors[fieldName];
+
 
   return (
     <Formik
@@ -53,7 +57,8 @@ const AuthForm = ({ isRegister, onSubmit }) => {
                 placeholder="Email"
                 className={`${css.input} ${touched.email && errors.email && css.errorInput}`}
               />
-              {errors.email && <CrossSmallIcon id='svg'className={css.crossIcon} onClick={() => clearInput('email', setFieldValue)}/>}
+              {touched.email && hasFieldError(errors, 'email') && <CrossSmallIcon id='svg' className={css.crossIcon} onClick={() => clearInput('email', setFieldValue)} />}
+              {touched.email && isFieldValid(errors, 'email') && <ConfirmIcon id='svg' className={css.confirmIcon} />}
           </div>
           <div className={css.errorWrap}>
             <ErrorMessage name="email" component="div" className={css.error}/>
