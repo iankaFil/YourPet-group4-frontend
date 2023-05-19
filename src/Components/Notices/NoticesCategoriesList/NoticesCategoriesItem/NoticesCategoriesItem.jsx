@@ -9,7 +9,10 @@ import { IconTime } from 'Components/SvgIcons/IconTime';
 import { FemaleIcon } from 'Components/SvgIcons/FemaleIcon';
 import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
-import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
+import { ReactComponent as Delete } from 'Components/SvgIcons/Delete.svg';
+
+
+
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
@@ -112,6 +115,14 @@ const CategoryItem = ({
           onClick={handleFavoriteClick}
         >
           <AddToFavoriteIcon id="svg" fill={favorite ? '#54adff' : 'none'} />
+        </button>
+
+        <button
+          className={css.delete_btn}
+          type="submit"
+          onClick={handleFavoriteClick}
+        >
+          <Delete id="svg" />
         </button>
 
         <ul className={css.btn_list}>
