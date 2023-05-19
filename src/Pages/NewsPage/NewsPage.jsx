@@ -50,10 +50,12 @@ const NewsPage = () => {
     setActivePage(selected);
     dispatch(fetchNews({ searchQuery, page }));
   };
-
+  if (isLoading && !error) {
+    return <Loader />;
+  }
   return (
     <Section>
-      {isLoading && <Loader />} {/* Отображение лоадера только при isLoading */}
+      {/* {isLoading && <Loader />} Отображение лоадера только при isLoading */}
       {error && <p>Error: {error}</p>}{' '}
       {/* Отображение сообщения об ошибке, если есть error */}
       <Container>
