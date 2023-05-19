@@ -64,6 +64,9 @@
 }
 
 .favorite_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 1px;
   right: 1px;
