@@ -159,6 +159,18 @@ outline: 1px solid #00C3AD;
     color: #54ADFF;
 }
 
+.eyeBtn {
+width: 70px;
+height: 48px;
+position: absolute;
+right: 0;
+background-color: #ffffff;
+border: none;
+border-top-right-radius: 40px;
+border-bottom-right-radius: 40px;
+cursor: pointer; 
+}
+
 .eyeIcon{
   position: absolute;
   right: 13px;
