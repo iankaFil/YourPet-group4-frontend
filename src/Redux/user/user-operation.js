@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import instance from 'Shared/api/auth-api';
 
-import { getToken } from 'Redux/auth/auth-selectors';
-
 export const addToFavorite = createAsyncThunk(
   'user/addFavorite',
   async (id, { rejectWithValue, getState }) => {

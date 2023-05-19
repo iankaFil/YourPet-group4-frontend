@@ -10,9 +10,7 @@ import { FemaleIcon } from 'Components/SvgIcons/FemaleIcon';
 import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
 import { ReactComponent as Delete } from 'Components/SvgIcons/Delete.svg';
-
-
-
+import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
