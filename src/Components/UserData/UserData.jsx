@@ -18,7 +18,7 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 import css from './UserData.module.css';
 
-const UserData = ({ photo, name, birthday, email, phone, city }) => {
+const UserData = ({ photo, name, birthday, email, phone, city, onSubmit }) => {
   const [showModal, setShowModal] = useState(false); 
   const isLogin = useSelector(isUserLogin);
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
           city:city || '',
         }}
         validationSchema={userDataValidationSchema}
-        onSubmit={values => console.log(values)}
+         onSubmit={onSubmit}
       >
         {({ values, setFieldValue }) => (
           <Form className={css.form}>
@@ -111,11 +111,11 @@ const UserData = ({ photo, name, birthday, email, phone, city }) => {
             </div>
             <div className={css.inputContainer}>
               <div className={css.inputWrap}>
-              <UserDataItem type="text" name="name" label="Name" />
-              <UserDataItem type="email" name="email" label="Email" />
-              <UserDataItem type="text" name="birthday" label="Birthday" />
-              <UserDataItem type="text" name="phone" label="Phone" />
-              <UserDataItem type="text" name="city" label="City" />
+              <UserDataItem type="text" name="name" label="Name"/>
+              <UserDataItem type="email" name="email" label="Email"/>
+              <UserDataItem type="text" name="birthday" label="Birthday"/>
+              <UserDataItem type="text" name="phone" label="Phone"/>
+              <UserDataItem type="text" name="city" label="City"/>
             </div>
               <Link className={css.link} onClick={onLogout}>
                 <LogoutIcon id='svg' className={css.logoutIcon}/>
