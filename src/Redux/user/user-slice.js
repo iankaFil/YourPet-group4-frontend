@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { AddToFavorite, deleteFromFavorite } from './user-operation';
+import { addToFavorite, deleteFromFavorite } from './user-operation';
 // import { getCurrent } from 'Shared/api/auth-api';
 
 const userInitialState = {
@@ -36,15 +36,15 @@ const userSlice = createSlice({
       //   .addCase(getCurrent.rejected, (state, { payload }) => {
       //     state.error = payload;
       //   })
-      .addCase(AddToFavorite.pending, state => {
+      .addCase(addToFavorite.pending, state => {
         state.isLoading = true;
       })
-      .addCase(AddToFavorite.fulfilled, (state, { payload }) => {
+      .addCase(addToFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.favorite = payload;
         state.error = null;
       })
-      .addCase(AddToFavorite.rejected, (state, { payload }) => {
+      .addCase(addToFavorite.rejected, (state, { payload }) => {
         state.notices = { data: [] };
         state.isLoading = false;
         state.error = payload.message;

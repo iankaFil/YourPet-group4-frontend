@@ -9,8 +9,16 @@ const CategoryList = ({ card }) => {
 
   return (
     <ul className={css.card_list}>
-      {sortedCard.map(({ _id, title, photoURL }) => (
-        <CategoryItem key={_id} id={_id} title={title} imgUrl={photoURL} />
+      {sortedCard.map(({ _id, title, photoURL, birthday, sex, place }) => (
+        <CategoryItem
+          key={_id}
+          _id={_id}
+          title={title}
+          imgUrl={photoURL}
+          birthday={birthday}
+          sex={sex}
+          place={place}
+        />
       ))}
     </ul>
   );
