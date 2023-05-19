@@ -64,7 +64,7 @@ const UserPage = () => {
             {showModal && (
               <ModalCongrats onClose={handleCloseModal}></ModalCongrats>
             )}
-            <UserData
+            {/* <UserData
               photo={avatarURL}
               name={name}
               birthday={birthday}
@@ -72,7 +72,7 @@ const UserPage = () => {
               phone={phone}
               city={city}
             />
-            <PetsData />
+            <PetsData /> */}
           </>
         )}
         <UserData

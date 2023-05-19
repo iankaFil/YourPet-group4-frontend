@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import css from './SecondStep.module.css';
 import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
+import CustomDatePicker from 'Components/TimePicker/CustomDatePicker/CustomDatePicker';
 import { validationSchema } from 'Shared/validation/addPetValidation';
 
 const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
   const [name, setName] = useState(formData.name || '');
-  const [birthday, setBirthday] = useState(formData.birthday || '');
+  const [birthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
@@ -43,7 +44,8 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="birthdate">
+        <CustomDatePicker className={css.Input} />
+        {/* <label className={css.LabelStep} htmlFor="birthdate">
           Date of birth
         </label>
         <input
@@ -57,7 +59,7 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
         />
         {errors.birthdate && (
           <p className={css.ErrorText}>{errors.birthdate}</p>
-        )}
+        )} */}
       </div>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="breed">

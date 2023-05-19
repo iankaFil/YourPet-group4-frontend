@@ -39,8 +39,6 @@ const NoticesPage = () => {
     setSearchQuery(value);
   };
 
-  
-
   const handleCategory = value => {
     switch (value) {
       case 'lost/found':
@@ -86,12 +84,12 @@ const NoticesPage = () => {
 
   return (
     <Section>
+      {isLoading && !error && <Loader />}
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch handleSearchChange={handleSearchChange} />
         <NoticesCategoriesNav handleCategory={handleCategory} />
 
-        {isLoading && !error && <Loader />}
         {categoryItem && categoryItem.length > 0 && (
           <CategoryList card={categoryItem} />
         )}

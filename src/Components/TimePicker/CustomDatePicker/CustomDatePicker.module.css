@@ -1,0 +1,40 @@
+.datePicker {
+    position: relative;
+}
+
+.dateInput {
+    border-radius: 20px;
+    box-shadow: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 15px;
+    border: 2px solid #54adff;
+}
+
+.datePickerIcon {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 100%;
+    /* height: 100%; */
+    opacity: 0;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.datePickerIcon::-webkit-calendar-picker-indicator {
+    color: #54adff;
+    font-size: 25px;
+}
+
+.dateInput:focus {
+    border-color: #54adff;
+}
+
+.LabelStep {
+    color: #111111;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+}

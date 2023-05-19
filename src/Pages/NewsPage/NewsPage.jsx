@@ -30,8 +30,6 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activePage, setActivePage] = useState(0);
 
-  
-
   const handleSearchChange = value => {
     setSearchQuery(value);
     setActivePage(0);
@@ -55,12 +53,13 @@ const NewsPage = () => {
 
   return (
     <Section>
+      {isLoading && <Loader />} {/* Отображение лоадера только при isLoading */}
+      {error && <p>Error: {error}</p>}{' '}
+      {/* Отображение сообщения об ошибке, если есть error */}
       <Container>
         <Title>News</Title>
         <NewsSearch handleSearchChange={handleSearchChange} />
-        
         {newsItems.length > 0 && <NewsList news={newsItems} />}
-
         {newsItems.length > 0 && (
           <div className={css.wrapper}>
             <ReactPaginate
@@ -77,8 +76,6 @@ const NewsPage = () => {
             />
           </div>
         )}
-        {isLoading && <Loader />} {/* Отображение лоадера только при isLoading */}
-        {error && <p>Error: {error}</p>} {/* Отображение сообщения об ошибке, если есть error */}
       </Container>
     </Section>
   );

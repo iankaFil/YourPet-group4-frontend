@@ -4,12 +4,14 @@
   margin-top: 16px;
   gap: 25px;
 }
+
 .WrapperLabelInput {
   display: flex;
   flex-direction: column;
   gap: 5px;
   position: relative;
 }
+
 .LabelStep {
   color: #111111;
   font-weight: 500;
@@ -25,6 +27,7 @@
   padding: 15px;
   border: 2px solid #54adff;
 }
+
 .Input:focus {
   border-color: #54adff;
 }
@@ -38,6 +41,7 @@
   line-height: 16px;
   color: #f43f5e;
 }
+
 .ErrorTextLow {
   position: absolute;
   bottom: -25%;
@@ -47,6 +51,7 @@
   line-height: 16px;
   color: #f43f5e;
 }
+
 .LinkAddPEt {
   margin-top: 23.5px;
   display: flex;
@@ -77,6 +82,7 @@
   border: none;
   cursor: pointer;
 }
+
 .ButtonEl {
   display: flex;
   gap: 11.43px;
