@@ -2,7 +2,6 @@ import css from './NoticesCategoriesList.module.css';
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 
 const CategoryList = ({ card }) => {
-  console.log(card);
   const sortedCard = [...card].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
