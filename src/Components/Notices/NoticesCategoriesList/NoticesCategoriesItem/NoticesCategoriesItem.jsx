@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import css from './NoticesCategoriesItem.module.css';
 import { toast } from 'react-toastify';
@@ -9,15 +9,16 @@ import { IconTime } from 'Components/SvgIcons/IconTime';
 import { FemaleIcon } from 'Components/SvgIcons/FemaleIcon';
 import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
-import { AddToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
+import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 
-import { getToken } from 'Redux/auth/auth-selectors';
+import { isUserLogin } from 'Redux/auth/auth-selectors';
+import { getUser } from 'Redux/auth/auth-selectors';
 
 const CategoryItem = ({
   _id,
   title,
   imgUrl,
-  location,
+  place,
   sex,
   birthday,
   owner,
@@ -25,36 +26,75 @@ const CategoryItem = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [Favorite, setFavorite] = useState(false);
+  const user = useSelector(getUser);
+  const isLogin = useSelector(isUserLogin);
+
+  const [favorite, setFavorite] = useState(() => {
+    if (isLogin && user.favorite.length > 0) {
+      if (user.favorite.includes(_id)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  });
 
   const handleFavoriteClick = () => {
-    if (!getToken) {
+    console.log('НАЖАТА СЕРД');
+    console.log(user);
+    console.log('isLogin', isLogin);
+
+    if (!isLogin) {
       toast.info(
         'You must be registered or logged in to continue the operation'
       );
       return;
     }
 
-    if (Favorite) {
-      toast.error('Removed from favorites');
+    if (!favorite) {
+      dispatch(addToFavorite(_id));
+      setFavorite(true);
+    } else {
       dispatch(deleteFromFavorite(_id));
       setFavorite(false);
-    } else {
-      toast('Added to favorites');
-      dispatch(AddToFavorite(_id));
-      setFavorite(true);
     }
   };
 
+  // function calcAge(birthDatein) {
+  //   const birthDate = new Date(birthDatein);
+  //   const currentDate = new Date();
+  //   const diffInMilliseconds = Math.abs(currentDate - birthDate);
+  //   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; // учитываем високосные года
+
+  //   const age = Math.floor(diffInMilliseconds / millisecondsPerYear);
+  //   return age;
+  // }
+
+  function calcAge(birthDatein) {
+    const birthDate = new Date(birthDatein);
+    const currentDate = new Date();
+    const diffInMilliseconds = Math.abs(currentDate - birthDate);
+    const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; // учитываем високосные года
+
+    if (diffInMilliseconds < millisecondsPerYear) {
+      const millisecondsPerMonth = millisecondsPerYear / 12;
+      const ageInMonths = Math.floor(diffInMilliseconds / millisecondsPerMonth);
+      return ageInMonths + ' mon';
+    } else {
+      const ageInYears = Math.floor(diffInMilliseconds / millisecondsPerYear);
+      return ageInYears + ' year';
+    }
+  }
+
   // const calcAge = dob => {
+  //   console.log(dob);
   //   if (dob === null) return '?';
-
-  //   const parts = dob.split('.');
-  //   const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-  //   const diffMs = Date.now() - new Date(formattedDate);
-  //   const ageDt = new Date(diffMs);
-
-  //   return Math.abs(ageDt.getUTCFullYear() - 1970);
+  //   const yearPet = new Date(dob);
+  //   const fullYear = yearPet.getFullYear();
+  //   const currentYear = new Date();
+  //   const fullYearNow = currentYear.getFullYear();
+  //   return Math.abs(fullYearNow - fullYear);
   // };
 
   return (
@@ -63,24 +103,28 @@ const CategoryItem = ({
         <img src={imgUrl} alt={title} className={css.image} />
 
         <button
-          className={css.favorite_btn}
-          type="submit"
+          className={
+            favorite
+              ? `${css.favorite_btn} ${css.favoriteActive}`
+              : css.favorite_btn
+          }
+          type="button"
           onClick={handleFavoriteClick}
         >
-          <AddToFavoriteIcon id="svg" />
+          <AddToFavoriteIcon id="svg" fill={favorite ? '#54adff' : 'none'} />
         </button>
 
         <ul className={css.btn_list}>
           <li className={css.list_item}>
             <button className={css.img_btn}>
               <LocationIcon id="svg" />
-              {location}
+              {place}
             </button>
           </li>
           <li>
             <button className={css.img_btn}>
               <IconTime id="svg" />
-              {/* {calcAge(birthday)} year */}
+              {calcAge(birthday)}
             </button>
           </li>
           <li>

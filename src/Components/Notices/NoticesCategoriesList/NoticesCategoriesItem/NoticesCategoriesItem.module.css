@@ -81,6 +81,10 @@
   cursor: pointer;
 }
 
+.favoriteActive a {
+  background-color: red;
+}
+
 .card_wrap {
   position: relative;
   display: flex;
