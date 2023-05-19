@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -31,6 +30,8 @@ const NewsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activePage, setActivePage] = useState(0);
 
+  
+
   const handleSearchChange = value => {
     setSearchQuery(value);
     setActivePage(0);
@@ -51,15 +52,13 @@ const NewsPage = () => {
     setActivePage(selected);
     dispatch(fetchNews({ searchQuery, page }));
   };
-  if (isLoading && !error) {
-    return <Loader />;
-  }
+
   return (
     <Section>
       <Container>
         <Title>News</Title>
         <NewsSearch handleSearchChange={handleSearchChange} />
-        {/* {isLoading && !error && <Loader />} */}
+        
         {newsItems.length > 0 && <NewsList news={newsItems} />}
 
         {newsItems.length > 0 && (
@@ -78,6 +77,8 @@ const NewsPage = () => {
             />
           </div>
         )}
+        {isLoading && <Loader />} {/* Отображение лоадера только при isLoading */}
+        {error && <p>Error: {error}</p>} {/* Отображение сообщения об ошибке, если есть error */}
       </Container>
     </Section>
   );
