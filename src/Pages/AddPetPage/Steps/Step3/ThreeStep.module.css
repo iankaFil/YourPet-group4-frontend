@@ -10,21 +10,25 @@
   line-height: 26px;
   color: #111111;
 }
+
 .sexOption {
   display: flex;
   gap: 23px;
   margin-top: 8px;
 }
+
 .labelInput {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .wrapperFormSellInputs {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
+
 .sexElement {
   background-color: inherit;
   border: none;
@@ -39,6 +43,7 @@
   line-height: 150%;
   color: #888888;
 }
+
 .sexElementActive {
   background-color: inherit;
   border: none;
@@ -53,12 +58,14 @@
   line-height: 150%;
   color: #54adff;
 }
+
 .WrapperLabelInput {
   display: flex;
   flex-direction: column;
   gap: 5px;
   position: relative;
 }
+
 .LabelStep {
   color: #111111;
   font-weight: 500;
@@ -67,7 +74,7 @@
 }
 
 .Input {
-  border-radius: 20px;
+  border-radius: 40px;
   box-shadow: none;
   outline: none;
   font-size: 16px;
@@ -75,14 +82,17 @@
   border: 2px solid #54adff;
   max-width: 395px;
 }
+
 .Input:focus {
   border-color: #54adff;
 }
+
 .errorComent {
   position: absolute;
   bottom: 220px;
   right: 629px;
 }
+
 .ErrorText {
   position: absolute;
   bottom: -25%;
@@ -92,6 +102,7 @@
   line-height: 16px;
   color: #f43f5e;
 }
+
 .ErrorTextLow {
   position: absolute;
   bottom: -25%;
@@ -101,24 +112,28 @@
   line-height: 16px;
   color: #f43f5e;
 }
+
 .wrapperPoto {
   display: flex;
   gap: 33px;
   margin-top: 16px;
   align-items: center;
 }
+
 .wrapperAddPhoto {
   display: flex;
   flex-direction: column;
   margin-top: 48px;
   gap: 12px;
 }
+
 .labelAddText {
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   color: #111111;
 }
+
 .labelAdd {
   width: 182px;
   height: 182px;
@@ -126,15 +141,18 @@
   border-radius: 40px;
   overflow: hidden;
 }
+
 .previewPhoto {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .iconAdd {
   width: 48.5px;
   margin: 65px auto;
 }
+
 .wrapperTextareaOne {
   display: flex;
   flex-direction: column;
@@ -142,6 +160,7 @@
   margin-top: 24px;
   margin-bottom: 29px;
 }
+
 .wrapperTextarea {
   display: flex;
   flex-direction: column;
@@ -149,12 +168,14 @@
 
   margin-bottom: 53px;
 }
+
 .textareaText {
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   color: #111111;
 }
+
 .textareaAddOne {
   width: 393px;
   height: 79px;
@@ -167,6 +188,7 @@
   resize: none;
   outline: none;
 }
+
 .textareaAdd {
   width: 393px;
   height: 182px;
@@ -179,6 +201,7 @@
   resize: none;
   outline: none;
 }
+
 .LinkAddPEt {
   margin-top: 23.5px;
   display: flex;
@@ -210,6 +233,7 @@
   border: none;
   cursor: pointer;
 }
+
 .ButtonEl {
   display: flex;
   gap: 11.43px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './CustomDatePicker.module.css';
-// import { SvgIcon } from '@mui/material';
+import CalendarIcon from 'Components/SvgIcons/CalendarIcon';
 
 const CustomDatePicker = () => {
   const [selectedDate, setSelectedDate] = useState('');
@@ -26,6 +26,7 @@ const CustomDatePicker = () => {
         // required
         placeholder="Type date of birth"
       />
+      <CalendarIcon id="svg" className={css.calendarIcon} />
       <input
         className={css.datePickerIcon}
         type="date"
