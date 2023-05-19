@@ -5,15 +5,7 @@ import female from '../../../../Components/SvgIcons/female.svg';
 import male from '../../../../Components/SvgIcons/male.svg';
 import React, { useState } from 'react';
 import css from './ThreeStep.module.css';
-import * as yup from 'yup';
-
-// import { useNavigate } from 'react-router-dom';
-// import * as yup from 'yup';
-
-const validationSchema = yup.object().shape({
-  photo: yup.string().required('Please upload a photo'),
-  comments: yup.string().required('Please enter comments'),
-});
+import { validationSchemaThree } from 'Shared/validation/addPetValidation';
 
 const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
   const [photo, setPhoto] = useState(formData.url || '');
@@ -23,21 +15,13 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
   const [sex, setSex] = useState(formData.sex || '');
   const [errors, setErrors] = useState({});
   const [activeButton, setActiveButton] = useState(null);
-  // const navigate = useNavigate();
 
   const handleDone = () => {
-    validationSchema
+    validationSchemaThree
       .validate({ photo, comments }, { abortEarly: false })
       .then(() => {
         console.log('это из шага 3', formData);
-
         handleNext({ sex, place, price, comments, photo });
-
-        // Отправка запроса на бекенд для створення картки або оголошення
-        // Успішне створення картки, переадресація користувача
-        // navigate('/UserPage'); // або '/NoticesPage' залежно від категорії
-        // Якщо отримано помилку від бекенду
-        // Виведення повідомлення про помилку у вигляді нотіфікації
       })
       .catch(err => {
         const validationErrors = {};
@@ -145,7 +129,7 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
               Comments
             </label>
             <textarea
-              className={css.textareaAdd}
+              className={css.textareaAddOne}
               id="comments"
               value={comments}
               placeholder="Type comment"

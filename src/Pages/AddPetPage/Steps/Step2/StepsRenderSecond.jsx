@@ -10,7 +10,7 @@ const StepsRenderSecond = ({
 }) => {
   return (
     <>
-      {selectedOption === 'your-pet' || selectedOption === 'in-good-hands' ? (
+      {selectedOption === 'your-pet' ? (
         <SecondStep
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}
@@ -19,7 +19,9 @@ const StepsRenderSecond = ({
       ) : (
         ''
       )}
-      {selectedOption === 'sell' || selectedOption === 'lost-found' ? (
+      {selectedOption === 'sell' ||
+      selectedOption === 'lost-found' ||
+      selectedOption === 'in-good-hands' ? (
         <SecondStepSell
           handleNext={handleNext}
           handlePreviousStep={handlePreviousStep}

@@ -8,6 +8,7 @@ import FirstSteps from './Steps/Step1/FirstSteps';
 import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
 import ModalWindow from 'Components/ModalWindow';
+// import AddPetPageTitles from './AddPetPageTitles';
 
 import instance from '../../Shared/api/auth-api';
 
@@ -107,11 +108,76 @@ function AddPetPage() {
   return (
     <Section>
       <Background />
-      <div className={css.WrapperAddPet}>
-        {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
-        {step === 2 && <h2 className={css.AddPet}>Personal Details</h2>}
-        {step === 3 && <h2 className={css.AddPet}>More info</h2>}
-        <CurrentSteps currentStep={currentStep} />
+      <div
+        className={`${
+          step === 3 &&
+          (selectedOption === 'sell' ||
+            selectedOption === 'lost-found' ||
+            selectedOption === 'in-good-hands')
+            ? css.WrapperAddPetThree
+            : css.WrapperAddPet
+        }`}
+      >
+        <div
+          className={`${
+            step === 3 &&
+            (selectedOption === 'sell' ||
+              selectedOption === 'lost-found' ||
+              selectedOption === 'in-good-hands')
+              ? css.StepInfoMidl
+              : ''
+          }`}
+        >
+          {step === 1 && <h2 className={css.AddPet}>Add pet</h2>}
+          {selectedOption === 'your-pet' ? (
+            <>
+              {step === 2 || step === 3 ? (
+                <h2 className={css.AddPet}>Add my pet</h2>
+              ) : (
+                ''
+              )}
+            </>
+          ) : (
+            ''
+          )}
+          {selectedOption === 'sell' ? (
+            <>
+              {step === 2 || step === 3 ? (
+                <h2 className={css.AddPet}>Add pet for sell</h2>
+              ) : (
+                ''
+              )}
+            </>
+          ) : (
+            ''
+          )}
+          {selectedOption === 'lost-found' ? (
+            <>
+              {step === 2 || step === 3 ? (
+                <h2 className={css.AddPet}>Add lost pet</h2>
+              ) : (
+                ''
+              )}
+            </>
+          ) : (
+            ''
+          )}
+          {selectedOption === 'in-good-hands' ? (
+            <>
+              {step === 2 || step === 3 ? (
+                <h2 className={css.AddPet}>Add pet in good hands</h2>
+              ) : (
+                ''
+              )}
+            </>
+          ) : (
+            ''
+          )}
+          <CurrentSteps
+            currentStep={currentStep}
+            selectedOption={selectedOption}
+          />
+        </div>
         {step === 1 && (
           <FirstSteps
             handleNext={handleNext}

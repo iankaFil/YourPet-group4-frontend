@@ -12,3 +12,8 @@ export const validationSchemaSell = yup.object().shape({
   birthday: yup.string().required('Enter a date of birth'),
   breed: yup.string().required('Enter a breed'),
 });
+
+export const validationSchemaThree = yup.object().shape({
+  photo: yup.string().required('Please upload a photo'),
+  comments: yup.string().required('Please enter comments'),
+});

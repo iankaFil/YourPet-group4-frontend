@@ -61,7 +61,7 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
         </label>
         <input
           className={css.Input}
-          type="text"
+          type="date"
           id="birthday"
           value={birthday}
           onChange={e => setBirthday(e.target.value)}

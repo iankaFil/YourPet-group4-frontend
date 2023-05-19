@@ -3,30 +3,18 @@ import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import PetAdd from '../../../../Components/SvgIcons/PetAdd.svg';
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
-
-const validationSchema = yup.object().shape({
-  photo: yup.string().required('Please upload a photo'),
-  comments: yup.string().required('Please enter comments'),
-});
+import { validationSchemaThree } from 'Shared/validation/addPetValidation';
 
 const ThreeStep = ({ handleNext, handlePreviousStep, formData }) => {
   const [photo, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [errors, setErrors] = useState({});
-  // const navigate = useNavigate();
 
   const handleDone = () => {
-    validationSchema
+    validationSchemaThree
       .validate({ photo, comments }, { abortEarly: false })
       .then(() => {
         handleNext({ photo, comments });
-        // Отправка запроса на бекенд для створення картки або оголошення
-        // Успішне створення картки, переадресація користувача
-        // navigate('/UserPage'); // або '/NoticesPage' залежно від категорії
-        // Якщо отримано помилку від бекенду
-        // Виведення повідомлення про помилку у вигляді нотіфікації
       })
       .catch(err => {
         const validationErrors = {};
@@ -63,14 +51,14 @@ const ThreeStep = ({ handleNext, handlePreviousStep, formData }) => {
             <img className={css.iconAdd} src={PetAdd} alt="add" />
           </div>
         </label>
-        {errors.photo && <p>{errors.photo}</p>}
+        {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
       </div>
-      <div className={css.wrapperTextarea}>
+      <div className={css.wrapperTextareaOne}>
         <label className={css.textareaText} htmlFor="comments">
           Comments
         </label>
         <textarea
-          className={css.textareaAdd}
+          className={css.textareaAddOne}
           id="comments"
           value={comments}
           placeholder="Type comment"

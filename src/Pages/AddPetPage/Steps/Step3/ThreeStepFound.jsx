@@ -5,14 +5,7 @@ import female from '../../../../Components/SvgIcons/female.svg';
 import male from '../../../../Components/SvgIcons/male.svg';
 import React, { useState } from 'react';
 import css from './ThreeStep.module.css';
-
-// import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
-
-const validationSchema = yup.object().shape({
-  photo: yup.string().required('Please upload a photo'),
-  comments: yup.string().required('Please enter comments'),
-});
+import { validationSchemaThree } from 'Shared/validation/addPetValidation';
 
 const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
   const [photo, setPhoto] = useState(formData.url || '');
@@ -20,20 +13,12 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
   const [place, setPlace] = useState(formData.place || '');
   const [sex, setSex] = useState(formData.sex || '');
   const [errors, setErrors] = useState({});
-
   const [activeButton, setActiveButton] = useState(null);
-  // const navigate = useNavigate();
 
   const handleDone = () => {
-    validationSchema
+    validationSchemaThree
       .validate({ photo, comments, place, sex }, { abortEarly: false })
       .then(() => {
-        // Отправка запроса на бекенд для створення картки або оголошення
-        // Успішне створення картки, переадресація користувача
-        // navigate('/UserPage'); // або '/NoticesPage' залежно від категорії
-        // Якщо отримано помилку від бекенду
-        // Виведення повідомлення про помилку у вигляді нотіфікації
-
         handleNext({ photo, comments, place, sex });
       })
       .catch(err => {
@@ -123,20 +108,6 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
             />
             {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
           </div>
-          {/* <div className={css.labelInput}>
-            <label className={css.LabelStep} htmlFor="name">
-              Price
-            </label>
-            <input
-              className={css.Input}
-              type="text"
-              id="name"
-              value={price}
-              onChange={e => setPrice(e.target.value)}
-              placeholder="Type price"
-            />
-            {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
-          </div> */}
           <div className={css.wrapperTextarea}>
             <label className={css.textareaText} htmlFor="comments">
               Comments
