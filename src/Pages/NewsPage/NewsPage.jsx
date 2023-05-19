@@ -50,6 +50,7 @@ const NewsPage = () => {
     setActivePage(selected);
     dispatch(fetchNews({ searchQuery, page }));
   };
+
   if (isLoading && !error) {
     return <Loader />;
   }

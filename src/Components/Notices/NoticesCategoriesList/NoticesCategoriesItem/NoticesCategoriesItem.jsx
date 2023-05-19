@@ -42,10 +42,6 @@ const CategoryItem = ({
   });
 
   const handleFavoriteClick = () => {
-    console.log('НАЖАТА СЕРД');
-    console.log(user);
-    console.log('isLogin', isLogin);
-
     if (!isLogin) {
       toast.info(
         'You must be registered or logged in to continue the operation'
@@ -62,16 +58,6 @@ const CategoryItem = ({
     }
   };
 
-  // function calcAge(birthDatein) {
-  //   const birthDate = new Date(birthDatein);
-  //   const currentDate = new Date();
-  //   const diffInMilliseconds = Math.abs(currentDate - birthDate);
-  //   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; // учитываем високосные года
-
-  //   const age = Math.floor(diffInMilliseconds / millisecondsPerYear);
-  //   return age;
-  // }
-
   function calcAge(birthDatein) {
     const birthDate = new Date(birthDatein);
     const currentDate = new Date();
@@ -87,16 +73,6 @@ const CategoryItem = ({
       return ageInYears + ' year';
     }
   }
-
-  // const calcAge = dob => {
-  //   console.log(dob);
-  //   if (dob === null) return '?';
-  //   const yearPet = new Date(dob);
-  //   const fullYear = yearPet.getFullYear();
-  //   const currentYear = new Date();
-  //   const fullYearNow = currentYear.getFullYear();
-  //   return Math.abs(fullYearNow - fullYear);
-  // };
 
   return (
     <li key={_id} className={css.card_item}>
