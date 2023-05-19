@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const AddToFavorite = ({ id, className }) => {
+export const AddToFavoriteIcon = ({ id, className }) => {
   switch (id) {
     case 'svg':
       return (
@@ -26,6 +26,6 @@ export const AddToFavorite = ({ id, className }) => {
   }
 };
 
-AddToFavorite.propTypes = {
+AddToFavoriteIcon.propTypes = {
   id: PropTypes.string.isRequired,
 };

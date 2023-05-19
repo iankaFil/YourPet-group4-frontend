@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: 'https://your-pets-rest-api.onrender.com',
 });
 
-const setToken = token => {
+export const setToken = token => {
   if (token) {
     return (instance.defaults.headers.authorization = `Bearer ${token}`);
   }
