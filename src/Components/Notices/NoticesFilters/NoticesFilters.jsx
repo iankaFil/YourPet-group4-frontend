@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { ReactComponent as PlusSmallIcon } from '../../SvgIcons/SmallIconPlus.svg';
 import { ReactComponent as Filter } from '../../SvgIcons/Filter.svg';
 import css from 'Components/Notices/NoticesFilters/NoticesFilters.module.css';
+import NoticesBurgerMenu from '../NoticesBurgerMenu/NoticesBurgerMenu';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
@@ -24,7 +25,9 @@ const NoticesCategoriesNav = ({ handleCategory }) => {
       };
     }
   };
-
+  // const accordionComponent = () => {
+  //   return <NoticesBurgerMenu />;
+  // };
   return (
     <div className={css.navigationContainer}>
       <ul className={css.linksContainer} onClick={handleNavLinkClick}>
@@ -83,6 +86,7 @@ const NoticesCategoriesNav = ({ handleCategory }) => {
             Filter
             <Filter />
           </NavLink>
+          <NoticesBurgerMenu />
         </li>
         <li className={css.addButtonLink}>
           <NavLink
