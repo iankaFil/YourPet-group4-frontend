@@ -73,8 +73,12 @@ const isFieldValid = (errors, fieldName) => !errors[fieldName];
                 className={`${css.input} ${touched.password && !errors.password && css.successInput} ${touched.password && errors.password && css.errorInput}`}
               />
                 {passwordVisible ?
-                <EyeOpenIcon id='svg' onClick={ togglePasswordVisibility} className={css.eyeIcon}/> :
-                <EyeClosedIcon id='svg' onClick={togglePasswordVisibility} className={css.eyeIcon} />} 
+                <button type="button" onClick={ togglePasswordVisibility} className={css.eyeBtn}>
+                  <EyeOpenIcon id='svg' className={css.eyeIcon}/>
+                </button> :
+                <button type="button" onClick={togglePasswordVisibility} className={css.eyeBtn}>
+                  <EyeClosedIcon id='svg' className={css.eyeIcon} />
+                  </button>} 
               {touched.password && !errors.password ? (
                   <div className={css.successMessage}>Password is secure</div>
               ) : (
@@ -94,8 +98,12 @@ const isFieldValid = (errors, fieldName) => !errors[fieldName];
                   className={`${css.input} ${touched.confirmPassword && !errors.confirmPassword && css.successInput} ${touched.confirmPassword && errors.confirmPassword && css.errorInput}`}
                 />
                 {passworConfirmdVisible ?
-                <EyeOpenIcon id='svg' onClick={ togglePasswordConfirmVisibility} className={css.eyeIcon}/> :
-                <EyeClosedIcon id='svg' onClick={ togglePasswordConfirmVisibility} className={css.eyeIcon}/>}
+                <button type="button" onClick={ togglePasswordConfirmVisibility} className={css.eyeBtn}>
+                  <EyeOpenIcon id='svg' className={css.eyeIcon}/>
+                </button> :
+                <button type="button" onClick={togglePasswordConfirmVisibility} className={css.eyeBtn}>
+                  <EyeClosedIcon id='svg' className={css.eyeIcon} />
+                  </button>}
               <div className={css.errorWrap}>
                 <ErrorMessage name="confirmPassword" component="div" className={css.error}/>
               </div>              
