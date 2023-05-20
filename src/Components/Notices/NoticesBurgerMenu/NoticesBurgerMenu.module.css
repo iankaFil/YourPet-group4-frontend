@@ -1,18 +1,6 @@
-svg path {
-  stroke: #54adff;
-}
-
-svg {
-  width: 24px;
-  height: 24px;
-  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-&:hover {
-  stroke: #fff;
-}
-
 .dropdown {
+  position: absolute;
+  z-index: 2;
   padding: 8px;
   background: #fff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
@@ -28,22 +16,20 @@ svg {
   color: #54adff;
 }
 
-.filterWrapper {
-  .title:not(:last-child) {
-    margin: 0 0 8px 0;
-  }
+.filterWrapper .title:not(:last-child) {
+  margin: 0 0 8px 0;
+}
 
-  .title {
-    max-width: 136px;
-    min-height: 32px;
-
-    border: none;
-    border-radius: 20px !important;
-    background: #cce4fb;
-  }
+.filterWrapper .title {
+  max-width: 136px;
+  min-height: 32px;
+  border: none;
+  border-radius: 20px !important;
+  background: #cce4fb;
 }
 
 .title span {
+  position: relative;
   font-weight: 400px;
   font-size: 14px;
   line-height: 130%;
@@ -54,11 +40,6 @@ svg {
   flex-direction: column;
   gap: 8px;
 }
-/* .Down {
-  &active {
-    rotate: (180deg);
-  }
-} */
 
 .checkbox label {
   margin-inline-start: initial;

@@ -32,6 +32,9 @@
   background-color: #54adff;
   color: #fff;
 }
+/* .filterLink .active {
+  position: relative;
+} */
 
 .addButtonContainer {
   display: flex;
@@ -59,7 +62,7 @@
   flex-direction: row;
   border-radius: 40px;
   min-height: 35px;
-  min-width: 129px;
+  min-width: 152px;
   border: 2px solid #54adff;
   text-decoration: none;
 }
