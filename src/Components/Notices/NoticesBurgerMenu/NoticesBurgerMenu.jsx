@@ -67,7 +67,7 @@ const NoticesFilterAccordion = () => {
       <Collapse
         bordered={false}
         expandIcon={({ isActive }) => (
-          <Down className={cn(css.Down, { [css.active]: isActive })} />
+          <Down className={cn(css.down_icon, { [css.active]: isActive })} />
         )}
         className={css.filterWrapper}
       >

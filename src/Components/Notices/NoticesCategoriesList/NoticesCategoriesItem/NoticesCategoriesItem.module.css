@@ -81,7 +81,6 @@
   cursor: pointer;
 }
 
-
 .delete_btn {
   display: flex;
   align-items: center;
@@ -102,7 +101,6 @@
 
 .favoriteActive a {
   background-color: red;
-
 }
 
 .card_wrap {
