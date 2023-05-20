@@ -12,13 +12,14 @@ import {ConfirmIcon} from 'Components/SvgIcons/ConfirmIcon';
 import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 import { PreviewImage } from './UserDataItem';
 import ModalApproveAction from 'Components/ModalApproveAction/ModalApproveAction';
+import UserDatePicker from './UserDataItem/UserDatePicker';
 
 import { logout } from 'Redux/auth/auth-operations';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 import css from './UserData.module.css';
 
-const UserData = ({ photo, name, birthday, email, phone, city, onSubmit }) => {
+const UserData = ({ photo, name, birthday, email, phone, city, handleClick }) => {
   const [showModal, setShowModal] = useState(false); 
   const isLogin = useSelector(isUserLogin);
   const navigate = useNavigate();
@@ -56,7 +57,6 @@ const UserData = ({ photo, name, birthday, email, phone, city, onSubmit }) => {
           city:city || '',
         }}
         validationSchema={userDataValidationSchema}
-         onSubmit={onSubmit}
       >
         {({ values, setFieldValue }) => (
           <Form className={css.form}>
@@ -111,18 +111,17 @@ const UserData = ({ photo, name, birthday, email, phone, city, onSubmit }) => {
             </div>
             <div className={css.inputContainer}>
               <div className={css.inputWrap}>
-              <UserDataItem type="text" name="name" label="Name"/>
-              <UserDataItem type="email" name="email" label="Email"/>
-              <UserDataItem type="text" name="birthday" label="Birthday"/>
-              <UserDataItem type="text" name="phone" label="Phone"/>
-              <UserDataItem type="text" name="city" label="City"/>
+              <UserDataItem type="text" name="name" label="Name" handleClick={handleClick}/>
+              <UserDataItem type="email" name="email" label="Email" handleClick={handleClick} />
+              <UserDatePicker type="text" name="birthday" label="Birthday" handleClick={handleClick} initialDate={values.birthday } />
+              <UserDataItem type="text" name="phone" label="Phone" handleClick={handleClick}/>
+              <UserDataItem type="text" name="city" label="City" handleClick={handleClick}/>
             </div>
               <Link className={css.link} onClick={onLogout}>
                 <LogoutIcon id='svg' className={css.logoutIcon}/>
                   Log Out
               </Link>
             </div>
-            {/* <button type="submit">Submit</button> */}
           </Form>
         )}
       </Formik>

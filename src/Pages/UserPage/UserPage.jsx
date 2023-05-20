@@ -11,18 +11,30 @@ import Loader from 'Components/Loader/Loader';
 
 import { getUser } from 'Redux/auth/auth-selectors';
 import { updateUser } from 'Redux/auth/auth-operations';
+import { fetchOwnPets } from 'Redux/pets/pets-operations';
+import {
+  getOwnPets,
+  // getUserFromPets
+} from './../../Redux/pets/pets-selectors';
 
 import styles from './UserPage.module.css';
 
 const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const user = useSelector(getUser);
+  const pets = useSelector(getOwnPets)
+  // console.log("PETS in UserPage", pets)
+  // const userFormPets = useSelector(getUserFromPets)
 
   const dispatch = useDispatch();
 
   const { avatarURL, name, birthday, email, phone, city } = user;
+
+  useEffect(() => {
+    dispatch(fetchOwnPets());
+  }, [dispatch]);
+
 
   useEffect(() => {
     const storedFrom = sessionStorage.getItem('from');
@@ -30,33 +42,25 @@ const UserPage = () => {
     if (!storedFrom && location.state?.from === '/register') {
       setShowModal(true);
       sessionStorage.setItem('from', location.pathname);
-    }
-
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timeout);
+    } 
   }, [location.pathname, location.state?.from]);
-
-  const handleSubmit = async (fieldName, fieldValue, { setSubmitting }) => {
-    const data = { [fieldName]: fieldValue };
-    try {
-      await dispatch(updateUser(data));
-      console.log('DATA==>', data);
-    } catch (error) {
-      console.log('Error updating user data:', error);
-    }
-    setSubmitting(false);
-  };
 
   function handleCloseModal() {
     setShowModal(false);
   }
 
+    const handleSubmit = async (value ) => {
+      try {
+        await dispatch(updateUser(value));
+        // console.log('VALUE==>', value);
+    } catch (error) {
+      console.log('Error updating user data:', error);
+    }
+  };
+
   const isLoadingUser = useSelector(state => state.auth.isLoading);
 
-  if (isLoading || isLoadingUser) {
+  if (isLoadingUser) {
     return <Loader />;
   }
 
@@ -71,9 +75,9 @@ const UserPage = () => {
           email={email}
           phone={phone}
           city={city}
-          onSubmit={handleSubmit}
+          handleClick={handleSubmit}
         />
-        <PetsData />
+        {pets?.length && <PetsData pets={pets} />}
       </Container>
     </Section>
   );

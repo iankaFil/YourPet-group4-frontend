@@ -1,14 +1,22 @@
-import React from 'react'
+import React from 'react';
+import PetsListItem from './PetsListItem/PetsListItem';
 
-import PetsListItem from './PetsListItem/PetsListItem'
+const PetsList = ({ pets }) => {
+  return (
+    <ul>
+      {pets.map(({ _id, photoURL, name, birthday, breed, comments }) => (
+        <PetsListItem
+          key={_id} 
+          name={name}
+          birthday={birthday}
+          photoURL={photoURL}
+          breed={breed}
+          comments={comments}
+          loading="lazy"
+        />
+      ))}
+    </ul>
+  );
+};
 
-const PetsList = () => {
-    return (
-        <>
-            <PetsListItem />
-            <PetsListItem />
-        </>
-    )
-}
-
-export default PetsList
+export default PetsList;
