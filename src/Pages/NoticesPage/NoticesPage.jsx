@@ -13,7 +13,7 @@ import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCatego
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
 
-import { fetchNews } from 'Redux/news/news-operations';
+// import { fetchNews } from 'Redux/news/news-operations';
 
 import {
   fetchNoticesByTitle,

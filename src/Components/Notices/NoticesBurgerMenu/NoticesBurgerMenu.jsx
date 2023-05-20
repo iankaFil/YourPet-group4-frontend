@@ -1,4 +1,4 @@
-import { Checkbox, Collapse } from 'antd';
+import { Checkbox, Collapse } from '@mui/material';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
 import cn from 'classnames';
 import css from './NoticesBurgerMenu.module.css';
