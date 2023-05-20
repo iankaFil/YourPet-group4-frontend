@@ -36,7 +36,7 @@
 .addButtonContainer {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: start;
   margin-left: auto;
   gap: 12px;
 }
@@ -79,7 +79,6 @@
   order: 2;
   width: 24px;
   height: 24px;
-  margin-left: 12px;
   stroke: currentColor;
 }
 
