@@ -6,8 +6,15 @@ import {ConfirmIcon} from 'Components/SvgIcons/ConfirmIcon';
 
 import css from './UserDataItem.module.css';
 
-const UserDataItem = ({ label, fieldName, ...props }) => {
+const UserDataItem = ({ label, fieldName, handleClick, ...props }) => {
   const [field, meta] = useField(props); 
+
+  const { name, value } = field;
+  const updateData = {[name]: value}
+
+  // const handleClick = (e) => {
+  //   console.log(e)
+  // }
 
   return (
     <>
@@ -16,12 +23,12 @@ const UserDataItem = ({ label, fieldName, ...props }) => {
         <div className={css.wrap}>
           <input {...field} {...props} className={css.input} />
           {meta.touched && !meta.error ? (
-            <button type="submit" className={css.submitBtn}>
+            <button type="button" className={css.submitBtn} onClick={() => handleClick(updateData) }>
               <ConfirmIcon id="svg" className={css.confirmIcon} />
             </button>
-        ) : (
+         ) : (
           <EditIcon id="svg" className={css.edit} />
-        )}
+        )} 
         </div>
       </div>
       <div className={css.errorWrap}>

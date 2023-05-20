@@ -7,11 +7,12 @@ import { validationSchema } from 'Shared/validation/addPetValidation';
 
 const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
   const [name, setName] = useState(formData.name || '');
-  const [birthday] = useState(formData.birthday || '');
+  const [birthday, setBirthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
+    console.log("birthday=>", birthday)
     validationSchema
       .validate({ name, birthday, breed }, { abortEarly: false })
       .then(() => {
@@ -26,6 +27,10 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
         setErrors(validationErrors);
       });
   };
+
+  const setBirthdayWrapper = (brd) => {
+    setBirthday(brd)
+  }
 
   return (
     <div className={css.FormWrapper}>
@@ -44,22 +49,10 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <CustomDatePicker className={css.Input} />
-        {/* <label className={css.LabelStep} htmlFor="birthdate">
-          Date of birth
-        </label>
-        <input
-          className={css.Input}
-          type="date"
-          id="birthdate"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
-          required
-          placeholder="Type date of birth"
-        />
+        <CustomDatePicker className={css.Input} setBirthdayWrapper={setBirthdayWrapper} birthday={birthday } />
         {errors.birthdate && (
           <p className={css.ErrorText}>{errors.birthdate}</p>
-        )} */}
+        )}
       </div>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="breed">

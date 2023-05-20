@@ -1,39 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './CustomDatePicker.module.css';
 import CalendarIcon from 'Components/SvgIcons/CalendarIcon';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-const CustomDatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState('');
+const CustomDatePicker = ({setBirthdayWrapper, birthday, className} ) => {
+  const [selectedDate, setSelectedDate] = useState(birthday);
 
-  const handleDateChange = e => {
-    setSelectedDate(e.target.value);
-  };
+  useEffect(() => {
+    setBirthdayWrapper(selectedDate);
+  },[selectedDate, setBirthdayWrapper])
 
   return (
     <div className={css.datePicker}>
       <label className={css.LabelStep} htmlFor="birthdate">
         Date of birth
       </label>
-      <input
-        className={css.dateInput}
-        type="text"
-        value={selectedDate}
-        onChange={handleDateChange}
-        // placeholder="Select a date"
-
-        // value={birthday}
-        // onChange={e => setBirthday(e.target.value)}
-        // required
-        placeholder="Type date of birth"
+      <DatePicker
+        className= {`${css.dateInput} ${className}`}
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        peekNextMonth
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
+        placeholderText="Type date of birth"
+        dateFormat="dd.MM.yyyy"
       />
       <CalendarIcon id="svg" className={css.calendarIcon} />
-      <input
-        className={css.datePickerIcon}
-        type="date"
-        id="birthdate"
-        value={selectedDate}
-        onChange={handleDateChange}
-      />
     </div>
   );
 };

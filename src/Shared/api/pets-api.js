@@ -6,11 +6,12 @@ export const getOwnPets = async () => {
 }
 
 export const addPet = async data => {
-  const { data: result } = await instance.post('/WRITE ENDPOINT', data);
+  const { data: result } = await instance.post('/pets', data);
   return result;
 };
 
 export const deletePet = async id => {
-  const { data } = await instance.delete(`'/WRITE ENDPOINT/${id}`);
+  const { data } = await instance.delete(`'/pets/${id}`);
   return data;
 };
+

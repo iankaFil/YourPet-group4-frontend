@@ -3,6 +3,7 @@ import css from './SecondStep.module.css';
 import next from '../../../../Components/SvgIcons/next.svg';
 import cancel from '../../../../Components/SvgIcons/cancel.svg';
 import { validationSchemaSell } from 'Shared/validation/addPetValidation';
+import CustomDatePicker from 'Components/TimePicker/CustomDatePicker/CustomDatePicker';
 
 const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
   const [name, setName] = useState(formData.name || '');
@@ -25,6 +26,11 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
         setErrors(validationErrors);
       });
   };
+
+  const setBirthdayWrapper = (brd) => {
+    setBirthday(brd)
+  }
+
   return (
     <div className={css.FormWrapper}>
       <div className={css.WrapperLabelInput}>
@@ -56,18 +62,8 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="birthday">
-          Date of birth
-        </label>
-        <input
-          className={css.Input}
-          type="date"
-          id="birthday"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
-          required
-          placeholder="Type date of birth"
-        />
+        <CustomDatePicker className={css.Input} setBirthdayWrapper={setBirthdayWrapper} birthday={birthday } />
+       
         {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
