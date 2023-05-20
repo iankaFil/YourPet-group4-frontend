@@ -8,7 +8,7 @@
 
 .linksContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 6px;
 }
@@ -36,13 +36,23 @@
 .addButtonContainer {
   display: flex;
   justify-content: flex-end;
-  align-items: start;
+  align-items: flex-start;
   margin-left: auto;
   gap: 12px;
 }
 
-.addButtonLink a,
+.addButtonLink a {
+  background: #54adff;
+  color: #fff;
+}
+
 .filterLink a {
+  background: #fff;
+  color: #54adff;
+}
+
+.filterLink a,
+.addButtonLink a {
   display: flex;
   align-items: center;
   justify-content: center;
