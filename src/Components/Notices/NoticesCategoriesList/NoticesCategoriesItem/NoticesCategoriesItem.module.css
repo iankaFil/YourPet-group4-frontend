@@ -33,6 +33,14 @@
   display: flex;
 }
 
+.btn:hover,
+.img_btn:hover {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  color: rgb(253, 247, 242);
+  border: none;
+  background-color: transparent;
+}
+
 .img_btn {
   display: flex;
   flex-direction: row;
@@ -79,6 +87,10 @@
   border-radius: 50%;
 
   cursor: pointer;
+}
+.favorite_btn svg:hover,
+.delete_btn svg:hover {
+  fill: #54adff;
 }
 
 .delete_btn {
