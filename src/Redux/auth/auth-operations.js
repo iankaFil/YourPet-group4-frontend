@@ -50,9 +50,11 @@ export const current = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (data, { rejectWithValue, getState }) => {
+    // console.log("DATA", data)
     try {
       const { auth } = getState();
       const updatedUser = await api.updateUser(auth.token, data);
+      
       return updatedUser;
     } catch ({ response }) {
       return rejectWithValue(response);

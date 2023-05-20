@@ -65,7 +65,8 @@ export const authSlice = createSlice({
             .addCase(updateUser.pending, state => {
               handlePending(state);
             })
-            .addCase(updateUser.fulfilled, (state, { payload }) => {
+          .addCase(updateUser.fulfilled, (state, { payload }) => {
+              // console.log("PAYLOAD updateUser", payload)
               const user = payload;
               state.isLoading = false;
               state.user = user;
