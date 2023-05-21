@@ -110,8 +110,32 @@
   cursor: pointer;
 }
 
-.favoriteActive a {
-  background-color: red;
+.sell_btn {
+  position: absolute;
+  bottom: 220px;
+  right: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 126px;
+  max-height: 32px;
+  padding: 11px 0;
+  font-size: 14px;
+  line-height: inherit;
+  border-radius: 0px 16px 16px 0px;
+  color: #000;
+  background-color: #cce4fb;
+}
+@media screen and (min-width: 768px) {
+  .sell_btn {
+    right: 178px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sell_btn {
+    right: 154px;
+  }
 }
 
 .card_wrap {
