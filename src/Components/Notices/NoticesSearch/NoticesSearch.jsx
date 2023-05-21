@@ -14,8 +14,9 @@ const NoticesSearch = ({ handleSearchChange }) => {
   useEffect(() => {
     if (searchValue) {
       setSearch(searchValue);
+      handleSearchChange(search);
     }
-  }, [searchValue]);
+  }, [handleSearchChange, search, searchValue]);
 
   const handleFormSubmit = event => {
     event.preventDefault();
