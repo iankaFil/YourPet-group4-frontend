@@ -27,45 +27,85 @@
   width: 280px;
   margin-right: auto;
   margin-left: auto;
-  padding: 68px 16px 60px 16px;
+  padding: 32px;
 
   @media screen and (min-width: 768px) {
     width: 608px;
+    height: 540px;
     border-radius: 40px;
-    padding: 60px 0;
+    padding: 32px;
   }
+}
+
+.maincontent_wrap {
+  display: flex;
+  margin-bottom: 28px;
 }
 
 .title {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1.38;
-  letter-spacing: 0.04em;
-  color: #111111;
-  margin-bottom: 24px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.36;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
+  color: #000000;
+
+  /* @media screen and (min-width: 768px) {
     font-size: 36px;
     line-height: 1.36;
     margin-bottom: 52px;
-  }
+  } */
 }
 
-.text {
-  padding-left: 30px;
-  padding-right: 30px;
+.image {
+  width: 262px;
+  height: 298px;
+  margin-right: 24px;
+
+  border-radius: 0px 0px 40px 40px;
+}
+
+.list_item {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.38;
+
+  color: #000000;
+}
+
+.span {
+  font-family: 'Manrope';
+  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.38;
-  letter-spacing: 0.04em;
-  color: #111111;
-  margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
-    font-size: 24px;
-    line-height: 1.38;
-    margin-bottom: 60px;
-  }
+  color: #000000;
+  margin-right: auto;
+}
+
+.comments {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+
+  letter-spacing: 0.04em;
+
+  color: #000000;
+}
+
+.list_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .closeBtn {
@@ -120,4 +160,54 @@
 }
 .modalBtn:hover {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+}
+
+.button_wrap {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  bottom: 24px;
+  right: 28px;
+}
+
+.addtobutton {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.38;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+
+  color: #fef9f9;
+  width: 129px;
+  height: 40px;
+
+  background: #54adff;
+  border-radius: 40px;
+  border: transparent;
+}
+
+.contactbutton {
+  background: #ffffff;
+  border-radius: 40px;
+  width: 129px;
+  height: 40px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+
+  color: #54adff;
+  border-color: #54adff;
 }
