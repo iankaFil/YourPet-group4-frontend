@@ -15,6 +15,7 @@ export const fetchNoticesByTitle = createAsyncThunk(
           page,
         },
       });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
