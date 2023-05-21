@@ -17,7 +17,7 @@ import Loader from 'Components/Loader/Loader';
 
 import {
   fetchNoticesByTitle,
-  fetchNoticesByCategory,
+  // fetchNoticesByCategory,
 } from 'Redux/notices/notices-operations';
 
 import {
