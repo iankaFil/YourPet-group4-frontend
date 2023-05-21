@@ -48,16 +48,37 @@ export const current = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'auth/updateUser',
+  'auth/update-user',
   async (data, { rejectWithValue, getState }) => {
     // console.log("DATA", data)
     try {
       const { auth } = getState();
       const updatedUser = await api.updateUser(auth.token, data);
-      
       return updatedUser;
     } catch ({ response }) {
       return rejectWithValue(response);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
+  }
+);
+
+export const updateUserAvatar = createAsyncThunk(
+  'auth/update-avatar',
+  async (data, { rejectWithValue, getState }) => {
+    // console.log("DATA", data)
+    try {
+      const { auth } = getState();
+      const updatedUser = await api.updateAvatar(auth.token, data);
+      return updatedUser;
+    } catch ({ response }) {
+      throw  rejectWithValue(response);
     }
   },
   {

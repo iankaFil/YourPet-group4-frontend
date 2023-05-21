@@ -11,11 +11,8 @@ import Loader from 'Components/Loader/Loader';
 
 import { getUser } from 'Redux/auth/auth-selectors';
 import { updateUser } from 'Redux/auth/auth-operations';
-import { fetchOwnPets } from 'Redux/pets/pets-operations';
-import {
-  getOwnPets,
-  // getUserFromPets
-} from './../../Redux/pets/pets-selectors';
+import { fetchDeletePet, fetchOwnPets } from 'Redux/pets/pets-operations';
+import {getOwnPets} from './../../Redux/pets/pets-selectors';
 
 import styles from './UserPage.module.css';
 
@@ -24,14 +21,12 @@ const UserPage = () => {
   const location = useLocation();
   const user = useSelector(getUser);
   const pets = useSelector(getOwnPets)
-  // console.log("PETS in UserPage", pets)
-  // const userFormPets = useSelector(getUserFromPets)
-
+  const isLoadingUser = useSelector(state => state.auth.isLoading);
   const dispatch = useDispatch();
 
-  const { avatarURL, name, birthday, email, phone, city } = user;
+  const { name, birthday, email, phone, city } = user;
 
-  useEffect(() => {
+   useEffect(() => {
     dispatch(fetchOwnPets());
   }, [dispatch]);
 
@@ -49,19 +44,21 @@ const UserPage = () => {
     setShowModal(false);
   }
 
+  if (isLoadingUser) {
+    return <Loader />;
+  }
+
     const handleSubmit = async (value ) => {
       try {
         await dispatch(updateUser(value));
-        // console.log('VALUE==>', value);
     } catch (error) {
       console.log('Error updating user data:', error);
     }
   };
 
-  const isLoadingUser = useSelector(state => state.auth.isLoading);
-
-  if (isLoadingUser) {
-    return <Loader />;
+   const handleDeletePet = async (_id) => {
+     dispatch(fetchDeletePet(_id));
+     console.log("DELETE PET", _id)
   }
 
   return (
@@ -69,7 +66,6 @@ const UserPage = () => {
       <Container className={styles.container}>
         {showModal && <ModalCongrats onClose={handleCloseModal} />}
         <UserData
-          photo={avatarURL}
           name={name}
           birthday={birthday}
           email={email}
@@ -77,7 +73,7 @@ const UserPage = () => {
           city={city}
           handleClick={handleSubmit}
         />
-        {pets?.length && <PetsData pets={pets} />}
+        <PetsData pets={pets} removePet={ handleDeletePet} />
       </Container>
     </Section>
   );

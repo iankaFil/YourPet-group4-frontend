@@ -1,21 +1,20 @@
-
 .inputWrap {
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .wrap {
-     width: 190px;
+    width: 190px;
+
     @media screen and (min-width: 480px) {
-            width: 300px;
+        width: 300px;
     }
+
     @media screen and (min-width: 768px) {
         width: 255px;
     }
 }
-
 .input {
     width: 100%;
     height: 28px;
@@ -23,6 +22,7 @@
     border: none;
     border-radius: 20px;
     padding: 6px 32px 6px 12px;
+    margin-bottom: 12px;
     font-weight: 400;
     font-size: 12px;
     line-height: 1.33;
@@ -30,30 +30,17 @@
     color: inherit;
 }
 
-.label {  
+.label {
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    letter-spacing: 0.04em;   
+    letter-spacing: 0.04em;
 }
 
 .edit {
-    position: absolute;
-    right: 12px;
-    top: 2px; 
-}
-
-.error { 
-    font-size: 10px;
-    line-height: 1.33;
-    color: #F43F5E;;
-}
-
-.errorWrap {
-    height: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* position: absolute; */
+    /* right: 12px;
+    top: 3px; */
 }
 
 .submitBtn {
@@ -71,9 +58,9 @@
 
 .confirmIcon {
     position: absolute;
-    right: 3px;
+    right: 7px;
     top: 5px;
     stroke: #00C3AD;
     width: 16px;
     height: 11px;
-  }
+}
