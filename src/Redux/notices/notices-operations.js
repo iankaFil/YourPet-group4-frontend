@@ -9,12 +9,13 @@ export const fetchNoticesByTitle = createAsyncThunk(
   'notices/search',
   async ({ category, searchQuery, page }, thunkAPI) => {
     try {
-      const response = await instance.get(`/notices/search/${category}`, {
+      const response = await instance.get(`/notices/${category}`, {
         params: {
           q: searchQuery,
           page,
         },
       });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -26,7 +27,7 @@ export const fetchNoticesByCategory = createAsyncThunk(
   'notices/category',
   async (category, thunkAPI) => {
     try {
-      const response = await instance.get(`/notices/category/${category}`);
+      const response = await instance.get(`/notices/${category}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

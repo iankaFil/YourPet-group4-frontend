@@ -57,27 +57,35 @@ const NoticesPage = () => {
         setCategory(value);
         break;
     }
+    setSearchQuery('');
   };
 
   const getCategoryFromURL = () => {
     const path = window.location.pathname;
     const categoryURL = path.split('/').pop();
     if (categoryURL === 'for-free') {
+      setSearchQuery('');
       return 'in-good-hand';
     }
     return categoryURL;
   };
 
-  //первий рендер
   useEffect(() => {
-    const categoryURL = getCategoryFromURL();
-    dispatch(fetchNoticesByCategory(categoryURL));
-  }, [dispatch]);
+    const url = getCategoryFromURL();
+    setCategory(url);
+  }, []);
+
+  // //первий рендер
+  // useEffect(() => {
+  //   const categoryURL = getCategoryFromURL();
+  //   dispatch(fetchNoticesByCategory(categoryURL));
+  // }, [dispatch]);
 
   // при изменении категории через фильтр
   useEffect(() => {
+    console.log(category);
     dispatch(fetchNoticesByTitle({ category, searchQuery }));
-  }, [category, searchQuery, dispatch]);
+  }, [category, dispatch, searchQuery]);
 
   const handlePageClick = ({ selected }) => {
     console.log('CLICK');
