@@ -17,6 +17,7 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
 
 import ModalNotice from 'Components/ModalNotice/ModalNotice';
+// import ModalAcces from 'Components/ModalAcces/ModalAcces';
 
 const CategoryItem = ({
   _id,
@@ -59,6 +60,10 @@ const CategoryItem = ({
   const isLogin = useSelector(isUserLogin);
 
   const handleLearnClick = () => {
+    setShowModal(true);
+  };
+
+  const handleDeleteClick = () => {
     setShowModal(true);
   };
 
@@ -128,11 +133,13 @@ const CategoryItem = ({
 
         <button
           className={css.delete_btn}
-          type="submit"
-          onClick={handleFavoriteClick}
+          type="button"
+          onClick={handleDeleteClick}
         >
           <Delete id="svg" />
         </button>
+        {/* {showModal && <ModalAcces onClose={handleCloseModal} title={title} />} */}
+
         <ul className={css.btn_list}>
           <p className={css.sell_btn}>Sell</p>
           <li className={css.list_item}>
