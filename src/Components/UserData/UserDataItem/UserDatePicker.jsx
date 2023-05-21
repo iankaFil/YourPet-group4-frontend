@@ -9,9 +9,12 @@ import css from './UserDatePicker.module.css';
 import { parseISO, isValid  } from 'date-fns';
 
 const UserDatePicker = ({ label, initialDate, fieldName, handleClick, ...props }) => {
-  const [selectedDate, setSelectedDate] = useState(parseISO(initialDate));
+
   const [error, setError] = useState(null);
   const [isDateSelected, setIsDateSelected] = useState(false); // Добавлено состояние для отслеживания выбранной даты
+
+  const [selectedDate, setSelectedDate] = useState(()=> initialDate ? parseISO(initialDate) : new Date());
+
 
   const handleChange = (date) => {
     setSelectedDate(date);

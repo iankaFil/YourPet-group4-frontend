@@ -134,6 +134,7 @@ const CategoryItem = ({
           <Delete id="svg" />
         </button>
         <ul className={css.btn_list}>
+          <p className={css.sell_btn}>Sell</p>
           <li className={css.list_item}>
             <button className={css.img_btn}>
               <LocationIcon id="svg" />
@@ -153,6 +154,7 @@ const CategoryItem = ({
             </button>
           </li>
         </ul>
+
         <h2 className={css.title}>{title}</h2>
         <button className={css.btn} onClick={handleLearnClick}>
           Learn more

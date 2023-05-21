@@ -72,10 +72,12 @@
   border: 2px solid #54adff;
   text-decoration: none;
 }
+
 .addButtonLink a {
   background: #54adff;
   color: #fff;
 }
+
 
 .filterLink a {
   background: #fff;
@@ -87,6 +89,7 @@
   font-size: 12px;
   line-height: 16px;
   color: #54adff;
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 22px;
@@ -100,10 +103,3 @@
   height: 24px;
   stroke: currentColor;
 }
-
-/* svg:hover {
-  stroke: currentColor;
-}
-svg:active {
-  stroke: currentColor;
-} */

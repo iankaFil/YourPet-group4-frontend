@@ -1,7 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import css from './NoticesBurgerMenu.module.css';
+import {fetchNoticesByTitle} from "Redux/notices/notices-operations"
 
 const { Panel } = Collapse;
 
@@ -31,39 +34,29 @@ const optionsByGender = [
   },
 ];
 
-const NoticesFilterAccordion = () => {
-  //   const dispatch = useDispatch();
-  //   const filterValue = useSelector(selectNoticesFilters);
+const NoticesBurgerMenu = () => {
+  const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
+  const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
 
-  //   const debouncedSetFilter = useCallback(
-  //     debounce(filter => {
-  //       dispatch(setFilter(filter));
-  //     }, 300),
-  //     [dispatch]
-  //   );
+const dispatch = useDispatch();
+  useEffect(() => {
+    // console.log(selectedOptionsSex, selectedOptionsAge);
+    const sendData = {
+      age: selectedOptionsAge,
+      sex: selectedOptionsSex
+    };
+    console.log(sendData);
+    dispatch(fetchNoticesByTitle({  sendData })); //category, searchQuery,
+  }, [dispatch, selectedOptionsSex, selectedOptionsAge]);
+  
 
-  //   const handleClick = e => {
-  //     const { name, value, checked } = e.target;
-  //     const updatedFilter = { ...filterValue };
-
-  //     if (name === 'age') {
-  //       updatedFilter.byAge = {
-  //         ...updatedFilter.byAge,
-  //         [value]: checked,
-  //       };
-  //     } else if (name === 'gender') {
-  //       updatedFilter.byGender = {
-  //         ...updatedFilter.byGender,
-  //         [value]: checked,
-  //       };
-  //     }
-
-  //     debouncedSetFilter(updatedFilter);
-  //   };
+  // const handleOptionChange = checkedValues => {
+  //   console.log("ghbgynhnnnnn",checkedValues);
+  //   setSelectedOptions(prevstate => [...prevstate, ...checkedValues]);
+  // };
 
   return (
     <div className={css.dropdown}>
-      <span className={css.filterTitle}>Filters</span>
       <Collapse
         bordered={false}
         expandIcon={({ isActive }) => (
@@ -73,17 +66,17 @@ const NoticesFilterAccordion = () => {
       >
         <Panel header="By age" key="1" className={css.title}>
           <Checkbox.Group
-            name={'age'}
             options={optionsByAge}
-            // onClick={handleClick}
+            value={selectedOptionsAge}
+            onChange={e => setSelectedOptionsAge(e)}
             className={css.checkbox}
           />
         </Panel>
         <Panel header="By gender" key="2" className={css.title}>
           <Checkbox.Group
-            name={'gender'}
             options={optionsByGender}
-            // onClick={handleClick}
+            value={selectedOptionsSex}
+            onChange={e => setSelectedOptionsSex(e)}
             className={css.checkbox}
           />
         </Panel>
@@ -92,4 +85,4 @@ const NoticesFilterAccordion = () => {
   );
 };
 
-export default NoticesFilterAccordion;
+export default NoticesBurgerMenu;
