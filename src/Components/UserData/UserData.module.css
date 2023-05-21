@@ -1,3 +1,9 @@
+.user {
+    @media screen and (min-width: 1280px) {
+        position: fixed;
+    }       
+}
+
 .user__wrapper {
     display: flex;
     flex-direction: column;
@@ -99,6 +105,7 @@
 .link {
     display: flex;
     align-items: center;
+    width: 100px;
     gap: 12px;
     text-decoration: none;
     color: #888888;

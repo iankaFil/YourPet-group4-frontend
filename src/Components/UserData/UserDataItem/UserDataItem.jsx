@@ -12,10 +12,6 @@ const UserDataItem = ({ label, fieldName, handleClick, ...props }) => {
   const { name, value } = field;
   const updateData = {[name]: value}
 
-  // const handleClick = (e) => {
-  //   console.log(e)
-  // }
-
   return (
     <>
       <div className={css.inputWrap}>

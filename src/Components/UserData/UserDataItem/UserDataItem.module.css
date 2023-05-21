@@ -34,7 +34,8 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    letter-spacing: 0.04em;   
+    letter-spacing: 0.04em;  
+    margin-right: 8px; 
 }
 
 .edit {
@@ -71,7 +72,7 @@
 
 .confirmIcon {
     position: absolute;
-    right: 3px;
+    right: 7px;
     top: 5px;
     stroke: #00C3AD;
     width: 16px;
