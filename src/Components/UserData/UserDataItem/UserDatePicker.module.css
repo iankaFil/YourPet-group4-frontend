@@ -2,6 +2,8 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 .wrap {
@@ -22,7 +24,6 @@
     border: none;
     border-radius: 20px;
     padding: 6px 32px 6px 12px;
-    margin-bottom: 12px;
     font-weight: 400;
     font-size: 12px;
     line-height: 1.33;
@@ -35,12 +36,8 @@
     font-size: 14px;
     line-height: 19px;
     letter-spacing: 0.04em;
-}
-
-.edit {
-    /* position: absolute; */
-    /* right: 12px;
-    top: 3px; */
+    margin-right: 8px;
+    text-align: center;
 }
 
 .submitBtn {
@@ -63,4 +60,10 @@
     stroke: #00C3AD;
     width: 16px;
     height: 11px;
+}
+
+.edit {
+    position: absolute;
+    right: 6px;
+    top: 0px;
 }

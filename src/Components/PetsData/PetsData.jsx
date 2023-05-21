@@ -22,7 +22,8 @@ const PetsData = ({pets, removePet}) => {
           <PlusSmallIcon id="svg" />
         </button>
       </div>
-      {pets?.length ? <PetsList pets={pets} removePet={removePet}/> : <p>No pets</p>}
+      {pets?.length ? <PetsList pets={pets} removePet={removePet} />
+        : <p className={css.text}>There is nothing here yet. Add your cute pets</p>}
     </div>
   );
 };

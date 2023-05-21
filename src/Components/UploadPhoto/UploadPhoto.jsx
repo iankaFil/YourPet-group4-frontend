@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react';
-import css from './UploadPhoto.module.css';
-import { ConfirmIcon, TrashIcon } from 'Components/SvgIcons';
 import { useSelector } from 'react-redux';
+
 import { getUser } from 'Redux/auth/auth-selectors';
 import instance from 'Shared/api/auth-api';
 import { avatarValidationSchema } from 'Shared/validation';
+
 import CameraIcon from 'Components/SvgIcons/CameraIcon';
+import { ConfirmIcon, TrashIcon } from 'Components/SvgIcons';
+
+import css from './UploadPhoto.module.css';
 
 const UploadPhoto = () => {
     const user = useSelector(getUser);
@@ -71,8 +74,7 @@ const UploadPhoto = () => {
             onChange={handleFileChange}
             style={{ display: 'none' }}
           />
-        <label htmlFor="avatar">
-          <div className={css.labelAdd}>
+        <label htmlFor="avatar"> 
             {uploadedPhoto ? (
               <img
                 className={css.preview__img}
@@ -86,8 +88,7 @@ const UploadPhoto = () => {
                 src={userAvatar}
                 alt="User avatar"
               />)
-            }
-          </div>
+            } 
         </label>
         {errors.uploadedPhoto && <p className={css.errorComent}>{errors.uploadedPhoto}</p>}
       </div>
@@ -95,7 +96,7 @@ const UploadPhoto = () => {
       {!userAvatar && (
         <div className={css.btnWrapper}>
           <button type="submit" onClick={handleSubmit} className={css.button}>
-            <ConfirmIcon id='svg' />
+            <ConfirmIcon id='svg' className={css.confirmIcon}/>
             Confirm
           </button>
           <button type="button" onClick={handleDeletePhoto} className={css.delete_btn}>
@@ -113,7 +114,6 @@ const UploadPhoto = () => {
           Edit photo</button>
     )}
     </div>
-    
   )
 }
       

@@ -64,7 +64,7 @@ const UserData = ({ avatarURL, name, birthday, email, phone, city, handleClick, 
         validationSchema={userDataValidationSchema}
         onSubmit={handleFormSubmit}
       >
-        {({ values, setFieldValue }) => (
+        {({ values }) => (
           <Form className={css.form}>
             <div className={css.inputContainer}>
               <div className={css.inputWrap}>
