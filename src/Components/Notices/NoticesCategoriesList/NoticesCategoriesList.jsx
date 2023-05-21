@@ -8,15 +8,16 @@ const CategoryList = ({ card }) => {
 
   return (
     <ul className={css.card_list}>
-      {sortedCard.map(({ _id, title, photoURL, birthday, sex, place }) => (
+      {sortedCard.map(card => (
         <CategoryItem
-          key={_id}
-          _id={_id}
-          title={title}
-          imgUrl={photoURL}
-          birthday={birthday}
-          sex={sex}
-          place={place}
+          {...card}
+          key={card._id}
+          // _id={_id}
+          // title={title}
+          // imgUrl={photoURL}
+          // birthday={birthday}
+          // sex={sex}
+          // place={place}
         />
       ))}
     </ul>

@@ -25,7 +25,9 @@ const ModalNotice = ({
   comments,
   onClose,
   className = 'Modal content goes here',
+  owner,
 }) => {
+  console.log('IKUHDFSIFDIUFI', _id);
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -46,6 +48,15 @@ const ModalNotice = ({
     };
   }, [onClose]);
 
+  const formatDate = dateString => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear());
+
+    return `${day}.${month}.${year}`;
+  };
+
   const dispatch = useDispatch();
 
   const user = useSelector(getUser);
@@ -61,6 +72,11 @@ const ModalNotice = ({
     }
     return false;
   });
+
+  const handleContactClick = phoneNumber => {
+    if (!phoneNumber) return;
+    window.location.href = `tel:${phoneNumber}`;
+  };
 
   const handleFavoriteClick = () => {
     if (!isLogin) {
@@ -96,7 +112,8 @@ const ModalNotice = ({
                 Name: <span className={css.span}>{name}</span>
               </li>
               <li className={css.list_item}>
-                Birthday:<span className={css.span}>{birthday}</span>
+                Birthday:
+                <span className={css.span}>{formatDate(birthday)}</span>
               </li>
               <li className={css.list_item}>
                 Breed:<span className={css.span}>{breed}</span>
@@ -107,18 +124,32 @@ const ModalNotice = ({
               <li className={css.list_item}>
                 The sex:<span className={css.span}>{sex}</span>
               </li>
-              <li className={css.list_item}>Email:</li>
-              <li className={css.list_item}>Phone:</li>
+              <li className={css.list_item}>
+                Email:<span className={css.span}>{owner.email}</span>
+              </li>
+              <li className={css.list_item}>
+                Phone:<span className={css.span}>{owner.phone}</span>
+              </li>
             </ul>
           </div>
         </div>
 
-        <p className={css.comments}> Тут должны быть коментарии{comments}</p>
+        <p className={css.comments}>{comments}</p>
         <div className={css.button_wrap}>
-          <button type="button" className={css.addtobutton}>
-            Add to <AddToFavoriteIcon id="svg" onClick={handleFavoriteClick} />
+          <button
+            type="button"
+            onClick={handleFavoriteClick}
+            className={
+              !favorite ? css.addtobutton : `${css.addtobutton} ${css.active}`
+            }
+          >
+            Add to <AddToFavoriteIcon id="svg" />
           </button>
-          <button type="button" className={css.contactbutton}>
+          <button
+            type="button"
+            className={css.contactbutton}
+            onClick={() => handleContactClick(owner.phone)}
+          >
             Contact
           </button>
         </div>
