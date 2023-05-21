@@ -9,7 +9,7 @@ import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
 
-import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
+import { ReactComponent as Heart } from 'Components/SvgIcons/heart.svg';
 
 import css from './ModalNotice.module.css';
 
@@ -103,34 +103,46 @@ const ModalNotice = ({
             <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
           </button>
           <div className={css.image_wrap}>
-            <img src={photoURL} alt="фото зверя" className={css.image} />
+            <img
+              align="center"
+              src={photoURL}
+              alt="фото зверя"
+              className={css.image}
+            />
+            <p className={css.sell_btn}>Sell</p>
           </div>
           <div className={css.info_wrap}>
             <h2 className={css.title}>{title}</h2>
-            <ul className={css.list_info}>
-              <li className={css.list_item}>
-                Name: <span className={css.span}>{name}</span>
-              </li>
-              <li className={css.list_item}>
-                Birthday:
-                <span className={css.span}>{formatDate(birthday)}</span>
-              </li>
-              <li className={css.list_item}>
-                Breed:<span className={css.span}>{breed}</span>
-              </li>
-              <li className={css.list_item}>
-                Place:<span className={css.span}>{place}</span>
-              </li>
-              <li className={css.list_item}>
-                The sex:<span className={css.span}>{sex}</span>
-              </li>
-              <li className={css.list_item}>
-                Email:<span className={css.span}>{owner.email}</span>
-              </li>
-              <li className={css.list_item}>
-                Phone:<span className={css.span}>{owner.phone}</span>
-              </li>
-            </ul>
+            <div className={css.list_info}>
+              <p className={css.list_item}>
+                <span className={css.info}>Name: </span>
+                <span className={css.span}>{name}</span>
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>Birthday: </span>
+                <span className={css.span}>{formatDate(birthday)}</span>:
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>Breed: </span>
+                <span className={css.span}>{breed}</span>
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>Place: </span>
+                <span className={css.span}>{place}</span>
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>The sex: </span>
+                <span className={css.span}>{sex}</span>
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>Email: </span>
+                <span className={css.span}>{owner.email}</span>
+              </p>
+              <p className={css.list_item}>
+                <span className={css.info}>Phone: </span>
+                <span className={css.span}>{owner.phone}</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -144,7 +156,11 @@ const ModalNotice = ({
             }
           >
             {!favorite ? 'Add to' : 'Remove'}
-            <AddToFavoriteIcon fill="#FFF" id="svg" />
+            <Heart
+              className={css.addIcon}
+              id="svg"
+              onClick={handleFavoriteClick}
+            />
           </button>
           <button
             type="button"
