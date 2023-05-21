@@ -9,7 +9,7 @@ import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
 
-import { ReactComponent as Heart } from 'Components/SvgIcons/heart.svg';
+import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
 import css from './ModalNotice.module.css';
 
@@ -91,48 +91,32 @@ const ModalNotice = ({
           </div>
           <div className={css.info_wrap}>
             <h2 className={css.title}>{title}</h2>
-            <div className={css.list_info}>
-              <p className={css.list_item}>
-                <span className={css.info}>Name: </span>
-                <span className={css.span}>{name}</span>
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>Birthday: </span>
-                <span className={css.span}>{birthday}</span>:
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>Breed: </span>
-                <span className={css.span}>{breed}</span>
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>Place: </span>
-                <span className={css.span}>{place}</span>
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>The sex: </span>
-                <span className={css.span}>{sex}</span>
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>Email: </span>
-                {/* <span className={css.span}>{mail}</span> */}
-              </p>
-              <p className={css.list_item}>
-                <span className={css.info}>Phone: </span>
-                {/* <span className={css.span}>{phone}</span> */}
-              </p>
-            </div>
+            <ul className={css.list_info}>
+              <li className={css.list_item}>
+                Name: <span className={css.span}>{name}</span>
+              </li>
+              <li className={css.list_item}>
+                Birthday:<span className={css.span}>{birthday}</span>
+              </li>
+              <li className={css.list_item}>
+                Breed:<span className={css.span}>{breed}</span>
+              </li>
+              <li className={css.list_item}>
+                Place:<span className={css.span}>{place}</span>
+              </li>
+              <li className={css.list_item}>
+                The sex:<span className={css.span}>{sex}</span>
+              </li>
+              <li className={css.list_item}>Email:</li>
+              <li className={css.list_item}>Phone:</li>
+            </ul>
           </div>
         </div>
 
         <p className={css.comments}> Тут должны быть коментарии{comments}</p>
         <div className={css.button_wrap}>
           <button type="button" className={css.addtobutton}>
-            Add to{' '}
-            <Heart
-              className={css.addIcon}
-              id="svg"
-              onClick={handleFavoriteClick}
-            />
+            Add to <AddToFavoriteIcon id="svg" onClick={handleFavoriteClick} />
           </button>
           <button type="button" className={css.contactbutton}>
             Contact

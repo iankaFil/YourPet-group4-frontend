@@ -16,12 +16,13 @@ import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
 
-import ModalNotice from 'Components/ModalNoticePage/ModalNotice';
+import ModalNotice from 'Components/ModalNotice/ModalNotice';
 
 const CategoryItem = ({
   _id,
   title,
-  imgUrl,
+  photoURL,
+  price,
   place,
   sex,
   birthday,
@@ -29,9 +30,27 @@ const CategoryItem = ({
   category,
   name,
   breed,
-  photoURL,
   comments,
+  ...restProps
 }) => {
+  // console.log(
+  //   'PROPSSSSSSS',
+  //   owner,
+  //   _id,
+  //   title,
+  //   photoURL,
+  //   price,
+  //   place,
+  //   sex,
+  //   birthday,
+  //   owner,
+  //   category,
+  //   name,
+  //   breed,
+  //   comments
+  // );
+
+  // console.log('REST PROPS', restProps);
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
@@ -94,7 +113,7 @@ const CategoryItem = ({
   return (
     <li key={_id} className={css.card_item}>
       <div className={css.card_wrap}>
-        <img src={imgUrl} alt={title} className={css.image} />
+        <img src={photoURL} alt={title} className={css.image} />
         <button
           className={
             favorite
@@ -106,6 +125,7 @@ const CategoryItem = ({
         >
           <AddToFavoriteIcon id="svg" fill={favorite ? '#54adff' : 'none'} />
         </button>
+
         <button
           className={css.delete_btn}
           type="submit"
@@ -140,6 +160,8 @@ const CategoryItem = ({
         </button>
         {showModal && (
           <ModalNotice
+            _id={_id}
+            owner={owner}
             onClose={handleCloseModal}
             title={title}
             name={name}
