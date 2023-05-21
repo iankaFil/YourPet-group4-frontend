@@ -10,6 +10,7 @@ import { FemaleIcon } from 'Components/SvgIcons/FemaleIcon';
 import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
 import { ReactComponent as Delete } from 'Components/SvgIcons/Delete.svg';
+import { ReactComponent as PawIcon } from 'Components/SvgIcons/paw.svg';
 import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
@@ -135,6 +136,7 @@ const CategoryItem = ({
         <h2 className={css.title}>{title}</h2>
         <button className={css.btn} onClick={handleLearnClick}>
           Learn more
+          <PawIcon />
         </button>
         {showModal && (
           <ModalNotice
