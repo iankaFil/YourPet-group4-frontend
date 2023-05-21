@@ -15,6 +15,8 @@ import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
 
+import ModalNotice from 'Components/ModalNoticePage/ModalNotice';
+
 const CategoryItem = ({
   _id,
   title,
@@ -24,11 +26,25 @@ const CategoryItem = ({
   birthday,
   owner,
   category,
+  name,
+  breed,
+  photoURL,
+  comments,
 }) => {
   const dispatch = useDispatch();
 
+  const [showModal, setShowModal] = useState(false);
+
   const user = useSelector(getUser);
   const isLogin = useSelector(isUserLogin);
+
+  const handleLearnClick = () => {
+    setShowModal(true);
+  };
+
+  function handleCloseModal() {
+    setShowModal(false);
+  }
 
   const [favorite, setFavorite] = useState(() => {
     if (isLogin && user.favorite.length > 0) {
@@ -78,7 +94,6 @@ const CategoryItem = ({
     <li key={_id} className={css.card_item}>
       <div className={css.card_wrap}>
         <img src={imgUrl} alt={title} className={css.image} />
-
         <button
           className={
             favorite
@@ -90,7 +105,6 @@ const CategoryItem = ({
         >
           <AddToFavoriteIcon id="svg" fill={favorite ? '#54adff' : 'none'} />
         </button>
-
         <button
           className={css.delete_btn}
           type="submit"
@@ -98,7 +112,6 @@ const CategoryItem = ({
         >
           <Delete id="svg" />
         </button>
-
         <ul className={css.btn_list}>
           <li className={css.list_item}>
             <button className={css.img_btn}>
@@ -119,9 +132,23 @@ const CategoryItem = ({
             </button>
           </li>
         </ul>
-
         <h2 className={css.title}>{title}</h2>
-        <button className={css.btn}>Learn more</button>
+        <button className={css.btn} onClick={handleLearnClick}>
+          Learn more
+        </button>
+        {showModal && (
+          <ModalNotice
+            onClose={handleCloseModal}
+            title={title}
+            name={name}
+            birthday={birthday}
+            breed={breed}
+            place={place}
+            sex={sex}
+            photoURL={photoURL}
+            comments={comments}
+          />
+        )}
       </div>
     </li>
   );
