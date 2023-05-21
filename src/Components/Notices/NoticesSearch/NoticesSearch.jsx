@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
@@ -7,10 +8,19 @@ import css from 'Components/Notices/NoticesSearch/NoticesSearch.module.css';
 
 const NoticesSearch = ({ handleSearchChange }) => {
   const [search, setSearch] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchValue = searchParams.get('q');
+
+  useEffect(() => {
+    if (searchValue) {
+      setSearch(searchValue);
+    }
+  }, [searchValue]);
 
   const handleFormSubmit = event => {
     event.preventDefault();
     handleSearchChange(search);
+    setSearchParams({ q: search });
   };
 
   const handelInputChange = event => {
