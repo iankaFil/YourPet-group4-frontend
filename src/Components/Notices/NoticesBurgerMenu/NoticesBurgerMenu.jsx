@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
 import cn from 'classnames';
@@ -31,39 +32,15 @@ const optionsByGender = [
   },
 ];
 
-const NoticesFilterAccordion = () => {
-  //   const dispatch = useDispatch();
-  //   const filterValue = useSelector(selectNoticesFilters);
+const NoticesBurgerMenu = () => {
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
-  //   const debouncedSetFilter = useCallback(
-  //     debounce(filter => {
-  //       dispatch(setFilter(filter));
-  //     }, 300),
-  //     [dispatch]
-  //   );
-
-  //   const handleClick = e => {
-  //     const { name, value, checked } = e.target;
-  //     const updatedFilter = { ...filterValue };
-
-  //     if (name === 'age') {
-  //       updatedFilter.byAge = {
-  //         ...updatedFilter.byAge,
-  //         [value]: checked,
-  //       };
-  //     } else if (name === 'gender') {
-  //       updatedFilter.byGender = {
-  //         ...updatedFilter.byGender,
-  //         [value]: checked,
-  //       };
-  //     }
-
-  //     debouncedSetFilter(updatedFilter);
-  //   };
+  const handleOptionChange = checkedValues => {
+    setSelectedOptions(checkedValues);
+  };
 
   return (
     <div className={css.dropdown}>
-      <span className={css.filterTitle}>Filters</span>
       <Collapse
         bordered={false}
         expandIcon={({ isActive }) => (
@@ -73,17 +50,17 @@ const NoticesFilterAccordion = () => {
       >
         <Panel header="By age" key="1" className={css.title}>
           <Checkbox.Group
-            name={'age'}
             options={optionsByAge}
-            // onClick={handleClick}
+            value={selectedOptions}
+            onChange={handleOptionChange}
             className={css.checkbox}
           />
         </Panel>
         <Panel header="By gender" key="2" className={css.title}>
           <Checkbox.Group
-            name={'gender'}
             options={optionsByGender}
-            // onClick={handleClick}
+            value={selectedOptions}
+            onChange={handleOptionChange}
             className={css.checkbox}
           />
         </Panel>
@@ -92,4 +69,4 @@ const NoticesFilterAccordion = () => {
   );
 };
 
-export default NoticesFilterAccordion;
+export default NoticesBurgerMenu;
