@@ -6,7 +6,7 @@ import { PlusSmallIcon } from 'Components/SvgIcons';
 
 import css from './PetsData.module.css';
 
-const PetsData = ({pets}) => {
+const PetsData = ({pets, removePet}) => {
   const navigate = useNavigate(); 
   
   const handleAddPet = () => {
@@ -22,7 +22,7 @@ const PetsData = ({pets}) => {
           <PlusSmallIcon id="svg" />
         </button>
       </div>
-      <PetsList pets={ pets} />
+      {pets?.length ? <PetsList pets={pets} removePet={removePet}/> : <p>No pets</p>}
     </div>
   );
 };
