@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import css from './NoticesBurgerMenu.module.css';
+import {fetchNoticesByTitle} from "Redux/notices/notices-operations"
 
 const { Panel } = Collapse;
 
@@ -33,11 +35,25 @@ const optionsByGender = [
 ];
 
 const NoticesBurgerMenu = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
+  const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
 
-  const handleOptionChange = checkedValues => {
-    setSelectedOptions(checkedValues);
-  };
+const dispatch = useDispatch();
+  useEffect(() => {
+    // console.log(selectedOptionsSex, selectedOptionsAge);
+    const sendData = {
+      age: selectedOptionsAge,
+      sex: selectedOptionsSex
+    };
+    console.log(sendData);
+    dispatch(fetchNoticesByTitle({  sendData })); //category, searchQuery,
+  }, [dispatch, selectedOptionsSex, selectedOptionsAge]);
+  
+
+  // const handleOptionChange = checkedValues => {
+  //   console.log("ghbgynhnnnnn",checkedValues);
+  //   setSelectedOptions(prevstate => [...prevstate, ...checkedValues]);
+  // };
 
   return (
     <div className={css.dropdown}>
@@ -51,16 +67,16 @@ const NoticesBurgerMenu = () => {
         <Panel header="By age" key="1" className={css.title}>
           <Checkbox.Group
             options={optionsByAge}
-            value={selectedOptions}
-            onChange={handleOptionChange}
+            value={selectedOptionsAge}
+            onChange={e => setSelectedOptionsAge(e)}
             className={css.checkbox}
           />
         </Panel>
         <Panel header="By gender" key="2" className={css.title}>
           <Checkbox.Group
             options={optionsByGender}
-            value={selectedOptions}
-            onChange={handleOptionChange}
+            value={selectedOptionsSex}
+            onChange={e => setSelectedOptionsSex(e)}
             className={css.checkbox}
           />
         </Panel>
