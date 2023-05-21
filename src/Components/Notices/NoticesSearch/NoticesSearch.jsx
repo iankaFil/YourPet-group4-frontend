@@ -30,6 +30,7 @@ const NoticesSearch = ({ handleSearchChange }) => {
 
   const handleClearClick = event => {
     setSearch('');
+    handleSearchChange('');
   };
 
   return (

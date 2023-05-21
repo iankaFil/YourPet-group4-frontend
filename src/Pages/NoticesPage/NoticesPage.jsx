@@ -57,12 +57,14 @@ const NoticesPage = () => {
         setCategory(value);
         break;
     }
+    setSearchQuery('');
   };
 
   const getCategoryFromURL = () => {
     const path = window.location.pathname;
     const categoryURL = path.split('/').pop();
     if (categoryURL === 'for-free') {
+      setSearchQuery('');
       return 'in-good-hand';
     }
     return categoryURL;
