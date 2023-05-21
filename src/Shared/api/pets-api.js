@@ -11,7 +11,7 @@ export const addPet = async data => {
 };
 
 export const deletePet = async id => {
-  const { data } = await instance.delete(`'/pets/${id}`);
+  const { data } = await instance.delete(`/pets/${id}`);
   return data;
 };
 

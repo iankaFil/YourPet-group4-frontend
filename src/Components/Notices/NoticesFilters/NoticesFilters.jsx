@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as PlusSmallIcon } from '../../SvgIcons/SmallIconPlus.svg';
@@ -10,12 +10,14 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 const NoticesCategoriesNav = ({ handleCategory }) => {
   const isLoginUser = useSelector(isUserLogin);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
       handleCategory(event.target.text);
     }
   };
+
   const handleLinkClick = event => {
     if (!isUserLogin) {
       event.preventDefault();
@@ -25,9 +27,11 @@ const NoticesCategoriesNav = ({ handleCategory }) => {
       };
     }
   };
-  // const accordionComponent = () => {
-  //   return <NoticesBurgerMenu />;
-  // };
+
+  const handleFilterButtonClick = () => {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  };
+
   return (
     <div className={css.navigationContainer}>
       <ul className={css.linksContainer} onClick={handleNavLinkClick}>
@@ -81,12 +85,13 @@ const NoticesCategoriesNav = ({ handleCategory }) => {
         <li className={css.filterLink}>
           <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
+            onClick={handleFilterButtonClick}
             to="/notices/filter"
           >
             Filter
             <Filter />
           </NavLink>
-          <NoticesBurgerMenu />
+          {isBurgerMenuOpen && <NoticesBurgerMenu />}
         </li>
         <li className={css.addButtonLink}>
           <NavLink

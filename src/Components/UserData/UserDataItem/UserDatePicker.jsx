@@ -5,11 +5,11 @@ import DatePicker from 'react-datepicker';
 import { ConfirmIcon } from 'Components/SvgIcons/ConfirmIcon';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import css from './UserDataItem.module.css';
+import css from './UserDatePicker.module.css';
 import { parseISO } from 'date-fns';
 
 const UserDatePicker = ({ label, initialDate, fieldName, handleClick, ...props }) => {
-  const [selectedDate, setSelectedDate] = useState(parseISO(initialDate));
+  const [selectedDate, setSelectedDate] = useState(()=> initialDate ? parseISO(initialDate) : new Date());
 
   const handleChange = (date) => {
     setSelectedDate(date);
@@ -21,7 +21,7 @@ const UserDatePicker = ({ label, initialDate, fieldName, handleClick, ...props }
         <label className={css.label}>{label}</label>
         <div className={css.wrap}>
           <DatePicker
-            className={`${css.dateInput} ${props.className}`}
+            className={`${css.input} ${props.className}`}
             selected={selectedDate}
             onChange={handleChange}
             peekNextMonth
