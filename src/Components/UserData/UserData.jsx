@@ -14,6 +14,7 @@ import { logout, updateUser } from 'Redux/auth/auth-operations';
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
 import css from './UserData.module.css';
+import { Button } from 'antd';
 
 const UserData = ({ avatarURL, name, birthday, email, phone, city, handleClick, handlePhotoSubmit }) => {
   const [showModal, setShowModal] = useState(false);
@@ -92,6 +93,15 @@ const UserData = ({ avatarURL, name, birthday, email, phone, city, handleClick, 
       {showModal && (
         <ModalApproveAction onClose={handleCloseModal} handleApproveClick={handleLogout}>
           <h2 className={css.modalTitle}>Already leaving?</h2>
+          <div className={css.buttonWrap}>
+            <Button onClick={handleCloseModal} className={`${css.modalBtn} ${css.cancelBtn}`}>
+              Cancel
+            </Button>
+            <Button onClick={handleLogout} className={`${css.modalBtn} ${css.approveBtn}`}>
+              Yes
+              <LogoutIcon id='svg'className={css.logoutIconModal}/>
+            </Button>
+          </div>
         </ModalApproveAction>
       )}
     </div>

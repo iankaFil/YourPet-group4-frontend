@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 
-import Button from 'Components/Button/Button';
 import { CrossSmallIcon } from '../SvgIcons/CrossSmallIcon';
-import LogoutIcon from 'Components/SvgIcons/LogoutIcon';
 
 import css from './ModalApproveAction.module.css';
 
@@ -39,13 +37,6 @@ const ModalApproveAction = ({
           <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
         </button>
         {children}
-        <div className={css.buttonWrap}>
-          <Button onClick={onClose} className={`${css.modalBtn} ${css.cancelBtn}`}>Cancel</Button>
-          <Button onClick={handleApproveClick} className={`${css.modalBtn} ${css.approveBtn}`}>
-            Yes
-            <LogoutIcon id='svg'className={css.logoutIcon}/>
-          </Button>
-        </div>
       </div>
     </div>
   );

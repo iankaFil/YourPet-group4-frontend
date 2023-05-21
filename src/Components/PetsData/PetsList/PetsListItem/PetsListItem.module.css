@@ -72,8 +72,7 @@
     background-color: #54ADFF;
 }
 
-.trashIcon {
-    position: relative;
+.trashIcon { 
     stroke: #54ADFF;
     stroke-width: 1.5px;
     stroke-linecap: round;
@@ -86,4 +85,74 @@
 .trashIcon:hover {
     border-radius: 50%;
     stroke: #FDF7F2;
+}
+
+.textWrap {
+    text-align: center;
+}
+
+.buttonWrap {
+    display: flex;
+    gap: 17px;
+}
+
+.modalBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 107px;
+    padding: 8px 0;
+    gap: 8px;
+    border-radius: 40px;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+
+    @media screen and (min-width: 768px) {
+        width: 129px;
+        padding: 9px 35px;
+    }
+}
+
+.modalBtn:hover {
+    background: linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%);
+}
+
+.cancelBtn {
+    color: #54ADFF;
+    background-color: #FFFFFF;
+    border: 2px solid #54ADFF;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cancelBtn:hover {
+    color: #FEF9F9
+}
+
+.approveBtn {
+    color: #FEF9F9;
+    background-color: #54ADFF;
+
+}
+
+.trashIconModal {
+    stroke: #FEF9F9;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.titleModal {
+    margin-bottom: 24px;
+}
+
+.textModal {
+    margin-bottom: 40px;
 }
