@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const CustomDatePicker = ({setBirthdayWrapper, birthday, className} ) => {
-  const [selectedDate, setSelectedDate] = useState(birthday);
+  const [selectedDate, setSelectedDate] = useState(birthday || new Date());
 
   useEffect(() => {
     setBirthdayWrapper(selectedDate);
