@@ -141,7 +141,7 @@ const CategoryItem = ({
         {/* {showModal && <ModalAcces onClose={handleCloseModal} title={title} />} */}
 
         <ul className={css.btn_list}>
-          <p className={css.sell_btn}>Sell</p>
+          <p className={css.sell_btn}>{category}</p>
           <li className={css.list_item}>
             <button className={css.img_btn}>
               <LocationIcon id="svg" />
