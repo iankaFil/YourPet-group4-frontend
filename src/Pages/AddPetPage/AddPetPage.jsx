@@ -67,8 +67,25 @@ function AddPetPage() {
   };
 
   const handleCloseModal = () => {
+    console.log('formDataQQQQQQQQQQQQQ', formData);
     setShowModal(false);
-    navigate('/user');
+
+    switch (formData.category) {
+      case 'your-pet':
+        navigate('/user');
+        break;
+
+      case 'sell':
+        navigate('/notices/sell');
+        break;
+
+      case 'lost-found':
+        navigate('/notices/lost-found');
+        break;
+
+      default:
+        navigate('/user');
+    }
   };
 
   const savePet = async (endpoint, category, data) => {
@@ -211,11 +228,11 @@ function AddPetPage() {
       </div>
       {showModal && (
         <ModalWindow
-          buttonText="Хорошо"
+          buttonText="Done"
           onClose={handleCloseModal}
-          title="Ваш питомец успешно создан"
+          title="Your pet has been added successfully"
         >
-          Поздравляю, Ваш питомец был успешно добавлен на наш сайт
+          Congratulations, your pet has been successfully added to our site
         </ModalWindow>
       )}
     </Section>
