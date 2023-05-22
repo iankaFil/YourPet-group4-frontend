@@ -20,7 +20,7 @@ const NoticesSearch = ({ handleSearchChange, handleChangeCategory }) => {
       setSearch(searchValue);
       handleSearchChange(search);
     }
-  }, [handleSearchChange, searchValue]);
+  }, [handleSearchChange, search, searchValue]);
 
   const handleFormSubmit = event => {
     event.preventDefault();
