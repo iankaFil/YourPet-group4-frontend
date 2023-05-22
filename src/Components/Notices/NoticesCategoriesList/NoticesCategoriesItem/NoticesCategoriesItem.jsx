@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import css from './NoticesCategoriesItem.module.css';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { LocationIcon } from 'Components/SvgIcons/LocationIcon';
 import { IconTime } from 'Components/SvgIcons/IconTime';
@@ -85,7 +86,7 @@ const CategoryItem = ({
   const handleFavoriteClick = () => {
     if (!isLogin) {
       toast.info(
-        'You must be registered or logged in to continue the operation'
+        'You must be registered or logged in to perform the operation'
       );
       return;
     }
@@ -183,6 +184,7 @@ const CategoryItem = ({
           />
         )}
       </div>
+      <ToastContainer autoClose={1400} position="top-center" />
     </li>
   );
 };
