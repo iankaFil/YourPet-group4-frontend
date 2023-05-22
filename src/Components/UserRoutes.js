@@ -16,7 +16,7 @@ import { NotFound } from './NotFound/NotFound';
 const UserRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<SharedLayout/>}>
+      <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/main" element={<HomePage />} />
         <Route path="/news" element={<NewsPage />} />
