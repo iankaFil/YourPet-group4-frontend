@@ -5,6 +5,8 @@ import { ReactComponent as PlusSmallIcon } from '../../SvgIcons/SmallIconPlus.sv
 import { ReactComponent as Filter } from '../../SvgIcons/Filter.svg';
 import css from 'Components/Notices/NoticesFilters/NoticesFilters.module.css';
 import NoticesBurgerMenu from '../NoticesBurgerMenu/NoticesBurgerMenu';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
@@ -19,12 +21,11 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
   };
 
   const handleLinkClick = event => {
-    if (!isUserLogin) {
-      event.preventDefault();
-      return {
-        content: 'This operation requires authorization',
-        className: css.message,
-      };
+    if (!isLoginUser) {
+      toast.info(
+        'You must be registered or logged in to perform the operation'
+      );
+      return;
     }
   };
 
@@ -104,6 +105,7 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
           </NavLink>
         </li>
       </ul>
+      <ToastContainer autoClose={1400} position="top-center" />
     </div>
   );
 };
