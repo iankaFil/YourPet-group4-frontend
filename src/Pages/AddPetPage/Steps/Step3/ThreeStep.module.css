@@ -43,7 +43,10 @@
   line-height: 150%;
   color: #888888;
 }
-
+.sexElement img {
+  width: 10px;
+  height: 18px;
+}
 .sexElementActive {
   background-color: inherit;
   border: none;
