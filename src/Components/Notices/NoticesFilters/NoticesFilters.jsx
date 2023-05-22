@@ -97,7 +97,7 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
           <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
             onClick={handleLinkClick}
-            to="/notices/add-pet"
+            to="/add-pet"
           >
             Add pet
             <PlusSmallIcon />
