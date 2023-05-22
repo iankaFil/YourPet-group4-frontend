@@ -80,20 +80,14 @@ const NoticesPage = () => {
 
   // при изменении категории через фильтр
   useEffect(() => {
-    console.log('category->', category);
-    if (category === 'favorites') {
+    if (category === 'favorites' && searchQuery === '') {
       dispatch(fetchFavotiteNotices());
+    } else if (category === 'user-notices') {
+      dispatch(fetchUserNotices());
     } else {
-      if (searchQuery) {
-        dispatch(fetchNoticesByTitle({ category, searchQuery }));
-      } else if (category === 'user-notices') {
-        console.log(' ВЫЗОВ fetchUserNotices ');
-        dispatch(fetchUserNotices());
-      } else {
-        dispatch(fetchNoticesByTitle({ category }));
-      }
+      dispatch(fetchNoticesByTitle({ category, searchQuery }));
     }
-  }, [category, dispatch, searchQuery]);
+  }, [category, searchQuery, dispatch]);
 
   const notices = useSelector(selectNotices);
 
@@ -154,7 +148,10 @@ const NoticesPage = () => {
       {isLoading && !error && <Loader />}
       <Container>
         <Title>Find your favorite pet</Title>
-        <NoticesSearch handleSearchChange={handleSearchChange} />
+        <NoticesSearch
+          handleSearchChange={handleSearchChange}
+          handleChangeCategory={handleChangeCategory}
+        />
         <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
 
         {notices && notices.length > 0 && <CategoryList card={notices} />}
