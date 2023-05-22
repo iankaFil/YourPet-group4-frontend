@@ -98,16 +98,12 @@ const ModalNotice = ({
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
       <div className={css.content}>
-          <button className={css.closeBtn} onClick={onClose}>
-            <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
-          </button>
-          <div className={css.content_wrap}>
-            <img
-              src={photoURL}
-              alt="фото зверя"
-              className={css.image}
-            />
-            
+        <button className={css.closeBtn} onClick={onClose}>
+          <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
+        </button>
+        <div className={css.content_wrap}>
+          <img src={photoURL} alt="фото зверя" className={css.image} />
+
           <div className={css.info_wrap}>
             <p className={css.sell_btn}>Sell</p>
             <h2 className={css.title}>{title}</h2>
@@ -134,17 +130,30 @@ const ModalNotice = ({
               </p>
               <p className={css.list_item}>
                 <span className={css.info_title}>Email: </span>
-                <span className={`${css.info_text} ${css.info_accent}`}>{owner.email}</span>
+                  <a
+                    className={`${css.info_text} ${css.info_accent}`}
+                    href="mailto:{owner.email}"
+                  >
+                    {owner.email}
+                  </a>
               </p>
               <p className={css.list_item}>
                 <span className={css.info_title}>Phone: </span>
-                <span className={`${css.info_text} ${css.info_accent}`}>{owner.phone}</span>
+                <a
+                  className={`${css.info_text} ${css.info_accent}`}
+                  href="tel:{owner.phone}"
+                >
+                  {owner.phone}
+                </a>
               </p>
             </div>
           </div>
-          </div>
+        </div>
 
-        <p className={css.comments}> <span className={css.comments_title}>Comments:</span> {comments}</p>
+        <p className={css.comments}>
+          {' '}
+          <span className={css.comments_title}>Comments:</span> {comments}
+        </p>
         <div className={css.button_wrap}>
           <button
             type="button"
