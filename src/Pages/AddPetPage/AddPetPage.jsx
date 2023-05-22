@@ -9,7 +9,7 @@ import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
 import ModalWindow from 'Components/ModalWindow';
 // import AddPetPageTitles from './AddPetPageTitles';
-
+import Loader from 'Components/Loader/Loader';
 import instance from '../../Shared/api/auth-api';
 
 function AddPetPage() {
@@ -17,7 +17,7 @@ function AddPetPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const [formData, setFormData] = useState({});
@@ -37,23 +37,26 @@ function AddPetPage() {
 
   const handleNext = stepData => {
     console.log(' YF:FN NEXT ');
+    setIsLoading(true);
     if (selectedOption && currentStep < 3) {
       setStep(step + 1);
       setCurrentStep(currentStep + 1);
     } else {
       alert('Please select a breed');
     }
-
+    setIsLoading(false);
     setFormData(prevData => {
       return { ...prevData, ...stepData };
     });
   };
 
   const handlePreviousStep = stepData => {
+    setIsLoading(true);
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
     setStep(step - 1);
+    setIsLoading(false);
     setFormData(prevData => {
       return { ...prevData, ...stepData };
     });
@@ -74,6 +77,7 @@ function AddPetPage() {
       console.log(response);
 
       if (response.status === 201) {
+        setIsLoading(false);
         setShowModal(true);
       }
 
@@ -96,6 +100,7 @@ function AddPetPage() {
     for (const key in sendDataForm) {
       formDataSend.append(key, sendDataForm[key]);
     }
+    setIsLoading(true);
     if (category === 'your-pet') {
       savePet('/pets/', '', formDataSend);
     } else {
@@ -107,6 +112,7 @@ function AddPetPage() {
 
   return (
     <Section>
+      {isLoading && <Loader />}
       <Background />
       <div
         className={`${
