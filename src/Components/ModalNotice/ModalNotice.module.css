@@ -7,9 +7,11 @@
   bottom: 0;
   padding-top: 92px;
   background-color: rgba(81, 81, 81, 0.6);
+
   @media screen and (min-width: 768px) {
     padding-top: 148px;
   }
+
   @media screen and (min-width: 1280px) {
     padding-top: 112px;
   }
@@ -37,11 +39,12 @@
   }
 }
 
-.maincontent_wrap {
+.mainContent_wrap {
   display: flex;
   flex-direction: column;
   margin-bottom: 28px;
-  gap: 12px;
+  /* gap: 12px; */
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
@@ -69,17 +72,24 @@
 
 .image {
   position: relative;
-  width: 240px;
-  height: 240px;
+  border-radius: 0px 0px 40px 40px;
+  /* margin: auto 0; */
 }
-@media screen and (min-width: 768px) {
+
+.image_wrap {
+  width: 262px;
+  height: 298px;
+  margin: auto 24px auto 0;
+}
+
+/* @media screen and (min-width: 768px) {
   .image {
     width: 262px;
     height: 298px;
     margin-right: 24px;
     border-radius: 0px 0px 40px 40px;
   }
-}
+} */
 
 .list_item {
   display: flex;
@@ -123,21 +133,26 @@
 }
 
 .info {
-  width: 81px;
+  /* width: 81px; */
   font-size: 14px;
+  /* margin-right: auto; */
 
   @media screen and (min-width: 768px) {
-    width: 121px;
+    width: 75px;
     font-size: 16px;
   }
 }
 
 .span {
   font-size: 14px;
+  margin-left: auto;
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
+    margin-left: auto;
   }
 }
+
 .closeBtn {
   position: absolute;
   top: 16px;
@@ -232,6 +247,7 @@
 }
 
 @media screen and (min-width: 768px) {
+
   .addtobutton,
   .contactbutton {
     min-width: 129px;
@@ -259,6 +275,7 @@
   color: #54adff;
   border-color: #54adff;
 }
+
 .contactbutton:hover,
 .addtobutton:hover {
   color: #fef9f9;
@@ -287,6 +304,7 @@
   color: #000;
   background-color: #cce4fb;
 }
+
 @media screen and (min-width: 768px) {
   .sell_btn {
     left: 33px;

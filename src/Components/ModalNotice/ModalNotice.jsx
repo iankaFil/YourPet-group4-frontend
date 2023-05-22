@@ -98,13 +98,13 @@ const ModalNotice = ({
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
-        <div className={css.maincontent_wrap}>
+        <div className={css.mainContent_wrap}>
           <button className={css.closeBtn} onClick={onClose}>
             <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
           </button>
           <div className={css.image_wrap}>
             <img
-              align="center"
+              // align="center"
               src={photoURL}
               alt="фото зверя"
               className={css.image}
