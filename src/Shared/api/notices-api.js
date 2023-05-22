@@ -15,6 +15,16 @@ export const getNoticesByCategory = async category => {
   return data;
 };
 
+export const getUserFavoritesNotices = async () => {
+  const { data } = await instance.get(`/notices/favorites`);
+  return data;
+};
+
+export const getUserNotices = async () => {
+  const { data } = await instance.get(`notices/user-notices`);
+  return data;
+};
+
 export const getNoticesByTitleInCategory = async (category, query) => {
   if (!CATEGORIES.includes(category)) {
     throw new Error(
