@@ -24,7 +24,7 @@ const ModalNotice = ({
   photoURL,
   comments,
   onClose,
-  className = 'Modal content goes here',
+  className,
   owner,
 }) => {
   console.log('IKUHDFSIFDIUFI', _id);
@@ -97,57 +97,61 @@ const ModalNotice = ({
 
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
-      <div className={css.modalContent}>
-        <div className={css.mainContent_wrap}>
+      <div className={css.content}>
           <button className={css.closeBtn} onClick={onClose}>
             <CrossSmallIcon id="svg" className={css.crossSmallIcon} />
           </button>
-          <div className={css.image_wrap}>
+          <div className={css.content_wrap}>
             <img
-              // align="center"
               src={photoURL}
               alt="фото зверя"
               className={css.image}
             />
             <p className={css.sell_btn}>Sell</p>
-          </div>
           <div className={css.info_wrap}>
             <h2 className={css.title}>{title}</h2>
             <div className={css.list_info}>
               <p className={css.list_item}>
-                <span className={css.info}>Name: </span>
-                <span className={css.span}>{name}</span>
+                <span className={css.info_title}>Name: </span>
+                <span className={css.info_text}>{name}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>Birthday: </span>
-                <span className={css.span}>{formatDate(birthday)}</span>
+                <span className={css.info_title}>Birthday: </span>
+                <span className={css.info_text}>{formatDate(birthday)}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>Breed: </span>
-                <span className={css.span}>{breed}</span>
+                <span className={css.info_title}>Breed: </span>
+                <span className={css.info_text}>{breed}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>Place: </span>
-                <span className={css.span}>{place}</span>
+                <span className={css.info_title}>Place: </span>
+                <span className={css.info_text}>{place}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>The sex: </span>
-                <span className={css.span}>{sex}</span>
+                <span className={css.info_title}>The sex: </span>
+                <span className={css.info_text}>{sex}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>Email: </span>
-                <span className={css.span}>{owner.email}</span>
+                <span className={css.info_title}>Email: </span>
+                <span className={`${css.info_text} ${css.info_accent}`}>{owner.email}</span>
               </p>
               <p className={css.list_item}>
-                <span className={css.info}>Phone: </span>
-                <span className={css.span}>{owner.phone}</span>
+                <span className={css.info_title}>Phone: </span>
+                <span className={`${css.info_text} ${css.info_accent}`}>{owner.phone}</span>
               </p>
             </div>
           </div>
-        </div>
+          </div>
 
-        <p className={css.comments}>{comments}</p>
+        <p className={css.comments}> <span className={css.comments_title}>Comments:</span> {comments}</p>
         <div className={css.button_wrap}>
+          <button
+            type="button"
+            className={css.contactbutton}
+            onClick={() => handleContactClick(owner.phone)}
+          >
+            Contact
+          </button>
           <button
             type="button"
             onClick={handleFavoriteClick}
@@ -161,13 +165,6 @@ const ModalNotice = ({
               id="svg"
               onClick={handleFavoriteClick}
             />
-          </button>
-          <button
-            type="button"
-            className={css.contactbutton}
-            onClick={() => handleContactClick(owner.phone)}
-          >
-            Contact
           </button>
         </div>
       </div>
