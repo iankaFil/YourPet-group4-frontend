@@ -91,11 +91,10 @@ outline: 1px solid #00C3AD;
 .errorWrap {
   display: flex;
   width: 100%;
-  padding-left: 16px;
   align-items: center; 
+  justify-content: center;
   height: 24px; 
   font-size: 12px;
-  line-height: 1.33;
   color: #F43F5E;
   @media screen and (min-width: 768px) {
       height: 32px;
@@ -105,11 +104,10 @@ outline: 1px solid #00C3AD;
 .successMessage{
   display: flex;
   width: 100%;
-  padding-left: 16px;
   align-items: center;
+  justify-content: center;
   height: 24px;
   font-size: 12px;
-  line-height: 1.33;
   color: #00C3AD;
     @media screen and (min-width: 768px) {
       height: 32px;
