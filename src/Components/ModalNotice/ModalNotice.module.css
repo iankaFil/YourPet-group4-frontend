@@ -251,12 +251,14 @@
    color: #fef9f9;
    background: #54adff;
    border: transparent;
+   cursor: pointer;
  }
 
  .contactbutton {
    background: #ffffff;
    color: #54adff;
    border-color: #54adff;
+   cursor: pointer;
  }
 
  .contactbutton:hover,
