@@ -86,8 +86,7 @@ const NoticesPage = () => {
     } else {
       if (searchQuery) {
         dispatch(fetchNoticesByTitle({ category, searchQuery }));
-      }
-      if (category === 'user-notices') {
+      } else if (category === 'user-notices') {
         console.log(' ВЫЗОВ fetchUserNotices ');
         dispatch(fetchUserNotices());
       } else {
@@ -138,7 +137,7 @@ const NoticesPage = () => {
         setCategory(value);
         break;
     }
-    // setSearchQuery('');
+    setSearchQuery('');
   };
 
   const handlePageClick = ({ selected }) => {
