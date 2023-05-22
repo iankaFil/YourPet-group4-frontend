@@ -130,19 +130,13 @@ const ModalNotice = ({
               </p>
               <p className={css.list_item}>
                 <span className={css.info_title}>Email: </span>
-                  <a
-                    className={`${css.info_text} ${css.info_accent}`}
-                    href="mailto:{owner.email}"
-                  >
-                    {owner.email}
-                  </a>
+                <a className={css.user_contact} href="mailto:{owner.email}">
+                  {owner.email}
+                </a>
               </p>
               <p className={css.list_item}>
                 <span className={css.info_title}>Phone: </span>
-                <a
-                  className={`${css.info_text} ${css.info_accent}`}
-                  href="tel:{owner.phone}"
-                >
+                <a className={css.user_contact} href="tel:{owner.phone}">
                   {owner.phone}
                 </a>
               </p>
