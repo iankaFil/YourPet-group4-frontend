@@ -6,17 +6,21 @@ import { RxCross1 } from 'react-icons/rx';
 
 import css from 'Components/Notices/NoticesSearch/NoticesSearch.module.css';
 
-const NoticesSearch = ({ handleSearchChange }) => {
+const NoticesSearch = ({ handleSearchChange, handleChangeCategory }) => {
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('q');
+
+  useEffect(() => {
+    setSearch('');
+  }, [handleChangeCategory]);
 
   useEffect(() => {
     if (searchValue) {
       setSearch(searchValue);
       handleSearchChange(search);
     }
-  }, [handleSearchChange, search, searchValue]);
+  }, [handleSearchChange, searchValue]);
 
   const handleFormSubmit = event => {
     event.preventDefault();
@@ -29,6 +33,7 @@ const NoticesSearch = ({ handleSearchChange }) => {
   };
 
   const handleClearClick = event => {
+    setSearchParams('');
     setSearch('');
     handleSearchChange('');
   };
