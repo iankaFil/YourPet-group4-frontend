@@ -10,7 +10,7 @@ import ModalCongrats from 'Components/ModalCongrats/ModalCongrats';
 import Loader from 'Components/Loader/Loader';
 
 import { getUser } from 'Redux/auth/auth-selectors';
-import { updateUser } from 'Redux/auth/auth-operations';
+import { current, updateUser } from 'Redux/auth/auth-operations';
 import { fetchDeletePet, fetchOwnPets } from 'Redux/pets/pets-operations';
 import {getOwnPets} from './../../Redux/pets/pets-selectors';
 
@@ -27,6 +27,7 @@ const UserPage = () => {
   const { name, birthday, email, phone, city } = user;
 
    useEffect(() => {
+    dispatch(current());
     dispatch(fetchOwnPets());
   }, [dispatch]);
 
