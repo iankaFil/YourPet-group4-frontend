@@ -8,13 +8,13 @@ import NoticesBurgerMenu from '../NoticesBurgerMenu/NoticesBurgerMenu';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 
-const NoticesCategoriesNav = ({ handleCategory }) => {
+const NoticesCategoriesNav = ({ handleChangeCategory }) => {
   const isLoginUser = useSelector(isUserLogin);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
-      handleCategory(event.target.text);
+      handleChangeCategory(event.target.text);
     }
   };
 

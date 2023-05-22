@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import css from 'Pages/NoticesPage/NoticesPage.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,13 +30,40 @@ import {
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
-  const categoryItem = useSelector(selectNotices);
+
+  const location = useLocation();
+
+  const path = location.pathname;
+  // console.log('PATH-> ', path);
+
+  const extractCategoryFromPath = path => {
+    console.log('PATH-> ', path);
+    const pathSegments = path.split('/');
+    if (pathSegments[2] === 'for-free') {
+      return 'in-good-hands';
+    }
+    return pathSegments[2];
+  };
+
+  const [category, setCategory] = useState(() => extractCategoryFromPath(path));
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // при изменении категории через фильтр
+  useEffect(() => {
+    console.log('category->', category);
+    if (searchQuery) {
+      dispatch(fetchNoticesByTitle({ category, searchQuery }));
+    }
+    dispatch(fetchNoticesByTitle({ category }));
+  }, [category, dispatch, searchQuery]);
+
+  const notices = useSelector(selectNotices);
+
+  console.log('NOTICESSSSSSS', notices);
+
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [category, setCategory] = useState('');
 
   const [activePage, setActivePage] = useState(0);
 
@@ -43,7 +71,11 @@ const NoticesPage = () => {
     setSearchQuery(value);
   };
 
-  const handleCategory = value => {
+  // const transformCategorie = () => {};
+
+  const handleChangeCategory = value => {
+    console.log('handleChangeCategory', value);
+    // setCategory('');
     switch (value) {
       case 'lost/found':
         setCategory('lost-found');
@@ -53,27 +85,35 @@ const NoticesPage = () => {
         setCategory('in-good-hands');
         break;
 
+      case 'favorite ads':
+        setCategory('favorites');
+        break;
+
+      case 'my ads':
+        setCategory('own');
+        break;
+
       default:
         setCategory(value);
         break;
     }
-    setSearchQuery('');
+    // setSearchQuery('');
   };
 
-  const getCategoryFromURL = () => {
-    const path = window.location.pathname;
-    const categoryURL = path.split('/').pop();
-    if (categoryURL === 'for-free') {
-      setSearchQuery('');
-      return 'in-good-hand';
-    }
-    return categoryURL;
-  };
+  // const getCategoryFromURL = () => {
+  //   const path = window.location.pathname;
+  //   const categoryURL = path.split('/').pop();
+  //   if (categoryURL === 'for-free') {
+  //     setSearchQuery('');
+  //     return 'in-good-hand';
+  //   }
+  //   return categoryURL;
+  // };
 
-  useEffect(() => {
-    const url = getCategoryFromURL();
-    setCategory(url);
-  }, []);
+  // useEffect(() => {
+  //   const url = getCategoryFromURL();
+  //   setCategory(url);
+  // }, []);
 
   // //первий рендер
   // useEffect(() => {
@@ -81,19 +121,13 @@ const NoticesPage = () => {
   //   dispatch(fetchNoticesByCategory(categoryURL));
   // }, [dispatch]);
 
-  // при изменении категории через фильтр
-  useEffect(() => {
-    console.log(category);
-    dispatch(fetchNoticesByTitle({ category, searchQuery }));
-  }, [category, dispatch, searchQuery]);
-
   const handlePageClick = ({ selected }) => {
     console.log('CLICK');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const page = selected + 1;
     setActivePage(selected);
-    const categoryURL = getCategoryFromURL();
-    dispatch(fetchNoticesByTitle({ category: categoryURL, searchQuery, page }));
+    // const categoryURL = getCategoryFromURL();
+    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
   };
 
   return (
@@ -102,12 +136,10 @@ const NoticesPage = () => {
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch handleSearchChange={handleSearchChange} />
-        <NoticesCategoriesNav handleCategory={handleCategory} />
+        <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
 
-        {categoryItem && categoryItem.length > 0 && (
-          <CategoryList card={categoryItem} />
-        )}
-        {categoryItem && categoryItem.length > 0 && (
+        {notices && notices.length > 0 && <CategoryList card={notices} />}
+        {notices && notices.length > 0 && (
           <div className={css.wrapper}>
             <ReactPaginate
               previousLabel={<BsArrowLeft />}
