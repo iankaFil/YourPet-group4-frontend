@@ -18,6 +18,8 @@ import Loader from 'Components/Loader/Loader';
 
 import {
   fetchNoticesByTitle,
+  fetchFavotiteNotices,
+  fetchUserNotices,
   // fetchNoticesByCategory,
 } from 'Redux/notices/notices-operations';
 
@@ -34,27 +36,64 @@ const NoticesPage = () => {
   const location = useLocation();
 
   const path = location.pathname;
-  // console.log('PATH-> ', path);
+  console.log('PATH-> ', path);
 
-  const extractCategoryFromPath = path => {
+  const [category, setCategory] = useState(() => extractCategoryFromPath(path));
+
+  function transformCategorie(value) {
+    switch (value) {
+      case 'lost/found':
+        return 'lost-found';
+
+      case 'in good hands':
+        return 'in-good-hands';
+
+      case 'favorite ads':
+      case 'favorite':
+        return 'favorites';
+
+      case 'my ads':
+        return 'own';
+
+      case 'own':
+        return 'user-notices';
+
+      default:
+        return value;
+    }
+  }
+
+  function extractCategoryFromPath(path) {
     console.log('PATH-> ', path);
     const pathSegments = path.split('/');
+
+    const validPath = transformCategorie(pathSegments[2]);
+    console.log('VALIDDDDD PATH-> ', validPath);
+
     if (pathSegments[2] === 'for-free') {
       return 'in-good-hands';
     }
-    return pathSegments[2];
-  };
+    return validPath;
+  }
 
-  const [category, setCategory] = useState(() => extractCategoryFromPath(path));
   const [searchQuery, setSearchQuery] = useState('');
 
   // при изменении категории через фильтр
   useEffect(() => {
     console.log('category->', category);
-    if (searchQuery) {
-      dispatch(fetchNoticesByTitle({ category, searchQuery }));
+    if (category === 'favorites') {
+      dispatch(fetchFavotiteNotices());
+    } else {
+      if (searchQuery) {
+        dispatch(fetchNoticesByTitle({ category, searchQuery }));
+      }
+      if (category === 'user-notices') {
+        console.log(' ВЫЗОВ fetchUserNotices ');
+        dispatch(fetchUserNotices());
+      } else {
+        dispatch(fetchNoticesByTitle({ category }));
+      }
     }
-    dispatch(fetchNoticesByTitle({ category }));
   }, [category, dispatch, searchQuery]);
 
   const notices = useSelector(selectNotices);
@@ -70,8 +109,6 @@ const NoticesPage = () => {
   const handleSearchChange = value => {
     setSearchQuery(value);
   };
-
-  // const transformCategorie = () => {};
 
   const handleChangeCategory = value => {
     console.log('handleChangeCategory', value);
@@ -90,7 +127,11 @@ const NoticesPage = () => {
         break;
 
       case 'my ads':
-        setCategory('own');
+        setCategory('user-notices');
+        break;
+
+      case 'favorite':
+        setCategory('favorites');
         break;
 
       default:
@@ -99,27 +140,6 @@ const NoticesPage = () => {
     }
     // setSearchQuery('');
   };
-
-  // const getCategoryFromURL = () => {
-  //   const path = window.location.pathname;
-  //   const categoryURL = path.split('/').pop();
-  //   if (categoryURL === 'for-free') {
-  //     setSearchQuery('');
-  //     return 'in-good-hand';
-  //   }
-  //   return categoryURL;
-  // };
-
-  // useEffect(() => {
-  //   const url = getCategoryFromURL();
-  //   setCategory(url);
-  // }, []);
-
-  // //первий рендер
-  // useEffect(() => {
-  //   const categoryURL = getCategoryFromURL();
-  //   dispatch(fetchNoticesByCategory(categoryURL));
-  // }, [dispatch]);
 
   const handlePageClick = ({ selected }) => {
     console.log('CLICK');

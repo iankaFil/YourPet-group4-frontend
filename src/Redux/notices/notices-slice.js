@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchNoticesByTitle,
   fetchNoticesByCategory,
+  fetchFavotiteNotices,
+  fetchUserNotices,
   // fetchNoticesById
 } from './notices-operations';
 
@@ -46,6 +48,31 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByTitle.rejected, (state, action) => {
         handleRejected(state, action);
       })
+
+      .addCase(fetchFavotiteNotices.pending, state => {
+        state.items = [];
+        handlePending(state);
+      })
+      .addCase(fetchFavotiteNotices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchFavotiteNotices.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+
+      .addCase(fetchUserNotices.pending, state => {
+        state.items = [];
+        handlePending(state);
+      })
+      .addCase(fetchUserNotices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchUserNotices.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+
       .addCase(fetchNoticesByCategory.pending, state => {
         state.items = [];
         handlePending(state);
