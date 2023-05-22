@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Section from 'Components/Section';
 import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
@@ -95,12 +98,21 @@ const NoticesPage = () => {
     }
   }, [category, dispatch, searchQuery]);
 
+const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (error) {
+      toast.info('There are no notices for this request');
+    }
+  }, [error]);
+
+
   const notices = useSelector(selectNotices);
 
   console.log('NOTICESSSSSSS', notices);
 
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  
   const totalPages = useSelector(selectTotalPages);
 
   const [activePage, setActivePage] = useState(0);
@@ -174,6 +186,7 @@ const NoticesPage = () => {
             />
           </div>
         )}
+        <ToastContainer autoClose={1400} position="top-center" />
       </Container>
     </Section>
   );
