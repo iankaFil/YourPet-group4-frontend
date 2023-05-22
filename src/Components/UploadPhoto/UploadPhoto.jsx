@@ -105,7 +105,7 @@ const UploadPhoto = () => {
           </div>
       )}
       {(uploadedPhoto && isSubmitted) ? (
-        <button type="button" onClick={handlePreviewClick} className={css.editButton}>
+        <button type="button" onClick={handlePreviewClick} className={`${css.button} ${css.editButton}`}>
           <CameraIcon id='svg' className={css.cameraIcon} />
           Edit photo</button>
       ) : (
