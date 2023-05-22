@@ -107,8 +107,9 @@ const ModalNotice = ({
               alt="фото зверя"
               className={css.image}
             />
-            <p className={css.sell_btn}>Sell</p>
+            
           <div className={css.info_wrap}>
+            <p className={css.sell_btn}>Sell</p>
             <h2 className={css.title}>{title}</h2>
             <div className={css.list_info}>
               <p className={css.list_item}>
