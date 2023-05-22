@@ -120,7 +120,7 @@ const ModalNotice = ({
               </p>
               <p className={css.list_item}>
                 <span className={css.info}>Birthday: </span>
-                <span className={css.span}>{formatDate(birthday)}</span>:
+                <span className={css.span}>{formatDate(birthday)}</span>
               </p>
               <p className={css.list_item}>
                 <span className={css.info}>Breed: </span>
