@@ -10,7 +10,7 @@ export const registrationValidationSchema = Yup.object().shape({
     .min(6, 'Password must be at least 6 characters')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'Must be at least one lowercase and uppercase letter, one number'
+      'Must be at least one number, one lowercase and uppercase letter'
     ),
   confirmPassword: Yup.string()
     .nullable()
@@ -32,6 +32,6 @@ export const loginValidationSchema = Yup.object().shape({
     .min(6, 'Password must be at least 6 characters')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'Password must contain at least one lowercase letter, one uppercase letter, and one digit'
+      'Must be at least one number, one lowercase and uppercase letter'
     ),
 });

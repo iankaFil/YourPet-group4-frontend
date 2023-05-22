@@ -52,44 +52,44 @@ const UserData = ({ avatarURL, name, birthday, email, phone, city, handleClick, 
     <div className={css.user}>
       <h2 className={css.user__title}>My information:</h2>
       <div className={css.user__wrapper}>
-         <UploadPhoto/>
-      <Formik
-        initialValues={{
-          photo: avatarURL || null,
-          name: name || '',
-          email: email || '',
-          birthday: birthday || '',
-          phone: phone || '',
-          city: city || '',
-        }}
-        validationSchema={userDataValidationSchema}
-        onSubmit={handleFormSubmit}
-      >
-        {({ values }) => (
-          <Form className={css.form}>
-            <div className={css.inputContainer}>
-              <div className={css.inputWrap}>
-                <UserDataItem type="text" name="name" label="Name:" handleClick={handleClick} />
-                <UserDataItem type="email" name="email" label="Email:" handleClick={handleClick} />
-                <UserDatePicker
-                  type="text"
-                  name="birthday"
-                  label="Birthday:"
-                  handleClick={handleClick}
-                  initialDate={values.birthday}
-                />
-                <UserDataItem type="text" name="phone" label="Phone:" handleClick={handleClick} />
-                <UserDataItem type="text" name="city" label="City:" handleClick={handleClick} />
+        <UploadPhoto/>
+        <Formik
+          initialValues={{
+            photo: avatarURL || null,
+            name: name || '',
+            email: email || '',
+            birthday: birthday || '',
+            phone: phone || '',
+            city: city || '',
+          }}
+          validationSchema={userDataValidationSchema}
+          onSubmit={handleFormSubmit}
+        >
+          {({ values }) => (
+            <Form className={css.form}>
+              <div className={css.inputContainer}>
+                <div className={css.inputWrap}>
+                  <UserDataItem type="text" name="name" label="Name:" handleClick={handleClick} />
+                  <UserDataItem type="email" name="email" label="Email:" handleClick={handleClick} />
+                  <UserDatePicker
+                    type="text"
+                    name="birthday"
+                    label="Birthday:"
+                    handleClick={handleClick}
+                    initialDate={values.birthday}
+                  />
+                  <UserDataItem type="text" name="phone" label="Phone:" handleClick={handleClick} />
+                  <UserDataItem type="text" name="city" label="City:" handleClick={handleClick} />
+                </div>
+                <Link className={css.link} onClick={onLogout}>
+                  <LogoutIcon id="svg" className={css.logoutIcon} />
+                  Log Out
+                </Link>
               </div>
-              <Link className={css.link} onClick={onLogout}>
-                <LogoutIcon id="svg" className={css.logoutIcon} />
-                Log Out
-              </Link>
-            </div>
-          </Form>
-        )}
-      </Formik>
-     </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
       {showModal && (
         <ModalApproveAction onClose={handleCloseModal} handleApproveClick={handleLogout}>
           <h2 className={css.modalTitle}>Already leaving?</h2>
