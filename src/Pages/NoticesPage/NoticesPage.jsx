@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify'; //
 import 'react-toastify/dist/ReactToastify.css';
 
 import Section from 'Components/Section';
