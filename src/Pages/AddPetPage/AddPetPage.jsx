@@ -1,6 +1,9 @@
 import css from './AddPetPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import CurrentSteps from './Steps/CurrentSteps';
 import Section from 'Components/Section/Section';
 import Background from 'Components/Background/Background';
@@ -42,7 +45,9 @@ function AddPetPage() {
       setStep(step + 1);
       setCurrentStep(currentStep + 1);
     } else {
-      alert('Please select a breed');
+      toast.info(
+        'Please select option!'
+      );
     }
     setIsLoading(false);
     setFormData(prevData => {
@@ -235,6 +240,7 @@ function AddPetPage() {
           Congratulations, your pet has been successfully added to our site
         </ModalWindow>
       )}
+      <ToastContainer autoClose={1400} position="top-center" />
     </Section>
   );
 }
