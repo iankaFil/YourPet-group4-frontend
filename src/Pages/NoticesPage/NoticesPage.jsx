@@ -13,7 +13,8 @@ import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'Components/Notices/NoticesFilters/NoticesFilters';
 import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { current } from 'Redux/auth/auth-operations';
+// import { current } from 'Redux/auth/auth-operations';
+import { current } from 'Redux/user/user-operation';
 // import CategoryItem from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem';
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
@@ -55,6 +56,14 @@ const NoticesPage = () => {
   console.log('PATH-> ', path);
 
   const [category, setCategory] = useState(() => extractCategoryFromPath(path));
+  console.log('KJHBKJHBKJBKJBKJB', category);
+
+  // let displayPagination;
+  // useEffect(() => {
+  //   if (category === 'favorites') {
+  //     displayPagination = false;
+  //   }
+  // }, [category, displayPagination]);
 
   function transformCategorie(value) {
     switch (value) {
@@ -105,6 +114,8 @@ const NoticesPage = () => {
   const error = useSelector(selectError);
 
   const totalPages = useSelector(selectTotalPages);
+
+  console.log('totalPages', totalPages);
 
   const [activePage, setActivePage] = useState(0);
 
@@ -228,22 +239,26 @@ const NoticesPage = () => {
         <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
 
         {notices && notices.length > 0 && <CategoryList card={notices} />}
-        {notices && notices.length > 0 && (
-          <div className={css.wrapper}>
-            <ReactPaginate
-              previousLabel={<BsArrowLeft />}
-              nextLabel={<BsArrowRight />}
-              pageCount={Math.ceil(totalPages) || 0}
-              onPageChange={handlePageClick}
-              containerClassName={css.pagination}
-              activeClassName={css.paginationActive}
-              pageRangeDisplayed={2}
-              marginPagesDisplayed={2}
-              breakLabel={'...'}
-              forcePage={activePage}
-            />
-          </div>
-        )}
+        {category !== 'favorites' &&
+          category !== 'user-notices' &&
+          notices &&
+          totalPages > 1 &&
+          notices.length > 0 && (
+            <div className={css.wrapper}>
+              <ReactPaginate
+                previousLabel={<BsArrowLeft />}
+                nextLabel={<BsArrowRight />}
+                pageCount={Math.ceil(totalPages) || 0}
+                onPageChange={handlePageClick}
+                containerClassName={css.pagination}
+                activeClassName={css.paginationActive}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
+                breakLabel={'...'}
+                forcePage={activePage}
+              />
+            </div>
+          )}
         <ToastContainer autoClose={1400} position="top-center" />
       </Container>
     </Section>

@@ -15,7 +15,8 @@ import { ReactComponent as PawIcon } from 'Components/SvgIcons/paw.svg';
 import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
-import { getUser } from 'Redux/auth/auth-selectors';
+// import { getUser } from 'Redux/auth/auth-selectors';
+import { getUser } from 'Redux/user/user-selectors';
 
 import ModalNotice from 'Components/ModalNotice/ModalNotice';
 // import ModalAcces from 'Components/ModalAcces/ModalAcces';
@@ -35,24 +36,6 @@ const CategoryItem = ({
   comments,
   ...restProps
 }) => {
-  // console.log(
-  //   'PROPSSSSSSS',
-  //   owner,
-  //   _id,
-  //   title,
-  //   photoURL,
-  //   price,
-  //   place,
-  //   sex,
-  //   birthday,
-  //   owner,
-  //   category,
-  //   name,
-  //   breed,
-  //   comments
-  // );
-
-  // console.log('REST PROPS', restProps);
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
@@ -83,6 +66,17 @@ const CategoryItem = ({
     }
     return false;
   });
+
+  // const [isRemoveActive, setIsRemoveActive] = useState(() => {
+  //   if (isLogin && user) {
+  //     if (owner._id === user._id) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  //   return false;
+  // });
 
   const handleFavoriteClick = () => {
     if (!isLogin) {
@@ -133,13 +127,16 @@ const CategoryItem = ({
           <AddToFavoriteIcon id="svg" fill={favorite ? '#54adff' : 'none'} />
         </button>
 
-        <button
-          className={css.delete_btn}
-          type="button"
-          onClick={handleDeleteClick}
-        >
-          <Delete id="svg" />
-        </button>
+        {owner._id === user._id && (
+          <button
+            className={css.delete_btn}
+            type="button"
+            onClick={handleDeleteClick}
+          >
+            <Delete id="svg" />
+          </button>
+        )}
+
         {/* {showModal && <ModalAcces onClose={handleCloseModal} title={title} />} */}
 
         <ul className={css.btn_list}>

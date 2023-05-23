@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import instance from 'Shared/api/auth-api';
+import { getCurrent } from '../../Shared/api/auth-api';
 
 export const addToFavorite = createAsyncThunk(
   'user/addFavorite',
@@ -26,6 +27,19 @@ export const deleteFromFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const current = createAsyncThunk(
+  'user/current',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const data = await getCurrent(auth.token);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );
