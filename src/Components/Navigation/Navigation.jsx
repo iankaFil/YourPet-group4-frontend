@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 function isMobileDevice() {
   return (
-    window.innerWidth < 1024 ||
+    window.innerWidth < 1279 ||
     typeof window.orientation !== 'undefined' ||
     navigator.userAgent.indexOf('IEMobile') !== -1
   );

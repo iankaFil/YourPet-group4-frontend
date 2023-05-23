@@ -22,7 +22,7 @@ function Nav({ handleLinkClick }) {
       <li className={css.nav_item}>
         <NavLink
           className={({ isActive }) => (isActive ? css.active : '')}
-          to="/notices/sell"
+          to="/notices"
           onClick={handleClick}
         >
           Notices
