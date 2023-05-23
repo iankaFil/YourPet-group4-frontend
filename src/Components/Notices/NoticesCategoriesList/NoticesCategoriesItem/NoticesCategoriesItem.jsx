@@ -179,6 +179,7 @@ const CategoryItem = ({
             breed={breed}
             place={place}
             sex={sex}
+            category={category}
             photoURL={photoURL}
             comments={comments}
           />
