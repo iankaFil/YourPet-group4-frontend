@@ -12,7 +12,7 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
-    console.log("birthday=>", birthday)
+    console.log('birthday=>', birthday);
     validationSchema
       .validate({ name, birthday, breed }, { abortEarly: false })
       .then(() => {
@@ -28,15 +28,15 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
       });
   };
 
-  const setBirthdayWrapper = (brd) => {
-    setBirthday(brd)
-  }
+  const setBirthdayWrapper = brd => {
+    setBirthday(brd);
+  };
 
   return (
     <div className={css.FormWrapper}>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="name">
-          Name pet
+          Pet`s name
         </label>
         <input
           className={css.Input}
@@ -49,7 +49,11 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <CustomDatePicker className={css.Input} setBirthdayWrapper={setBirthdayWrapper} birthday={birthday } />
+        <CustomDatePicker
+          className={css.Input}
+          setBirthdayWrapper={setBirthdayWrapper}
+          birthday={birthday}
+        />
         {errors.birthdate && (
           <p className={css.ErrorText}>{errors.birthdate}</p>
         )}

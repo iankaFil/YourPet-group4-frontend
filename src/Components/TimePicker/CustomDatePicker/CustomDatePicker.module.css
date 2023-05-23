@@ -6,12 +6,26 @@
     border-radius: 40px;
     box-shadow: none;
     outline: none;
-    width: 100%;
-    font-size: 16px;
-    padding: 15px;
-    border: 2px solid #54adff;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 9px 16px;
+    border: 1px solid #54adff;
     margin-top: 8px;
+    width: 100%;
+
+    @media screen and (min-width:1280px) {
+
+        font-size: 16px;
+        padding: 15px;
+    }
 }
+
+.dateInput::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .dateInput::-webkit-inner-spin-button,
 .dateInput::-webkit-calendar-picker-indicator {
     display: none;
@@ -23,11 +37,11 @@
     position: absolute;
     top: 35px;
     right: 0;
-    width: 100%;
+    /* width: 100%; */
     /* height: 100%; */
     opacity: 0;
     cursor: pointer;
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 .datePickerIcon::-webkit-calendar-picker-indicator {
@@ -42,15 +56,28 @@
 .LabelStep {
     color: #111111;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 14px;
+    line-height: 19px;
+
+    @media screen and (min-width:1280px) {
+
+        font-size: 20px;
+        line-height: 26px;
+    }
 
 }
 
 .calendarIcon {
     fill: #54adff;
     position: absolute;
-    top: 46px;
-    right: 15px;
+    top: 34px;
+    right: 10px;
     pointer-events: none;
+
+
+    @media screen and (min-width:1280px) {
+
+        top: 46px;
+        right: 15px;
+    }
 }

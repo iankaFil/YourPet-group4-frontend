@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  gap: 25px;
+  gap: 20px;
+
+  @media screen and (min-width:1280px) {
+
+    gap: 25px;
+  }
 }
 
 .WrapperLabelInput {
@@ -15,21 +20,42 @@
 .LabelStep {
   color: #111111;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 19px;
+
+  @media screen and (min-width:1280px) {
+
+    font-size: 20px;
+    line-height: 26px;
+  }
+
 }
 
 .Input {
   border-radius: 40px;
   box-shadow: none;
   outline: none;
-  font-size: 16px;
-  padding: 15px;
-  border: 2px solid #54adff;
+  font-size: 14px;
+  padding: 9px 16px;
+  border: 1px solid #54adff;
+
+  @media screen and (min-width:1280px) {
+
+    font-size: 16px;
+    padding: 15px;
+  }
 }
 
-.Input:focus {
-  border-color: #54adff;
+.LinkAddPEtLitkCancel {
+  border-radius: 40px;
+  color: #54adff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 8px 86px;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
 }
 
 .ErrorText {
@@ -44,20 +70,42 @@
 
 .ErrorTextLow {
   position: absolute;
-  bottom: -25%;
-  right: 76%;
+  bottom: -30%;
+  right: 65%;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: #f43f5e;
+
+  @media screen and (min-width:1280px) {
+    bottom: -25%;
+    right: 76%;
+  }
+
 }
 
-.LinkAddPEt {
+/* .LinkAddPEt {
   margin-top: 23.5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 38px;
+} */
+.LinkAddPEt {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and(min-width:1280px) {
+    margin-top: 23.5px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 38px;
+  }
+
 }
 
 .LinkAddPEtLitkCancel {

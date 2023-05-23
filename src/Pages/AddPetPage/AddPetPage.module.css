@@ -1,12 +1,23 @@
 .WrapperAddPet {
-  width: max-content;
-  min-height: 542px;
-  margin: 50px auto;
+  width: 280px;
+  border-radius: 40px;
+  min-height: 496px;
   background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
-  padding: 20px 32px;
+  margin: 24px auto;
+  padding: 20px 8px;
+
+  @media screen and (min-width:1280px) {
+    width: max-content;
+    min-height: 542px;
+    margin: 50px auto;
+
+
+    padding: 20px 32px;
+
+  }
 }
+
 .WrapperAddPetThree {
   width: max-content;
   min-height: 542px;
@@ -16,22 +27,35 @@
   border-radius: 40px;
   padding: 20px 75px;
 }
+
 .AddPet {
   font-weight: 500;
-  font-size: 28px;
-  line-height: 38px;
+  font-size: 20px;
+  line-height: 27px;
+  margin-left: 10px;
+
+  @media screen and (min-width:1280px) {
+    font-size: 28px;
+    line-height: 38px;
+  }
 }
 
 .StepList {
-  margin-top: 24px;
   display: flex;
-  gap: 22px;
+  gap: 12px;
+  margin-top: 24px;
+
+  @media screen and (min-width:1280px) {
+    gap: 22px;
+  }
 }
+
 .StepInfoMidl {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .StepItemActive {
   color: #54adff;
   font-weight: 500;
@@ -46,51 +70,85 @@
   background-color: #54adff;
   border-radius: 8px;
 }
+
 .StepItemDone {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 26px;
   color: #00c3ad;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+
+  @media screen and (min-width:1280px) {
+    font-size: 16px;
+    line-height: 26px;
+  }
 }
+
 .StepItemDone::after {
-  content: '';
-  display: block;
-  width: 120px;
-  height: 8px;
-  margin-top: 12px;
   background-color: #00c3ad;
   border-radius: 8px;
+  content: '';
+  margin-top: 12px;
+  display: block;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+
+  @media screen and (min-width:1280px) {
+    width: 120px;
+  }
 }
 
 .StepItemCurrent {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 26px;
   color: #54adff;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+
+  @media screen and (min-width:1280px) {
+    font-size: 16px;
+    line-height: 26px;
+  }
 }
+
 .StepItemCurrent::after {
   content: '';
-  display: block;
-  width: 120px;
-  height: 8px;
   margin-top: 12px;
+  display: block;
+  width: 80px;
+  height: 8px;
   background-color: #54adff;
   border-radius: 8px;
+
+  @media screen and (min-width:1280px) {
+    width: 120px;
+  }
 }
+
 .StepItem {
   font-weight: 500;
-  font-size: 16px;
-  line-height: 26px;
+  font-size: 10px;
+  line-height: 14px;
   color: #888888;
+
+  @media screen and (min-width:1280px) {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
 }
+
 .StepItem::after {
-  content: '';
-  display: block;
-  width: 120px;
-  height: 8px;
-  margin-top: 12px;
   background-color: #cce4fb;
   border-radius: 8px;
+  content: '';
+  margin-top: 12px;
+  display: block;
+  width: 80px;
+  height: 8px;
+
+  @media screen and (min-width:1280px) {
+    width: 120px;
+  }
 }
 
 .ChooseOptionList {
@@ -101,6 +159,10 @@
 }
 
 .PetButton {
+
+
+  /* @media screen and (min-width:1280px) {} */
+
   padding: 8px 16px;
   border: none;
   cursor: pointer;
@@ -125,11 +187,20 @@
 }
 
 .LinkAddPEt {
-  margin-top: 146px;
+  margin-top: 100px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 24px;
+  gap: 10px;
+
+  @media screen and(min-width:1280px) {
+    margin-top: 146px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 24px;
+  }
+
 }
 
 .LinkAddPEtLitkCancel {
@@ -138,6 +209,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  padding: 8px 86px;
   cursor: pointer;
   border: none;
   background-color: inherit;
@@ -154,6 +226,7 @@
   border: none;
   cursor: pointer;
 }
+
 .ButtonEl {
   display: flex;
   gap: 11.43px;

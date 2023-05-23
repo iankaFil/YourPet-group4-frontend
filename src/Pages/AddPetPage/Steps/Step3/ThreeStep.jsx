@@ -30,7 +30,7 @@ const ThreeStep = ({ handleNext, handlePreviousStep, formData }) => {
   return (
     <div>
       <div className={css.wrapperPoto}>
-        <label className={css.labelAddText}>Add photo</label>
+        <label className={css.labelAddText}>Load the {'\n'} pet`s image:</label>
         <div>
           <input
             type="file"
