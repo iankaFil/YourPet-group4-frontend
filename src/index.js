@@ -14,9 +14,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="/YourPet-group4-frontend">
-            <App />
-          </BrowserRouter>
+        <BrowserRouter basename="/YourPet-group4-frontend">
+          <App />
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>

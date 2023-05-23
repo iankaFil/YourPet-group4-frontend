@@ -13,13 +13,17 @@ export const fetchNoticesByTitle = createAsyncThunk(
   'notices/search',
   async ({ category, searchQuery, page, gender, age }, thunkAPI) => {
     try {
+      const params = {
+        q: searchQuery,
+        page,
+        gender,
+        age,
+      };
+
+      console.log(' ПАРАМЕТРЫ ЗАПРОСА В fetchNoticesByTitle', params);
+
       const response = await instance.get(`/notices/${category}`, {
-        params: {
-          q: searchQuery,
-          page,
-          gender,
-          age,
-        },
+        params,
       });
       // console.log('UUUUUUUUUTTTTTTTTT', response.data);
       return response.data;

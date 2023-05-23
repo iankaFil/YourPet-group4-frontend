@@ -73,7 +73,8 @@ const CategoryItem = ({
   }
 
   const [favorite, setFavorite] = useState(() => {
-    if (isLogin && user.favorite.length > 0) {
+    // console.log(' USERRRRRRRRRRR ', user);
+    if (isLogin && user && user.favorite && user.favorite.length > 0) {
       if (user.favorite.includes(_id)) {
         return true;
       } else {
