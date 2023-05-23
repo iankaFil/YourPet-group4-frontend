@@ -133,6 +133,7 @@
   letter-spacing: -0.01em;
   margin-bottom: 20px;
   color: #000000;
+
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 1.4;
@@ -271,6 +272,8 @@
   font-size: 12px;
   line-height: 1.33;
   font-weight: 500;
+  text-decoration-line: underline;
+  color: #FFC107;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -279,5 +282,5 @@
 }
 
 .user_contact:hover {
-  color: #ffc107;
+  text-decoration: none;
 }
