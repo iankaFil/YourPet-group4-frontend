@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import css from './NoticesCategoriesItem.module.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,7 +17,10 @@ import { fetchAddToFavorite, fetchDeleteFromFavorite } from 'Redux/auth/auth-ope
 import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
 
 import ModalNotice from 'Components/ModalNotice/ModalNotice';
-// import ModalAcces from 'Components/ModalAcces/ModalAcces';
+import ModalAcces from 'Components/ModalAcces/ModalAcces';
+
+import css from './NoticesCategoriesItem.module.css';
+import { fetchDeleteNotice } from 'Redux/notices/notices-operations';
 
 const CategoryItem = ({
   _id,
@@ -36,8 +38,9 @@ const CategoryItem = ({
   ...restProps
 }) => {
   const dispatch = useDispatch();
-
+ 
   const [showModal, setShowModal] = useState(false);
+  const [showModalAccess, setShowModalAccess] = useState(false);
 
   const user = useSelector(getUser);
   const isLogin = useSelector(isUserLogin);
@@ -46,16 +49,19 @@ const CategoryItem = ({
     setShowModal(true);
   };
 
-  const handleDeleteClick = () => {
-    setShowModal(true);
+  const handleDeleteBtnClick = () => {
+    setShowModalAccess(true);
   };
 
   function handleCloseModal() {
     setShowModal(false);
   }
 
+   function handleCloseModalAccess() {
+    setShowModalAccess(false);
+  }
+
   const [favorite, setFavorite] = useState(() => {
-    // console.log(' USERRRRRRRRRRR ', user);
     if (isLogin && user && user.favorite && user.favorite.length > 0) {
       if (user.favorite.includes(_id)) {
         return true;
@@ -66,6 +72,10 @@ const CategoryItem = ({
     return false;
   });
 
+  const handleDeleteClick = (_id) => {
+     dispatch(fetchDeleteNotice(_id));
+            setShowModalAccess(false);
+  }
   // const [isRemoveActive, setIsRemoveActive] = useState(() => {
   //   if (isLogin && user) {
   //     if (owner._id === user._id) {
@@ -130,19 +140,19 @@ const CategoryItem = ({
           <button
             className={css.delete_btn}
             type="button"
-            onClick={handleDeleteClick}
+            onClick={handleDeleteBtnClick}
           >
             <Delete id="svg" />
           </button>
         )}
 
-        {/* {showModal && <ModalAcces onClose={handleCloseModal} title={title} />} */}
+        {showModalAccess && <ModalAcces onClose={handleCloseModalAccess} title={title} handleDeleteClick={handleDeleteClick} _id={ _id} />}
 
         <ul className={css.btn_list}>
           <p className={css.sell_btn}>{category}</p>
           <li className={css.list_item}>
             <button className={css.img_btn}>
-              <LocationIcon id="svg" />
+              <LocationIcon id="svg" className={css.locationIcon} />
               {place}
             </button>
           </li>

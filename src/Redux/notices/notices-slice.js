@@ -4,13 +4,11 @@ import {
   fetchNoticesByCategory,
   fetchFavotiteNotices,
   fetchUserNotices,
-  // fetchAddToFavorite,
-  // fetchNoticesById
+  fetchDeleteNotice,
 } from './notices-operations';
 
 const initialState = {
-  items: [],
-  // favorite: [],
+  items: [], 
   totalPages: null,
   isLoading: false,
   error: null,
@@ -50,22 +48,6 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByTitle.rejected, (state, action) => {
         handleRejected(state, action);
       })
-
-      // .addCase(fetchAddToFavorite.pending, state => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(fetchAddToFavorite.fulfilled, (state, action) => {
-      //   console.log('PAYLLLLLLLLLLLLL', action.payload.id);
-      //   state.isLoading = false;
-      //   state.favorite.push(action.payload.id);
-      //   state.error = null;
-      // })
-      // .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
-      //   state.notices = { data: [] };
-      //   state.isLoading = false;
-      //   state.error = payload.message;
-      // })
-
       .addCase(fetchFavotiteNotices.pending, state => {
         state.items = [];
         handlePending(state);
@@ -99,17 +81,18 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByCategory.rejected, (state, action) => {
         handleRejected(state, action);
+      })
+      .addCase(fetchDeleteNotice.pending, state => {
+        handlePending(state);
+      })
+      .addCase(fetchDeleteNotice.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        const index = state.items.findIndex(item => item.id === payload);
+        state.items.splice(index, 1);
+      })
+      .addCase(fetchDeleteNotice.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
       });
-
-    // .addCase(fetchNoticesById.pending, state => handlePending(state))
-    // .addCase(fetchNoticesById.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.items = action.payload.notice;
-    //   state.totalPages = action.payload.totalPages;
-    // })
-    // .addCase(fetchNoticesById.rejected, (state, action) =>
-    //   handleRejected(state, action)
-    // );
   },
 });
 

@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {
+  deleteNotice,
   getUserFavoritesNotices,
-  getUserNotices,
-  // addToFavorite
+  getUserNotices
 } from 'Shared/api/notices-api';
 
 export const instance = axios.create({
@@ -20,13 +20,9 @@ export const fetchNoticesByTitle = createAsyncThunk(
         gender,
         age,
       };
-
-      console.log(' ПАРАМЕТРЫ ЗАПРОСА В fetchNoticesByTitle', params);
-
       const response = await instance.get(`/notices/${category}`, {
         params,
       });
-      // console.log('UUUUUUUUUTTTTTTTTT', response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -34,27 +30,11 @@ export const fetchNoticesByTitle = createAsyncThunk(
   }
 );
 
-// export const fetchAddToFavorite = createAsyncThunk(
-//   'user/addFavorite',
-//   async (id, thunkAPI) => {
-//     console.log("ID", id)
-//      try {
-//       // getToken.set(value);
-       
-//       const result = await addToFavorite(id);
-//       return result;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
-
 export const fetchFavotiteNotices = createAsyncThunk(
   'notices/favorites',
   async (_, thunkAPI) => {
     try {
       const response = await getUserFavoritesNotices();
-      // console.log('UUUUUUUUUTTTTTTTTT', response.favorite);
       return response.favorite;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -67,7 +47,6 @@ export const fetchUserNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await getUserNotices();
-      console.log('UUUUUUUUUTTTTTTTTT', response.notices);
       return response.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -95,6 +74,18 @@ export const fetchNoticesById = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchDeleteNotice = createAsyncThunk(
+  'notices/delete-notice',
+  async (id, thunkAPI) => {
+    try {
+      await deleteNotice(id);
+      return id;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data.message);
     }
   }
 );

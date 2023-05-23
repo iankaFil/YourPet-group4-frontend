@@ -5,8 +5,7 @@ import { CrossSmallIcon } from '../SvgIcons/CrossSmallIcon';
 import css from './ModalApproveAction.module.css';
 
 const ModalApproveAction = ({
-  onClose,
-  handleApproveClick, 
+  onClose, 
   className,
   children = 'Modal content goes here',
 }) => {

@@ -15,11 +15,6 @@ export const getNoticesByCategory = async category => {
   return data;
 };
 
-// export const addToFavorite = async (id) => {
-//   const { data: result } = await instance.post(`/notices/favorites/${id}`);
-//   return result;
-// };
-
 export const getUserFavoritesNotices = async () => {
   const { data } = await instance.get(`/notices/favorites`);
   return data;
@@ -38,12 +33,16 @@ export const getNoticesByTitleInCategory = async (category, query) => {
       )}`
     );
   }
-
   const { data } = await instance.get(`/notices/category/q=${query}`);
   return data;
 };
 
 export const getNoticesById = async id => {
   const { data } = await instance.get(`/notices/notice/${id}`);
+  return data;
+};
+
+export const deleteNotice = async id => {
+  const data = await instance.delete(`/notices/user-notices/${id}`);
   return data;
 };

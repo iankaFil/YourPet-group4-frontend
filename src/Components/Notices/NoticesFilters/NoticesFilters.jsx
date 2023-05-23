@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as PlusSmallIcon } from '../../SvgIcons/SmallIconPlus.svg';
 import { ReactComponent as Filter } from '../../SvgIcons/Filter.svg';
@@ -13,6 +13,7 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 const NoticesCategoriesNav = ({ handleChangeCategory }) => {
   const isLoginUser = useSelector(isUserLogin);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
@@ -20,13 +21,14 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
     }
   };
 
-  const handleLinkClick = event => {
+  const handleLinkClick = () => {
     if (!isLoginUser) {
       toast.info(
         'You must be registered or logged in to perform the operation'
-      );
-      return;
+      )
+      return
     }
+    navigate('/add-pet')
   };
 
   const handleFilterButtonClick = () => {
@@ -95,14 +97,14 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
           {isBurgerMenuOpen && <NoticesBurgerMenu />}
         </li>
         <li className={css.addButtonLink}>
-          <NavLink
+          <button
+            type='button'
             className={({ isActive }) => (isActive ? css.active : '')}
             onClick={handleLinkClick}
-            to="/add-pet"
           >
             <p className={css.addPetText}>Add pet</p>
             <PlusSmallIcon />
-          </NavLink>
+          </button>
         </li>
       </ul>
       <ToastContainer autoClose={1400} position="top-center" />

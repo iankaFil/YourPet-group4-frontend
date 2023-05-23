@@ -33,7 +33,7 @@
   display: flex;
 }
 
-.btn:hover:hover {
+.btn:hover  {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   color: rgb(253, 247, 242);
   border: none;
@@ -41,9 +41,11 @@
 }
 
 .img_btn {
+  /* position: relative; */
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  overflow: hidden;
   align-items: center;
   margin: 0 5px;
   padding: 2px 4px;
@@ -63,8 +65,6 @@
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-
-  align-items: center;
   letter-spacing: 0.04em;
 
   color: #111111;
