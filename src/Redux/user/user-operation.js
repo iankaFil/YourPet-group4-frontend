@@ -1,23 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import instance from 'Shared/api/auth-api';
-import { getCurrent } from '../../Shared/api/auth-api';
+// import { getCurrent } from '../../Shared/api/auth-api';
 
-export const addToFavorite = createAsyncThunk(
-  'user/addFavorite',
-  async (id, { rejectWithValue, getState }) => {
-    try {
-      const value = getState().auth.token;
-      if (value === null) {
-        return rejectWithValue('Unable to fetch user');
-      }
-      // getToken.set(value);
-      const { data } = await instance.post(`/notices/favorites/${id}`);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
+// export const addToFavorite = createAsyncThunk(
+//   'user/addFavorite',
+//   async (id, { rejectWithValue, getState }) => {
+//     try {
+//       const value = getState().auth.token;
+//       if (value === null) {
+//         return rejectWithValue('Unable to fetch user');
+//       }
+//       // getToken.set(value);
+//       const { data } = await instance.post(`/notices/favorites/${id}`);
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
 
 export const deleteFromFavorite = createAsyncThunk(
   'user/deleteFavorite',
@@ -31,15 +31,15 @@ export const deleteFromFavorite = createAsyncThunk(
   }
 );
 
-export const current = createAsyncThunk(
-  'user/current',
-  async (_, { rejectWithValue, getState }) => {
-    try {
-      const { auth } = getState();
-      const data = await getCurrent(auth.token);
-      return data;
-    } catch ({ response }) {
-      return rejectWithValue(response);
-    }
-  }
-);
+// export const current = createAsyncThunk(
+//   'user/current',
+//   async (_, { rejectWithValue, getState }) => {
+//     try {
+//       const { auth } = getState();
+//       const data = await getCurrent(auth.token);
+//       return data;
+//     } catch ({ response }) {
+//       return rejectWithValue(response);
+//     }
+//   }
+// );

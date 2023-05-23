@@ -6,7 +6,7 @@ import authReducer from './auth/auth-slice';
 import { newsReducer } from './news/news-slice';
 import { friendsReducer } from './ourFriends/ourFriends-slice';
 import { noticesReducer } from './notices/notices-slice';
-import { userReduser } from './user/user-slice';
+import { userReducer } from './user/user-slice';
 import { petsReducer } from './pets/pets-slice';
 
 const authPersistConfig = {
@@ -22,6 +22,6 @@ export const rootReducer = combineReducers({
   news: newsReducer,
   friends: friendsReducer,
   notices: noticesReducer,
-  user: userReduser,
+  user: userReducer,
   pets: petsReducer,
 });

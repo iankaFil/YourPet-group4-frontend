@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { CrossSmallIcon } from '../SvgIcons/CrossSmallIcon';
-import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
+import {
+  // addToFavorite,
+  deleteFromFavorite
+} from 'Redux/user/user-operation';
+import { fetchAddToFavorite } from 'Redux/notices/notices-operations';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
 import { getUser } from 'Redux/auth/auth-selectors';
@@ -88,7 +92,7 @@ const ModalNotice = ({
     }
 
     if (!favorite) {
-      dispatch(addToFavorite(_id));
+      dispatch(fetchAddToFavorite(_id));
       setFavorite(true);
     } else {
       dispatch(deleteFromFavorite(_id));
