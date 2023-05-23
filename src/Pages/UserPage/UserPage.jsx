@@ -14,7 +14,7 @@ import { current, updateUser } from 'Redux/auth/auth-operations';
 import { fetchDeletePet, fetchOwnPets } from 'Redux/pets/pets-operations';
 import { getOwnPets } from './../../Redux/pets/pets-selectors';
 
-import styles from './UserPage.module.css';
+import css from './UserPage.module.css';
 
 const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -70,8 +70,8 @@ const UserPage = () => {
   };
 
   return (
-    <Section className={styles.section}>
-      <Container className={styles.container}>
+    <Section className={css.section}>
+      <Container className={css.container}>
         {showModal && <ModalCongrats onClose={handleCloseModal} />}
         <UserData
           name={name}

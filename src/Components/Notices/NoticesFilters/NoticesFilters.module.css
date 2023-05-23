@@ -24,7 +24,11 @@
   color: #54adff;
   text-decoration: none;
   padding: 0 16px;
-  margin: 0 8px;
+
+  @media screen and(min-width:767px) {
+    margin: 0 8px;
+  }
+
 }
 
 .filterLink a:hover,
@@ -47,21 +51,24 @@
   justify-content: flex-end;
   align-items: flex-start;
   margin-left: auto;
-  gap: 12px;
+
+  @media screen and (min-width:767px) {
+    gap: 12px;
+  }
+
 }
 
-.addButtonLink a {
+/* .addButtonLink a {
   background: #54adff;
   color: #fff;
-}
+} */
 
-.filterLink a {
-  background: #fff;
-  color: #54adff;
-}
+
 
 .filterLink a,
 .addButtonLink a {
+  background: #54adff;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,15 +80,66 @@
   text-decoration: none;
 }
 
-.addButtonLink a {
-  background: #54adff;
-  color: #fff;
+.addButtonLink svg,
+.filterLink svg {
+  order: 2;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+@media screen and (max-width:767px) {
+  .addButtonLink a {
+    position: fixed;
+    right: 0;
+    top: 70%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    /* flex-direction: row; */
+    border-radius: 40px;
+    min-height: 80px;
+    min-width: 80px;
+    border: 2px solid #54adff;
+    text-decoration: none;
+  }
+
+  .addPetText {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .addButtonLink svg {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 
+/* .filterLink a {
+  background: #fff;
+  color: #54adff;
+} */
 .filterLink a {
   background: #fff;
   color: #54adff;
+
+  @media screen and (max-width:767px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 40px;
+    background: #cce4fb;
+    border: none;
+    color: #54adff;
+    min-height: 40px;
+    min-width: 40px;
+    text-decoration: none;
+  }
 }
 
 .text {
@@ -96,10 +154,10 @@
   }
 }
 
-.addButtonLink svg,
-.filterLink svg {
-  order: 2;
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
+
+
+.filterText {
+  @media screen and (max-width:767px) {
+    display: none;
+  }
 }

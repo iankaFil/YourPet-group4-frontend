@@ -1,49 +1,49 @@
- .modal {
-   position: fixed;
-   z-index: 999;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   padding-top: 100px;
-   background-color: rgba(81, 81, 81, 0.6);
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 100px;
+  background-color: rgba(81, 81, 81, 0.6);
 
-    @media screen and (min-width: 768px) {
-      padding-top: 200px;
-    }
- }
+  @media screen and (min-width: 768px) {
+    padding-top: 200px;
+  }
+}
 
- .content {
-   position: relative;
-   display: flex;
-   flex-direction: column;
-   background-color: #ffffff;
-   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-   border-radius: 20px;
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
 
-   align-items: center;
-   width: 280px;
-   margin-right: auto;
-   margin-left: auto;
-   padding: 44px 20px 16px;
+  align-items: center;
+  width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 44px 20px 16px;
 
-   @media screen and (min-width: 768px) {
-     width: 681px;
-     border-radius: 40px;
-     padding: 32px 32px 24px;
-   }
- }
+  @media screen and (min-width: 768px) {
+    width: 681px;
+    border-radius: 40px;
+    padding: 32px 32px 24px;
+  }
+}
 
- .content_wrap {
-    @media screen and (min-width: 768px) {
-      display: flex;
-      width: 100%;
-      gap: 24px;
-      margin-bottom: 28px;
-    }
- }
+.content_wrap {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 100%;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+}
 
- .closeBtn {
+.closeBtn {
   position: absolute;
   top: 7px;
   right: 7px;
@@ -56,11 +56,10 @@
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
-   top: 18px;
-   right: 21px;
+    top: 18px;
+    right: 21px;
+  }
 }
-}
-
 
 .closeBtn:hover {
   background-color: #54adff;
@@ -91,13 +90,13 @@
   height: 240px;
   object-fit: cover;
   object-position: center;
-  margin-bottom: 12px; 
-  
-   @media screen and (min-width: 768px) {
-     min-width: 262px;
-     height: 298px;
-     margin-bottom: 0;
-   }
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 262px;
+    height: 298px;
+    margin-bottom: 0;
+  }
 }
 
 .sell_btn {
@@ -134,10 +133,11 @@
   letter-spacing: -0.01em;
   margin-bottom: 20px;
   color: #000000;
-   @media screen and (min-width: 768px) {
-       font-size: 28px;
-       line-height: 1.4;
-   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    line-height: 1.4;
+  }
 }
 
 .list_info {
@@ -159,27 +159,23 @@
   font-size: 14px;
   line-height: 1.36;
   font-weight: 600;
- 
- @media screen and (min-width: 768px) {
-   width: 75px;
-   font-size: 16px;
-   line-height: 1.38;
- }
-} 
+
+  @media screen and (min-width: 768px) {
+    width: 75px;
+    font-size: 16px;
+    line-height: 1.38;
+  }
+}
 
 .info_text {
   font-size: 12px;
   line-height: 1.33;
   font-weight: 500;
- 
- @media screen and (min-width: 768px) {
-   font-size: 16px;
-   line-height: 1.38;
- }
-}
 
-.info_accent{
-  color: #FFC107;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.38;
+  }
 }
 
 .comments {
@@ -207,7 +203,6 @@
   flex-direction: column;
   margin-bottom: 28px;
 
-
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
@@ -226,52 +221,66 @@
   }
 }
 
- .addtobutton,
- .contactbutton {
-   min-width: 252px;
-   height: 40px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: 700;
-   font-size: 16px;
-   line-height: 1.38;
-   letter-spacing: 0.04em;
-   border-radius: 40px;
+.addtobutton,
+.contactbutton {
+  min-width: 252px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+  border-radius: 40px;
 
-   @media screen and (min-width: 768px) {
-     min-width: 129px;
-     height: 40px;
+  @media screen and (min-width: 768px) {
+    min-width: 129px;
+    height: 40px;
+  }
+}
 
-   }
- }
+.addtobutton {
+  gap: 8px;
+  color: #fef9f9;
+  background: #54adff;
+  border: transparent;
+  cursor: pointer;
+}
 
- .addtobutton {
-   gap: 8px;
-   color: #fef9f9;
-   background: #54adff;
-   border: transparent;
-   cursor: pointer;
- }
+.contactbutton {
+  background: #ffffff;
+  color: #54adff;
+  border-color: #54adff;
+  cursor: pointer;
+}
 
- .contactbutton {
-   background: #ffffff;
-   color: #54adff;
-   border-color: #54adff;
-   cursor: pointer;
- }
+.contactbutton:hover,
+.addtobutton:hover {
+  color: #fef9f9;
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  border: none;
+}
 
- .contactbutton:hover,
- .addtobutton:hover {
-   color: #fef9f9;
-   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-   border: none;
- }
+.addIcon {
+  fill: #54adff;
+  stroke: #fff;
+}
 
- .addIcon {
-   fill: #54adff;
-   stroke: #fff;
- }
+.user_contact {
+  color: #000000;
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  text-decoration-line: underline;
+  color: #FFC107;
 
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.38;
+  }
+}
 
- 
+.user_contact:hover {
+  text-decoration: none;
+}

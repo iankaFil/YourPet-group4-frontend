@@ -89,7 +89,7 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
             onClick={handleFilterButtonClick}
             to="/notices/filter"
           >
-            Filter
+            <p className={css.filterText}>Filter</p>
             <Filter />
           </NavLink>
           {isBurgerMenuOpen && <NoticesBurgerMenu />}
@@ -100,7 +100,7 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
             onClick={handleLinkClick}
             to="/add-pet"
           >
-            Add pet
+            <p className={css.addPetText}>Add pet</p>
             <PlusSmallIcon />
           </NavLink>
         </li>

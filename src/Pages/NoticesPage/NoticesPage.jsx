@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Section from 'Components/Section';
 import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
@@ -90,14 +93,17 @@ const NoticesPage = () => {
   }
 
   const [searchQuery, setSearchQuery] = useState('');
+
   const notices = useSelector(selectNotices);
 
   console.log('NOTICESSSSSSS', notices);
 
   const isLoading = useSelector(selectIsLoading);
+
   const user = useSelector(getUser);
 
   const error = useSelector(selectError);
+
   const totalPages = useSelector(selectTotalPages);
 
   const [activePage, setActivePage] = useState(0);
@@ -215,7 +221,10 @@ const NoticesPage = () => {
       {isLoading && !error && <Loader />}
       <Container>
         <Title>Find your favorite pet</Title>
-        <NoticesSearch handleSearchChange={handleSearchChange} />
+        <NoticesSearch
+          handleSearchChange={handleSearchChange}
+          handleChangeCategory={handleChangeCategory}
+        />
         <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
 
         {notices && notices.length > 0 && <CategoryList card={notices} />}
@@ -235,6 +244,7 @@ const NoticesPage = () => {
             />
           </div>
         )}
+        <ToastContainer autoClose={1400} position="top-center" />
       </Container>
     </Section>
   );

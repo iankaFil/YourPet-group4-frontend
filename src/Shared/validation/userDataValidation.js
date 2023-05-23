@@ -11,10 +11,9 @@ export const userDataValidationSchema = Yup.object().shape({
     .matches(/^\d{2}\.\d{2}\.\d{4}$/, 'Birthday must be in format DD.MM.YYYY')
     .required('Required'),
   phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Phone number must be in format +380000000000')
-    .required('Required'),
+    .matches(/^\+380\d{9}$/, 'Phone format +380000000000'),
   city: Yup.string()
-    .matches(/^[A-Za-z\s]+$/, 'City name must contain only letters and spaces'),
+    .matches(/^[A-Za-z\s]+$/, 'City contain only letters and spaces'),
 });
 
 export const avatarValidationSchema = Yup.object().shape({
@@ -23,6 +22,4 @@ export const avatarValidationSchema = Yup.object().shape({
     !value || (value && value.size < MAX_FILE_SIZE)
   )
   .test('fileType', 'Unsupported file format', (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))),
-    
-
 });
