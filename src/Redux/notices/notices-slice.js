@@ -4,13 +4,13 @@ import {
   fetchNoticesByCategory,
   fetchFavotiteNotices,
   fetchUserNotices,
-  fetchAddToFavorite,
+  // fetchAddToFavorite,
   // fetchNoticesById
 } from './notices-operations';
 
 const initialState = {
   items: [],
-  favorite: [],
+  // favorite: [],
   totalPages: null,
   isLoading: false,
   error: null,
@@ -51,20 +51,20 @@ const noticesSlice = createSlice({
         handleRejected(state, action);
       })
 
-      .addCase(fetchAddToFavorite.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(fetchAddToFavorite.fulfilled, (state, action) => {
-        console.log('PAYLLLLLLLLLLLLL', action.payload.id);
-        state.isLoading = false;
-        state.favorite.push(action.payload.id);
-        state.error = null;
-      })
-      .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
-        state.notices = { data: [] };
-        state.isLoading = false;
-        state.error = payload.message;
-      })
+      // .addCase(fetchAddToFavorite.pending, state => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(fetchAddToFavorite.fulfilled, (state, action) => {
+      //   console.log('PAYLLLLLLLLLLLLL', action.payload.id);
+      //   state.isLoading = false;
+      //   state.favorite.push(action.payload.id);
+      //   state.error = null;
+      // })
+      // .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
+      //   state.notices = { data: [] };
+      //   state.isLoading = false;
+      //   state.error = payload.message;
+      // })
 
       .addCase(fetchFavotiteNotices.pending, state => {
         state.items = [];
