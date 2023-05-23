@@ -64,7 +64,7 @@ const ModalNotice = ({
   const isLogin = useSelector(isUserLogin);
 
   const [favorite, setFavorite] = useState(() => {
-    if (isLogin && user.favorite.length > 0) {
+    if (isLogin && user && user.favorite && user.favorite.length > 0) {
       if (user.favorite.includes(_id)) {
         return true;
       } else {
