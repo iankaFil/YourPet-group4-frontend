@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signup, login, current, updateUser, updateUserAvatar, logout } from "./auth-operations";
-
-const initialState = {
-  user: {},
-  token: '',
-  isLogin: false,
-  isLoading: false,
-  error: null,
-};
+import {
+  signup,
+  login,
+  current,
+  updateUser,
+  updateUserAvatar,
+  logout,
+  fetchAddToFavorite,
+  fetchDeleteFromFavorite
+} from "./auth-operations";
+import initialState from "./auth-initialState";
 
 const handlePending = state => {
   state.isLoading = true;
@@ -54,14 +56,12 @@ export const authSlice = createSlice({
               handlePending(state);
             })
           .addCase(current.fulfilled, (state, { payload }) => {
-              console.log("CURRENT WORKNG?")
               const user = payload;
               state.isLoading = false;
               state.user = user;
               state.isLogin = true;
             })
           .addCase(current.rejected, (state, { payload }) => {
-              console.log("TOKEN REJECTED?")
               handleRejected(state, payload);
               state.isLogin = false;
             state.token = "";
@@ -71,7 +71,6 @@ export const authSlice = createSlice({
               handlePending(state);
             })
             .addCase(updateUser.fulfilled, (state, { payload }) => {
-              // console.log("PAYLOAD updateUser", payload)
               const user = payload;
               state.isLoading = false;
               state.user = user;
@@ -84,7 +83,6 @@ export const authSlice = createSlice({
               handlePending(state);
             })
             .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
-              console.log("PAYLOAD updateUser", payload)
               const user = payload;
               state.isLoading = false;
               state.user = user;
@@ -104,7 +102,34 @@ export const authSlice = createSlice({
             })
             .addCase(logout.rejected, (state, { payload }) => {
               handleRejected(state, payload);
-            });
+            })
+            .addCase(fetchAddToFavorite.pending, state => {
+              state.isLoading = true;
+            })
+            .addCase(fetchAddToFavorite.fulfilled, (state, action) => {
+              state.isLoading = false;
+              state.user.favorite.push(action.payload.id);
+              state.error = null;
+            })
+            .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
+              state.notices = { data: [] };
+              state.isLoading = false;
+              state.error = payload.message;
+            })
+            .addCase(fetchDeleteFromFavorite.pending, state => {
+              state.loading = true;
+            })
+            .addCase(fetchDeleteFromFavorite.fulfilled, (state, {payload}) => {
+              state.isLoading = false;
+              if (Array.isArray(state.user.favorite)) {
+                state.user.favorite = state.user.favorite.filter(id => id !== payload.id);
+              }
+            })
+            .addCase(fetchDeleteFromFavorite.rejected, (state, { payload }) => {
+              state.notices = { data: [] };
+              state.isLoading = false;
+              state.error = payload;
+          });
     }
 })
 

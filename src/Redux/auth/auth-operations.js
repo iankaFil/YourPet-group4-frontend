@@ -50,7 +50,6 @@ export const current = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'auth/update-user',
   async (data, { rejectWithValue, getState }) => {
-    // console.log("DATA", data)
     try {
       const { auth } = getState();
       const updatedUser = await api.updateUser(auth.token, data);
@@ -72,7 +71,6 @@ export const updateUser = createAsyncThunk(
 export const updateUserAvatar = createAsyncThunk(
   'auth/update-avatar',
   async (data, { rejectWithValue, getState }) => {
-    // console.log("DATA", data)
     try {
       const { auth } = getState();
       const updatedUser = await api.updateAvatar(auth.token, data);
@@ -99,6 +97,30 @@ export const logout = createAsyncThunk(
       return data;
     } catch ({ response }) {
       return rejectWithValue(response);
+    }
+  }
+);
+
+export const fetchAddToFavorite = createAsyncThunk(
+  'user/addFavorite',
+  async (id, thunkAPI) => {
+     try {
+      const result = await api.addToFavorite(id);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchDeleteFromFavorite = createAsyncThunk(
+  'user/deleteFavorite',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await api.deleteFromFavorite(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );

@@ -63,4 +63,16 @@ export const logout = async () => {
   return data;
 };
 
+export const addToFavorite = async (id) => {
+  const { data: result } = await instance.post(`/notices/favorites/${id}`);
+  return result;
+};
+
+export const deleteFromFavorite = async id => {
+  console.log("ID in operation API", id)
+  const data  = await instance.delete(`/notices/favorites/${id}`);
+  console.log("DATA in API", data)
+  return data;
+};
+
 export default instance;
