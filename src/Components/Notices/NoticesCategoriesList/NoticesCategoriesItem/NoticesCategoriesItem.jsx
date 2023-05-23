@@ -12,11 +12,15 @@ import { AddToFavoriteIcon } from 'Components/SvgIcons/AddToFavoriteIcon';
 
 import { ReactComponent as Delete } from 'Components/SvgIcons/Delete.svg';
 import { ReactComponent as PawIcon } from 'Components/SvgIcons/paw.svg';
-import { addToFavorite, deleteFromFavorite } from 'Redux/user/user-operation';
+import {
+  // addToFavorite,
+  deleteFromFavorite
+} from 'Redux/user/user-operation';
+import { fetchAddToFavorite } from 'Redux/notices/notices-operations';
 
-import { isUserLogin } from 'Redux/auth/auth-selectors';
-// import { getUser } from 'Redux/auth/auth-selectors';
-import { getUser } from 'Redux/user/user-selectors';
+import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
+
+// import { getUser } from 'Redux/user/user-selectors';
 
 import ModalNotice from 'Components/ModalNotice/ModalNotice';
 // import ModalAcces from 'Components/ModalAcces/ModalAcces';
@@ -87,7 +91,7 @@ const CategoryItem = ({
     }
 
     if (!favorite) {
-      dispatch(addToFavorite(_id));
+      dispatch(fetchAddToFavorite(_id));
       setFavorite(true);
     } else {
       dispatch(deleteFromFavorite(_id));

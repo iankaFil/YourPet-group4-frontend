@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addToFavorite, deleteFromFavorite, current } from './user-operation';
+import {
+  // addToFavorite,
+  deleteFromFavorite
+} from './user-operation';
 // import { getCurrent } from 'Shared/api/auth-api';
 
 const userInitialState = {
-  user: {},
-  userName: '',
-  pets: null,
-  image: '',
+  // user: {},
+  // userName: '',
+  // pets: null,
+  // image: '',
   notices: [],
   favorite: [],
   error: null,
@@ -24,15 +27,6 @@ const userInitialState = {
 //   state.error = null;
 // }
 
-const handlePending = state => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
-};
 
 const userSlice = createSlice({
   name: 'user',
@@ -40,34 +34,36 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      .addCase(current.pending, state => {
-        handlePending(state);
-      })
-      .addCase(current.fulfilled, (state, { payload }) => {
-        console.log(' USERRRRRRRRRRRRRRRRR^^^^^', payload);
-        const user = payload;
-        state.isLoading = false;
-        state.user = user;
-        state.isLogin = true;
-      })
-      .addCase(current.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      // .addCase(current.pending, state => {
+      //   handlePending(state);
+      // })
+      // .addCase(current.fulfilled, (state, { payload }) => {
+      //   console.log(' USERRRRRRRRRRRRRRRRR^^^^^', payload);
+      //   const user = payload;
+      //   state.isLoading = false;
+      //   state.user = user;
+      //   state.isLogin = true;
+      // })
+      // .addCase(current.rejected, (state, { payload }) => {
+      //   handleRejected(state, payload);
+      //   state.user = {};
+      //   state.isLoading = false;
+      // })
 
-      .addCase(addToFavorite.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(addToFavorite.fulfilled, (state, action) => {
-        console.log('PAYLLLLLLLLLLLLL', action.payload);
-        state.isLoading = false;
-        state.favorite.push(action.payload.id);
-        state.error = null;
-      })
-      .addCase(addToFavorite.rejected, (state, { payload }) => {
-        state.notices = { data: [] };
-        state.isLoading = false;
-        state.error = payload.message;
-      })
+      // .addCase(addToFavorite.pending, state => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(addToFavorite.fulfilled, (state, action) => {
+      //   console.log('PAYLLLLLLLLLLLLL', action.payload);
+      //   state.isLoading = false;
+      //   state.favorite.push(action.payload.id);
+      //   state.error = null;
+      // })
+      // .addCase(addToFavorite.rejected, (state, { payload }) => {
+      //   state.notices = { data: [] };
+      //   state.isLoading = false;
+      //   state.error = payload.message;
+      // })
 
       .addCase(deleteFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -84,4 +80,4 @@ const userSlice = createSlice({
   },
 });
 
-export const userReduser = userSlice.reducer;
+export const userReducer = userSlice.reducer;

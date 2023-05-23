@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   getUserFavoritesNotices,
   getUserNotices,
+  addToFavorite
 } from 'Shared/api/notices-api';
 
 export const instance = axios.create({
@@ -29,6 +30,21 @@ export const fetchNoticesByTitle = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchAddToFavorite = createAsyncThunk(
+  'user/addFavorite',
+  async (id, thunkAPI) => {
+    console.log("ID", id)
+     try {
+      // getToken.set(value);
+       
+      const result = await addToFavorite(id);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

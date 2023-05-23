@@ -29,6 +29,7 @@ export const getCurrent = async token => {
     const { data } = await instance.get('/users/current');
     return data;
   } catch (error) {
+    console.log("TOKEN PROBLEM in current")
     setToken();
     throw error;
   }

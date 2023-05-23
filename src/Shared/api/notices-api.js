@@ -15,6 +15,11 @@ export const getNoticesByCategory = async category => {
   return data;
 };
 
+export const addToFavorite = async (id) => {
+  const { data: result } = await instance.post(`/notices/favorites/${id}`);
+  return result;
+};
+
 export const getUserFavoritesNotices = async () => {
   const { data } = await instance.get(`/notices/favorites`);
   return data;
