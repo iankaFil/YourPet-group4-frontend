@@ -6,20 +6,21 @@ const CategoryList = ({ card }) => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
+  
   return (
     <ul className={css.card_list}>
       {sortedCard.map(card => (
         <CategoryItem
           {...card}
           key={card._id}
-          // _id={_id}
           // title={title}
           // imgUrl={photoURL}
           // birthday={birthday}
           // sex={sex}
           // place={place}
         />
-      ))}
+      )
+      )}
     </ul>
   );
 };

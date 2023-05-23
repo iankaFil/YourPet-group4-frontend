@@ -69,9 +69,8 @@ export const addToFavorite = async (id) => {
 };
 
 export const deleteFromFavorite = async id => {
-  console.log("ID in operation API", id)
   const data  = await instance.delete(`/notices/favorites/${id}`);
-  console.log("DATA in API", data)
+  
   return data;
 };
 

@@ -7,8 +7,10 @@ import css from './ModalAcces.module.css';
 
 const ModalAcces = ({
   onClose,
-  className = 'Modal content goes here',
+  className,
   title,
+  _id,
+  handleDeleteClick
 }) => {
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
@@ -46,7 +48,7 @@ const ModalAcces = ({
           <button type="button" className={css.cancel_btn} onClick={onClose}>
             Cancel
           </button>
-          <button type="button" className={css.del_btn}>
+          <button type="button" className={css.del_btn} onClick={() => handleDeleteClick(_id)}>
             Yes <Delete id="svg" />
           </button>
         </div>

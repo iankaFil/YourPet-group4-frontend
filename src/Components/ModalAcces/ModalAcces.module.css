@@ -160,12 +160,11 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 1.38;
-
-  display: flex;
-  align-items: center;
+  
   letter-spacing: 0.04em;
 
   color: #fef9f9;
+  cursor: pointer;
 }
 
 .cancel_btn {
@@ -182,9 +181,7 @@
   background-color: #ffffff;
 
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
   padding: 8px 20px;
   gap: 8px;
 
@@ -194,4 +191,5 @@
   color: #54adff;
   border-radius: 40px;
   border-color: #54adff;
+  cursor: pointer;
 }
