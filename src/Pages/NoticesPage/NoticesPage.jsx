@@ -10,6 +10,7 @@ import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'Components/Notices/NoticesFilters/NoticesFilters';
 import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import { current } from 'Redux/auth/auth-operations';
 // import CategoryItem from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem';
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
@@ -30,8 +31,20 @@ import {
   selectTotalPages,
 } from 'Redux/notices/notices-selectors';
 
+import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
+
+// const fetchData = async () => {
+//   try {
+//     await Promise.all([dispatch(current()), dispatch(fetchOwnPets())]);
+//   } catch (error) {
+//     // Обработка ошибок
+//   }
+// };
+// fetchData();
+
 const NoticesPage = () => {
   const dispatch = useDispatch();
+  const isLogin = useSelector(isUserLogin);
 
   const location = useLocation();
 
@@ -77,33 +90,79 @@ const NoticesPage = () => {
   }
 
   const [searchQuery, setSearchQuery] = useState('');
-
-  // при изменении категории через фильтр
-  useEffect(() => {
-    console.log('category->', category);
-    if (category === 'favorites') {
-      dispatch(fetchFavotiteNotices());
-    } else {
-      if (searchQuery) {
-        dispatch(fetchNoticesByTitle({ category, searchQuery }));
-      } else if (category === 'user-notices') {
-        console.log(' ВЫЗОВ fetchUserNotices ');
-        dispatch(fetchUserNotices());
-      } else {
-        dispatch(fetchNoticesByTitle({ category }));
-      }
-    }
-  }, [category, dispatch, searchQuery]);
-
   const notices = useSelector(selectNotices);
 
   console.log('NOTICESSSSSSS', notices);
 
   const isLoading = useSelector(selectIsLoading);
+  const user = useSelector(getUser);
+
   const error = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
 
   const [activePage, setActivePage] = useState(0);
+
+  useEffect(() => {
+    console.log('isLogin', isLogin);
+    console.log('activePage', activePage);
+    const fetchData = () => {
+      if (isLogin && Object.keys(user).length > 0) {
+        if (category === 'favorites') {
+          console.log(' ВЫЗЫВАЮ DISPATCH 1');
+          dispatch(fetchFavotiteNotices());
+        } else if (searchQuery) {
+          console.log(' ВЫЗЫВАЮ DISPATCH 2');
+          dispatch(
+            fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
+          );
+        } else if (category === 'user-notices') {
+          console.log(' ВЫЗЫВАЮ DISPATCH 3');
+          dispatch(fetchUserNotices());
+        } else {
+          console.log(' ВЫЗЫВАЮ DISPATCH 4');
+          dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+        }
+      } else if (isLogin && Object.keys(user).length === 0) {
+        console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
+        dispatch(current())
+          .then(() => {
+            if (category === 'favorites') {
+              console.log(' ВЫЗЫВАЮ DISPATCH 6');
+              dispatch(fetchFavotiteNotices());
+            } else if (searchQuery) {
+              console.log(' ВЫЗЫВАЮ DISPATCH 7');
+              dispatch(
+                fetchNoticesByTitle({
+                  category,
+                  searchQuery,
+                  page: activePage + 1,
+                })
+              );
+            } else if (category === 'user-notices') {
+              console.log(' ВЫЗЫВАЮ DISPATCH 8');
+              dispatch(fetchUserNotices());
+            } else {
+              console.log(' ВЫЗЫВАЮ DISPATCH 9');
+              dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+            }
+          })
+          .catch(error => {
+            // Не  загрузился Юзер current
+            console.log('Error ', error);
+          });
+      } else if (!isLogin) {
+        if (searchQuery) {
+          console.log(' ВЫЗЫВАЮ DISPATCH 10');
+          dispatch(fetchNoticesByTitle({ category, searchQuery }));
+        } else {
+          console.log(' ВЫЗЫВАЮ DISPATCH 11');
+          dispatch(fetchNoticesByTitle({ category }));
+        }
+      }
+    };
+
+    fetchData();
+  }, [category, dispatch, searchQuery, isLogin, user, activePage]);
 
   const handleSearchChange = value => {
     setSearchQuery(value);
@@ -112,6 +171,8 @@ const NoticesPage = () => {
   const handleChangeCategory = value => {
     console.log('handleChangeCategory', value);
     // setCategory('');
+
+    setActivePage(0);
     switch (value) {
       case 'lost/found':
         setCategory('lost-found');
@@ -143,10 +204,10 @@ const NoticesPage = () => {
   const handlePageClick = ({ selected }) => {
     console.log('CLICK');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const page = selected + 1;
+    // const page = selected + 1;
     setActivePage(selected);
     // const categoryURL = getCategoryFromURL();
-    dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
+    // dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
   };
 
   return (

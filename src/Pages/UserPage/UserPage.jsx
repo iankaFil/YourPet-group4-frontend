@@ -12,7 +12,7 @@ import Loader from 'Components/Loader/Loader';
 import { getUser } from 'Redux/auth/auth-selectors';
 import { current, updateUser } from 'Redux/auth/auth-operations';
 import { fetchDeletePet, fetchOwnPets } from 'Redux/pets/pets-operations';
-import {getOwnPets} from './../../Redux/pets/pets-selectors';
+import { getOwnPets } from './../../Redux/pets/pets-selectors';
 
 import styles from './UserPage.module.css';
 
@@ -20,17 +20,24 @@ const UserPage = () => {
   const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   const user = useSelector(getUser);
-  const pets = useSelector(getOwnPets)
+  const pets = useSelector(getOwnPets);
   const isLoadingUser = useSelector(state => state.auth.isLoading);
   const dispatch = useDispatch();
 
   const { name, birthday, email, phone, city } = user;
 
-   useEffect(() => {
-    dispatch(current());
-    dispatch(fetchOwnPets());
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await Promise.all([dispatch(current()), dispatch(fetchOwnPets())]);
+      } catch (error) {
+        // Обработка ошибок
+      }
+    };
+    fetchData();
+    // dispatch(current());
+    // dispatch(fetchOwnPets());
   }, [dispatch]);
-
 
   useEffect(() => {
     const storedFrom = sessionStorage.getItem('from');
@@ -38,7 +45,7 @@ const UserPage = () => {
     if (!storedFrom && location.state?.from === '/register') {
       setShowModal(true);
       sessionStorage.setItem('from', location.pathname);
-    } 
+    }
   }, [location.pathname, location.state?.from]);
 
   function handleCloseModal() {
@@ -49,18 +56,18 @@ const UserPage = () => {
     return <Loader />;
   }
 
-    const handleSubmit = async (value ) => {
-      try {
-        await dispatch(updateUser(value));
+  const handleSubmit = async value => {
+    try {
+      await dispatch(updateUser(value));
     } catch (error) {
       console.log('Error updating user data:', error);
     }
   };
 
-   const handleDeletePet = async (_id) => {
-     dispatch(fetchDeletePet(_id));
-     console.log("DELETE PET", _id)
-  }
+  const handleDeletePet = async _id => {
+    dispatch(fetchDeletePet(_id));
+    console.log('DELETE PET', _id);
+  };
 
   return (
     <Section className={styles.section}>
@@ -74,7 +81,7 @@ const UserPage = () => {
           city={city}
           handleClick={handleSubmit}
         />
-        <PetsData pets={pets} removePet={ handleDeletePet} />
+        <PetsData pets={pets} removePet={handleDeletePet} />
       </Container>
     </Section>
   );

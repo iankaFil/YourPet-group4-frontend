@@ -1,16 +1,16 @@
 import './App.module.css';
 import UserRoutes from 'Components/UserRoutes';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
-import { current } from 'Redux/auth/auth-operations';
+// import { useDispatch } from 'react-redux';
+// import { current } from 'Redux/auth/auth-operations';
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(current());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(current());
+  // }, [dispatch]);
 
   return (
     <>
