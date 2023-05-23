@@ -21,6 +21,7 @@ const ModalNotice = ({
   breed,
   place,
   sex,
+  category,
   photoURL,
   comments,
   onClose,
@@ -105,7 +106,7 @@ const ModalNotice = ({
           <img src={photoURL} alt="фото зверя" className={css.image} />
 
           <div className={css.info_wrap}>
-            <p className={css.sell_btn}>Sell</p>
+            <p className={css.sell_btn}>{category}</p>
             <h2 className={css.title}>{title}</h2>
             <div className={css.list_info}>
               <p className={css.list_item}>
