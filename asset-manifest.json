@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/YourPet-group4-frontend/static/css/main.29f595f2.css",
-    "main.js": "/YourPet-group4-frontend/static/js/main.c8d2292f.js",
+    "main.css": "/YourPet-group4-frontend/static/css/main.2004f590.css",
+    "main.js": "/YourPet-group4-frontend/static/js/main.ba9b7180.js",
     "static/media/Pets-desktop@2x.png": "/YourPet-group4-frontend/static/media/Pets-desktop@2x.cc4456ab83ed9a3326ed.png",
     "static/media/Pets-mobile@2x.png": "/YourPet-group4-frontend/static/media/Pets-mobile@2x.0b18bcda51da30b388f7.png",
     "static/media/Pets-desktop.png": "/YourPet-group4-frontend/static/media/Pets-desktop.154cc43aa2be7c02736b.png",
@@ -22,6 +22,7 @@
     "static/media/user-icon.svg": "/YourPet-group4-frontend/static/media/user-icon.6b7eb9debcb5e574165c6528f1508b8a.svg",
     "static/media/heart.svg": "/YourPet-group4-frontend/static/media/heart.2045de60fcc71890c1a47d1ba0656a50.svg",
     "static/media/SmallIconPlus.svg": "/YourPet-group4-frontend/static/media/SmallIconPlus.ffeaea66776a19a270d739f8ebb36234.svg",
+    "static/media/DeleteWhiteIcon.svg": "/YourPet-group4-frontend/static/media/DeleteWhiteIcon.af696e495cd728094545830d4d88ab30.svg",
     "static/media/Delete.svg": "/YourPet-group4-frontend/static/media/Delete.9f7344899bee8830278518d066ae81ff.svg",
     "static/media/male.svg": "/YourPet-group4-frontend/static/media/male.cb312f6bed6aeb6b3946c02355d32205.svg",
     "static/media/female.svg": "/YourPet-group4-frontend/static/media/female.754ef77267401f1951a39dd1772377de.svg",
@@ -30,11 +31,11 @@
     "static/media/PetAdd.svg": "/YourPet-group4-frontend/static/media/PetAdd.d9ea6c3616a2d9dd9d7149c983e87a69.svg",
     "static/media/menu-hamburger.svg": "/YourPet-group4-frontend/static/media/menu-hamburger.e5ce08a82de7546bfde31ea978aefa46.svg",
     "static/media/Down.svg": "/YourPet-group4-frontend/static/media/Down.f4eda56efe298695258ad4bcfa273a56.svg",
-    "main.29f595f2.css.map": "/YourPet-group4-frontend/static/css/main.29f595f2.css.map",
-    "main.c8d2292f.js.map": "/YourPet-group4-frontend/static/js/main.c8d2292f.js.map"
+    "main.2004f590.css.map": "/YourPet-group4-frontend/static/css/main.2004f590.css.map",
+    "main.ba9b7180.js.map": "/YourPet-group4-frontend/static/js/main.ba9b7180.js.map"
   },
   "entrypoints": [
-    "static/css/main.29f595f2.css",
-    "static/js/main.c8d2292f.js"
+    "static/css/main.2004f590.css",
+    "static/js/main.ba9b7180.js"
   ]
 }
