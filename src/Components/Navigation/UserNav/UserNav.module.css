@@ -23,8 +23,17 @@
   text-decoration: none;
 }
 
-.icon {
+.icon,
+.avatar {
   margin-right: 12px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 20px;
+  border: 1px solid #ffc107;
+  overflow: hidden;
 }
 
 .name,

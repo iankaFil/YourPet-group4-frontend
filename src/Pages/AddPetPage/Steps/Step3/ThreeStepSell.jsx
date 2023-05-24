@@ -110,7 +110,7 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
               onChange={e => setPlace(e.target.value)}
               placeholder="Type location"
             />
-            {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+            {errors.place && <p className={css.ErrorTextLow}>{errors.place}</p>}
           </div>
           <div className={css.labelInput}>
             <label className={css.LabelStep} htmlFor="name">
@@ -124,7 +124,7 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
               onChange={e => setPrice(e.target.value)}
               placeholder="Type price"
             />
-            {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+            {errors.price && <p className={css.ErrorTextLow}>{errors.price}</p>}
           </div>
           <div className={css.wrapperTextarea}>
             <label className={css.textareaText} htmlFor="comments">

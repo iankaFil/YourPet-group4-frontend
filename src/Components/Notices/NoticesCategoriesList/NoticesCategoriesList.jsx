@@ -6,7 +6,6 @@ const CategoryList = ({ card }) => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
-  
   return (
     <ul className={css.card_list}>
       {sortedCard.map(card => (
@@ -19,8 +18,7 @@ const CategoryList = ({ card }) => {
           // sex={sex}
           // place={place}
         />
-      )
-      )}
+      ))}
     </ul>
   );
 };

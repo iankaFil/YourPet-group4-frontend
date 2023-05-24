@@ -108,7 +108,7 @@ const ThreeStepFound = ({ handleNext, handlePreviousStep, formData }) => {
               onChange={e => setPlace(e.target.value)}
               placeholder="Type location"
             />
-            {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+            {errors.place && <p className={css.ErrorTextLow}>{errors.place}</p>}
           </div>
           <div className={css.wrapperTextarea}>
             <label className={css.textareaText} htmlFor="comments">

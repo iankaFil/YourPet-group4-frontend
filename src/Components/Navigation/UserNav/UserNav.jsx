@@ -19,8 +19,8 @@ function UserNav({ handleLinkClick }) {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
 
   const user = useSelector(getUser);
-  const { name } = user;
- 
+  const { name, avatarURL } = user;
+
   const { email } = user;
   function splitResult() {
     if (email) {
@@ -51,13 +51,17 @@ function UserNav({ handleLinkClick }) {
       <ul>
         <li>
           <Link to="/user" onClick={handleClick}>
-            <img className={css.icon} src={UserLogo} alt="UserLogo" />
+            {avatarURL ? (
+              <img className={css.avatar} src={avatarURL} alt="Avatar" />
+            ) : (
+              <img className={css.icon} src={UserLogo} alt="UserLogo" />
+            )}
             {isMobile ? null : (
-              <span className={css.name}> 
+              <span className={css.name}>
                 {isLogIn && name ? name : splitResult()}
               </span>
             )}
-            <span className={css.backdrop_name}> 
+            <span className={css.backdrop_name}>
               {isLogIn && name ? name : splitResult()}
             </span>
           </Link>

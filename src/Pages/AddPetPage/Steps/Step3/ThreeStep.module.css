@@ -166,9 +166,9 @@
 }
 
 .ErrorTextLow {
-  position: absolute;
-  bottom: -25%;
-  right: 76%;
+  position: relative;
+  bottom: 0;
+  right: 0;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;

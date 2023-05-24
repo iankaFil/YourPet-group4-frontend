@@ -1,13 +1,13 @@
 .WrapperAddPet {
   border-radius: 40px;
-  min-height: 496px;
   background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  margin: 24px auto;
-  padding: 20px 8px;
 
   @media screen and (max-width:767px) {
     width: 280px;
+    padding: 20px 8px;
+    min-height: 496px;
+    margin: 24px auto;
   }
 
   @media screen and (min-width:768px) and (max-width:1279px) {

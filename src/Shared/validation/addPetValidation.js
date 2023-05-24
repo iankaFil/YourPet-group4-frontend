@@ -16,4 +16,6 @@ export const validationSchemaSell = yup.object().shape({
 export const validationSchemaThree = yup.object().shape({
   photo: yup.string().required('Please upload a photo'),
   comments: yup.string().required('Please enter comments'),
+  price: yup.string().required('Please enter your price'),
+  place: yup.string().required('Please enter your place'),
 });
