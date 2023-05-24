@@ -145,7 +145,14 @@ const CategoryItem = ({
           </button>
         )}
 
-        {showModalAccess && <ModalAcces onClose={handleCloseModalAccess} title={title} handleDeleteClick={handleDeleteClick} _id={ _id} />}
+        {showModalAccess && (
+          <ModalAcces
+            onClose={handleCloseModalAccess}
+            title={title}
+            handleDeleteClick={handleDeleteClick}
+            _id={_id}
+          />
+        )}
 
         <ul className={css.btn_list}>
           <p className={css.sell_btn}>{category}</p>
@@ -181,6 +188,7 @@ const CategoryItem = ({
             onClose={handleCloseModal}
             title={title}
             name={name}
+            price={price}
             birthday={birthday}
             breed={breed}
             place={place}
