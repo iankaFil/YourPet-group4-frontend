@@ -3,21 +3,45 @@ import axios from 'axios';
 import {
   deleteNotice,
   getUserFavoritesNotices,
-  getUserNotices
+  getUserNotices,
 } from 'Shared/api/notices-api';
+
+// import { selectFilters } from 'Redux/filters/filters-slice';
 
 export const instance = axios.create({
   baseURL: 'https://your-pets-rest-api.onrender.com/notices',
 });
 
+// export const fetchNoticesByTitle = createAsyncThunk(
+//   'notices/search',
+//   async ({ category, searchQuery, page, gender, age }, thunkAPI) => {
+//     try {
+//       const params = {
+//         q: searchQuery,
+//         page,
+//         gender,
+//         age,
+//       };
+//       const response = await instance.get(`/notices/${category}`, {
+//         params,
+//       });
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const fetchNoticesByTitle = createAsyncThunk(
   'notices/search',
-  async ({ category, searchQuery, page, gender, age }, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
+      const { category, searchQuery, page, sex, age } =
+        thunkAPI.getState().filters;
       const params = {
         q: searchQuery,
         page,
-        gender,
+        sex,
         age,
       };
       const response = await instance.get(`/notices/${category}`, {
