@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import css from './NoticesBurgerMenu.module.css';
 import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
-
 import { setFilter } from 'Redux/filters/filters-slice';
+
+import { selectFilters } from 'Redux/filters/filters-selectors';
 
 const { Panel } = Collapse;
 
@@ -37,46 +39,33 @@ const optionsByGender = [
 ];
 
 const NoticesBurgerMenu = () => {
-  const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
-  const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
-  const [isFilterChanged, setIsFilterChanged] = useState(false);
-
   const dispatch = useDispatch();
+
+  const filters = useSelector(selectFilters);
+  const [isFilterChanged, setIsFilterChanged] = useState(false);
 
   useEffect(() => {
     if (!isFilterChanged) {
       return;
     }
-
     const handleFilterChange = (filterName, filterValue) => {
       dispatch(setFilter({ filterName, filterValue }));
     };
 
-    handleFilterChange('sex', selectedOptionsSex);
-    handleFilterChange('age', selectedOptionsAge);
+    handleFilterChange('sex', filters.sex);
+    handleFilterChange('age', filters.age);
 
-    const sendData = {
-      age: selectedOptionsAge,
-      sex: selectedOptionsSex,
-    };
-    console.log('sendData', sendData);
     dispatch(
       fetchNoticesByTitle({
-        gender: selectedOptionsSex,
-        age: selectedOptionsAge,
+        gender: filters.sex,
+        age: filters.age,
       })
-    ); //category, searchQuery,
-
+    );
     setIsFilterChanged(false);
-  }, [dispatch, selectedOptionsSex, selectedOptionsAge, isFilterChanged]);
+  }, [dispatch, filters.sex, filters.age]);
 
   const handleOptionChange = (name, checkedValues) => {
-    if (name === 'sex') {
-      setSelectedOptionsSex(checkedValues);
-    } else if (name === 'age') {
-      setSelectedOptionsAge(checkedValues);
-    }
-
+    dispatch(setFilter({ filterName: name, filterValue: checkedValues }));
     setIsFilterChanged(true);
   };
 
@@ -90,28 +79,25 @@ const NoticesBurgerMenu = () => {
         className={css.filterWrapper}
       >
         <Panel header="By age" key="1" className={css.title}>
-          {optionsByAge.map(option => (
-            <Checkbox
-              key={option.value}
-              checked={selectedOptionsAge === option.value}
-              onChange={() => handleOptionChange('age', option.value)}
-              className={css.checkbox}
-            >
-              {option.label}
-            </Checkbox>
-          ))}
+
+          <Checkbox.Group
+            options={optionsByAge}
+            value={filters.age}
+            onChange={checkedValues => handleOptionChange('age', checkedValues)}
+            className={css.checkbox}
+          />
+
         </Panel>
+
         <Panel header="By gender" key="2" className={css.title}>
-          {optionsByGender.map(option => (
-            <Checkbox
-              key={option.value}
-              checked={selectedOptionsSex === option.value}
-              onChange={() => handleOptionChange('sex', option.value)}
-              className={css.checkbox}
-            >
-              {option.label}
-            </Checkbox>
-          ))}
+
+          <Checkbox.Group
+            options={optionsByGender}
+            value={filters.sex}
+            onChange={checkedValues => handleOptionChange('sex', checkedValues)}
+            className={css.checkbox}
+          />
+
         </Panel>
       </Collapse>
     </div>
