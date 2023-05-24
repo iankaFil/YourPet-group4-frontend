@@ -6,7 +6,6 @@ import authReducer from './auth/auth-slice';
 import { newsReducer } from './news/news-slice';
 import { friendsReducer } from './ourFriends/ourFriends-slice';
 import { noticesReducer } from './notices/notices-slice';
-// import { userReducer } from './user/user-slice';
 import { petsReducer } from './pets/pets-slice';
 import { filtersReducer } from './filters/filters-slice';
 
@@ -23,7 +22,6 @@ export const rootReducer = combineReducers({
   news: newsReducer,
   friends: friendsReducer,
   notices: noticesReducer,
-  // user: userReducer,
   pets: petsReducer,
   filters: filtersReducer,
 });
