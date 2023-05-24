@@ -79,3 +79,18 @@
   border-color: #54adff;
   color: #fef9f9;
 }
+
+.zaglushka {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #54adff;
+}
+
+.zaglushkaImg {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}

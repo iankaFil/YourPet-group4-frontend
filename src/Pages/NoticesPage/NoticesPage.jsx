@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { ToastContainer } from 'react-toastify'; //
 import 'react-toastify/dist/ReactToastify.css';
-
+import Zaglushka from '../../Shared/images/zaglushka.png';
 import Section from 'Components/Section';
 import Title from 'Components/Title/Title';
 import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
@@ -237,7 +237,12 @@ const NoticesPage = () => {
           handleChangeCategory={handleChangeCategory}
         />
         <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
-
+        {!notices.length && (
+          <div className={css.zaglushka}>
+            <img className={css.zaglushkaImg} src={Zaglushka} alt="Заглушка" />
+            <p>It`s nothing here, because I ate all.</p>
+          </div>
+        )}
         {notices && notices.length > 0 && <CategoryList card={notices} />}
         {category !== 'favorites' &&
           category !== 'user-notices' &&
