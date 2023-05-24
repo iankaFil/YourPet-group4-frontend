@@ -20,6 +20,8 @@ import NewsSearch from 'Components/News/NewsSearch/NewsSearch';
 import NewsList from 'Components/News/NewsList/NewsList';
 import Loader from 'Components/Loader/Loader';
 
+import Zaglushka from 'Shared/images/zaglushka.png';
+
 const NewsPage = () => {
   const dispatch = useDispatch();
   const newsItems = useSelector(selectNews);
@@ -62,6 +64,12 @@ const NewsPage = () => {
       <Container>
         <Title>News</Title>
         <NewsSearch handleSearchChange={handleSearchChange} />
+        {!newsItems.length && (
+          <div className={css.zaglushka}>
+            <img className={css.zaglushkaImg} src={Zaglushka} alt="Заглушка" />
+            <p>It's nothing here, because I ate all.</p>
+          </div>
+        )}
         {newsItems.length > 0 && <NewsList news={newsItems} />}
         {newsItems.length > 0 && (
           <div className={css.wrapper}>

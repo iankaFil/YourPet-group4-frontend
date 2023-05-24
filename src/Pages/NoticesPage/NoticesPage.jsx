@@ -14,7 +14,6 @@ import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'Components/Notices/NoticesFilters/NoticesFilters';
 import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { current } from 'Redux/auth/auth-operations';
-// import { current } from 'Redux/user/user-operation';
 // import CategoryItem from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem';
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
@@ -38,15 +37,6 @@ import {
 import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
 
 import { setFilter } from 'Redux/filters/filters-slice';
-
-// const fetchData = async () => {
-//   try {
-//     await Promise.all([dispatch(current()), dispatch(fetchOwnPets())]);
-//   } catch (error) {
-//     // Обработка ошибок
-//   }
-// };
-// fetchData();
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -148,94 +138,98 @@ const NoticesPage = () => {
   );
 
   useEffect(() => {
+    dispatch(fetchNoticesByTitle());
+  }, [dispatch]);
+
+  useEffect(() => {
     handleFilterChange('category', category);
     setActivePage(0);
-    console.log('   DISPATCH --------------- CATEGORY_______', category);
-    if (category === 'favorites') {
-      console.log(' ВЫЗЫВАЮ DISPATCH 1');
-      dispatch(fetchFavotiteNotices());
-    } else if (category === 'user-notices') {
-      console.log(' ВЫЗЫВАЮ DISPATCH 2');
-      dispatch(fetchUserNotices());
-    } else {
-      console.log(' ВЫЗЫВАЮ DISPATCH 3');
-      dispatch(fetchNoticesByTitle());
-    }
+    // console.log('   DISPATCH --------------- CATEGORY_______', category);
+    // if (category === 'favorites') {
+    //   console.log(' ВЫЗЫВАЮ DISPATCH 1');
+    //   dispatch(fetchFavotiteNotices());
+    // } else if (category === 'user-notices') {
+    //   console.log(' ВЫЗЫВАЮ DISPATCH 2');
+    //   dispatch(fetchUserNotices());
+    // } else {
+    //   console.log(' ВЫЗЫВАЮ DISPATCH 3');
+    //   dispatch(fetchNoticesByTitle());
+    // }
     // dispatch(fetchNoticesByTitle());
   }, [category, dispatch, handleFilterChange]);
 
   useEffect(() => {
     handleFilterChange('page', activePage + 1);
-    dispatch(fetchNoticesByTitle());
+    // dispatch(fetchNoticesByTitle());
   }, [activePage, dispatch, handleFilterChange]);
 
   useEffect(() => {
     setActivePage(0);
     handleFilterChange('searchQuery', searchQuery);
-    dispatch(fetchNoticesByTitle());
+    // dispatch(fetchNoticesByTitle());
   }, [searchQuery, dispatch, handleFilterChange]);
 
-  // useEffect(() => {
-  //   console.log('isLogin', isLogin);
-  //   console.log('activePage', activePage);
-  //   const fetchData = () => {
-  //     if (isLogin && Object.keys(user).length > 0) {
-  //       if (category === 'favorites') {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 1');
-  //         dispatch(fetchFavotiteNotices());
-  //       } else if (searchQuery) {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 2');
-  //         dispatch(
-  //           fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
-  //         );
-  //       } else if (category === 'user-notices') {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 3');
-  //         dispatch(fetchUserNotices());
-  //       } else {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 4');
-  //         dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
-  //       }
-  //     } else if (isLogin && Object.keys(user).length === 0) {
-  //       console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
-  //       dispatch(current())
-  //         .then(() => {
-  //           if (category === 'favorites') {
-  //             console.log(' ВЫЗЫВАЮ DISPATCH 6');
-  //             dispatch(fetchFavotiteNotices());
-  //           } else if (searchQuery) {
-  //             console.log(' ВЫЗЫВАЮ DISPATCH 7');
-  //             dispatch(
-  //               fetchNoticesByTitle({
-  //                 category,
-  //                 searchQuery,
-  //                 page: activePage + 1,
-  //               })
-  //             );
-  //           } else if (category === 'user-notices') {
-  //             console.log(' ВЫЗЫВАЮ DISPATCH 8');
-  //             dispatch(fetchUserNotices());
-  //           } else {
-  //             console.log(' ВЫЗЫВАЮ DISPATCH 9');
-  //             dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
-  //           }
-  //         })
-  //         .catch(error => {
-  //           // Не  загрузился Юзер current
-  //           console.log('Error ', error);
-  //         });
-  //     } else if (!isLogin) {
-  //       if (searchQuery) {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 10');
-  //         dispatch(fetchNoticesByTitle({ category, searchQuery }));
-  //       } else {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 11');
-  //         dispatch(fetchNoticesByTitle({ category }));
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    console.log('isLogin', isLogin);
+    console.log('activePage', activePage);
+    const fetchData = () => {
+      if (isLogin && Object.keys(user).length > 0) {
+        if (category === 'favorites') {
+          console.log(' ВЫЗЫВАЮ DISPATCH 1');
+          dispatch(fetchFavotiteNotices());
+        } else if (searchQuery) {
+          console.log(' ВЫЗЫВАЮ DISPATCH 2');
+          dispatch(
+            fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
+          );
+        } else if (category === 'user-notices') {
+          console.log(' ВЫЗЫВАЮ DISPATCH 3');
+          dispatch(fetchUserNotices());
+        } else {
+          console.log(' ВЫЗЫВАЮ DISPATCH 4');
+          dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+        }
+      } else if (isLogin && Object.keys(user).length === 0) {
+        console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
+        dispatch(current())
+          .then(() => {
+            if (category === 'favorites') {
+              console.log(' ВЫЗЫВАЮ DISPATCH 6');
+              dispatch(fetchFavotiteNotices());
+            } else if (searchQuery) {
+              console.log(' ВЫЗЫВАЮ DISPATCH 7');
+              dispatch(
+                fetchNoticesByTitle({
+                  category,
+                  searchQuery,
+                  page: activePage + 1,
+                })
+              );
+            } else if (category === 'user-notices') {
+              console.log(' ВЫЗЫВАЮ DISPATCH 8');
+              dispatch(fetchUserNotices());
+            } else {
+              console.log(' ВЫЗЫВАЮ DISPATCH 9');
+              dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+            }
+          })
+          .catch(error => {
+            // Не  загрузился Юзер current
+            console.log('Error ', error);
+          });
+      } else if (!isLogin) {
+        if (searchQuery) {
+          console.log(' ВЫЗЫВАЮ DISPATCH 10');
+          dispatch(fetchNoticesByTitle({ category, searchQuery }));
+        } else {
+          console.log(' ВЫЗЫВАЮ DISPATCH 11');
+          dispatch(fetchNoticesByTitle({ category }));
+        }
+      }
+    };
 
-  //   fetchData();
-  // }, [category, dispatch, searchQuery, isLogin, user, activePage]);
+    fetchData();
+  }, [category, dispatch, searchQuery, isLogin, user, activePage]);
 
   const handleSearchChange = value => {
     setSearchQuery(value);
