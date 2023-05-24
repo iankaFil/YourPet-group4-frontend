@@ -6,21 +6,21 @@ export const LocationIcon = ({ id, className }) => {
       return (
         <svg
           className={className}
-          width="18"
-          height="20"
-          viewBox="0 0 18 20"
+          width="25"
+          height="24"
+          viewBox="0 0 25 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17 9C17 13.4183 13.4183 17 9 19C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
+            d="M20.7578 11C20.7578 15.4183 17.1761 19 12.7578 21C8.33953 19 4.75781 15.4183 4.75781 11C4.75781 6.58172 8.33953 3 12.7578 3C17.1761 3 20.7578 6.58172 20.7578 11Z"
             stroke="#54ADFF"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
-            d="M12 9C12 10.6569 10.6569 12 9 12C7.34315 12 6 10.6569 6 9C6 7.34315 7.34315 6 9 6C10.6569 6 12 7.34315 12 9Z"
+            d="M15.7578 11C15.7578 12.6569 14.4147 14 12.7578 14C11.101 14 9.75781 12.6569 9.75781 11C9.75781 9.34315 11.101 8 12.7578 8C14.4147 8 15.7578 9.34315 15.7578 11Z"
             stroke="#54ADFF"
             strokeWidth="1.5"
             strokeLinecap="round"
