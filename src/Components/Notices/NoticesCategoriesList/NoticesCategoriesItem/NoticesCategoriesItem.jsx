@@ -149,7 +149,9 @@ const CategoryItem = ({
           <p className={css.sell_btn}>{category}</p>
           <li className={css.list_item}>
             <button className={css.img_btn}>
-              <LocationIcon id="svg" className={css.locationIcon} />
+              <span>
+                <LocationIcon id="svg" className={css.locationIcon} />
+              </span>
               {place}
             </button>
           </li>
