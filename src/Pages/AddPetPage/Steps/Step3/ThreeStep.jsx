@@ -64,7 +64,7 @@ const ThreeStep = ({ handleNext, handlePreviousStep, formData }) => {
           placeholder="Type comment"
           onChange={e => setComments(e.target.value)}
         />
-        {errors.comments && <p>{errors.comments}</p>}
+        {errors.comments && <p className={css.comments}>{errors.comments}</p>}
       </div>
       <ul className={css.LinkAddPEt}>
         <li>

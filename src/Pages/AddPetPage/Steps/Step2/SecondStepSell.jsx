@@ -27,9 +27,9 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
       });
   };
 
-  const setBirthdayWrapper = (brd) => {
-    setBirthday(brd)
-  }
+  const setBirthdayWrapper = brd => {
+    setBirthday(brd);
+  };
 
   return (
     <div className={css.FormWrapper}>
@@ -43,9 +43,9 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
           id="title"
           value={title}
           onChange={e => setTitle(e.target.value)}
-          placeholder="Type pet name"
+          placeholder="Type add title"
         />
-        {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+        {errors.title && <p className={css.ErrorTextLow}>{errors.title}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
         <label className={css.LabelStep} htmlFor="name">
@@ -62,8 +62,12 @@ const SecondStepSell = ({ handleNext, handlePreviousStep, formData }) => {
         {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
       </div>
       <div className={css.WrapperLabelInput}>
-        <CustomDatePicker className={css.Input} setBirthdayWrapper={setBirthdayWrapper} birthday={birthday } />
-       
+        <CustomDatePicker
+          className={css.Input}
+          setBirthdayWrapper={setBirthdayWrapper}
+          birthday={birthday}
+        />
+
         {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>}
       </div>
       <div className={css.WrapperLabelInput}>

@@ -92,7 +92,9 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
                 <img className={css.iconAdd} src={PetAdd} alt="add" />
               </div>
             </label>
-            {errors.photo && <p>{errors.photo}</p>}
+            {errors.photo && (
+              <p className={css.errorComentSell}>{errors.photo}</p>
+            )}
           </div>
         </div>
         <div className={css.wrapperFormSellInputs}>
@@ -135,7 +137,9 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
               placeholder="Type comment"
               onChange={e => setComments(e.target.value)}
             />
-            {errors.comments && <p>{errors.comments}</p>}
+            {errors.comments && (
+              <p className={css.comments}>{errors.comments}</p>
+            )}
           </div>
         </div>
       </div>
