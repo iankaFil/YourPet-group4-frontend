@@ -1,110 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import { Checkbox, Collapse } from 'antd';
-// import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
-// import { useDispatch } from 'react-redux';
-// import cn from 'classnames';
-// import css from './NoticesBurgerMenu.module.css';
-// import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
-
-// import { setFilter } from 'Redux/filters/filters-slice';
-
-// const { Panel } = Collapse;
-
-// const optionsByAge = [
-//   {
-//     label: '3-12 m',
-//     value: '3-12m',
-//   },
-//   {
-//     label: '1 year',
-//     value: '1year',
-//   },
-//   {
-//     label: '2 year',
-//     value: '2year',
-//   },
-// ];
-
-// const optionsByGender = [
-//   {
-//     label: 'female',
-//     value: 'female',
-//   },
-//   {
-//     label: 'male',
-//     value: 'male',
-//   },
-// ];
-
-// const NoticesBurgerMenu = () => {
-//   const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
-//   const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
-
-//   const dispatch = useDispatch();
-
-//   useEffect(() => {
-//     // console.log(selectedOptionsSex, selectedOptionsAge);
-//     // if (selectedOptionsSex.length === 0 && selectedOptionsAge.length === 0) {
-//     //   return;
-//     // }
-
-//     const handleFilterChange = (filterName, filterValue) => {
-//       dispatch(setFilter({ filterName, filterValue }));
-//     };
-
-//     handleFilterChange('sex', selectedOptionsSex);
-//     handleFilterChange('age', selectedOptionsAge);
-
-//     const sendData = {
-//       age: selectedOptionsAge,
-//       sex: selectedOptionsSex,
-//     };
-//     console.log('sendData', sendData);
-//     dispatch(
-//       fetchNoticesByTitle({
-//         gender: selectedOptionsSex,
-//         age: selectedOptionsAge,
-//       })
-//     ); //category, searchQuery,
-//   }, [dispatch, selectedOptionsSex, selectedOptionsAge]);
-
-//   // const handleOptionChange = checkedValues => {
-//   //   console.log("ghbgynhnnnnn",checkedValues);
-//   //   setSelectedOptions(prevstate => [...prevstate, ...checkedValues]);
-//   // };
-
-//   return (
-//     <div className={css.dropdown}>
-//       <Collapse
-//         bordered={false}
-//         expandIcon={({ isActive }) => (
-//           <Down className={cn(css.down_icon, { [css.active]: isActive })} />
-//         )}
-//         className={css.filterWrapper}
-//       >
-//         <Panel header="By age" key="1" className={css.title}>
-//           <Checkbox.Group
-//             options={optionsByAge}
-//             value={selectedOptionsAge}
-//             onChange={e => setSelectedOptionsAge(e)}
-//             className={css.checkbox}
-//           />
-//         </Panel>
-//         <Panel header="By gender" key="2" className={css.title}>
-//           <Checkbox.Group
-//             options={optionsByGender}
-//             value={selectedOptionsSex}
-//             onChange={e => setSelectedOptionsSex(e)}
-//             className={css.checkbox}
-//           />
-//         </Panel>
-//       </Collapse>
-//     </div>
-//   );
-// };
-
-// export default NoticesBurgerMenu;
-
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
@@ -197,20 +90,28 @@ const NoticesBurgerMenu = () => {
         className={css.filterWrapper}
       >
         <Panel header="By age" key="1" className={css.title}>
-          <Checkbox.Group
-            options={optionsByAge}
-            value={selectedOptionsAge}
-            onChange={checkedValues => handleOptionChange('age', checkedValues)}
-            className={css.checkbox}
-          />
+          {optionsByAge.map(option => (
+            <Checkbox
+              key={option.value}
+              checked={selectedOptionsAge === option.value}
+              onChange={() => handleOptionChange('age', option.value)}
+              className={css.checkbox}
+            >
+              {option.label}
+            </Checkbox>
+          ))}
         </Panel>
         <Panel header="By gender" key="2" className={css.title}>
-          <Checkbox.Group
-            options={optionsByGender}
-            value={selectedOptionsSex}
-            onChange={checkedValues => handleOptionChange('sex', checkedValues)}
-            className={css.checkbox}
-          />
+          {optionsByGender.map(option => (
+            <Checkbox
+              key={option.value}
+              checked={selectedOptionsSex === option.value}
+              onChange={() => handleOptionChange('sex', option.value)}
+              className={css.checkbox}
+            >
+              {option.label}
+            </Checkbox>
+          ))}
         </Panel>
       </Collapse>
     </div>
@@ -218,116 +119,3 @@ const NoticesBurgerMenu = () => {
 };
 
 export default NoticesBurgerMenu;
-
-// import React, { useEffect } from 'react';
-// import { Checkbox, Collapse } from 'antd';
-// import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
-// import { useDispatch, useSelector } from 'react-redux';
-// import cn from 'classnames';
-// import css from './NoticesBurgerMenu.module.css';
-// import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
-
-// import { setFilter } from 'Redux/filters/filters-slice';
-// import {
-//   selectSelectedOptionsSex,
-//   selectSelectedOptionsAge,
-// } from 'Redux/filters/filters-selectors';
-
-// const { Panel } = Collapse;
-
-// const optionsByAge = [
-//   {
-//     label: '3-12 m',
-//     value: '3-12m',
-//   },
-//   {
-//     label: '1 year',
-//     value: '1year',
-//   },
-//   {
-//     label: '2 year',
-//     value: '2year',
-//   },
-// ];
-
-// const optionsByGender = [
-//   {
-//     label: 'female',
-//     value: 'female',
-//   },
-//   {
-//     label: 'male',
-//     value: 'male',
-//   },
-// ];
-
-// const NoticesBurgerMenu = () => {
-//   const dispatch = useDispatch();
-//   const selectedOptionsSex = useSelector(selectSelectedOptionsSex);
-//   const selectedOptionsAge = useSelector(selectSelectedOptionsAge);
-
-//   console.log('selectedOptionsSex----------------', selectedOptionsSex);
-//   console.log('selectedOptionsAge--------------++', selectedOptionsAge);
-
-//   useEffect(() => {
-//     const handleFilterChange = (filterName, filterValue) => {
-//       dispatch(setFilter({ filterName, filterValue }));
-//     };
-
-//     handleFilterChange('sex', selectedOptionsSex);
-//     handleFilterChange('age', selectedOptionsAge);
-
-//     const sendData = {
-//       age: selectedOptionsAge,
-//       sex: selectedOptionsSex,
-//     };
-//     console.log('sendData', sendData);
-//     dispatch(
-//       fetchNoticesByTitle({
-//         gender: selectedOptionsSex,
-//         age: selectedOptionsAge,
-//       })
-//     );
-//   }, [dispatch, selectedOptionsSex, selectedOptionsAge]);
-
-//   const handleOptionChange = (name, checkedValues) => {
-//     // Dispatch an action to update the selected options in Redux state
-//     // For example: dispatch(updateSelectedOptions(name, checkedValues));
-//   };
-
-//   const handleCollapseChange = key => {
-//     // Handle collapse change if needed
-//   };
-
-//   return (
-//     <div className={css.dropdown}>
-//       <Collapse
-//         bordered={false}
-//         expandIcon={({ isActive }) => (
-//           <Down className={cn(css.down_icon, { [css.active]: isActive })} />
-//         )}
-//         className={css.filterWrapper}
-//         onChange={handleCollapseChange}
-//       >
-//         <Panel header="By age" key="1" className={css.title}>
-//           <Checkbox.Group
-//             options={optionsByAge}
-//             // value={selectedOptionsAge}
-//             onChange={checkedValues => handleOptionChange('age', checkedValues)}
-//             className={css.checkbox}
-//           />
-//         </Panel>
-//         <Panel header="By gender" key="2" className={css.title}>
-//           <Checkbox.Group
-//             options={optionsByGender}
-//             // value={selectedOptionsSex}
-//             onChange={checkedValues => handleOptionChange('sex', checkedValues)}
-//             className={css.checkbox}
-//           />
-//         </Panel>
-//       </Collapse>
-//     </div>
-//   );
-// };
-
-// export default NoticesBurgerMenu;
