@@ -13,7 +13,7 @@ import { isUserLogin } from 'Redux/auth/auth-selectors';
 const NoticesCategoriesNav = ({ handleChangeCategory }) => {
   const isLoginUser = useSelector(isUserLogin);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleNavLinkClick = event => {
     if (event.target.tagName === 'A') {
@@ -25,10 +25,10 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
     if (!isLoginUser) {
       toast.info(
         'You must be registered or logged in to perform the operation'
-      )
-      return
+      );
+      return;
     }
-    navigate('/add-pet')
+    navigate('/add-pet');
   };
 
   const handleFilterButtonClick = () => {
@@ -86,20 +86,27 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
 
       <ul className={css.addButtonContainer}>
         <li className={css.filterLink}>
-          <NavLink
+          {/* <NavLink
             className={({ isActive }) => (isActive ? css.active : '')}
             onClick={handleFilterButtonClick}
             to="/notices/filter"
+          > */}
+          <button
+            type="button"
+            onClick={handleFilterButtonClick}
+            // className={({ isActive }) => (isActive ? css.active : '')}
           >
-            <p className={css.filterText}>Filter</p>
-            <Filter />
-          </NavLink>
+            Покажи мне любовь
+          </button>
+          <p className={css.filterText}>Filter</p>
+          <Filter />
+          {/* </NavLink> */}
           {isBurgerMenuOpen && <NoticesBurgerMenu />}
         </li>
         <li className={css.addButtonLink}>
           <button
-            type='button'
-            className={({ isActive }) => (isActive ? css.active : '')}
+            type="button"
+            // className={({ isActive }) => (isActive ? css.active : '')}
             onClick={handleLinkClick}
           >
             <p className={css.addPetText}>Add pet</p>
