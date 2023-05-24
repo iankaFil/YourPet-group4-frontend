@@ -41,6 +41,7 @@ const NoticesPage = () => {
   const location = useLocation();
 
   const path = location.pathname;
+
   const [category, setCategory] = useState(() => extractCategoryFromPath(path));
 
   function transformCategorie(value) {
@@ -97,10 +98,6 @@ const NoticesPage = () => {
     },
     [dispatch]
   );
-
-  useEffect(() => {
-    dispatch(fetchNoticesByTitle());
-  }, [dispatch]);
 
   useEffect(() => {
     handleFilterChange('category', category);
