@@ -16,7 +16,7 @@
 - [Яна-Ана Філь - Team Lead](https://github.com/iankaFil)
 - [Юлія Кравченко - Scrum master](https://github.com/JuliaKravchenko8)
 - [Олександр Кушнір - Developer](https://github.com/dj-egregor)
-- [Олександр Куліков - Developer](https://github.com/kulykof)
+- [Олександр Куликов - Developer](https://github.com/kulykof)
 - [Оксана Тригуб - Developer](https://github.com/OksanaTryhub)
 - [Владислав Шкарапута - Developer](https://github.com/Irfnekf)
 - [Володимир Бублик - Developer](https://github.com/volodymyr198)
