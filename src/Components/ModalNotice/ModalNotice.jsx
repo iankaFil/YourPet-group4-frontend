@@ -96,7 +96,6 @@ const ModalNotice = ({
       setFavorite(false);
     }
   };
-
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
       <div className={css.content}>
@@ -130,7 +129,7 @@ const ModalNotice = ({
                 <span className={css.info_title}>The sex: </span>
                 <span className={css.info_text}>{sex}</span>
               </p>
-              {price && (
+              {price && category === "sell" &&(
                 <p className={css.list_item}>
                   <span className={css.info_title}>Price: </span>
                   <span className={css.info_text}>{price} $</span>
