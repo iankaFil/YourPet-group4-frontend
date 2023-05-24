@@ -62,7 +62,7 @@ const NoticesBurgerMenu = () => {
       })
     );
     setIsFilterChanged(false);
-  }, [dispatch, filters.sex, filters.age]);
+  }, [dispatch, filters.sex, filters.age, isFilterChanged]);
 
   const handleOptionChange = (name, checkedValues) => {
     dispatch(setFilter({ filterName: name, filterValue: checkedValues }));
@@ -79,25 +79,21 @@ const NoticesBurgerMenu = () => {
         className={css.filterWrapper}
       >
         <Panel header="By age" key="1" className={css.title}>
-
           <Checkbox.Group
             options={optionsByAge}
             value={filters.age}
             onChange={checkedValues => handleOptionChange('age', checkedValues)}
             className={css.checkbox}
           />
-
         </Panel>
 
         <Panel header="By gender" key="2" className={css.title}>
-
           <Checkbox.Group
             options={optionsByGender}
             value={filters.sex}
             onChange={checkedValues => handleOptionChange('sex', checkedValues)}
             className={css.checkbox}
           />
-
         </Panel>
       </Collapse>
     </div>
