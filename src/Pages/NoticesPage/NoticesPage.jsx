@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import css from 'Pages/NoticesPage/NoticesPage.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
@@ -58,6 +58,7 @@ const NoticesPage = () => {
   console.log('PATH-> ', path);
 
   const [category, setCategory] = useState(() => extractCategoryFromPath(path));
+
   console.log('KJHBKJHBKJBKJBKJB', category);
 
   // let displayPagination;
@@ -121,91 +122,126 @@ const NoticesPage = () => {
 
   const [activePage, setActivePage] = useState(0);
 
-  useEffect(() => {
-    const handleFilterChange = (filterName, filterValue) => {
+  // const geNotices = useCallback(
+  //   category => {
+  //     if (isLogin && Object.keys(user).length > 0) {
+  //       if (category === 'favorites') {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 1');
+  //         dispatch(fetchFavotiteNotices());
+  //       } else if (category === 'user-notices') {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 2');
+  //         dispatch(fetchUserNotices());
+  //       } else {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 3');
+  //         dispatch(fetchNoticesByTitle());
+  //       }
+  //     }
+  //   },
+  //   [dispatch, isLogin, user]
+  // );
+
+  const handleFilterChange = useCallback(
+    (filterName, filterValue) => {
       dispatch(setFilter({ filterName, filterValue }));
-    };
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
     handleFilterChange('category', category);
     setActivePage(0);
-  }, [category, dispatch]);
+    console.log('   DISPATCH --------------- CATEGORY_______', category);
+    if (category === 'favorites') {
+      console.log(' ВЫЗЫВАЮ DISPATCH 1');
+      dispatch(fetchFavotiteNotices());
+    } else if (category === 'user-notices') {
+      console.log(' ВЫЗЫВАЮ DISPATCH 2');
+      dispatch(fetchUserNotices());
+    } else {
+      console.log(' ВЫЗЫВАЮ DISPATCH 3');
+      dispatch(fetchNoticesByTitle());
+    }
+    // dispatch(fetchNoticesByTitle());
+  }, [category, dispatch, handleFilterChange]);
 
   useEffect(() => {
-    const handleFilterChange = (filterName, filterValue) => {
-      dispatch(setFilter({ filterName, filterValue }));
-    };
     handleFilterChange('page', activePage + 1);
-  }, [activePage, dispatch]);
+    dispatch(fetchNoticesByTitle());
+  }, [activePage, dispatch, handleFilterChange]);
 
   useEffect(() => {
-    console.log('isLogin', isLogin);
-    console.log('activePage', activePage);
-    const fetchData = () => {
-      if (isLogin && Object.keys(user).length > 0) {
-        if (category === 'favorites') {
-          console.log(' ВЫЗЫВАЮ DISPATCH 1');
-          dispatch(fetchFavotiteNotices());
-        } else if (searchQuery) {
-          console.log(' ВЫЗЫВАЮ DISPATCH 2');
-          dispatch(
-            fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
-          );
-        } else if (category === 'user-notices') {
-          console.log(' ВЫЗЫВАЮ DISPATCH 3');
-          dispatch(fetchUserNotices());
-        } else {
-          console.log(' ВЫЗЫВАЮ DISPATCH 4');
-          dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
-        }
-      } else if (isLogin && Object.keys(user).length === 0) {
-        console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
-        dispatch(current())
-          .then(() => {
-            if (category === 'favorites') {
-              console.log(' ВЫЗЫВАЮ DISPATCH 6');
-              dispatch(fetchFavotiteNotices());
-            } else if (searchQuery) {
-              console.log(' ВЫЗЫВАЮ DISPATCH 7');
-              dispatch(
-                fetchNoticesByTitle({
-                  category,
-                  searchQuery,
-                  page: activePage + 1,
-                })
-              );
-            } else if (category === 'user-notices') {
-              console.log(' ВЫЗЫВАЮ DISPATCH 8');
-              dispatch(fetchUserNotices());
-            } else {
-              console.log(' ВЫЗЫВАЮ DISPATCH 9');
-              dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
-            }
-          })
-          .catch(error => {
-            // Не  загрузился Юзер current
-            console.log('Error ', error);
-          });
-      } else if (!isLogin) {
-        if (searchQuery) {
-          console.log(' ВЫЗЫВАЮ DISPATCH 10');
-          dispatch(fetchNoticesByTitle({ category, searchQuery }));
-        } else {
-          console.log(' ВЫЗЫВАЮ DISPATCH 11');
-          dispatch(fetchNoticesByTitle({ category }));
-        }
-      }
-    };
+    setActivePage(0);
+    handleFilterChange('searchQuery', searchQuery);
+    dispatch(fetchNoticesByTitle());
+  }, [searchQuery, dispatch, handleFilterChange]);
 
-    fetchData();
-  }, [category, dispatch, searchQuery, isLogin, user, activePage]);
+  // useEffect(() => {
+  //   console.log('isLogin', isLogin);
+  //   console.log('activePage', activePage);
+  //   const fetchData = () => {
+  //     if (isLogin && Object.keys(user).length > 0) {
+  //       if (category === 'favorites') {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 1');
+  //         dispatch(fetchFavotiteNotices());
+  //       } else if (searchQuery) {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 2');
+  //         dispatch(
+  //           fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
+  //         );
+  //       } else if (category === 'user-notices') {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 3');
+  //         dispatch(fetchUserNotices());
+  //       } else {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 4');
+  //         dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+  //       }
+  //     } else if (isLogin && Object.keys(user).length === 0) {
+  //       console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
+  //       dispatch(current())
+  //         .then(() => {
+  //           if (category === 'favorites') {
+  //             console.log(' ВЫЗЫВАЮ DISPATCH 6');
+  //             dispatch(fetchFavotiteNotices());
+  //           } else if (searchQuery) {
+  //             console.log(' ВЫЗЫВАЮ DISPATCH 7');
+  //             dispatch(
+  //               fetchNoticesByTitle({
+  //                 category,
+  //                 searchQuery,
+  //                 page: activePage + 1,
+  //               })
+  //             );
+  //           } else if (category === 'user-notices') {
+  //             console.log(' ВЫЗЫВАЮ DISPATCH 8');
+  //             dispatch(fetchUserNotices());
+  //           } else {
+  //             console.log(' ВЫЗЫВАЮ DISPATCH 9');
+  //             dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
+  //           }
+  //         })
+  //         .catch(error => {
+  //           // Не  загрузился Юзер current
+  //           console.log('Error ', error);
+  //         });
+  //     } else if (!isLogin) {
+  //       if (searchQuery) {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 10');
+  //         dispatch(fetchNoticesByTitle({ category, searchQuery }));
+  //       } else {
+  //         console.log(' ВЫЗЫВАЮ DISPATCH 11');
+  //         dispatch(fetchNoticesByTitle({ category }));
+  //       }
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [category, dispatch, searchQuery, isLogin, user, activePage]);
 
   const handleSearchChange = value => {
     setSearchQuery(value);
   };
 
   const handleChangeCategory = value => {
-    console.log('handleChangeCategory', value);
-    // setCategory('');
-
     setActivePage(0);
     switch (value) {
       case 'lost/found':
@@ -236,7 +272,6 @@ const NoticesPage = () => {
   };
 
   const handlePageClick = ({ selected }) => {
-    console.log('CLICK');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     // const page = selected + 1;
     setActivePage(selected);
@@ -246,50 +281,47 @@ const NoticesPage = () => {
 
   return (
     <Section>
-      {isLoading && !error ? (
+      {/* {isLoading && !error ? (
         <Loader />
-      ) : (
-        <Container>
-          <Title>Find your favorite pet</Title>
-          <NoticesSearch
-            handleSearchChange={handleSearchChange}
-            handleChangeCategory={handleChangeCategory}
-          />
-          <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
-          {!notices.length && (
-            <div className={css.zaglushka}>
-              <img
-                className={css.zaglushkaImg}
-                src={Zaglushka}
-                alt="Заглушка"
+      ) : ( */}
+      <Container>
+        <Title>Find your favorite pet</Title>
+        <NoticesSearch
+          handleSearchChange={handleSearchChange}
+          handleChangeCategory={handleChangeCategory}
+        />
+        <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
+        {!notices.length && (
+          <div className={css.zaglushka}>
+            <img className={css.zaglushkaImg} src={Zaglushka} alt="Заглушка" />
+            <p>It's nothing here, because I ate all.</p>
+          </div>
+        )}
+        {/* {notices && notices.length > 0 && <CategoryList card={notices} />} */}
+        {isLoading && !error ? <Loader /> : <CategoryList card={notices} />}
+        {category !== 'favorites' &&
+          category !== 'user-notices' &&
+          notices &&
+          totalPages > 1 &&
+          notices.length > 0 && (
+            <div className={css.wrapper}>
+              <ReactPaginate
+                previousLabel={<BsArrowLeft />}
+                nextLabel={<BsArrowRight />}
+                pageCount={Math.ceil(totalPages) || 0}
+                onPageChange={handlePageClick}
+                containerClassName={css.pagination}
+                activeClassName={css.paginationActive}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
+                breakLabel={'...'}
+                forcePage={activePage}
               />
-              <p>It's nothing here, because I ate all.</p>
             </div>
           )}
-          {notices && notices.length > 0 && <CategoryList card={notices} />}
-          {category !== 'favorites' &&
-            category !== 'user-notices' &&
-            notices &&
-            totalPages > 1 &&
-            notices.length > 0 && (
-              <div className={css.wrapper}>
-                <ReactPaginate
-                  previousLabel={<BsArrowLeft />}
-                  nextLabel={<BsArrowRight />}
-                  pageCount={Math.ceil(totalPages) || 0}
-                  onPageChange={handlePageClick}
-                  containerClassName={css.pagination}
-                  activeClassName={css.paginationActive}
-                  pageRangeDisplayed={2}
-                  marginPagesDisplayed={2}
-                  breakLabel={'...'}
-                  forcePage={activePage}
-                />
-              </div>
-            )}
-          <ToastContainer autoClose={1400} position="top-center" />
-        </Container>
-      )}
+        <ToastContainer autoClose={1400} position="top-center" />
+      </Container>
+      {/* )} */}
     </Section>
   );
 };
