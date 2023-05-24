@@ -8,6 +8,7 @@ import { friendsReducer } from './ourFriends/ourFriends-slice';
 import { noticesReducer } from './notices/notices-slice';
 // import { userReducer } from './user/user-slice';
 import { petsReducer } from './pets/pets-slice';
+import { filtersReducer } from './filters/filters-slice';
 
 const authPersistConfig = {
   key: 'token',
@@ -24,4 +25,5 @@ export const rootReducer = combineReducers({
   notices: noticesReducer,
   // user: userReducer,
   pets: petsReducer,
+  filters: filtersReducer,
 });

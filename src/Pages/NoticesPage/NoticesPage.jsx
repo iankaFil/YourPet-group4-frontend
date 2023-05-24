@@ -37,6 +37,8 @@ import {
 
 import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
 
+import { setFilter } from 'Redux/filters/filters-slice';
+
 // const fetchData = async () => {
 //   try {
 //     await Promise.all([dispatch(current()), dispatch(fetchOwnPets())]);
@@ -118,6 +120,14 @@ const NoticesPage = () => {
   console.log('totalPages', totalPages);
 
   const [activePage, setActivePage] = useState(0);
+
+  useEffect(() => {
+    console.log('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQcategory', category);
+    const handleFilterChange = (filterName, filterValue) => {
+      dispatch(setFilter({ filterName, filterValue }));
+    };
+    handleFilterChange('category', category);
+  }, [category, dispatch]);
 
   useEffect(() => {
     console.log('isLogin', isLogin);
