@@ -87,7 +87,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchDeleteNotice.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        const index = state.items.findIndex(item => item.id === payload);
+        const index = state.items.findIndex(item => item.id !== payload);
         state.items.splice(index, 1);
       })
       .addCase(fetchDeleteNotice.rejected, (state, { payload }) => {

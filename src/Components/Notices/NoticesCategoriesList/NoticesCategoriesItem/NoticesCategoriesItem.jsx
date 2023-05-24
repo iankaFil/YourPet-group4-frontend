@@ -72,8 +72,8 @@ const CategoryItem = ({
   });
 
   const handleDeleteClick = (_id) => {
-     dispatch(fetchDeleteNotice(_id));
-            setShowModalAccess(false);
+    dispatch(fetchDeleteNotice(_id));
+    setShowModalAccess(false);
   }
   // const [isRemoveActive, setIsRemoveActive] = useState(() => {
   //   if (isLogin && user) {
