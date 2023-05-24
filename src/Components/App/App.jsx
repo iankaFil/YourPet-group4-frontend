@@ -1,14 +1,20 @@
 import './App.module.css';
 import UserRoutes from 'Components/UserRoutes';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
-// import { useDispatch, useSelector } from 'react-redux';
-// import { current } from 'Redux/auth/auth-operations';
+import {
+  useDispatch
+  // , useSelector
+} from 'react-redux';
+import { current } from 'Redux/auth/auth-operations';
 // import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const isLogin = useSelector(isUserLogin);
+  useEffect(() => {
+    dispatch(current())
+  },[dispatch])
 
   // const user = useSelector(getUser);
 

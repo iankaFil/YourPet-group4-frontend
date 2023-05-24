@@ -19,9 +19,8 @@ function UserNav({ handleLinkClick }) {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
 
   const user = useSelector(getUser);
-  const { name, avatarURL } = user;
+  const { name, avatarURL, email } = user;
 
-  const { email } = user;
   function splitResult() {
     if (email) {
       return email.split('@')[0];
