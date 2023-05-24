@@ -39,14 +39,24 @@
 // const NoticesBurgerMenu = () => {
 //   const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
 //   const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
+<<<<<<< Updated upstream
+=======
+//   const [isFilterChanged, setIsFilterChanged] = useState(false);
+>>>>>>> Stashed changes
 
 //   const dispatch = useDispatch();
 
 //   useEffect(() => {
+<<<<<<< Updated upstream
 //     // console.log(selectedOptionsSex, selectedOptionsAge);
 //     // if (selectedOptionsSex.length === 0 && selectedOptionsAge.length === 0) {
 //     //   return;
 //     // }
+=======
+//     if (!isFilterChanged) {
+//       return;
+//     }
+>>>>>>> Stashed changes
 
 //     const handleFilterChange = (filterName, filterValue) => {
 //       dispatch(setFilter({ filterName, filterValue }));
@@ -66,12 +76,28 @@
 //         age: selectedOptionsAge,
 //       })
 //     ); //category, searchQuery,
+<<<<<<< Updated upstream
 //   }, [dispatch, selectedOptionsSex, selectedOptionsAge]);
 
 //   // const handleOptionChange = checkedValues => {
 //   //   console.log("ghbgynhnnnnn",checkedValues);
 //   //   setSelectedOptions(prevstate => [...prevstate, ...checkedValues]);
 //   // };
+=======
+
+//     setIsFilterChanged(false);
+//   }, [dispatch, selectedOptionsSex, selectedOptionsAge, isFilterChanged]);
+
+//   const handleOptionChange = (name, checkedValues) => {
+//     if (name === 'sex') {
+//       setSelectedOptionsSex(checkedValues);
+//     } else if (name === 'age') {
+//       setSelectedOptionsAge(checkedValues);
+//     }
+
+//     setIsFilterChanged(true);
+//   };
+>>>>>>> Stashed changes
 
 //   return (
 //     <div className={css.dropdown}>
@@ -82,6 +108,7 @@
 //         )}
 //         className={css.filterWrapper}
 //       >
+<<<<<<< Updated upstream
 //         <Panel header="By age" key="1" className={css.title}>
 //           <Checkbox.Group
 //             options={optionsByAge}
@@ -98,6 +125,32 @@
 //             className={css.checkbox}
 //           />
 //         </Panel>
+=======
+// <Panel header="By age" key="1" className={css.title}>
+//   {optionsByAge.map(option => (
+//     <Checkbox
+//       key={option.value}
+//       checked={selectedOptionsAge === option.value}
+//       onChange={() => handleOptionChange('age', option.value)}
+//       className={css.checkbox}
+//     >
+//       {option.label}
+//     </Checkbox>
+//   ))}
+// </Panel>
+// <Panel header="By gender" key="2" className={css.title}>
+//   {optionsByGender.map(option => (
+//     <Checkbox
+//       key={option.value}
+//       checked={selectedOptionsSex === option.value}
+//       onChange={() => handleOptionChange('sex', option.value)}
+//       className={css.checkbox}
+//     >
+//       {option.label}
+//     </Checkbox>
+//   ))}
+// </Panel>
+>>>>>>> Stashed changes
 //       </Collapse>
 //     </div>
 //   );
@@ -105,15 +158,22 @@
 
 // export default NoticesBurgerMenu;
 
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from 'react';
+=======
+// import React, { useEffect, useState } from 'react';
+
+import React, { useEffect } from 'react';
+>>>>>>> Stashed changes
 import { Checkbox, Collapse } from 'antd';
 import { ReactComponent as Down } from 'Components/SvgIcons/Down.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import css from './NoticesBurgerMenu.module.css';
 import { fetchNoticesByTitle } from 'Redux/notices/notices-operations';
-
 import { setFilter } from 'Redux/filters/filters-slice';
+
+import { selectFilters } from 'Redux/filters/filters-selectors';
 
 const { Panel } = Collapse;
 
@@ -144,47 +204,28 @@ const optionsByGender = [
 ];
 
 const NoticesBurgerMenu = () => {
-  const [selectedOptionsSex, setSelectedOptionsSex] = useState([]);
-  const [selectedOptionsAge, setSelectedOptionsAge] = useState([]);
-  const [isFilterChanged, setIsFilterChanged] = useState(false);
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!isFilterChanged) {
-      return;
-    }
+  const filters = useSelector(selectFilters);
 
+  useEffect(() => {
     const handleFilterChange = (filterName, filterValue) => {
       dispatch(setFilter({ filterName, filterValue }));
     };
 
-    handleFilterChange('sex', selectedOptionsSex);
-    handleFilterChange('age', selectedOptionsAge);
+    handleFilterChange('sex', filters.sex);
+    handleFilterChange('age', filters.age);
 
-    const sendData = {
-      age: selectedOptionsAge,
-      sex: selectedOptionsSex,
-    };
-    console.log('sendData', sendData);
     dispatch(
       fetchNoticesByTitle({
-        gender: selectedOptionsSex,
-        age: selectedOptionsAge,
+        gender: filters.sex,
+        age: filters.age,
       })
-    ); //category, searchQuery,
-
-    setIsFilterChanged(false);
-  }, [dispatch, selectedOptionsSex, selectedOptionsAge, isFilterChanged]);
+    );
+  }, [dispatch, filters.sex, filters.age]);
 
   const handleOptionChange = (name, checkedValues) => {
-    if (name === 'sex') {
-      setSelectedOptionsSex(checkedValues);
-    } else if (name === 'age') {
-      setSelectedOptionsAge(checkedValues);
-    }
-
-    setIsFilterChanged(true);
+    dispatch(setFilter({ filterName: name, filterValue: checkedValues }));
   };
 
   return (
@@ -199,15 +240,24 @@ const NoticesBurgerMenu = () => {
         <Panel header="By age" key="1" className={css.title}>
           <Checkbox.Group
             options={optionsByAge}
+<<<<<<< Updated upstream
             value={selectedOptionsAge}
+=======
+            value={filters.age}
+>>>>>>> Stashed changes
             onChange={checkedValues => handleOptionChange('age', checkedValues)}
             className={css.checkbox}
           />
         </Panel>
+
         <Panel header="By gender" key="2" className={css.title}>
           <Checkbox.Group
             options={optionsByGender}
+<<<<<<< Updated upstream
             value={selectedOptionsSex}
+=======
+            value={filters.sex}
+>>>>>>> Stashed changes
             onChange={checkedValues => handleOptionChange('sex', checkedValues)}
             className={css.checkbox}
           />
