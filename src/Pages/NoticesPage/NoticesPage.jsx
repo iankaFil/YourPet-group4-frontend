@@ -122,12 +122,19 @@ const NoticesPage = () => {
   const [activePage, setActivePage] = useState(0);
 
   useEffect(() => {
-    console.log('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQcategory', category);
     const handleFilterChange = (filterName, filterValue) => {
       dispatch(setFilter({ filterName, filterValue }));
     };
     handleFilterChange('category', category);
+    setActivePage(0);
   }, [category, dispatch]);
+
+  useEffect(() => {
+    const handleFilterChange = (filterName, filterValue) => {
+      dispatch(setFilter({ filterName, filterValue }));
+    };
+    handleFilterChange('page', activePage + 1);
+  }, [activePage, dispatch]);
 
   useEffect(() => {
     console.log('isLogin', isLogin);
