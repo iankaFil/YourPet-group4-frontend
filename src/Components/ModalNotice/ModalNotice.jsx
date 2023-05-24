@@ -21,6 +21,7 @@ const ModalNotice = ({
   breed,
   place,
   sex,
+  price,
   category,
   photoURL,
   comments,
@@ -129,6 +130,12 @@ const ModalNotice = ({
                 <span className={css.info_title}>The sex: </span>
                 <span className={css.info_text}>{sex}</span>
               </p>
+              {price && (
+                <p className={css.list_item}>
+                  <span className={css.info_title}>Price: </span>
+                  <span className={css.info_text}>{price} $</span>
+                </p>
+              )}
               <p className={css.list_item}>
                 <span className={css.info_title}>Email: </span>
                 <a className={css.user_contact} href="mailto:{owner.email}">
