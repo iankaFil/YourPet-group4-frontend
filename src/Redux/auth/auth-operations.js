@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from '../../Shared/api/auth-api';
 
+import { authErrorMessage } from 'Shared/utils/warningMessage';
+
 export const signup = createAsyncThunk(
   'auth/signup',
   async (data, { rejectWithValue }) => {
@@ -9,6 +11,7 @@ export const signup = createAsyncThunk(
       const result = await api.signup(data);
       return result;
     } catch ({ response }) {
+      authErrorMessage(response)
       return rejectWithValue(response);
     }
   }
@@ -21,6 +24,7 @@ export const login = createAsyncThunk(
       const result = await api.login(data);
       return result;
     } catch ({ response }) {
+      authErrorMessage(response)
       return rejectWithValue(response);
     }
   }
@@ -34,6 +38,7 @@ export const current = createAsyncThunk(
       const data = await api.getCurrent(auth.token);
       return data;
     } catch ({ response }) {
+      authErrorMessage(response);
       return rejectWithValue(response);
     }
   },

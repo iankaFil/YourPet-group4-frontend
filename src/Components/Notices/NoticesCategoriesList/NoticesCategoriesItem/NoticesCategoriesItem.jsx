@@ -13,14 +13,13 @@ import { ReactComponent as Delete } from 'Components/SvgIcons/Delete.svg';
 import { ReactComponent as PawIcon } from 'Components/SvgIcons/paw.svg';
 
 import { fetchAddToFavorite, fetchDeleteFromFavorite } from 'Redux/auth/auth-operations';
-
+import { fetchDeleteNotice } from 'Redux/notices/notices-operations';
 import { isUserLogin, getUser } from 'Redux/auth/auth-selectors';
 
 import ModalNotice from 'Components/ModalNotice/ModalNotice';
 import ModalAcces from 'Components/ModalAcces/ModalAcces';
 
 import css from './NoticesCategoriesItem.module.css';
-import { fetchDeleteNotice } from 'Redux/notices/notices-operations';
 
 const CategoryItem = ({
   _id,

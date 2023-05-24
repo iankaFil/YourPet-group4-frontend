@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { CrossSmallIcon } from '../SvgIcons/CrossSmallIcon';
-// import {
-  // addToFavorite,
-//   deleteFromFavorite
-// } from 'Redux/user/user-operation';
 import { fetchAddToFavorite, fetchDeleteFromFavorite } from 'Redux/auth/auth-operations';
 
 import { isUserLogin } from 'Redux/auth/auth-selectors';
