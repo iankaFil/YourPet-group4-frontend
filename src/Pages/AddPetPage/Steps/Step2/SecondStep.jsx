@@ -12,14 +12,12 @@ const SecondStep = ({ handleNext, handlePreviousStep, formData }) => {
   const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
-    console.log('birthday=>', birthday);
     validationSchema
       .validate({ name, birthday, breed }, { abortEarly: false })
       .then(() => {
         handleNext({ name, birthday, breed });
       })
       .catch(err => {
-        console.log(err);
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;

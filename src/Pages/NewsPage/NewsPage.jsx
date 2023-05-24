@@ -46,7 +46,6 @@ const NewsPage = () => {
   }, [dispatch, searchQuery]);
 
   const handlePageClick = ({ selected }) => {
-    console.log('CLICK');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const page = selected + 1;
     setActivePage(selected);
@@ -58,9 +57,7 @@ const NewsPage = () => {
   }
   return (
     <Section>
-      {/* {isLoading && <Loader />} Отображение лоадера только при isLoading */}
       {error && <p>Error: {error}</p>}{' '}
-      {/* Отображение сообщения об ошибке, если есть error */}
       <Container>
         <Title>News</Title>
         <NewsSearch handleSearchChange={handleSearchChange} />

@@ -44,7 +44,6 @@ const UserData = ({ avatarURL, name, birthday, email, phone, city, handleClick, 
     try {
       await dispatch(updateUser(values));
     } catch (error) {
-      console.log('Error updating user data:', error);
     }
   };
 

@@ -20,7 +20,6 @@ const ThreeStepSell = ({ handleNext, handlePreviousStep, formData }) => {
     validationSchemaThree
       .validate({ photo, comments }, { abortEarly: false })
       .then(() => {
-        console.log('это из шага 3', formData);
         handleNext({ sex, place, price, comments, photo });
       })
       .catch(err => {

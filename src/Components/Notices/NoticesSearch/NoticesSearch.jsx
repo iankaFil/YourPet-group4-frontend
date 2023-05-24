@@ -10,23 +10,8 @@ const NoticesSearch = ({ handleSearchChange, handleChangeCategory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('q');
 
-  console.log(' SEARCH___________________---', searchValue);
-
   const [search, setSearch] = useState(searchValue || '');
-
-  console.log(' SEARCH___ofghh____________---', search);
-
-  // useEffect(() => {
-  //   setSearch('');
-  // }, [handleChangeCategory]);
-
-  // useEffect(() => {
-  //   if (searchValue) {
-  //     setSearch(searchValue);
-  //     handleSearchChange(search);
-  //   }
-  // }, [handleSearchChange, search, searchValue]);
-
+  
   const handleFormSubmit = event => {
     event.preventDefault();
     handleSearchChange(search);

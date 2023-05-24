@@ -6,11 +6,7 @@ export const fetchOwnPets = createAsyncThunk(
   'pets/fetch-own-pets',
   async (_, thunkAPI) => {
     try {
-      // const {pets} = await api.getOwnPets();
-      // console.log("RESULT fetchOwnPets=>", pets)
-      // return pets;
       const result = await api.getOwnPets();
-      // console.log("RESULT fetchOwnPets=>", result)
       return result;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data.message);

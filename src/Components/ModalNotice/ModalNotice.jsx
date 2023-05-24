@@ -29,7 +29,6 @@ const ModalNotice = ({
   className,
   owner,
 }) => {
-  console.log('IKUHDFSIFDIUFI', _id);
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       onClose();
