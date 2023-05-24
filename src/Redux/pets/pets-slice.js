@@ -33,7 +33,6 @@ const petsSlice = createSlice({
       })
       .addCase(fetchOwnPets.fulfilled, (state, { payload }) => {
         state.loading = false;
-        // console.log("PAYLOAD", payload)
         state.pets = payload.pets;
         state.user = payload.user;
       })

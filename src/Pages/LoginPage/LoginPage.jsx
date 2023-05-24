@@ -23,7 +23,6 @@ const LoginPage = () => {
     try {
       dispatch(login(data));
     } catch (error) {
-      console.log(error.message);
     }
     setSubmitting(false);
   };

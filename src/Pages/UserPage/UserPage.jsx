@@ -31,12 +31,10 @@ const UserPage = () => {
       try {
         await Promise.all([dispatch(current()), dispatch(fetchOwnPets())]);
       } catch (error) {
-        // Обработка ошибок
+        console.log(error)
       }
     };
     fetchData();
-    // dispatch(current());
-    // dispatch(fetchOwnPets());
   }, [dispatch]);
 
   useEffect(() => {
@@ -66,7 +64,6 @@ const UserPage = () => {
 
   const handleDeletePet = async _id => {
     dispatch(fetchDeletePet(_id));
-    console.log('DELETE PET', _id);
   };
 
   return (

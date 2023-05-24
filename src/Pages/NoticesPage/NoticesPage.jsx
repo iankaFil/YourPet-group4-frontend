@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import { ToastContainer } from 'react-toastify'; //
+import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import Zaglushka from '../../Shared/images/zaglushka.png';
 import Section from 'Components/Section';
@@ -14,17 +14,13 @@ import NoticesSearch from 'Components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'Components/Notices/NoticesFilters/NoticesFilters';
 import CategoryList from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { current } from 'Redux/auth/auth-operations';
-// import CategoryItem from 'Components/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem';
 import Container from 'Components/Container/Container';
 import Loader from 'Components/Loader/Loader';
-
-// import { fetchNews } from 'Redux/news/news-operations';
 
 import {
   fetchNoticesByTitle,
   fetchFavotiteNotices,
   fetchUserNotices,
-  // fetchNoticesByCategory,
 } from 'Redux/notices/notices-operations';
 
 import {
@@ -45,18 +41,7 @@ const NoticesPage = () => {
   const location = useLocation();
 
   const path = location.pathname;
-  console.log('PATH-> ', path);
-
   const [category, setCategory] = useState(() => extractCategoryFromPath(path));
-
-  console.log('KJHBKJHBKJBKJBKJB', category);
-
-  // let displayPagination;
-  // useEffect(() => {
-  //   if (category === 'favorites') {
-  //     displayPagination = false;
-  //   }
-  // }, [category, displayPagination]);
 
   function transformCategorie(value) {
     switch (value) {
@@ -82,11 +67,9 @@ const NoticesPage = () => {
   }
 
   function extractCategoryFromPath(path) {
-    console.log('PATH-> ', path);
     const pathSegments = path.split('/');
 
     const validPath = transformCategorie(pathSegments[2]);
-    console.log('VALIDDDDD PATH-> ', validPath);
 
     if (pathSegments[2] === 'for-free') {
       return 'in-good-hands';
@@ -98,8 +81,6 @@ const NoticesPage = () => {
 
   const notices = useSelector(selectNotices);
 
-  console.log('NOTICESSSSSSS', notices);
-
   const isLoading = useSelector(selectIsLoading);
 
   const user = useSelector(getUser);
@@ -108,27 +89,7 @@ const NoticesPage = () => {
 
   const totalPages = useSelector(selectTotalPages);
 
-  console.log('totalPages', totalPages);
-
   const [activePage, setActivePage] = useState(0);
-
-  // const geNotices = useCallback(
-  //   category => {
-  //     if (isLogin && Object.keys(user).length > 0) {
-  //       if (category === 'favorites') {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 1');
-  //         dispatch(fetchFavotiteNotices());
-  //       } else if (category === 'user-notices') {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 2');
-  //         dispatch(fetchUserNotices());
-  //       } else {
-  //         console.log(' ВЫЗЫВАЮ DISPATCH 3');
-  //         dispatch(fetchNoticesByTitle());
-  //       }
-  //     }
-  //   },
-  //   [dispatch, isLogin, user]
-  // );
 
   const handleFilterChange = useCallback(
     (filterName, filterValue) => {
@@ -144,60 +105,38 @@ const NoticesPage = () => {
   useEffect(() => {
     handleFilterChange('category', category);
     setActivePage(0);
-    // console.log('   DISPATCH --------------- CATEGORY_______', category);
-    // if (category === 'favorites') {
-    //   console.log(' ВЫЗЫВАЮ DISPATCH 1');
-    //   dispatch(fetchFavotiteNotices());
-    // } else if (category === 'user-notices') {
-    //   console.log(' ВЫЗЫВАЮ DISPATCH 2');
-    //   dispatch(fetchUserNotices());
-    // } else {
-    //   console.log(' ВЫЗЫВАЮ DISPATCH 3');
-    //   dispatch(fetchNoticesByTitle());
-    // }
-    // dispatch(fetchNoticesByTitle());
+    
   }, [category, dispatch, handleFilterChange]);
 
   useEffect(() => {
     handleFilterChange('page', activePage + 1);
-    // dispatch(fetchNoticesByTitle());
   }, [activePage, dispatch, handleFilterChange]);
 
   useEffect(() => {
     setActivePage(0);
     handleFilterChange('searchQuery', searchQuery);
-    // dispatch(fetchNoticesByTitle());
   }, [searchQuery, dispatch, handleFilterChange]);
 
   useEffect(() => {
-    console.log('isLogin', isLogin);
-    console.log('activePage', activePage);
     const fetchData = () => {
       if (isLogin && Object.keys(user).length > 0) {
         if (category === 'favorites') {
-          console.log(' ВЫЗЫВАЮ DISPATCH 1');
           dispatch(fetchFavotiteNotices());
         } else if (searchQuery) {
-          console.log(' ВЫЗЫВАЮ DISPATCH 2');
           dispatch(
             fetchNoticesByTitle({ category, searchQuery, page: activePage + 1 })
           );
         } else if (category === 'user-notices') {
-          console.log(' ВЫЗЫВАЮ DISPATCH 3');
           dispatch(fetchUserNotices());
         } else {
-          console.log(' ВЫЗЫВАЮ DISPATCH 4');
           dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
         }
       } else if (isLogin && Object.keys(user).length === 0) {
-        console.log(' ВЫЗЫВАЮ DISPATCH CURRENT 5 isLogin', isLogin);
         dispatch(current())
           .then(() => {
             if (category === 'favorites') {
-              console.log(' ВЫЗЫВАЮ DISPATCH 6');
               dispatch(fetchFavotiteNotices());
             } else if (searchQuery) {
-              console.log(' ВЫЗЫВАЮ DISPATCH 7');
               dispatch(
                 fetchNoticesByTitle({
                   category,
@@ -206,23 +145,17 @@ const NoticesPage = () => {
                 })
               );
             } else if (category === 'user-notices') {
-              console.log(' ВЫЗЫВАЮ DISPATCH 8');
               dispatch(fetchUserNotices());
             } else {
-              console.log(' ВЫЗЫВАЮ DISPATCH 9');
               dispatch(fetchNoticesByTitle({ category, page: activePage + 1 }));
             }
           })
           .catch(error => {
-            // Не  загрузился Юзер current
-            console.log('Error ', error);
           });
       } else if (!isLogin) {
         if (searchQuery) {
-          console.log(' ВЫЗЫВАЮ DISPATCH 10');
           dispatch(fetchNoticesByTitle({ category, searchQuery }));
         } else {
-          console.log(' ВЫЗЫВАЮ DISPATCH 11');
           dispatch(fetchNoticesByTitle({ category }));
         }
       }
@@ -267,17 +200,11 @@ const NoticesPage = () => {
 
   const handlePageClick = ({ selected }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // const page = selected + 1;
     setActivePage(selected);
-    // const categoryURL = getCategoryFromURL();
-    // dispatch(fetchNoticesByTitle({ category, searchQuery, page }));
   };
 
   return (
     <Section>
-      {/* {isLoading && !error ? (
-        <Loader />
-      ) : ( */}
       <Container>
         <Title>Find your favorite pet</Title>
         <NoticesSearch
@@ -291,7 +218,6 @@ const NoticesPage = () => {
             <p>It's nothing here, because I ate all.</p>
           </div>
         )}
-        {/* {notices && notices.length > 0 && <CategoryList card={notices} />} */}
         {isLoading && !error ? <Loader /> : <CategoryList card={notices} />}
         {category !== 'favorites' &&
           category !== 'user-notices' &&
@@ -315,7 +241,6 @@ const NoticesPage = () => {
           )}
         <ToastContainer autoClose={1400} position="top-center" />
       </Container>
-      {/* )} */}
     </Section>
   );
 };

@@ -1,5 +1,5 @@
 import css from './AddPetPage.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +11,6 @@ import FirstSteps from './Steps/Step1/FirstSteps';
 import StepsRenderSecond from './Steps/Step2/StepsRenderSecond';
 import StepsRenderThree from './Steps/Step3/StepsRenderThree';
 import ModalWindow from 'Components/ModalWindow';
-// import AddPetPageTitles from './AddPetPageTitles';
 import Loader from 'Components/Loader/Loader';
 import instance from '../../Shared/api/auth-api';
 
@@ -25,21 +24,15 @@ function AddPetPage() {
 
   const [formData, setFormData] = useState({});
 
-  useEffect(() => {
-    console.log('new state FORM DATA:', formData);
-  }, [formData]);
-
   const navigate = useNavigate();
 
   const handleOptionChange = (option, number) => {
-    console.log(option);
     setFormData(prevData => ({ ...prevData, category: option }));
     setSelectedOption(option);
     setActiveButton(number);
   };
 
   const handleNext = stepData => {
-    console.log(' YF:FN NEXT ');
     setIsLoading(true);
     if (selectedOption && currentStep < 3) {
       setStep(step + 1);
@@ -72,7 +65,6 @@ function AddPetPage() {
   };
 
   const handleCloseModal = () => {
-    console.log('formDataQQQQQQQQQQQQQ', formData);
     setShowModal(false);
 
     switch (formData.category) {
@@ -96,7 +88,6 @@ function AddPetPage() {
   const savePet = async (endpoint, category, data) => {
     try {
       const response = await instance.post(`${endpoint}${category}`, data);
-      console.log(response);
 
       if (response.status === 201) {
         setIsLoading(false);
@@ -115,8 +106,6 @@ function AddPetPage() {
 
     delete sendDataForm.category;
 
-    console.log('handleSubmit   OOOOOOOOOOOOO', sendDataForm);
-    // notice-image
     const formDataSend = new FormData();
 
     for (const key in sendDataForm) {

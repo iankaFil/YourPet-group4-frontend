@@ -75,17 +75,7 @@ const CategoryItem = ({
     dispatch(fetchDeleteNotice(_id));
     setShowModalAccess(false);
   }
-  // const [isRemoveActive, setIsRemoveActive] = useState(() => {
-  //   if (isLogin && user) {
-  //     if (owner._id === user._id) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   }
-  //   return false;
-  // });
-
+  
   const handleFavoriteClick = () => {
     if (!isLogin) {
       toast.info(
@@ -107,7 +97,7 @@ const CategoryItem = ({
     const birthDate = new Date(birthDatein);
     const currentDate = new Date();
     const diffInMilliseconds = Math.abs(currentDate - birthDate);
-    const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; // учитываем високосные года
+    const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; 
 
     if (diffInMilliseconds < millisecondsPerYear) {
       const millisecondsPerMonth = millisecondsPerYear / 12;
