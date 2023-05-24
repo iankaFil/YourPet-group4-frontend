@@ -33,7 +33,7 @@
   display: flex;
 }
 
-.btn:hover  {
+.btn:hover {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   color: rgb(253, 247, 242);
   border: none;
@@ -44,11 +44,11 @@
   /* position: relative; */
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
   overflow: hidden;
   align-items: center;
   margin: 0 5px;
-  padding: 2px 4px;
+  padding: 2px;
   gap: 4px;
 
   width: 80px;
@@ -70,6 +70,10 @@
   color: #111111;
 }
 
+.img_btn svg {
+  margin-right: 4px;
+}
+
 .favorite_btn {
   display: flex;
   align-items: center;
@@ -87,6 +91,7 @@
 
   cursor: pointer;
 }
+
 .favorite_btn svg:hover,
 .delete_btn svg:hover {
   fill: #54adff;
@@ -126,6 +131,7 @@
   color: #000;
   background-color: #cce4fb;
 }
+
 @media screen and (min-width: 768px) {
   .sell_btn {
     right: 178px;
