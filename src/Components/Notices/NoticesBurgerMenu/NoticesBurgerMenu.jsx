@@ -79,21 +79,25 @@ const NoticesBurgerMenu = () => {
         className={css.filterWrapper}
       >
         <Panel header="By age" key="1" className={css.title}>
+
           <Checkbox.Group
             options={optionsByAge}
             value={filters.age}
             onChange={checkedValues => handleOptionChange('age', checkedValues)}
             className={css.checkbox}
           />
+
         </Panel>
 
         <Panel header="By gender" key="2" className={css.title}>
+
           <Checkbox.Group
             options={optionsByGender}
             value={filters.sex}
             onChange={checkedValues => handleOptionChange('sex', checkedValues)}
             className={css.checkbox}
           />
+
         </Panel>
       </Collapse>
     </div>
