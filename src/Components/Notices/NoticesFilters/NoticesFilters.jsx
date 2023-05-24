@@ -96,10 +96,10 @@ const NoticesCategoriesNav = ({ handleChangeCategory }) => {
             onClick={handleFilterButtonClick}
             // className={({ isActive }) => (isActive ? css.active : '')}
           >
-            Покажи мне любовь
+            <p className={css.filterText}>Filter</p>
+            <Filter />
           </button>
-          <p className={css.filterText}>Filter</p>
-          <Filter />
+
           {/* </NavLink> */}
           {isBurgerMenuOpen && <NoticesBurgerMenu />}
         </li>

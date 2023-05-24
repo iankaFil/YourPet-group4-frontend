@@ -239,43 +239,50 @@ const NoticesPage = () => {
 
   return (
     <Section>
-      {isLoading && !error && <Loader />}
-      <Container>
-        <Title>Find your favorite pet</Title>
-        <NoticesSearch
-          handleSearchChange={handleSearchChange}
-          handleChangeCategory={handleChangeCategory}
-        />
-        <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
-        {!notices.length && (
-          <div className={css.zaglushka}>
-            <img className={css.zaglushkaImg} src={Zaglushka} alt="Заглушка" />
-            <p>It`s nothing here, because I ate all.</p>
-          </div>
-        )}
-        {notices && notices.length > 0 && <CategoryList card={notices} />}
-        {category !== 'favorites' &&
-          category !== 'user-notices' &&
-          notices &&
-          totalPages > 1 &&
-          notices.length > 0 && (
-            <div className={css.wrapper}>
-              <ReactPaginate
-                previousLabel={<BsArrowLeft />}
-                nextLabel={<BsArrowRight />}
-                pageCount={Math.ceil(totalPages) || 0}
-                onPageChange={handlePageClick}
-                containerClassName={css.pagination}
-                activeClassName={css.paginationActive}
-                pageRangeDisplayed={2}
-                marginPagesDisplayed={2}
-                breakLabel={'...'}
-                forcePage={activePage}
+      {isLoading && !error ? (
+        <Loader />
+      ) : (
+        <Container>
+          <Title>Find your favorite pet</Title>
+          <NoticesSearch
+            handleSearchChange={handleSearchChange}
+            handleChangeCategory={handleChangeCategory}
+          />
+          <NoticesCategoriesNav handleChangeCategory={handleChangeCategory} />
+          {!notices.length && (
+            <div className={css.zaglushka}>
+              <img
+                className={css.zaglushkaImg}
+                src={Zaglushka}
+                alt="Заглушка"
               />
+              <p>It's nothing here, because I ate all.</p>
             </div>
           )}
-        <ToastContainer autoClose={1400} position="top-center" />
-      </Container>
+          {notices && notices.length > 0 && <CategoryList card={notices} />}
+          {category !== 'favorites' &&
+            category !== 'user-notices' &&
+            notices &&
+            totalPages > 1 &&
+            notices.length > 0 && (
+              <div className={css.wrapper}>
+                <ReactPaginate
+                  previousLabel={<BsArrowLeft />}
+                  nextLabel={<BsArrowRight />}
+                  pageCount={Math.ceil(totalPages) || 0}
+                  onPageChange={handlePageClick}
+                  containerClassName={css.pagination}
+                  activeClassName={css.paginationActive}
+                  pageRangeDisplayed={2}
+                  marginPagesDisplayed={2}
+                  breakLabel={'...'}
+                  forcePage={activePage}
+                />
+              </div>
+            )}
+          <ToastContainer autoClose={1400} position="top-center" />
+        </Container>
+      )}
     </Section>
   );
 };

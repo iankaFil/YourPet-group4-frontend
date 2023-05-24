@@ -1,11 +1,12 @@
 .navigationContainer {
-  padding: 0 12px;
+  padding: 0 10px;
   margin-top: 43px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   width: auto;
 }
+
 @media screen and (max-width: 1199px) {
   .navigationContainer {
     padding: 0 12px;
@@ -36,7 +37,7 @@
   }
 }
 
-.filterLink a:hover,
+.filterLink button:hover,
 .link a:hover,
 .addButtonLink button:hover {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -63,10 +64,10 @@
     gap: 12px;
   }
 }
-.filterLink a,
+
+.filterLink button,
 .addButtonLink button {
-  background: #54adff;
-  color: #fff;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,12 +78,16 @@
   text-decoration: none;
 }
 
-.filterLink a {
+.filterLink button {
   min-width: 152px;
+  background: #fff;
+  color: #54adff;
 }
 
 .addButtonLink button {
   min-width: 134px;
+  background: #54adff;
+  color: #fff;
 }
 
 .addButtonLink svg,
@@ -92,11 +97,14 @@
   height: 24px;
   stroke: currentColor;
 }
-.addPetText {
+
+.addPetText,
+.filterText {
   font-weight: 700;
   font-size: 16px;
   line-height: 16px;
 }
+
 
 @media screen and (max-width: 767px) {
   .addButtonLink button {
@@ -128,13 +136,11 @@
   }
 }
 
-.filterLink a {
-  background: #fff;
-  color: #54adff;
-}
+
+
 
 @media screen and (max-width: 767px) {
-  .filterLink a {
+  .filterLink button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,15 +155,12 @@
   }
 }
 
-.text {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  color: #54adff;
-}
+
+
+
 
 @media screen and (min-width: 768px) {
-  .text {
+  .filterText {
     font-size: 16px;
     line-height: 22px;
   }
@@ -168,3 +171,9 @@
     display: none;
   }
 }
+
+/* .filterLink button:hover,
+.filterLink button:focus {
+  background: #54adff;
+  color: #fff;
+} */
