@@ -20,6 +20,7 @@ import ModalNotice from 'Components/ModalNotice/ModalNotice';
 import ModalAcces from 'Components/ModalAcces/ModalAcces';
 
 import css from './NoticesCategoriesItem.module.css';
+import { MaleIcon } from 'Components/SvgIcons/MaleIcon';
 
 const CategoryItem = ({
   _id,
@@ -159,8 +160,10 @@ const CategoryItem = ({
             </button>
           </li>
           <li>
+            
             <button className={css.img_btn}>
-              <FemaleIcon id="svg" />
+              {sex === 'female' ? <FemaleIcon id="svg" /> : <MaleIcon id="svg" />}
+              
               {sex}
             </button>
           </li>
